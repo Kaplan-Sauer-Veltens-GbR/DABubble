@@ -1,0 +1,36 @@
+@use "../../../scss/abstracts/colors" as *;
+
+label {
+    display: flex;
+    align-items: center;
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    & input[type="radio"]:checked + .custom-radio-btn {
+        background-color: white;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 12px;
+            width: 12px;
+            background-color: $colorPurple1;
+            border-radius: 50%;
+        }
+    }
+}
+
+.custom-radio-btn {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    margin-right: 20px;
+    display: inline-block;
+    border: 1px solid $colorLines;
+    border-radius: 50%;
+}
