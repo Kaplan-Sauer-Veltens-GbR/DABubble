@@ -12,12 +12,17 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 
+const availableLangs: string[] = ['en', 'de'];
+
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideMessaging(() => getMessaging()), provideStorage(() => getStorage()), provideHttpClient(), 
     provideTransloco({
         config: { 
-          availableLangs: ['en', 'de'],
-          defaultLang: navigator.language.split('-')[0],
+          availableLangs: availableLangs,
+          defaultLang: (() => {
+            const storedLang = localStorage.getItem('language') || navigator.language.split('-')[0];
+            return availableLangs.includes(storedLang) ? storedLang : 'de'
+          })(),
           // Remove this option if your application doesn't support changing language in runtime.
           reRenderOnLangChange: true,
           prodMode: !isDevMode(),
