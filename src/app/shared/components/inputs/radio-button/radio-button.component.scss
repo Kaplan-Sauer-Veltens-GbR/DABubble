@@ -3,34 +3,55 @@
 label {
     display: flex;
     align-items: center;
+    font-size: 18px;
+    font-weight: 400;
 
     input[type="radio"] {
         display: none;
     }
 
-    & input[type="radio"]:checked + .custom-radio-btn {
-        background-color: white;
+    .custom-radio-btn {
+        position: relative;
+        height: 18px;
+        width: 18px;
+        margin-right: 20px;
+        display: inline-block;
+        border: 1px solid $colorLines;
+        border-radius: 50%;
+        transition: all 80ms ease-in-out;
+    }
 
+    .custom-radio-btn {
+        background-color: white;
         &::after {
             content: "";
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            height: 12px;
-            width: 12px;
-            background-color: $colorPurple1;
+            transition: all 160ms ease-in-out;
             border-radius: 50%;
         }
     }
-}
 
-.custom-radio-btn {
-    position: relative;
-    height: 18px;
-    width: 18px;
-    margin-right: 20px;
-    display: inline-block;
-    border: 1px solid $colorLines;
-    border-radius: 50%;
+    & input[type="radio"]:not(:checked) + .custom-radio-btn {
+        &::after {
+            height: 0px;
+        }
+    }
+
+    & input[type="radio"]:checked + .custom-radio-btn {
+        &::after {
+            height: 12px;
+            width: 12px;
+            background-color: $colorPurple1;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+        input[type="radio"]:not(:checked) + .custom-radio-btn {
+            border-color: $colorPurple2;
+        }
+    }
 }
