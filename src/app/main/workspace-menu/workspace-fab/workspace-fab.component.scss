@@ -1,12 +1,13 @@
-@use '../../../shared/scss/abstracts/' as *;
+@use "../../../shared/scss/abstracts/" as *;
 
 .workspace-fab {
     position: absolute;
     left: 0;
     bottom: 0;
-    @include dflex($g: 10px);
-    width: fit-content;
+    @include dflex(space-between, $g: 10px);
+    min-width: 350px;
     padding: 14px 23px;
+    box-sizing: border-box;
     cursor: pointer;
     transform-origin: top left;
     transform: translateX(10%); // May needs adjustment, when chat is done.
@@ -19,24 +20,27 @@
         transition: all 80ms ease-in;
     }
 
-    >span {
+    > span {
         font-size: 20px;
         font-weight: 500;
+        flex: 1;
+        text-align: center;
     }
 
-    >img {
+    > img {
         rotate: -90deg;
 
-        &.--open{
+        &.--open {
             rotate: 90deg;
         }
     }
 
     &:hover {
-        >span {
+        > span {
             color: $colorPurple3;
+            font-weight: 700;
         }
-        >img {
+        > img {
             filter: $colorTransformPurple1;
         }
     }
