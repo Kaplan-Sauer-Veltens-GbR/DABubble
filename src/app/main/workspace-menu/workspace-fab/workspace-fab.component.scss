@@ -3,19 +3,19 @@
 .workspace-fab {
     position: absolute;
     left: 0;
-    bottom: 0;
-    @include dflex(space-between, $g: 10px);
-    min-width: 350px;
+    bottom: 50%;
+    @include dflex(space-between, $g: 10px, $d: row-reverse);
     padding: 14px 23px;
     box-sizing: border-box;
     cursor: pointer;
-    transform-origin: top left;
-    transform: translateX(10%); // May needs adjustment, when chat is done.
-    rotate: -90deg;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    transform-origin: bottom left;
+    transform: translate(-50%, 0%);
+    rotate: 90deg;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
     box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.2);
     user-select: none;
+
     & * {
         transition: all 80ms ease-in;
     }
@@ -25,13 +25,14 @@
         font-weight: 500;
         flex: 1;
         text-align: center;
+        rotate: 180deg;
     }
 
     > img {
-        rotate: -90deg;
+        rotate: 90deg;
 
         &.--open {
-            rotate: 90deg;
+            rotate: -90deg;
         }
     }
 
