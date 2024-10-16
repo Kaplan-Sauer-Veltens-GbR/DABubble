@@ -1,0 +1,4 @@
+<div role="button" aria-controls="workspace" [attr.aria-expanded]="workspace.isOpen" (click)="workspace.toggle()" *transloco="let t; prefix:'workspace.is-open'" class="workspace-fab">
+    <span>{{ t(workspace.isOpen.toString()) }}</span>
+    <img src="/assets/icons/workspace/toggle.png" [ngClass]="{'--open': workspace.isOpen}" alt="" draggable="false">
+</div>

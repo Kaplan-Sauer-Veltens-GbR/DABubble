@@ -1,3 +1,9 @@
 {
-    "demo": "inhalt"
+    "demo": "inhalt",
+    "workspace": {
+        "is-open": {
+                "true": "Workspace-Menü schließen",
+                "false": "Workspace-Menü öffnen"
+        }
+    }
 }
