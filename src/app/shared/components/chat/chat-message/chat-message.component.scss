@@ -1,21 +1,58 @@
-@use '../../../scss/abstracts/' as *;
+@use "../../../scss/abstracts/" as *;
 
 @mixin flexHeaderAndFooter() {
     @include dflex(flex-start, center, 20px);
 }
 
+* {
+    transition: all 100ms ease-in;
+}
+
 .message-container {
-    @include dflex(flex-start);
+    @include dflex(flex-start, $g: clamp(2vw, 30px, 4vw));
+    cursor: pointer;
+    padding: 10px clamp(2vw, 45px, 4vw);
+
+    &:hover {
+        background-color: $colorBG;
+            .msg {
+                &__body {
+                    background-color: white;
+                }
+            }
+    }
+
+    &.msg-authorship {
+        flex-direction: row-reverse;
+    }
 
     .avatar {
-        border-radius: 40px;
+        align-self: flex-start;
+        > img {
+            border-radius: 40px;
+            width: clamp(3vw, 70px, 11.7vw);
+        }
     }
 
     .msg {
         @include dflex(flex-start, flex-start, 8px, column);
 
+        .timestamp {
+            font-weight: 400;
+            font-size: clamp(1vw, 14px, 4vw);
+            color: $colorGray;
+        }
+
         &__header {
             @include flexHeaderAndFooter();
+            &.msg-authorship {
+                flex-direction: row-reverse;
+            }
+
+            .user-name {
+                font-weight: 700;
+                font-size: 18px;
+            }
         }
 
         &__body {
@@ -24,14 +61,28 @@
             border-top-right-radius: 30px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
+            font-weight: 400;
+            font-size: 18px;
 
-            &.authorship {
-
+            &.msg-authorship {
+                background-color: $colorPurple2;
+                border-top-right-radius: unset;
+                border-top-left-radius: 30px;
+                color: white;
             }
         }
 
         &__footer {
             @include flexHeaderAndFooter();
+            white-space: nowrap;
+            .subthread-link {
+                color: $colorPurple3;
+                font-size: clamp(1vw, 18px, 4vw);
+
+                &:hover {
+                    font-weight: 700;
+                }
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
-<div class="message-container">
-    <img src="" alt="" class="avatar" alt="avatar">
+<div class="message-container" [ngClass]="{'msg-authorship': isAuthor}">
+    <div class="avatar">
+        <img [src]="avatarPath" alt="avatar">
+    </div>
     <article class="msg">
-        <div class="msg__header">
+        <div class="msg__header" [ngClass]="{'msg-authorship': isAuthor}">
             <span class="user-name">Noah Braun</span>
             <span class="timestamp">14:25 Uhr</span>
         </div>
-        <div class="msg__body">Welche Version von Angular ist aktuell?</div>
+        <div class="msg__body" [ngClass]="{'msg-authorship': isAuthor}">Welche Version ist aktuell von Angular?</div>
         <div class="msg__footer">
             <span class="subthread-link">2 Antworten</span>
             <span class="timestamp">Letzte Antwort 14:56 Uhr</span>
