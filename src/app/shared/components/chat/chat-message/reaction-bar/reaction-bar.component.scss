@@ -1,0 +1,9 @@
+@use '../../../../scss/abstracts/' as *;
+
+.reaction-bar {
+    @include dflex(flex-start);
+
+    &.msg-ownership {
+        justify-content: flex-end;
+    }
+}

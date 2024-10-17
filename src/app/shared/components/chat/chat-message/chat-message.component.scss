@@ -11,7 +11,9 @@
 .message-container {
     @include dflex(flex-start, $g: clamp(2vw, 30px, 4vw));
     cursor: pointer;
+    position: relative;
     padding: 10px clamp(2vw, 45px, 4vw);
+    top: 50px; //remove after testing!
 
     &:hover {
         background-color: $colorBG;
@@ -22,7 +24,7 @@
             }
     }
 
-    &.msg-authorship {
+    &.msg-ownership {
         flex-direction: row-reverse;
     }
 
@@ -35,7 +37,10 @@
     }
 
     .msg {
-        @include dflex(flex-start, flex-start, 8px, column);
+        @include dflex(center, flex-start, 8px, column);
+        &.msg-ownership {
+            align-items: flex-end;
+        }
 
         .timestamp {
             font-weight: 400;
@@ -45,13 +50,16 @@
 
         &__header {
             @include flexHeaderAndFooter();
-            &.msg-authorship {
+            &.msg-ownership {
                 flex-direction: row-reverse;
             }
 
             .user-name {
                 font-weight: 700;
                 font-size: 18px;
+                &:hover {
+                    color: $colorPurple1;
+                }
             }
         }
 
@@ -64,7 +72,7 @@
             font-weight: 400;
             font-size: 18px;
 
-            &.msg-authorship {
+            &.msg-ownership {
                 background-color: $colorPurple2;
                 border-top-right-radius: unset;
                 border-top-left-radius: 30px;

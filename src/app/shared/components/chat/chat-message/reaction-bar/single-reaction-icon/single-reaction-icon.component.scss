@@ -1,0 +1,9 @@
+@use '../../../../../scss/abstracts/' as *;
+
+.reaction-icon {
+    position: relative;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid $colorLines;
+    border-radius: 20px;
+}

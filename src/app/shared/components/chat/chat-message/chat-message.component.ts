@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ReactionPopoverComponent } from "./reaction-popover/reaction-popover.component";
+import { ReactionBarComponent } from "./reaction-bar/reaction-bar.component";
 
 @Component({
   selector: 'app-chat-message',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactionPopoverComponent, ReactionBarComponent],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss'
 })
 export class ChatMessageComponent {
-  @Input() isAuthor: boolean = false;
+  @Input() isOwner: boolean = true;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
 }
