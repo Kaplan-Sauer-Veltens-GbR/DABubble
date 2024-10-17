@@ -1,1 +1,22 @@
-<p>text-message-field works!</p>
+<div class="message-container">
+  <textarea
+    [placeholder]="placeholder"
+    [attr.pattern]="pattern ? pattern : null"
+    [required]="required"
+  ></textarea>
+  
+  <div class="icon-container">
+    <div class="send">
+        <app-icon-libary  iconName="send"></app-icon-libary>
+    </div>
+    <div class="icon-line">
+       
+      <app-icon-libary iconName="addGrey"></app-icon-libary>
+      <div class="seperator"></div>
+      <app-icon-libary iconName="emojiGrey"></app-icon-libary>
+      <app-icon-libary iconName="tagGrey"></app-icon-libary>
+    </div>
+
+</div>
+  </div>
+
