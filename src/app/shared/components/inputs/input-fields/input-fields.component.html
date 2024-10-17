@@ -3,6 +3,6 @@
     
 <input [type]="type" [placeholder]="placeholder" [attr.pattern]="pattern ? pattern : null" [required]="required">
 <ng-container *ngIf="hasProjectedContent">
-    <ng-content select="[iconSlot]"></ng-content>
+    <ng-content ></ng-content>
 </ng-container>
 </div>

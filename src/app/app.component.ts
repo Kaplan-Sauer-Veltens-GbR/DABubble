@@ -5,15 +5,17 @@ import { RadioButtonComponent } from "./shared/components/inputs/radio-button/ra
 import { WorkspaceFabComponent } from "./main/workspace-menu/workspace-fab/workspace-fab.component";
 import { AuthService } from './services/auth.service';
 import { InputFieldsComponent } from './shared/components/inputs/input-fields/input-fields.component';
+import { IconLibaryComponent } from './shared/components/icon-component/icon-libary.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TranslocoModule, RadioButtonComponent, WorkspaceFabComponent,InputFieldsComponent],
+  imports: [RouterOutlet, TranslocoModule, RadioButtonComponent, WorkspaceFabComponent,InputFieldsComponent,IconLibaryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+ 
   auth: AuthService = inject(AuthService);
 
   ngOnInit(): void {
