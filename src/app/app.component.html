@@ -5,5 +5,11 @@
     <app-workspace-fab></app-workspace-fab>
 </form>
 <div (click)="auth.signInWithGooglePopup()"> <span>login2</span></div>
+<form action="">
+<app-input-fields type="number" [required]="true" >
+    <h3 #iconSlot iconSlot>Mein Titel</h3>
+</app-input-fields>
 
+<input type="submit">
+</form>
 <router-outlet />

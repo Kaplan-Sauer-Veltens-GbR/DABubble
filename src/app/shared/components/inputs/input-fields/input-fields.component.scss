@@ -1,0 +1,19 @@
+@use '../../../scss/abstracts/_index.scss' as *;
+
+.input-field {
+    input {
+        border-radius: 40px;
+        border: solid 1px $colorLines;
+        width: 100%;
+        padding: 18px 20px 18px 20px;
+        &:focus {
+            outline-color: $colorPurple3;
+        }
+    }
+}
+
+
+.custom-icon {
+    color: red; /* Stil für das Icon */
+    font-size: 20px; /* Größe des Icons */
+  }
