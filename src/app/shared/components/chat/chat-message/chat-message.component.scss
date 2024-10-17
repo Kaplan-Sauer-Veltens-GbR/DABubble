@@ -13,20 +13,21 @@
     cursor: pointer;
     position: relative;
     padding: 10px clamp(2vw, 45px, 4vw);
-    top: 50px; //remove after testing!
-
-    &:hover {
-        background-color: $colorBG;
-            .msg {
-                &__body {
-                    background-color: white;
-                }
-            }
-    }
+    margin-top: 20px; //remove after testing!
 
     &.msg-ownership {
         flex-direction: row-reverse;
     }
+
+    &:hover {
+        background-color: $colorBG;
+        .msg {
+            &__body {
+                background-color: white;
+            }
+        }
+    }
+
 
     .avatar {
         align-self: flex-start;

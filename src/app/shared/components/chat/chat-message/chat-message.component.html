@@ -1,5 +1,5 @@
-<div class="message-container" [ngClass]="{'msg-ownership': isOwner}">
-    <app-reaction-popover [isOwner]="isOwner"></app-reaction-popover>
+<div class="message-container" [ngClass]="{'msg-ownership': isOwner}" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
+    <app-reaction-popover [isOwner]="isOwner" [isDisplayed]="displayPopover"></app-reaction-popover>
     <div class="avatar">
         <img [src]="avatarPath" alt="avatar">
     </div>

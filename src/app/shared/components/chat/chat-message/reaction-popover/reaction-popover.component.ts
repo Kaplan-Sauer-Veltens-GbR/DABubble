@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ReactionPopoverComponent {
 @Input() isOwner: boolean = false;
+@Input() isDisplayed: boolean = false;
 }

@@ -6,4 +6,14 @@
     background-color: white;
     border: 1px solid $colorLines;
     border-radius: 20px;
+
+    .reaction-details{
+        display: none;
+    }
+
+    &:hover {
+        .reaction-details {
+            display: unset;
+        }
+    }
 }

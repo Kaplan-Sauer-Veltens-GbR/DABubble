@@ -9,5 +9,4 @@ import { ReactionDetailsComponent } from "./reaction-details/reaction-details.co
   styleUrl: './single-reaction-icon.component.scss'
 })
 export class SingleReactionIconComponent {
-
 }
