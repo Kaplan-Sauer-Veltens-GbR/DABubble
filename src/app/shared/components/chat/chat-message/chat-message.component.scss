@@ -1,0 +1,37 @@
+@use '../../../scss/abstracts/' as *;
+
+@mixin flexHeaderAndFooter() {
+    @include dflex(flex-start, center, 20px);
+}
+
+.message-container {
+    @include dflex(flex-start);
+
+    .avatar {
+        border-radius: 40px;
+    }
+
+    .msg {
+        @include dflex(flex-start, flex-start, 8px, column);
+
+        &__header {
+            @include flexHeaderAndFooter();
+        }
+
+        &__body {
+            background-color: $colorBG;
+            padding: 15px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+
+            &.authorship {
+
+            }
+        }
+
+        &__footer {
+            @include flexHeaderAndFooter();
+        }
+    }
+}
