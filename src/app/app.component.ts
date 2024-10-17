@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { RadioButtonComponent } from "./shared/components/inputs/radio-button/radio-button.component";
 import { WorkspaceFabComponent } from "./main/workspace-menu/workspace-fab/workspace-fab.component";
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,11 @@ import { WorkspaceFabComponent } from "./main/workspace-menu/workspace-fab/works
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  auth: AuthService = inject(AuthService);
+
+  ngOnInit(): void {
+ 
+    
+  }
+  
 }
