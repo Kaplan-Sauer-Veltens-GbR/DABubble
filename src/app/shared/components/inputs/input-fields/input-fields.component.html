@@ -1,0 +1,7 @@
+<div class="input-field"> 
+    <ng-container *ngIf="hasProjectedContent">
+        <ng-content></ng-content>
+    </ng-container>
+<input [type]="type" [placeholder]="placeholder" [attr.pattern]="pattern ? pattern : null" [required]="required">
+
+</div>

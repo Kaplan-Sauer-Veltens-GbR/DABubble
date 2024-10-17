@@ -1,1 +1,17 @@
+<span *transloco="let t">{{t('demo')}}</span>
+<form action="">
+    <app-radio-button>Option 1</app-radio-button>
+    <app-radio-button>Option 2</app-radio-button>
+    <app-workspace-fab></app-workspace-fab>
+</form>
+<div (click)="auth.signInWithGooglePopup()"> <span>login2</span></div>
+<form action="">
+<app-input-fields type="text" [required]="true"  >
+    <app-icon-libary #iconSlot  iconName="searchGrey" iconClass="icon-placement"  ></app-icon-libary>
+</app-input-fields>
+
+<input type="submit">
+</form>
+
+
 <router-outlet />

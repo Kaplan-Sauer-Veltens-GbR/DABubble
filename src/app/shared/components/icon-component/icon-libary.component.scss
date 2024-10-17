@@ -1,0 +1,9 @@
+.icon-placement {
+
+    position: absolute;
+    margin-left: 32px;
+    left: 10px; // Abstand vom linken Rand
+    top: 50%; // Vertikale Zentrierung
+    transform: translateY(-50%);
+   cursor: default;
+}
