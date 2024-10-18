@@ -44,10 +44,25 @@ textarea {
   &:hover :not(.seperator) {
     filter: brightness(0) saturate(100%);
   }
-  app-icon-libary {
+  app-icon-libary  {
     &:hover {
       filter: $colorTransformPurple1 !important;
+    
     }
+  }
+  .icon-bg-hover {
+    height: 40px;
+    width:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color:$colorBG;
+      filter:none;
+      border-radius: 20px;
+      
+    }
+
   }
 }
 
