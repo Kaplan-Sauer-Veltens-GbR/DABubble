@@ -1,5 +1,13 @@
 {
-    "demo": "inhalt",
+
+    "chat": {
+        "subthread": {
+            "open": "{{count}} Antworten anzeigen"
+        }
+    },
+    "profile": {
+        "open": "Profil von {{name}} anzeigen"
+    },
     "workspace": {
         "is-open": {
                 "true": "Workspace-Menü schließen",

@@ -1,17 +1,17 @@
-<div class="message-container" [ngClass]="{'msg-ownership': isOwner}" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
+<div *transloco="let t;" class="message-container" [ngClass]="{'msg-ownership': isOwner}" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
     <app-reaction-popover [isOwner]="isOwner" [isDisplayed]="displayPopover"></app-reaction-popover>
     <div class="avatar">
         <img [src]="avatarPath" alt="avatar">
     </div>
     <article class="msg" [ngClass]="{'msg-ownership': isOwner}">
         <div class="msg__header" [ngClass]="{'msg-ownership': isOwner}">
-            <span class="user-name">Noah Braun</span>
+            <span class="user-name" role="button"  [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">Noah Braun</span>
             <span class="timestamp">14:25 Uhr</span>
         </div>
         <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">Welche Version ist aktuell von Angular?</div>
         <app-reaction-bar [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>
         <div class="msg__footer">
-                <span class="subthread-link">2 Antworten</span>
+                <span class="subthread-link" role="button" [attr.aria-label]="t('chat.subthread.open', {'count': replyAmount})">2 Antworten</span>
                 <span class="timestamp">Letzte Antwort 14:56 Uhr</span>
         </div>
     </article>
