@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, ElementRef, Input } from '@angular/core';
+import { IconLibaryComponent } from '../../icon-component/icon-libary.component';
 
 @Component({
   selector: 'app-input-fields',

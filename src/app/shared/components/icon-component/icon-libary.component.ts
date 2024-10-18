@@ -10,7 +10,7 @@ import { InputFieldsComponent } from '../inputs/input-fields/input-fields.compon
 @Component({
   selector: 'app-icon-libary',
   standalone: true,
-  imports: [CommonModule, IconLibaryComponent],
+  imports: [CommonModule,],
   templateUrl: './icon-libary.component.html',
   styleUrl: './icon-libary.component.scss',
 })

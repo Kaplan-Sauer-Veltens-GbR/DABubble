@@ -1,0 +1,37 @@
+@use "../../shared/scss/abstracts/_index.scss" as *;
+
+aside {
+   
+    border-radius: 30px;
+    background-color: white;
+
+   
+}
+
+app-chat-message {
+    padding: 0 !important;
+}
+
+.headline {
+    padding: 32px  clamp(20px, 5vw, 40px);
+    @include dflex(space-between,center,5px);
+    app-icon-libary  {
+        display: flex;
+        cursor: pointer;
+    }
+}
+ 
+header {
+@include dflex(unset,center,5px);
+    h2 {
+        margin: 0;
+    }
+    span {
+        color: $colorPurple2;
+    }
+  
+}
+
+.message-field {
+    padding: 25px clamp(10px, 4vw, 20px) 40px clamp(10px, 4vw, 20px);
+}
