@@ -12,7 +12,7 @@
         @include dflex(space-between);
         >span {
             font-weight: 700;
-            font-size: min(4vw, 24px);
+            font-size: min(6vw, 24px);
         }
     }
 
@@ -25,7 +25,7 @@
 
             .user-name {
                 font-weight: 700;
-                font-size: min(4vw, 32px);
+                font-size: min(6vw, 32px);
             }
         }
 
@@ -44,7 +44,7 @@
             }
 
             &__desc {
-                font-size: min(4vw, 20px);
+                font-size: min(6vw, 20px);
             }
         }
     }
@@ -69,13 +69,13 @@
 
             > span {
                 font-weight: 700;
-                font-size: min(4vw, 20px);
+                font-size: min(6vw, 20px);
             }
 
             .recipient {
                 cursor: pointer;
                 font-weight: 400;
-                font-size: min(4vw, 18px);
+                font-size: min(6vw, 18px);
                 color: $colorMail;
             }
         }
