@@ -8,33 +8,30 @@ textarea {
   border: none;
   width: 95%;
   box-sizing: border-box;
-//   &::-webkit-scrollbar { to be discussed
-//     display: none; 
-// }
+  //   &::-webkit-scrollbar { to be discussed
+  //     display: none;
+  // }
   &:focus {
     outline: none;
   }
 }
 
 .message-container {
-  width: 100%;
   border-radius: 20px;
   border: solid 1px $colorLines;
   padding: 20px;
 }
 
 .icon-container {
-    @include dflex(space-between,center,0,row-reverse);
+  @include dflex(space-between, center, 0, row-reverse);
   app-icon-libary {
     cursor: pointer;
-    
   }
 
   .send {
     &:hover {
       filter: $colorTransformPurple2;
 
-      // Hover-Effekt auf die sibling icon-line anwenden
       ~ .icon-line app-icon-libary {
         filter: brightness(0) saturate(100%) !important;
       }
