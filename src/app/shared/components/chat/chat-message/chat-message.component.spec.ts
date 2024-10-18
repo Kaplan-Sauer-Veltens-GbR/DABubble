@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatMessageComponent } from './chat-message.component';
+import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('ChatMessageComponent', () => {
   let component: ChatMessageComponent;
@@ -8,7 +9,10 @@ describe('ChatMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatMessageComponent]
+      imports: [
+        getTranslocoModule(),
+        ChatMessageComponent
+      ]
     })
     .compileComponents();
 
