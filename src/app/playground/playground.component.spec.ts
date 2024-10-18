@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaygroundComponent } from './playground.component';
+import { getTranslocoModule } from '../modules/transloco-testing/transloco-testing.module';
 
 describe('PlaygroundComponent', () => {
   let component: PlaygroundComponent;
@@ -8,7 +9,9 @@ describe('PlaygroundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlaygroundComponent]
+      imports: [
+        getTranslocoModule(),
+        PlaygroundComponent]
     })
     .compileComponents();
 
