@@ -1,0 +1,16 @@
+@use '../scss/abstracts/' as *;
+
+.box--floating {
+    @include dflex(flex-start, center, 0, column);
+    background-color: white;
+    box-shadow: 0px 6px 10px 0px #00000033;
+    border-radius: 30px;
+    padding: 40px clamp(2vw, 40px, 4vw);
+}
+
+.box--bordered {
+    @include dflex(flex-start, center, 0, column);
+    border-radius: 20px;
+    border: 1px solid $colorLines;
+    padding: 20px;
+}

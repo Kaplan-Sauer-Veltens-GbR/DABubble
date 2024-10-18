@@ -1,0 +1,83 @@
+@use "../../../scss/abstracts/" as *;
+@use "../../../scss/boxes" as *;
+
+.profile {
+    width: min(100%, 500px);
+    height: min(100%, 705px);
+    box-sizing: border-box;
+    gap: 45px;
+
+    &__header {
+        width: 100%;
+        @include dflex(space-between);
+        >span {
+            font-weight: 700;
+            font-size: clamp(4vw, 24px, 6vw);
+        }
+    }
+
+    &__body {
+        width: 100%;
+        @include dflex(space-between, center, 15px, column);
+        .name-view {
+            @include dflex(space-between, $g: 16px);
+            width: 100%;
+
+            .user-name {
+                font-weight: 700;
+                font-size: clamp(4vw, 32px, 6vw);
+            }
+        }
+
+        .online-state {
+            align-self: flex-start;
+            @include dflex(flex-start, $g: 15px);
+            &__dot {
+                width: 16px;
+                height: 16px;
+                background-color: $colorGray;
+                border-radius: 50%;
+
+                &.--online {
+                    background-color: $colorOnline;
+                }
+            }
+
+            &__desc {
+                font-size: clamp(3vw, 20px, 5vw);
+            }
+        }
+    }
+
+    &__avatar {
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        border-radius: 50%;
+    }
+
+    &__mail {
+        align-self: flex-start;
+        @include dflex(flex-start, center, 20px, row);
+
+        .icon {
+            align-self: flex-start;
+        }
+
+        .mailto {
+            @include dflex(center, flex-start, 15px, column);
+
+            > span {
+                font-weight: 700;
+                font-size: clamp(3vw, 20px, 5vw);
+            }
+
+            .recipient {
+                cursor: pointer;
+                font-weight: 400;
+                font-size: clamp(3vw, 18px, 5vw);
+                color: $colorMail;
+            }
+        }
+    }
+}
