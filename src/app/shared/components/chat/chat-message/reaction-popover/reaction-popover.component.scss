@@ -3,6 +3,7 @@
 .reaction-popover{
     display: none;
     position: absolute;
+    z-index: 10;
     top: 0;
     right: clamp(2vw, 43px, 4vw);
     left: unset;
@@ -10,12 +11,12 @@
     border-radius: 30px 0 30px 30px;
     padding: 3px 15px 3px 20px;
     background-color: white;
-    transform: translate(20%, -50%);
+    transform: translate(20%, 0%);
 
     &.msg-ownership {
         right: unset;
         left: clamp(2vw, 43px, 4vw);
-        transform: translate(-20%, -50%);
+        transform: translate(-20%, 0%);
     }
 
     &.--hovered {
@@ -30,6 +31,6 @@
     }
 
     100% {
-        transform: translate(0, -50%);
+        transform: translate(0, 0%);
     }
 }

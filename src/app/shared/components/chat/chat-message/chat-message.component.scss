@@ -8,12 +8,19 @@
     transition: all 100ms ease-in;
 }
 
+.wrapper {
+    @include dflex($d: column);
+    width: 100%;
+    position: relative;
+}
+
 .message-container {
     @include dflex(flex-start, $g: clamp(2vw, 30px, 4vw));
     cursor: pointer;
     position: relative;
     padding: 10px clamp(2vw, 45px, 4vw);
     margin-top: 20px; //remove after testing!
+    width: 100%;
 
     &.msg-ownership {
         flex-direction: row-reverse;
