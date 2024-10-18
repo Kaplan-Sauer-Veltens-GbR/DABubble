@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
 export class IconLibaryComponent {
   private baseSrc:string = './assets/icons/icon-libary/'
   @Input() iconName: string = ''; 
-  @Input() iconText: string = ''; 
+  @Input() iconAlt: string = ''; 
   @Input() iconClass:string = '';
   @Input() width: string = '24px';  
   @Input() height: string = '24px';
