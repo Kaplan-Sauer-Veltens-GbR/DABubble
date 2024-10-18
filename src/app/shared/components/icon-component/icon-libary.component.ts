@@ -20,7 +20,7 @@ export class IconLibaryComponent implements AfterContentInit {
   @Input() iconName: IconName = '';
   @Input() iconAlt: string = '';
   @Input() iconClass: string = '';
-  @Input() suffix: string = 'png';
+  @Input() suffix: string = 'svg';
   @Input() width: string = '24px';
   @Input() height: string = '24px';
   isInInputField: boolean = false;

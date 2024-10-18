@@ -1,5 +1,6 @@
 @use "../../../scss/abstracts/" as *;
 @use "../../../scss/boxes" as *;
+@use "../../../scss/icons" as *;
 
 .profile {
     width: min(100%, 500px);
@@ -26,6 +27,13 @@
             .user-name {
                 font-weight: 700;
                 font-size: min(6vw, 32px);
+            }
+
+            .user-edit {
+                cursor: pointer;
+                font-weight: 600;
+                font-size: min(5vw, 18px);
+                color: $colorPurple3;
             }
         }
 
@@ -60,7 +68,7 @@
         align-self: flex-start;
         @include dflex(flex-start, center, 20px, row);
 
-        .icon {
+        .icon-custom {
             align-self: flex-start;
         }
 
@@ -81,3 +89,5 @@
         }
     }
 }
+
+

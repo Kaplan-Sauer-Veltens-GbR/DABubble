@@ -14,7 +14,9 @@
         "is-online": {
             "true": "Aktiv",
             "false": "Abwesend"
-        }
+        },
+        "msg": "Nachricht",
+        "edit": "Editieren"
     },
     "workspace": {
         "is-open": {
