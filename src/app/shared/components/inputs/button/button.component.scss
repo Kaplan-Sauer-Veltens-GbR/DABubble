@@ -1,0 +1,47 @@
+@use '../../../scss/abstracts/' as *;
+
+.button {
+    @include dflex($g: 10px);
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: all 100ms ease-out;
+    font-weight: 700;
+    font-size: 18px;
+
+    &:not(.--filled) {
+        background-color: white;
+        border: 1px solid $colorLines;
+        color: $colorPurple1;
+
+        &:hover {
+            background-color: $colorPurple3;
+            color: white;
+        }
+
+        &:active {
+            background-color: $colorPurple1;
+            color: white;
+        }
+
+        &.--disabled {
+            background-color: white;
+            color: $colorGray;
+            cursor: not-allowed;
+        }
+    }
+
+    &.--filled {
+        background-color: $colorPurple1;
+        color: white;
+
+        &:hover {
+            background-color: $colorPurple2;
+        }
+
+        &.--disabled {
+            background-color: $colorGray;
+            cursor: not-allowed;
+        }
+    }
+}
