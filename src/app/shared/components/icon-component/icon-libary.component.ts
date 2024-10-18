@@ -6,6 +6,7 @@ import {
   Optional,
 } from '@angular/core';
 import { InputFieldsComponent } from '../inputs/input-fields/input-fields.component';
+import { IconName } from '../../../interfaces/icon-names.model';
 
 @Component({
   selector: 'app-icon-libary',
@@ -16,9 +17,10 @@ import { InputFieldsComponent } from '../inputs/input-fields/input-fields.compon
 })
 export class IconLibaryComponent implements AfterContentInit {
   private baseSrc: string = './assets/icons/icon-libary/';
-  @Input() iconName: string = '';
+  @Input() iconName: IconName = '';
   @Input() iconAlt: string = '';
   @Input() iconClass: string = '';
+  @Input() suffix: string = 'png';
   @Input() width: string = '24px';
   @Input() height: string = '24px';
   isInInputField: boolean = false;
@@ -28,7 +30,8 @@ export class IconLibaryComponent implements AfterContentInit {
   ) {}
 
   get iconSrc(): string {
-    return `${this.baseSrc}${this.iconName}.svg`;
+    const pathModifier = this.suffix == 'png' ? 'png/' : '';
+    return `${this.baseSrc}${pathModifier}${this.iconName}.${this.suffix}`;
   }
 
   ngAfterContentInit(): void {

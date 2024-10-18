@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
+import { IconName } from '../../../../interfaces/icon-names.model';
 
 @Component({
   selector: 'app-button',
@@ -12,5 +13,5 @@ import { IconLibaryComponent } from "../../icon-component/icon-libary.component"
 export class ButtonComponent {
   @Input() filled: boolean = true;
   @Input() disabled: boolean = false;
-  @Input() icon: string = '';
+  @Input() icon: IconName = '';
 }
