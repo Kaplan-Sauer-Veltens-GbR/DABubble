@@ -11,5 +11,8 @@ import { IconLibaryComponent } from "../../icon-component/icon-libary.component"
 export class TextMessageFieldComponent {
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
-  @Input() required: boolean = false
+  @Input() required: boolean = false;
+   
+
+  
 }
