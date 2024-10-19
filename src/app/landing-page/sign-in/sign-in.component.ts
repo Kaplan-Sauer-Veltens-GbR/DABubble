@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button'; // Angular Material 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Für Formulare
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
+import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 
 @Component({
   selector: 'app-sign-in',
@@ -20,7 +21,8 @@ import { InputFieldsComponent } from '../../shared/components/inputs/input-field
     FormsModule,
     ReactiveFormsModule,
     ButtonComponent,
-    InputFieldsComponent
-  ]
+    InputFieldsComponent,
+    IconLibaryComponent
+]
 })
 export class SignInComponent {}

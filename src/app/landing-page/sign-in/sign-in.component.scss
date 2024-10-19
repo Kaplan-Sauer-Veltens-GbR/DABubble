@@ -59,6 +59,46 @@
       width: 48%;
     }
   }
-  ::ng-deep app-input-fields .input-field input {
+  ::ng-deep app-input-fields input {
     margin-bottom: 16px;
+    background-color: $colorBG;
+    border: none !important; 
   }
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  
+    app-button {
+      width: 48%;
+      white-space: nowrap; 
+    }
+  }
+
+
+
+  .signin-google-btn {
+    @include dflex(center, center, 10px, row);
+    width: 100%; 
+    background-color: $colorBG; 
+    border: none;
+    padding: 12px 24px; 
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    cursor: pointer;
+  
+    &:hover {
+      transform: scale(1.05); 
+      background-color: darken($colorBG, 10%);
+    }
+  
+    &:active {
+      transform: scale(0.98); 
+    }
+  }
+  
+  
+  
+  
