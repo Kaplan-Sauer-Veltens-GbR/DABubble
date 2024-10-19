@@ -6,5 +6,10 @@
 }
 
 header {
-    
+
+}
+
+.channel-name {
+    display: flex;  //change that later to the mixin
+    justify-content: space-between;
 }
