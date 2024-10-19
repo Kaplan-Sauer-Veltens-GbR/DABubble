@@ -1,0 +1,28 @@
+<div class="message-container">
+
+  <form action="" id="submit-message" >
+  <textarea
+    [placeholder]="placeholder"
+    [attr.pattern]="pattern ? pattern : null"
+    [required]="required"
+  ></textarea>
+</form>
+
+  <div class="icon-container">
+    <div class="send">
+      <app-icon-libary iconName="sendBlue"></app-icon-libary>
+    </div>
+    <div class="icon-line">
+      <div class="icon-bg-hover">
+        <app-icon-libary iconName="addGrey"></app-icon-libary>
+      </div>
+      <div class="seperator"></div>
+      <div class="icon-bg-hover">
+        <app-icon-libary iconName="emojiGrey"></app-icon-libary>
+      </div>
+      <div class="icon-bg-hover">
+        <app-icon-libary iconName="emailTagGrey"></app-icon-libary>
+      </div>
+    </div>
+  </div>
+</div>

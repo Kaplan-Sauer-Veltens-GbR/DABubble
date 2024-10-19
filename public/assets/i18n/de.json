@@ -1,9 +1,27 @@
 {
-    "demo": "inhalt",
+    "chat": {
+        "subthread": {
+            "open": "{{count}} Antworten anzeigen"
+        }
+    },
+    "mail": {
+        "address": "E-Mail-Adresse",
+        "send": "Neue E-Mail an: {{recipient}}"
+    },
+    "profile": {
+        "open": "Profil von {{name}} anzeigen",
+        "title": "Profil",
+        "is-online": {
+            "true": "Aktiv",
+            "false": "Abwesend"
+        },
+        "msg": "Nachricht",
+        "edit": "Editieren"
+    },
     "workspace": {
         "is-open": {
-                "true": "Workspace-Menü schließen",
-                "false": "Workspace-Menü öffnen"
+            "true": "Workspace-Menü schließen",
+            "false": "Workspace-Menü öffnen"
         }
     }
 }

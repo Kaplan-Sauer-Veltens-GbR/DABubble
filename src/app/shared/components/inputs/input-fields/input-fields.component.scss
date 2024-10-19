@@ -1,0 +1,25 @@
+@use '../../../scss/abstracts/_index.scss' as *;
+
+.input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+        caret-color: Black;
+        font-weight: 500;
+        font-size: 18px;
+        border-radius: 40px;
+        border: solid 1px $colorLines;
+        width: 100%;
+        padding: 18px 20px 18px 32px;
+        &:focus {
+            outline-color: $colorPurple3;
+        }
+        
+    }
+}
+
+
+.padding-icon-included {
+    padding-left: 86px !important;
+}

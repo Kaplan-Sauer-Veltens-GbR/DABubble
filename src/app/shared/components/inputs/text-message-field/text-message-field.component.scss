@@ -1,0 +1,73 @@
+@use "../../../scss/abstracts/_index.scss" as *;
+
+textarea {
+  color: black;
+  font-size: 18px;
+  resize: none;
+  overflow-y: auto;
+  border: none;
+  width: 95%;
+  box-sizing: border-box;
+  //   &::-webkit-scrollbar { to be discussed
+  //     display: none;
+  // }
+  &:focus {
+    outline: none;
+  }
+}
+
+.message-container {
+  border-radius: 20px;
+  border: solid 1px $colorLines;
+  padding: 20px;
+}
+
+.icon-container {
+  @include dflex(space-between, center, 0, row-reverse);
+  app-icon-libary {
+    cursor: pointer;
+  }
+
+  .send {
+    &:hover {
+      filter: $colorTransformPurple2;
+
+      ~ .icon-line app-icon-libary {
+        filter: brightness(0) saturate(100%) !important;
+      }
+    }
+  }
+}
+
+.icon-line {
+  @include dflex(center, center, 10px);
+  &:hover :not(.seperator) {
+    filter: brightness(0) saturate(100%);
+  }
+  app-icon-libary  {
+    &:hover {
+      filter: $colorTransformPurple1 !important;
+    
+    }
+  }
+  .icon-bg-hover {
+    height: 40px;
+    width:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color:$colorBG;
+      filter:none;
+      border-radius: 20px;
+      
+    }
+
+  }
+}
+
+.seperator {
+  width: 1px;
+  height: 40px;
+  background-color: $colorLines;
+}

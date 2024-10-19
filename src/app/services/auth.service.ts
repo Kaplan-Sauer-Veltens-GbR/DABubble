@@ -16,6 +16,6 @@ export class AuthService {
   }
 
   signInWithGooglePopup() {
-    return  signInWithPopup(this.auth, new GoogleAuthProvider()) // funktioniert es
+    return  signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 }

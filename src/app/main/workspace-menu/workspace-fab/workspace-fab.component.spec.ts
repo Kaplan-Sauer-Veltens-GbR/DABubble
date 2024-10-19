@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WorkspaceFabComponent } from './workspace-fab.component';
+import { getTranslocoModule } from '../../../modules/transloco-testing/transloco-testing.module';
 
 describe('WorkspaceFabComponent', () => {
   let component: WorkspaceFabComponent;
@@ -8,9 +9,11 @@ describe('WorkspaceFabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WorkspaceFabComponent]
+      imports: [
+        getTranslocoModule(),
+        WorkspaceFabComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(WorkspaceFabComponent);
     component = fixture.componentInstance;
