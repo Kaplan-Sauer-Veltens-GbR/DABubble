@@ -1,1 +1,68 @@
-@use "../../../scss/" as *;
+@use "../../shared/scss/_boxes.scss" as *;
+@use "../../shared/scss/abstracts" as *;
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $colorBG; 
+  }
+  
+  .login-card {
+    width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login-title {
+    font-size: 24px;
+    color: $colorPurple1;
+  }
+  
+  .login-subtitle {
+    font-size: 14px;
+    color: $colorGray;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password {
+    display: block;
+    color: $colorPurple1;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  
+    span {
+      font-size: 14px;
+      color: $colorGray;
+    }
+  
+    &:before, &:after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $colorLines;
+      margin: 0 10px;
+    }
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+  
+    app-button {
+      width: 48%;
+    }
+  }
+  

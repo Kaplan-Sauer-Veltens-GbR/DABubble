@@ -1,1 +1,42 @@
+<div class="login-container">
+  <mat-card class="box--floating login-card">
+    <mat-card-title class="login-title">Anmeldung</mat-card-title>
+    <mat-card-subtitle class="login-subtitle">
+      Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
+      verwendest.
+    </mat-card-subtitle>
 
+    <form>
+      <app-input-fields
+        placeholder="E-Mail"
+        type="email"
+        [required]="true"
+        icon="mail"
+      >
+      </app-input-fields>
+
+      <app-input-fields
+        placeholder="Passwort"
+        type="password"
+        [required]="true"
+        icon="lock"
+      >
+      </app-input-fields>
+
+      <a href="#" class="forgot-password">Passwort vergessen?</a>
+
+      <div class="divider">
+        <span>ODER</span>
+      </div>
+
+      <app-button [filled]="true" label="Anmelden mit Google"> Anmelden mit Google</app-button>
+
+      <div class="action-buttons">
+        <app-button [filled]="true" label="Anmelden">Anmelden</app-button>
+        <app-button [filled]="false" label="Gäste-Login"
+          >Gäste-Login</app-button
+        >
+      </div>
+    </form>
+  </mat-card>
+</div>

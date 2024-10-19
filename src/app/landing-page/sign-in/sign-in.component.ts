@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card'; // Angular Material Card
+import { MatIconModule } from '@angular/material/icon'; // Angular Material Icons
+import { MatButtonModule } from '@angular/material/button'; // Angular Material Buttons
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Für Formulare
+import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
+import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [],
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss'
+  styleUrls: ['./sign-in.component.scss'],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    InputFieldsComponent
+  ]
 })
-export class SignInComponent {
-
-}
+export class SignInComponent {}

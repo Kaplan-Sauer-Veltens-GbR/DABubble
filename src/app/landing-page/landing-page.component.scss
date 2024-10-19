@@ -1,0 +1,7 @@
+@use "../shared/scss/abstracts/" as *;
+
+section {
+    width: 100vw;
+    height: 100vh;
+    background-color: $colorBG;
+}
