@@ -1,4 +1,5 @@
-<div *ngIf="user" class="profile box--floating">
+@if (user) {
+<div class="profile box--floating">
 <ng-container *transloco="let t;">
     <div class="profile__header">
         <span>{{t('profile.title')}}</span>
@@ -25,3 +26,4 @@
     <app-button [filled]="true" icon="msg">{{t('profile.msg')}}</app-button>
 </ng-container>
 </div>
+}
