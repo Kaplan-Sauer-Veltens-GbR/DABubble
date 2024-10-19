@@ -8,14 +8,14 @@
 
     <form>
       <app-input-fields
-        placeholder="E-Mail"
+        placeholder="beispielname@email.com"
         type="email"
         [required]="true"
         icon="mail"
       >
       </app-input-fields>
 
-      <app-input-fields
+      <app-input-fields class="input-field"
         placeholder="Passwort"
         type="password"
         [required]="true"
@@ -29,7 +29,9 @@
         <span>ODER</span>
       </div>
 
-      <app-button [filled]="true" label="Anmelden mit Google"> Anmelden mit Google</app-button>
+      <app-button [filled]="false" label="Anmelden mit Google">
+        Anmelden mit Google</app-button
+      >
 
       <div class="action-buttons">
         <app-button [filled]="true" label="Anmelden">Anmelden</app-button>
