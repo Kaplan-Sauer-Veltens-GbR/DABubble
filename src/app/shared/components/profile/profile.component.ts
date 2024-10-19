@@ -10,7 +10,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
-  @Input() view: 'regular' | 'edit' = 'edit';
+  @Input() view: 'regular' | 'edit' = 'regular';
   @Input() user = {
     name: 'Paulchen Peterson',
     isOnline: true
