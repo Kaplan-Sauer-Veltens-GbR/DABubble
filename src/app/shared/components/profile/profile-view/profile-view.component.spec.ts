@@ -7,6 +7,11 @@ describe('ProfileViewComponent', () => {
   let component: ProfileViewComponent;
   let fixture: ComponentFixture<ProfileViewComponent>;
 
+  let user = {
+    'name': 'demo',
+    'isOnline': true
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -17,6 +22,7 @@ describe('ProfileViewComponent', () => {
 
     fixture = TestBed.createComponent(ProfileViewComponent);
     component = fixture.componentInstance;
+    component.user = user;
     fixture.detectChanges();
   });
 
