@@ -100,3 +100,7 @@ $input-button-height: 60px;
 form {
   width: 90%;
 }
+
+::ng-deep .icon-placement {
+  top: 33% !important;
+}
