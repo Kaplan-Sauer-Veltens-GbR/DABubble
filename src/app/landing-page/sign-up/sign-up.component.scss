@@ -1,70 +1,79 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
 
-
 .signup-card {
-  @extend .box--floating;
-  width: 450px;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
+    @extend .box--floating;
+    width: 450px;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
 }
 
-.signup-title {
-  font-size: 46px;
-  font-weight: 700;
-  color: $colorPurple1;
-  margin-block-start: 0.33em;
-  margin-block-end: 0;
-}
-
-.signup-subtitle {
-  width: 90%;
-  font-size: 14px;
-  color: $colorGray;
-  margin-bottom: 20px;
-}
-
-.privacy-check {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: $colorGray;
-  margin-top: 16px;
-  
-
-  a {
-    color: $colorPurple1;
-    text-decoration: none;
-  }
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: end;
-  margin-top: 24px;
-
-  app-button {
-    width: 33%;
-    white-space: nowrap;
-  }
-}
-
-::ng-deep app-input-fields input {
-  margin-bottom: 32px;
-  background-color: $colorBG;
-  border: none !important;
-}
-
-form {
-  width: 90%;
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+    padding: 0 30px; 
 }
 
 .back-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
 }
+
+.signup-title {
+    font-size: 46px;
+    font-weight: 700;
+    color: $colorPurple1;
+    margin-block-start: 0.33em;
+    margin-block-end: 0;
+}
+
+.signup-subtitle {
+    width: 90%;
+    font-size: 14px;
+    color: $colorGray;
+    margin-bottom: 20px;
+}
+
+.privacy-check {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $colorGray;
+    margin-top: 16px;
+
+    a {
+        color: $colorPurple1;
+        text-decoration: none;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 24px;
+
+    app-button {
+        width: 33%;
+        white-space: nowrap;
+    }
+}
+
+::ng-deep app-input-fields input {
+    margin-bottom: 32px;
+    background-color: $colorBG;
+    border: none !important;
+}
+
+form {
+    width: 90%;
+}
+
 ::ng-deep .icon-placement {
     top: 33% !important;
 }
