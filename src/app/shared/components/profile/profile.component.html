@@ -5,12 +5,14 @@
             <span>{{t('profile.title')}}</span>
             <app-icon-libary iconName="close" class="icon" height="14px" width="14px" suffix="svg"></app-icon-libary>
         </div>
-        <div class="profile__avatar"></div>
-        @if (view == "regular") {
+        <div class="profile--scrollable">
+            <div class="profile__avatar"></div>
+            @if (view == "regular") {
             <app-profile-view class="profile__body"></app-profile-view>
-        } @else if (view == "edit") {
-            
-        }
+            } @else if (view == "edit") {
+
+            }
+        </div>
     </ng-container>
 </div>
 }

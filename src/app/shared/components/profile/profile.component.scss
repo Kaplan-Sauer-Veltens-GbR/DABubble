@@ -8,10 +8,15 @@
     box-sizing: border-box;
     gap: 45px;
 
+    &--scrollable {
+        @include dflex(flex-start, center, 45px, column);
+        width: 100%;
+    }
+
     &__header {
         width: 100%;
         @include dflex(space-between);
-        >span {
+        > span {
             font-weight: 700;
             font-size: min(6vw, 24px);
         }
@@ -29,30 +34,4 @@
         border-radius: 50%;
     }
 
-    &__mail {
-        align-self: flex-start;
-        @include dflex(flex-start, center, 20px, row);
-
-        .icon-custom {
-            align-self: flex-start;
-        }
-
-        .mailto {
-            @include dflex(center, flex-start, 15px, column);
-
-            > span {
-                font-weight: 700;
-                font-size: min(6vw, 20px);
-            }
-
-            .recipient {
-                cursor: pointer;
-                font-weight: 400;
-                font-size: min(6vw, 18px);
-                color: $colorMail;
-            }
-        }
-    }
 }
-
-

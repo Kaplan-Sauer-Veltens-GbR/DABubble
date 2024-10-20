@@ -5,6 +5,7 @@ import { IconLibaryComponent } from '../icon-component/icon-libary.component';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,

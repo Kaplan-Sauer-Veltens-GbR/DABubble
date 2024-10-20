@@ -1,7 +1,7 @@
 @if (user) {
 <div *transloco="let t;" class="profile-view">
-    <div class="profile__body">
-        <div class="name-view">
+    <div class="profile__name-view">
+        <div class="name">
             <span class="user-name">{{ user.name }}</span>
             <span class="user-edit">{{t('profile.edit')}}</span>
         </div>
@@ -19,5 +19,4 @@
     </div>
     <app-button [filled]="true" icon="msg">{{t('profile.msg')}}</app-button>
 </div>
-}
 }
