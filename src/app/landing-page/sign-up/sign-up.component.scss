@@ -22,7 +22,9 @@
     background: none;
     border: none;
     cursor: pointer;
-    
+    position: absolute;
+    left: 24px;
+    top: 64px;
 }
 
 .signup-title {
@@ -46,12 +48,17 @@
     font-size: 14px;
     color: $colorGray;
     margin-top: 16px;
-
+  
     a {
-        color: $colorPurple1;
-        text-decoration: none;
+      color: $colorPurple1;
+      text-decoration: none;
+      margin: 0 5px; 
     }
-}
+  
+    input {
+      cursor: pointer;
+    }
+  }
 
 .action-buttons {
     display: flex;
