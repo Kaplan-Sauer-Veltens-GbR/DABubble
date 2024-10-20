@@ -51,4 +51,7 @@ export type IconName =
 'tagPurple' |
 'workspaces' |
 'workspacesPurple' |
-'google'
+'google' |
+'user' |
+'password' |
+'mailReg'

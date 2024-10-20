@@ -9,13 +9,16 @@
       </p>
   
       <form>
-        <app-input-fields placeholder="Name und Nachname" type="text" [required]="true" icon="personAdd">
+        <app-input-fields placeholder="Name und Nachname" type="text" [required]="true">
+          <app-icon-libary iconName="user"></app-icon-libary> 
         </app-input-fields>
   
-        <app-input-fields placeholder="beispielname@email.com" type="email" [required]="true" icon="emailTag">
+        <app-input-fields placeholder="beispielname@email.com" type="email" [required]="true">
+          <app-icon-libary iconName="mailReg"></app-icon-libary> 
         </app-input-fields>
   
-        <app-input-fields placeholder="Passwort" type="password" [required]="true" icon="lock">
+        <app-input-fields placeholder="Passwort" type="password" [required]="true">
+          <app-icon-libary iconName="password"></app-icon-libary> 
         </app-input-fields>
   
         <label class="privacy-check">
@@ -29,3 +32,4 @@
       </form>
     </div>
   </div>
+  
