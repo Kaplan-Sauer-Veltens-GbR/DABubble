@@ -1,9 +1,11 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
 
+$input-button-height: 60px; 
+
 .login-card {
-  @extend .box--floating; // Fügt die box--floating Klasse zur login-card hinzu
-  width: 500px;
+  @extend .box--floating;
+  width: 450px;
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -13,6 +15,8 @@
   font-size: 46px;
   font-weight: 700;
   color: $colorPurple1;
+  margin-block-start: 0.33em;
+  margin-block-end: 0;
 }
 
 .login-subtitle {
@@ -40,8 +44,9 @@
     color: $colorGray;
   }
 
-  &:before, &:after {
-    content: '';
+  &:before,
+  &:after {
+    content: "";
     flex: 1;
     height: 1px;
     background: $colorLines;
@@ -51,12 +56,14 @@
 
 .action-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   margin-top: 24px;
 
   app-button {
-    width: 48%;
+    width: 33%;
     white-space: nowrap;
+    height: $input-button-height; 
   }
 }
 
@@ -69,9 +76,11 @@
 .signin-google-btn {
   @include dflex(center, center, 10px, row);
   width: 100%;
+  height: $input-button-height;
   background-color: $colorBG;
   border: none;
   padding: 12px 24px;
+  color: $colorPurple1;
   font-weight: 700;
   font-size: 16px;
   border-radius: 30px;
@@ -86,4 +95,8 @@
   &:active {
     transform: scale(0.98);
   }
+}
+
+form {
+  width: 90%;
 }
