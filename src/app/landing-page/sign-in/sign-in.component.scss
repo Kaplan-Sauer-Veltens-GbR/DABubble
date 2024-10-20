@@ -1,7 +1,7 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
 
-$input-button-height: 60px; 
+$input-button-height: 60px;
 
 .login-card {
   @extend .box--floating;
@@ -20,6 +20,7 @@ $input-button-height: 60px;
 }
 
 .login-subtitle {
+  width: 90%;
   font-size: 14px;
   color: $colorGray;
   margin-bottom: 20px;
@@ -30,14 +31,14 @@ $input-button-height: 60px;
   color: $colorPurple1;
   font-size: 14px;
   text-decoration: none;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .divider {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 32px 0;
 
   span {
     font-size: 14px;
@@ -61,14 +62,13 @@ $input-button-height: 60px;
   margin-top: 24px;
 
   app-button {
-    width: 33%;
+    width: 36%;
     white-space: nowrap;
-    height: $input-button-height; 
   }
 }
 
 ::ng-deep app-input-fields input {
-  margin-bottom: 16px;
+  margin-bottom: 32px;
   background-color: $colorBG;
   border: none !important;
 }

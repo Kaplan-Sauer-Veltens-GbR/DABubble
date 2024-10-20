@@ -1,1 +1,31 @@
-<p>sign-up works!</p>
+<div class="signup-container">
+    <div class="signup-card">
+      <button class="back-button">
+        <app-icon-libary iconName="back"></app-icon-libary>
+      </button>
+      <h1 class="signup-title">Konto erstellen</h1>
+      <p class="signup-subtitle">
+        Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.
+      </p>
+  
+      <form>
+        <app-input-fields placeholder="Name und Nachname" type="text" [required]="true" icon="personAdd">
+        </app-input-fields>
+  
+        <app-input-fields placeholder="beispielname@email.com" type="email" [required]="true" icon="emailTag">
+        </app-input-fields>
+  
+        <app-input-fields placeholder="Passwort" type="password" [required]="true" icon="lock">
+        </app-input-fields>
+  
+        <label class="privacy-check">
+          <input type="checkbox" required>
+          Ich stimme der <a href="#">Datenschutzerklärung</a> zu.
+        </label>
+  
+        <div class="action-buttons">
+          <app-button [filled]="true" label="Weiter">Weiter</app-button>
+        </div>
+      </form>
+    </div>
+  </div>
