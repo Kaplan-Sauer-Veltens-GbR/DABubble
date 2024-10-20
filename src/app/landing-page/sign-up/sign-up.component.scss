@@ -61,10 +61,10 @@ form {
 }
 
 .back-button {
-  position: absolute;
-  left: 10px;
-  top: 10px;
   background: none;
   border: none;
   cursor: pointer;
+}
+::ng-deep .icon-placement {
+    top: 33% !important;
 }

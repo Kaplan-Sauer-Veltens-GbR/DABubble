@@ -16,7 +16,6 @@ export class InputFieldsComponent implements AfterContentInit {
   hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {
-    // Überprüfen, ob ng-content ein Icon enthält
     this.hasProjectedContent = document.querySelector('app-icon-libary') !== null;
   }
 }
