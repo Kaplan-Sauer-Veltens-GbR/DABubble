@@ -1,104 +1,89 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
 
+.login-card {
+  @extend .box--floating; // Fügt die box--floating Klasse zur login-card hinzu
+  width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+}
 
+.login-title {
+  font-size: 46px;
+  font-weight: 700;
+  color: $colorPurple1;
+}
 
-  .login-card {
-    width: 500px;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .login-title {
-    font-size: 46px;
-    font-weight: 700;
-    color: $colorPurple1;
-  }
-  
-  .login-subtitle {
+.login-subtitle {
+  font-size: 14px;
+  color: $colorGray;
+  margin-bottom: 20px;
+}
+
+.forgot-password {
+  display: block;
+  color: $colorPurple1;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+
+  span {
     font-size: 14px;
     color: $colorGray;
-    margin-bottom: 20px;
-  }
-  
-  .forgot-password {
-    display: block;
-    color: $colorPurple1;
-    font-size: 14px;
-    text-decoration: none;
-    margin-bottom: 20px;
-  }
-  
-  .divider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-  
-    span {
-      font-size: 14px;
-      color: $colorGray;
-    }
-  
-    &:before, &:after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: $colorLines;
-      margin: 0 10px;
-    }
-  }
-  
-  .action-buttons {
-    display: flex;
-    justify-content: space-between;
-  
-    app-button {
-      width: 48%;
-    }
-  }
-  ::ng-deep app-input-fields input {
-    margin-bottom: 16px;
-    background-color: $colorBG;
-    border: none !important; 
-  }
-  .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-  
-    app-button {
-      width: 48%;
-      white-space: nowrap; 
-    }
   }
 
-
-
-  .signin-google-btn {
-    @include dflex(center, center, 10px, row);
-    width: 100%; 
-    background-color: $colorBG; 
-    border: none;
-    padding: 12px 24px; 
-    font-weight: 700;
-    font-size: 16px;
-    border-radius: 30px;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    cursor: pointer;
-  
-    &:hover {
-      transform: scale(1.05); 
-      background-color: darken($colorBG, 10%);
-    }
-  
-    &:active {
-      transform: scale(0.98); 
-    }
+  &:before, &:after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $colorLines;
+    margin: 0 10px;
   }
-  
-  
-  
-  
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+
+  app-button {
+    width: 48%;
+    white-space: nowrap;
+  }
+}
+
+::ng-deep app-input-fields input {
+  margin-bottom: 16px;
+  background-color: $colorBG;
+  border: none !important;
+}
+
+.signin-google-btn {
+  @include dflex(center, center, 10px, row);
+  width: 100%;
+  background-color: $colorBG;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 30px;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: darken($colorBG, 10%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
