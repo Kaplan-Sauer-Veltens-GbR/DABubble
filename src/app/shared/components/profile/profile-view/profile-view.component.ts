@@ -16,6 +16,7 @@ export class ProfileViewComponent {
 
   @Input() user = {
     name: 'Paulchen Peterson',
+    email: '',
     isOnline: true
   }
 

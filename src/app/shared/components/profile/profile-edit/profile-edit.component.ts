@@ -16,6 +16,7 @@ export class ProfileEditComponent {
 
   @Input() user = {
     name: 'Paulchen Peterson',
+    email: '',
     isOnline: true
   }
 

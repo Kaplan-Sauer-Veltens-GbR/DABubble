@@ -17,6 +17,7 @@ export class ProfileComponent {
   @Input() view: 'regular' | 'edit' = 'regular';
   @Input() user = {
     name: 'Paulchen Peterson',
+    email: 'simon.schmidt@kafkaesk.de',
     isOnline: true
   }
 

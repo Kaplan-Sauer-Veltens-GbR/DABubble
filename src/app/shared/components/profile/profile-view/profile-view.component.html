@@ -14,7 +14,7 @@
         <app-icon-libary iconName="emailTag" class="icon-custom"></app-icon-libary>
         <div class="mailto">
             <span>{{t('email.address')}}</span>
-            <span class="recipient" [attr.aria-label]="t('email.send', {'recipient': user.name})" role="button">me&#64;metoo.de</span>
+            <span class="recipient" [attr.aria-label]="t('email.send', {'recipient': user.name})" role="button">{{user.email}}</span>
         </div>
     </div>
     <app-button [filled]="true" icon="msg">{{t('profile.msg')}}</app-button>
