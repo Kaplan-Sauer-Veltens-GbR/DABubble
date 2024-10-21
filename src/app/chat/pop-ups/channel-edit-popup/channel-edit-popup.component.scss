@@ -1,46 +1,59 @@
-@use '../../../shared/scss/abstracts/_index.scss' as*;
-@use '../../../shared/scss/_boxes.scss';
+@use "../../../shared/scss/abstracts/_index.scss" as *;
+@use "../../../shared/scss/_boxes.scss";
 
 .box--floating {
-    align-items: unset;
+  align-items: unset;
 }
 
 header {
-    margin-bottom: 23px;
-    @include dflex(space-between, center);
-h2 {
+  margin-bottom: 23px;
+  @include dflex(space-between, center);
+  h2 {
     margin: 0;
-}
-div {
+  }
+  div {
     display: flex;
     gap: 15px;
-}
+  }
 }
 
 .channel-name {
-    display: flex;  //change that later to the mixin
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 700;
+  display: flex; //change that later to the mixin
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
 
-    .save-btn {
-        font-weight: 600;
-        color: $colorPurple3;
-        cursor: pointer;
-        transition: transform 85ms ease-in-out;
-        &:hover {
-            transform: scale(1.05);
-            color: $colorPurple1;
-        }
+  .save-btn {
+    font-weight: 600;
+    color: $colorPurple3;
+    cursor: pointer;
+    transition: transform 85ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      color: $colorPurple1;
     }
+  }
 }
 
 .close {
-    transition: transform 85ms ease-in-out;
- &:hover {
+  transition: transform 85ms ease-in-out;
+  &:hover {
     filter: $colorTransformPurple3;
     cursor: pointer;
-   transform: scale(1.1);
- }
+    transform: scale(1.1);
+  }
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.seperator {
+    @include dflex();
+    width: 95%;
+    background-color: $colorLines;
+    height: 1px;
+    margin-left: auto;        
+    margin-right: auto; 
 }
