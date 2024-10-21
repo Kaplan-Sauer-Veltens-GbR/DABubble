@@ -1,1 +1,10 @@
-<p>profile-menu works!</p>
+<section *transloco="let t" class="profile-menu box--floating">
+    <span class="link">{{t('profile.title')}}</span>
+    <span class="link">{{t('actions.logout')}}</span>
+    @if (languageFeatureAllowed) {
+    <div class="language-flags">
+        <app-icon-libary (click)="setLanguageTo('de')" iconName="flagGermany" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+        <app-icon-libary (click)="setLanguageTo('en')" iconName="flagAmerica" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+    </div>
+    }
+</section>

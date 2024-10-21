@@ -9,4 +9,7 @@
 
 img {
     vertical-align: middle;
+    &.--rounded {
+        border-radius: 50%;
+    }
 }

@@ -1,8 +1,9 @@
 {
     "actions": {
         "cancel": "Abbrechen",
-        "save": "Speichern",
-        "edit": "Editieren"
+        "edit": "Editieren",
+        "logout": "Log out",
+        "save": "Speichern"
     },
     "chat": {
         "subthread": {
