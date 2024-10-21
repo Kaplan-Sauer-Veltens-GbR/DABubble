@@ -15,6 +15,9 @@
         &:focus {
             outline-color: $colorPurple3;
         }
+        &:hover {
+            border-color: $colorPurple1;
+        }
         
     }
 }
