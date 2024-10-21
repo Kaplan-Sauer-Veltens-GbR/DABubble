@@ -1,0 +1,45 @@
+@use "../../../scss/abstracts/" as *;
+
+.profile-edit-view {
+    @include dflex($g: 45px, $d: column);
+    width: 100%;
+
+    .edit__body {
+        width: 100%;
+        @include dflex($g: 16px, $d: column);
+
+        .title {
+            @include dflex(flex-start, center, 7px, column);
+            width: 100%;
+
+            .description {
+                width: 100%;
+                @include dflex(flex-start, $g: 20px);
+
+                .icon-base {
+                    height: 30px;
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            .input-field {
+                width: 100%;
+            }
+        }
+    }
+
+    .actions{
+        @include dflex($g: 32px);
+        @media (max-width: 400px) {
+            flex-direction: column-reverse;
+            gap: 16px;
+            width: 100%;
+            .button-width {
+                width: 100%;
+            }
+        }
+    }
+}

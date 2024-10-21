@@ -1,1 +1,24 @@
-<p>profile-edit works!</p>
+@if (user) {
+<div *transloco="let t;" class="profile-edit-view">
+    <div class="edit__body">
+        <div class="name-edit title">
+            <span class="description">
+                <app-icon-libary class="icon-base" suffix="svg" iconName="accCircle"></app-icon-libary>
+                {{t('user.name.full')}}
+            </span>
+            <app-input-fields class="input-field"></app-input-fields>
+        </div>
+        <div class="email-edit title">
+            <span class="description">
+                <app-icon-libary class="icon-base" suffix="svg" iconName="email"></app-icon-libary>
+                {{t('email.address')}}
+            </span>
+            <app-input-fields class="input-field"></app-input-fields>
+        </div>
+    </div>
+    <div class="actions">
+        <app-button class="button-width" [filled]="false">{{t('actions.cancel')}}</app-button>
+        <app-button class="button-width">{{t('actions.save')}}</app-button>
+    </div>
+</div>
+}
