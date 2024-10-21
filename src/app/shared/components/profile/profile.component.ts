@@ -19,4 +19,12 @@ export class ProfileComponent {
     name: 'Paulchen Peterson',
     isOnline: true
   }
+
+  openEditView() {
+    this.view = 'edit';
+  }
+
+  openRegularView() {
+    this.view = 'regular';
+  }
 }

@@ -3,7 +3,7 @@
     <div class="profile__name-view">
         <div class="name">
             <span class="user-name">{{ user.name }}</span>
-            <span class="user-edit">{{t('profile.edit')}}</span>
+            <span (click)="openEditView()" class="user-edit">{{t('profile.edit')}}</span>
         </div>
         <div class="online-state">
             <div class="online-state__dot" [ngClass]="{'--online': user.isOnline}"></div>
