@@ -1,0 +1,46 @@
+@use '../../../shared/scss/abstracts/_index.scss' as*;
+@use '../../../shared/scss/_boxes.scss';
+
+.box--floating {
+    align-items: unset;
+}
+
+header {
+    margin-bottom: 23px;
+    @include dflex(space-between, center);
+h2 {
+    margin: 0;
+}
+div {
+    display: flex;
+    gap: 15px;
+}
+}
+
+.channel-name {
+    display: flex;  //change that later to the mixin
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+
+    .save-btn {
+        font-weight: 600;
+        color: $colorPurple3;
+        cursor: pointer;
+        transition: transform 85ms ease-in-out;
+        &:hover {
+            transform: scale(1.05);
+            color: $colorPurple1;
+        }
+    }
+}
+
+.close {
+    transition: transform 85ms ease-in-out;
+ &:hover {
+    filter: $colorTransformPurple3;
+    cursor: pointer;
+   transform: scale(1.1);
+ }
+}
