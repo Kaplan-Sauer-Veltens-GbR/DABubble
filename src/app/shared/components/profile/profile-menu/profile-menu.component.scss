@@ -3,7 +3,6 @@
 
 .profile-menu {
     @include dflex(center, center, 15px, column);
-    // width: calc(max-content + 20px);
     width: fit-content;
     border-top-right-radius: 0;
     padding: 30px;
@@ -29,8 +28,36 @@
             cursor: pointer;
             height: 30px;
             border-radius: 50%;
-            background-color: $colorPurple1;
-            border: 1px solid $colorPurple1
+            border: 2px solid transparent;
+            rotate: 0;
+            &.--active {
+                cursor: unset;
+                border: 2px solid $colorPurple1;
+                background-color: $colorPurple1;
+            }
+            &:hover:not(.--active) {
+                animation: shake 600ms ease-in-out;
+                border: 2px solid $colorPurple2;
+                background-color: $colorPurple2;
+            }
         }
+    }
+}
+
+@keyframes shake {
+    0% {
+        rotate: 0;
+    }
+    25% {
+        rotate: -30deg;
+    }
+    50% {
+        rotate: 20deg;
+    }
+    75% {
+        rotate: -10deg;
+    }
+    100% {
+        rotate: 0;
     }
 }

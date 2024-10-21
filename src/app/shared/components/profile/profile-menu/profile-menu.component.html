@@ -3,8 +3,8 @@
     <span class="link">{{t('actions.logout')}}</span>
     @if (languageFeatureAllowed) {
     <div class="language-flags">
-        <app-icon-libary (click)="setLanguageTo('de')" iconName="flagGermany" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
-        <app-icon-libary (click)="setLanguageTo('en')" iconName="flagAmerica" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+        <app-icon-libary (click)="setLanguageTo('de')" [ngClass]="{'--active': isActiveLanguage('de')}" iconName="flagGermany" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+        <app-icon-libary (click)="setLanguageTo('en')" [ngClass]="{'--active': isActiveLanguage('en')}" iconName="flagAmerica" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
     </div>
     }
 </section>
