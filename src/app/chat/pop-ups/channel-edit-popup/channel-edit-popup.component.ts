@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { InputFieldsComponent } from '../../../shared/components/inputs/input-fields/input-fields.component';
 import { IconLibaryComponent } from '../../../shared/components/icon-component/icon-libary.component';
 import { ButtonComponent } from "../../../shared/components/inputs/button/button.component";
@@ -13,7 +13,7 @@ import { ButtonComponent } from "../../../shared/components/inputs/button/button
   styleUrl: './channel-edit-popup.component.scss'
 })
 export class ChannelEditPopupComponent {
-
+@Input() editMode:boolean = false;
   saveEdit(){
     console.log('works');
     }

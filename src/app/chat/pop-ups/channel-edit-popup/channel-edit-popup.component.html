@@ -2,28 +2,33 @@
   <header>
     <div>
     <h2>#</h2>
-    <h2>Entwicklerteam</h2>
+    <h2 aria-label="">Entwicklerteam</h2>
   </div>
-    <app-icon-libary class="close" iconName="close"></app-icon-libary>
+    <app-icon-libary aria-label="close-button" class="close" iconName="close"></app-icon-libary>
   </header>
+  @if(editMode) {
   <div class="channel-name">
-    <span>Channel-Name</span> <span (click)="saveEdit()" class="save-btn">Speichern</span>
+    <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
   </div>
   <app-input-fields class="mb-30">
     <app-icon-libary #iconSlot iconName="tag"></app-icon-libary>
   </app-input-fields>
+}
+
+@if(editMode) {
   <div class="channel-name">
-    <span>Beschreibung</span> <span (click)="saveEdit()" class="save-btn">Speichern</span>
+    <span aria-label="">Beschreibung</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
   </div>
   <app-input-fields class="mb-30">
   </app-input-fields>
   <div class="seperator mb-30"></div>
+}
   <div class="created-by">
-    <span>Erstellt von</span>
-    <h2>Noah Braun</h2>
+    <span aria-label="">Erstellt von</span>
+    <h2 aria-label="">Noah Braun</h2>
   </div>
 
   <div class="btn-container">
-  <app-button [filled]="true"> Channel verlassen</app-button>
+  <app-button aria-label="" [filled]="true"> Channel verlassen</app-button>
 </div>
 </div>
