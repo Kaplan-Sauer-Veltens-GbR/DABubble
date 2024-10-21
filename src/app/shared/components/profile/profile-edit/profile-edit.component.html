@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="actions">
-        <app-button class="button-width" [filled]="false">{{t('actions.cancel')}}</app-button>
-        <app-button class="button-width">{{t('actions.save')}}</app-button>
+        <app-button class="button-width" (click)="openRegularView()" [filled]="false">{{t('actions.cancel')}}</app-button>
+        <app-button class="button-width" (click)="saveChanges()">{{t('actions.save')}}</app-button>
     </div>
 </div>
 }

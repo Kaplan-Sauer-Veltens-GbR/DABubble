@@ -10,7 +10,7 @@
             @if (view == "regular") {
             <app-profile-view (editView)="openEditView()" class="profile__body"></app-profile-view>
             } @else if (view == "edit") {
-            <app-profile-edit class="profile__body"></app-profile-edit>
+            <app-profile-edit (regularView)="openRegularView()" class="profile__body"></app-profile-edit>
             }
         </div>
     </ng-container>
