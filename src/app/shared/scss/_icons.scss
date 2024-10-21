@@ -1,6 +1,14 @@
 @use './abstracts/' as *;
 
-.icon {
+.icon-base {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon--hoverable {
     @include dflex();
     height: 40px;
     width: 40px;

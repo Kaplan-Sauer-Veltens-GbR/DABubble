@@ -1,29 +1,22 @@
 @if (user) {
-<div class="profile box--floating">
-<ng-container *transloco="let t;">
-    <div class="profile__header">
-        <span>{{t('profile.title')}}</span>
-        <app-icon-libary iconName="close" class="icon" height="14px" width="14px" suffix="svg"></app-icon-libary>
-    </div>
-    <div class="profile__avatar"></div>
-    <div class="profile__body">
-        <div class="name-view">
+<div *transloco="let t;" class="profile-view">
+    <div class="profile__name-view">
+        <div class="name">
             <span class="user-name">{{ user.name }}</span>
-            <span class="user-edit">{{t('profile.edit')}}</span>
+            <span (click)="openEditView()" class="user-edit">{{t('actions.edit')}}</span>
         </div>
         <div class="online-state">
             <div class="online-state__dot" [ngClass]="{'--online': user.isOnline}"></div>
-            <span class="online-state__desc">{{t('profile.is-online.' + user.isOnline.toString())}}</span>
+            <span class="online-state__desc">{{t('user.online.' + user.isOnline.toString())}}</span>
         </div>
     </div>
     <div class="profile__mail">
         <app-icon-libary iconName="emailTag" class="icon-custom"></app-icon-libary>
         <div class="mailto">
-            <span>{{t('mail.address')}}</span>
-            <span class="recipient" [attr.aria-label]="t('mail.send', {'recipient': user.name})" role="button">me&#64;metoo.de</span>
+            <span>{{t('email.address')}}</span>
+            <span class="recipient" [attr.aria-label]="t('email.send', {'recipient': user.name})" role="button">{{user.email}}</span>
         </div>
     </div>
     <app-button [filled]="true" icon="msg">{{t('profile.msg')}}</app-button>
-</ng-container>
 </div>
 }

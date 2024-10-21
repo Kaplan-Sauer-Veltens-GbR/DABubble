@@ -27,6 +27,7 @@ export type IconName =
 'editPurple' |
 'editWhite' |
 'editWhiteThick' |
+'email' |
 'emailTag' |
 'emailTagGrey' |
 'emailTagPurple' |

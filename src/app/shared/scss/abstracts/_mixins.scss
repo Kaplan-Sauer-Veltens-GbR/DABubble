@@ -1,7 +1,23 @@
-@mixin dflex($j: center, $a: center, $g: 0, $d: row){
+@mixin dflex($j: center, $a: center, $g: 0, $d: row) {
     display: flex;
     flex-direction: $d;
     align-items: $a;
     justify-content: $j;
     gap: $g;
+}
+
+@mixin forcedSize($w: null, $h: null) {
+    @if $w == null {
+        $w: 0;
+    } 
+    @if $h == null {
+        $h: $w;
+    }
+
+    width: $w;
+    min-width: $w;
+    max-width: $w;
+    height: $h;
+    min-height: $h;
+    max-height: $h;
 }
