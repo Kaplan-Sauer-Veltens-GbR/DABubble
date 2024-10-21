@@ -11,6 +11,13 @@
     &--scrollable {
         @include dflex(flex-start, center, 45px, column);
         width: 100%;
+        //&.overflow { /* TODO: Only apply when #profileBox HEIGHT < 680px */
+            margin-top: -30px;
+            padding-right: 20px;
+            padding-left: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        //}
     }
 
     &__header {
@@ -28,10 +35,8 @@
     }
 
     &__avatar {
-        width: 200px;
-        height: 200px;
+        @include forcedSize(200px);
         background-color: blue;
         border-radius: 50%;
     }
-
 }

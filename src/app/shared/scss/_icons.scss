@@ -1,6 +1,6 @@
 @use './abstracts/' as *;
 
-.icon {
+.icon--hoverable {
     @include dflex();
     height: 40px;
     width: 40px;

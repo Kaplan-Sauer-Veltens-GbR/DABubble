@@ -8,6 +8,10 @@
     padding: 40px clamp(2vw, 40px, 4vw);
     max-height: calc(100vh - (2.5 * clamp(2vw, 40px, 4vw)));
     overflow-y: scroll;
+
+    &.no-overflow {
+        overflow: hidden;
+    }
 }
 
 .box--bordered {
