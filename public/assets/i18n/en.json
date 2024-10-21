@@ -19,6 +19,14 @@
         "title": "Profile",
         "msg": "Message"
     },
+    "settings": {
+        "profile": "Open your Profile",
+        "language": {
+            "toggle": "Change language to: ",
+            "german": "German",
+            "english": "English"
+            }
+        },
     "user": {
         "name": {
             "full": "Full Name",

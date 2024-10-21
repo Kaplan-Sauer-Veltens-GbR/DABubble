@@ -1,10 +1,10 @@
 <section *transloco="let t" class="profile-menu box--floating">
-    <span class="link">{{t('profile.title')}}</span>
-    <span class="link">{{t('actions.logout')}}</span>
+    <span class="link" role="button" [attr.aria-label]="t('settings.profile')">{{t('profile.title')}}</span>
+    <span class="link" role="button">{{t('actions.logout')}}</span>
     @if (languageFeatureAllowed) {
     <div class="language-flags">
-        <app-icon-libary (click)="setLanguageTo('de')" [ngClass]="{'--active': isActiveLanguage('de')}" iconName="flagGermany" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
-        <app-icon-libary (click)="setLanguageTo('en')" [ngClass]="{'--active': isActiveLanguage('en')}" iconName="flagAmerica" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+        <app-icon-libary role="button" (click)="setLanguageTo('de')" [ngClass]="{'--active': isActiveLanguage('de')}" [attr.aria-label]="t('settings.language.toggle') + t('settings.language.german')" [attr.aria-hidden]="isActiveLanguage('de')" iconName="flagGermany" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
+        <app-icon-libary role="button" (click)="setLanguageTo('en')" [ngClass]="{'--active': isActiveLanguage('en')}" [attr.aria-label]="t('settings.language.toggle') + t('settings.language.english')" [attr.aria-hidden]="isActiveLanguage('en')" iconName="flagAmerica" suffix="svg" width="30px" height="30px" [round]="true" class="flag-icon"></app-icon-libary>
     </div>
     }
-</section>
+</section> 
