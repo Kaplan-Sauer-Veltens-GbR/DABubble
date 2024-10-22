@@ -1,3 +1,47 @@
 {
-    "demo": "content"
+    "actions": {
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "logout": "Log out",
+        "save": "Save"
+    },
+    "chat": {
+        "subthread": {
+            "open": "Show {{count}} replies"
+        }
+    },
+    "email": {
+        "address": "E-mail address",
+        "send": "New E-mail to: {{recipient}}"
+    },
+    "profile": {
+        "open": "Display {{name}}s profile",
+        "title": "Profile",
+        "msg": "Message"
+    },
+    "settings": {
+        "profile": "Open your Profile",
+        "language": {
+            "toggle": "Change language to: ",
+            "german": "German",
+            "english": "English"
+            }
+        },
+    "user": {
+        "name": {
+            "full": "Full Name",
+            "first": "First Name",
+            "last": "Last Name"
+        },
+        "online": {
+            "true": "Activ",
+            "false": "Offline"
+        }
+    },
+    "workspace": {
+        "is-open": {
+            "true": "Close workspace menu",
+            "false": "Open workspace menu"
+        }
+    }
 }
