@@ -1,5 +1,9 @@
 @use '../../../scss/abstracts/' as *;
 
+* {
+    transition: all 100ms ease-in;
+}
+
 .avatar-bar {
     @include dflex(flex-start, $g: 10px);
     cursor: pointer;
