@@ -1,7 +1,11 @@
 <div class="input-field"> 
     @if(hasProjectedContent) {
-        <ng-content></ng-content>
-    }
-    <input [value]="value" [ngClass]="{'padding-icon-included':hasProjectedContent}" [type]="type" [placeholder]="placeholder" [attr.pattern]="pattern ? pattern : null" [required]="required">
 
+   
+    <ng-container>
+        <ng-content></ng-content>
+    </ng-container>
+}
+    <input [value]="value" [ngClass]="{'padding-icon-included':hasProjectedContent}" [type]="type" [placeholder]="placeholder" [attr.pattern]="pattern ? pattern : null" [required]="required">
+    
 </div>
