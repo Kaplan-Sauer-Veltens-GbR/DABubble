@@ -46,8 +46,16 @@ header {
   }
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 .mb-30 {
   margin-bottom: 30px;
+}
+
+.mb-45 {
+  margin-bottom: 45px;
 }
 
 .seperator {
@@ -64,7 +72,6 @@ header {
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    margin-bottom: 45px;
     h2 {
         font-size: 24px;
         font-weight: 400;
@@ -79,5 +86,21 @@ header {
     
         width: 204px;
     }
+}
+
+.before-edit-container {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: solid 1px $colorLines;
+  border-radius: 20px;
+
+  .seperator {
+    width: 100%;
+  }
+}
+
+.before-edit-content {
+  font-size: 18px;
+  @include dflex(unset, center, 10px);
 }
 

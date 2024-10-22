@@ -14,6 +14,7 @@ export class InputFieldsComponent {
 @Input() placeholder:string = 'Enter';
 @Input() pattern:string = '';
 @Input() type:string = 'text';
+@Input() value:string = '';
 @Input() required: boolean = false;
 hasProjectedContent: boolean = false;
 

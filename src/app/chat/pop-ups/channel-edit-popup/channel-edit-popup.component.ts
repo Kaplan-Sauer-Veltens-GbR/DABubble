@@ -13,7 +13,7 @@ import { ButtonComponent } from "../../../shared/components/inputs/button/button
   styleUrl: './channel-edit-popup.component.scss'
 })
 export class ChannelEditPopupComponent {
-@Input() editMode:boolean = false;
+@Input() editMode:boolean = true;
   saveEdit(){
     console.log('works');
     }
