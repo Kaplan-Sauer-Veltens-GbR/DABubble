@@ -5,7 +5,7 @@ import { IconLibaryComponent } from '../../icon-component/icon-libary.component'
 @Component({
   selector: 'app-input-fields',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,IconLibaryComponent],
   templateUrl: './input-fields.component.html',
   styleUrl: './input-fields.component.scss'
 })
