@@ -18,6 +18,7 @@
             background-color: $colorBG;
             .msg {
                 &__body {
+                    cursor: auto;
                     background-color: white;
                 }
             }
