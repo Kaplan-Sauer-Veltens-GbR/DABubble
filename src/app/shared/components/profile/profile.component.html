@@ -1,5 +1,18 @@
-@if (view == "regular") {
-<app-profile-view [user]="user"></app-profile-view>
-} @else if (view == "edit") {
-<app-profile-edit></app-profile-edit>
+@if (user) {
+<div #profileBox class="profile box--floating no-overflow">
+    <ng-container *transloco="let t;">
+        <div class="profile__header">
+            <span>{{t('profile.title')}}</span>
+            <app-icon-libary iconName="close" class="icon--hoverable" height="14px" width="14px" suffix="svg"></app-icon-libary>
+        </div>
+        <div #scrollableArea class="profile--scrollable">
+            <div class="profile__avatar"></div>
+            @if (view == "regular") {
+            <app-profile-view (editView)="openEditView()" [user]="user" class="profile__body"></app-profile-view>
+            } @else if (view == "edit") {
+            <app-profile-edit (regularView)="openRegularView()" [user]="user" class="profile__body"></app-profile-edit>
+            }
+        </div>
+    </ng-container>
+</div>
 }

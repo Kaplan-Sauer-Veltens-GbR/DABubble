@@ -1,22 +1,33 @@
 {
+    "actions": {
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "edit": "Editieren"
+    },
     "chat": {
         "subthread": {
             "open": "{{count}} Antworten anzeigen"
         }
     },
-    "mail": {
+    "email": {
         "address": "E-Mail-Adresse",
         "send": "Neue E-Mail an: {{recipient}}"
     },
     "profile": {
         "open": "Profil von {{name}} anzeigen",
         "title": "Profil",
-        "is-online": {
+        "msg": "Nachricht"
+    },
+    "user": {
+        "name": {
+            "full": "Vollständiger Name",
+            "first": "Vorname",
+            "last": "Nachname"
+        },
+        "online": {
             "true": "Aktiv",
             "false": "Abwesend"
-        },
-        "msg": "Nachricht",
-        "edit": "Editieren"
+        }
     },
     "workspace": {
         "is-open": {

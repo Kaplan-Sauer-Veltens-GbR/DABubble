@@ -15,11 +15,14 @@
         &:focus {
             outline-color: $colorPurple3;
         }
+        &:hover {
+            border-color: $colorPurple1;
+        }
         
     }
 }
 
 
 .padding-icon-included {
-    padding-left: 86px !important;
+    padding-left: 80px !important;
 }
