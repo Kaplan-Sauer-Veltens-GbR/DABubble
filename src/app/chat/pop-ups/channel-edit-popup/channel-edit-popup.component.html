@@ -4,14 +4,14 @@
     <h2>#</h2>
     <h2 aria-label="">{{channelName}}</h2>
   </div>
-    <app-icon-libary aria-label="close-button" class="close" iconName="close"></app-icon-libary>
+    <app-icon aria-label="close-button" class="close" iconName="close"></app-icon>
   </header>
   @if(editMode) {
   <div class="channel-name">
     <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
   </div>
   <app-input-fields placeholder="{{channelName}}" class="mb-30">
-    <app-icon-libary #iconSlot iconName="tag"></app-icon-libary>
+    <app-icon #iconSlot iconName="tag"></app-icon>
   </app-input-fields>
 }@else {
   <div class="before-edit-container">
@@ -19,7 +19,7 @@
     <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Bearbeiten</span>
   </div>
   <div class="before-edit-content">
-  <app-icon-libary #iconSlot iconName="tag"></app-icon-libary>
+  <app-icon #iconSlot iconName="tag"></app-icon>
   <span>Entwicklerteam</span>
 </div>
 </div>

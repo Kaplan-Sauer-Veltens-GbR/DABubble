@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="profile__mail">
-        <app-icon-libary iconName="emailTag" class="icon-custom"></app-icon-libary>
+        <app-icon iconName="emailTag" class="icon-custom"></app-icon>
         <div class="mailto">
             <span>{{t('email.address')}}</span>
             <span class="recipient" [attr.aria-label]="t('email.send', {'recipient': user.name})" role="button">{{user.email}}</span>

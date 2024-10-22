@@ -9,7 +9,7 @@ import { InputFieldsComponent } from '../inputs/input-fields/input-fields.compon
 import { IconName } from '../../../interfaces/icon-names.model';
 
 @Component({
-  selector: 'app-icon-libary',
+  selector: 'app-icon',
   standalone: true,
   imports: [CommonModule,],
   templateUrl: './icon-libary.component.html',

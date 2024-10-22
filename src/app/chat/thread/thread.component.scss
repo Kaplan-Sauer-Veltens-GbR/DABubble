@@ -15,7 +15,7 @@ app-chat-message {
 .headline {
    padding-bottom: 32px;
     @include dflex(space-between,center,5px);
-    app-icon-libary  {
+    app-icon  {
         display: flex;
         cursor: pointer;
     }

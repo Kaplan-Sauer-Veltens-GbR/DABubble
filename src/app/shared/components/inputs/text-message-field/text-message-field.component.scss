@@ -24,7 +24,7 @@ textarea {
 
 .icon-container {
   @include dflex(space-between, center, 0, row-reverse);
-  app-icon-libary {
+  app-icon {
     cursor: pointer;
   }
 
@@ -32,7 +32,7 @@ textarea {
     &:hover {
       filter: $colorTransformPurple2;
 
-      ~ .icon-line app-icon-libary {
+      ~ .icon-line app-icon {
         filter: brightness(0) saturate(100%) !important;
       }
     }
@@ -44,7 +44,7 @@ textarea {
   &:hover :not(.seperator) {
     filter: brightness(0) saturate(100%);
   }
-  app-icon-libary  {
+  app-icon  {
     &:hover {
       filter: $colorTransformPurple1 !important;
     

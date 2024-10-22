@@ -11,15 +11,15 @@ import { IconLibaryComponent } from '../../icon-component/icon-libary.component'
 })
 export class InputFieldsComponent {
   @ContentChild('iconSlot', { static: true }) iconContent: ElementRef | undefined;
-@Input() placeholder:string = 'Enter';
-@Input() pattern:string = '';
-@Input() type:string = 'text';
-@Input() value:string = '';
-@Input() required: boolean = false;
-hasProjectedContent: boolean = false;
+  @Input() placeholder: string = 'Enter';
+  @Input() pattern: string = '';
+  @Input() type: string = 'text';
+  @Input() value: string = '';
+  @Input() required: boolean = false;
+  hasProjectedContent: boolean = false;
 
-ngAfterContentInit(): void {
-  this.hasProjectedContent = !!this.iconContent;
-  
-}
+  ngAfterContentInit(): void {
+    this.hasProjectedContent = !!this.iconContent;
+
+  }
 }
