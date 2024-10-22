@@ -1,3 +1,12 @@
 <div class="reaction-popover" [ngClass]="{'msg-ownership': isOwner, '--hovered': isDisplayed}">
-[A] [B] [C] [D] @if (isOwner) { [E] }
+    @for (icon of regularIcons; track $index) {
+    <div class="icon--hoverable">
+        <app-icon [iconName]="icon"></app-icon>
+    </div>
+    }
+    @if (isOwner) {
+    <div class="icon--hoverable">
+        <app-icon iconName="moreVert"></app-icon>
+    </div>
+    }
 </div>

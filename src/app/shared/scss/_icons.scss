@@ -12,13 +12,18 @@
     @include dflex();
     height: 40px;
     width: 40px;
+    cursor: pointer;
   
     &:hover {
       background-color: $colorBG;
       border-radius: 50%;
+    }
 
-      ::ng-deep > *:first-child {
-        filter: $colorTransformPurple3;
+    &.icon--hoverfilter {
+      &:hover {
+        ::ng-deep > *:first-child {
+          filter: $colorTransformPurple3;
+        }
       }
     }
   }

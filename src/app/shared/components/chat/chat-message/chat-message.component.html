@@ -1,6 +1,6 @@
-<div class="wrapper">
+<div class="wrapper" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
     <app-reaction-popover [isOwner]="isOwner" [isDisplayed]="displayPopover"></app-reaction-popover>
-    <div *transloco="let t;" class="message-container" [ngClass]="{'msg-ownership': isOwner}" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
+    <div *transloco="let t;" class="message-container" [ngClass]="{'msg-ownership': isOwner}">
         <div class="avatar">
             <img [src]="avatarPath" alt="avatar">
         </div>

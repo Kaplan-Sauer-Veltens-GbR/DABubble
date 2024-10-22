@@ -12,7 +12,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './chat-message.component.scss'
 })
 export class ChatMessageComponent {
-  @Input() isOwner: boolean = false;
+  @Input() isOwner: boolean = true;
 
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
