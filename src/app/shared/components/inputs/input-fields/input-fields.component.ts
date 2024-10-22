@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterContentInit, Input } from '@angular/core';
+import { Component, AfterContentInit, Input, ContentChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-input-fields',

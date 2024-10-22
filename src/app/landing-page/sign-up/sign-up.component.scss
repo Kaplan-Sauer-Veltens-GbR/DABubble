@@ -3,6 +3,7 @@
 
 .signup-card {
     @extend .box--floating;
+    overflow:hidden;
     width: 450px;
     padding: 30px;
     border-radius: 12px;
@@ -13,9 +14,9 @@
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     position: relative;
-    padding: 0 30px; 
+    padding: 0 30px;
 }
 
 .back-button {
@@ -48,13 +49,13 @@
     font-size: 14px;
     color: $colorGray;
     margin-top: 16px;
-  
+
     a {
       color: $colorPurple1;
       text-decoration: none;
-      margin: 0 5px; 
+      margin: 0 5px;
     }
-  
+
     input {
       cursor: pointer;
     }
