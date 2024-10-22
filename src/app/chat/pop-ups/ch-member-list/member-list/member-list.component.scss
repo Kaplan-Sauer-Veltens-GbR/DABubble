@@ -1,3 +1,6 @@
 @use '../../../../shared/scss/abstracts/_index.scss' as *;
 @use '../../../../shared/scss/_boxes.scss';
 
+.box--floating {
+    align-items: unset;
+}
