@@ -14,6 +14,9 @@ import { ButtonComponent } from "../../../shared/components/inputs/button/button
 })
 export class ChannelEditPopupComponent {
 @Input() editMode:boolean = true;
+@Input() channelName!:string;
+@Input() description!:string;
+@Input() author!:string;
   saveEdit(){
     console.log('works');
     }

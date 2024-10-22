@@ -2,7 +2,7 @@
   <header>
     <div>
     <h2>#</h2>
-    <h2 aria-label="">Entwicklerteam</h2>
+    <h2 aria-label="">{{channelName}}</h2>
   </div>
     <app-icon-libary aria-label="close-button" class="close" iconName="close"></app-icon-libary>
   </header>
@@ -10,7 +10,7 @@
   <div class="channel-name">
     <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
   </div>
-  <app-input-fields  class="mb-30">
+  <app-input-fields placeholder="{{channelName}}" class="mb-30">
     <app-icon-libary #iconSlot iconName="tag"></app-icon-libary>
   </app-input-fields>
 }@else {
@@ -29,13 +29,13 @@
   <div class="channel-name">
     <span aria-label="">Beschreibung</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
   </div>
-  <app-input-fields placeholder="Dein Text hier" class="mb-30">
+  <app-input-fields placeholder="{{description}}" class="mb-30">
   </app-input-fields>
   <div class="seperator mb-30"></div>
 
   <div class="created-by mb-45">
     <span class="mb-20" aria-label="">Erstellt von</span>
-    <h2 aria-label="">Noah Braun</h2>
+    <h2 aria-label="">{{author}}</h2>
   </div>
 }@else {
   <div class="before-edit-container">
@@ -43,12 +43,12 @@
       <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Bearbeiten</span>
     </div>
     <div class="before-edit-content mb-30">
-    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repellendus consequuntur excepturi nostrum corporis doloremque illum nulla.</span>
+    <span>{{description}}</span>
   </div>
   <div class="seperator mb-30"></div>
   <div class="created-by">
     <span class="mb-20"  aria-label="">Erstellt von</span>
-    <h2 aria-label="">Noah Braun</h2>
+    <h2 aria-label="">{{author}}</h2>
   </div>
   </div>
   
