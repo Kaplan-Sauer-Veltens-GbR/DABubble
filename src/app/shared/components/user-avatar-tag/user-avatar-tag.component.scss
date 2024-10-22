@@ -1,0 +1,12 @@
+@use '../../scss/abstracts/_index.scss' as *;
+
+.profile-container {
+    @include dflex(unset,center,15px)
+}
+
+.profile {
+    border-radius: 40px;
+    border: solid 2px #FFFFFF;
+    width: clamp(3vw, 50px, 11.7vw);
+    align-self: flex-start;
+}
