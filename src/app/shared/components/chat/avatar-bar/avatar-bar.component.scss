@@ -1,0 +1,29 @@
+@use '../../../scss/abstracts/' as *;
+
+.avatar-bar {
+    @include dflex(flex-start, $g: 10px);
+    cursor: pointer;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 30px;
+    &:hover {
+        background-color: $colorBG;
+        >span {
+            color: $colorPurple3;
+            font-weight: 700;
+        }
+    }
+    .avatar-images {
+        height: 40px;
+        width: 40px;
+        border: 2px solid white;
+        border-radius: 30px;
+        &:not(:first-child) {
+            margin-left: -22px;
+        }
+    }
+    >span {
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
