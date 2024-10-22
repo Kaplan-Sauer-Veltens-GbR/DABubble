@@ -1,8 +1,9 @@
 {
     "actions": {
         "cancel": "Abbrechen",
-        "save": "Speichern",
-        "edit": "Editieren"
+        "edit": "Editieren",
+        "logout": "Log out",
+        "save": "Speichern"
     },
     "chat": {
         "subthread": {
@@ -18,6 +19,14 @@
         "title": "Profil",
         "msg": "Nachricht"
     },
+    "settings": {
+        "profile": "Eigenes Profil öffnen",
+        "language": {
+            "toggle": "Ändere Sprache zu: ",
+            "german": "Deutsch",
+            "english": "Englisch"
+            }
+        },
     "user": {
         "name": {
             "full": "Vollständiger Name",

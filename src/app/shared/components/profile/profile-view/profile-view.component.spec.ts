@@ -9,6 +9,7 @@ describe('ProfileViewComponent', () => {
 
   let user = {
     'name': 'demo',
+    email: 'max@mustermann.de',
     'isOnline': true
   }
 

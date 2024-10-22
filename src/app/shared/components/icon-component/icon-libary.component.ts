@@ -21,6 +21,7 @@ export class IconLibaryComponent implements AfterContentInit {
   @Input() iconAlt: string = '';
   @Input() iconClass: string = '';
   @Input() suffix: string = 'png';
+  @Input() round: boolean = false;
   @Input() width: string = '';
   @Input() height: string = '';
   isInInputField: boolean = false;

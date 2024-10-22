@@ -34,6 +34,8 @@ export type IconName =
 'emoji' |
 'emojiGrey' |
 'emojiPurple' |
+'flagAmerica' |
+'flagGermany' |
 'logout' |
 'logoutPurple' |
 'modeComment' |
