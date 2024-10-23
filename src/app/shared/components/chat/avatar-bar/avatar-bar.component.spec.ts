@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AvatarBarComponent } from './avatar-bar.component';
+import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('AvatarBarComponent', () => {
   let component: AvatarBarComponent;
@@ -8,7 +9,9 @@ describe('AvatarBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AvatarBarComponent]
+      imports: [
+        getTranslocoModule(),
+        AvatarBarComponent]
     })
     .compileComponents();
 
