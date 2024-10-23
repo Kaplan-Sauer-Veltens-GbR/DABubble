@@ -31,7 +31,7 @@ $input-button-height: 60px;
 }
 
 .avatar-preview {
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: 8px;
   @include dflex(center, center, 0, column);
 
@@ -76,7 +76,7 @@ $input-button-height: 60px;
 
 .upload-section {
   @include dflex(space-between, center);
-  margin: 36px 0 24px 0;
+  margin: 24px 0 24px 0;
   width: 80%;
   span {
     font-size: 20px;
