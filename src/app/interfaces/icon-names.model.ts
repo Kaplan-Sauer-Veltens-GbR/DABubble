@@ -7,6 +7,7 @@ export type IconName =
 'addCirclePurple' |
 'addGrey' |
 'addPurple' |
+'addReaction' |
 'arrowDown' |
 'arrowDownPurple' |
 'arrowDrop' |
@@ -39,9 +40,11 @@ export type IconName =
 'logout' |
 'logoutPurple' |
 'modeComment' |
+'moreVert' |
 'msg' |
 'personAdd' |
 'personAddPurple' |
+'raisingHands' |
 'reaction' |
 'reactionPurple' |
 'searchBlack' |
@@ -52,5 +55,6 @@ export type IconName =
 'tag' |
 'tagGrey' |
 'tagPurple' |
+'whiteHeavyCheckmark' |
 'workspaces' |
 'workspacesPurple'

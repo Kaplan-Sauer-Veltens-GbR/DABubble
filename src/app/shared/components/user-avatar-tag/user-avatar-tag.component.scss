@@ -1,0 +1,39 @@
+@use '../../scss/abstracts/_index.scss' as *;
+
+.profile-container {
+    @include dflex(unset,center,15px);
+    font-size: 18px;
+    position: relative;
+}
+
+.profile {
+    border-radius: 40px;
+    border: solid 2px #FFFFFF;
+    width: 50px;
+    align-self: flex-start;
+    
+}
+
+.status-circle {
+    background-color: #92C83E;
+    border:solid 2px white;
+    width: 10px;
+    height: 10px;
+    border-radius: 40px;
+    z-index: 10;
+    position: absolute;
+    left: 40px;
+    bottom: 5px;
+}
+
+.status-online {
+    background-color: #92C83E;
+}
+
+.status-away {
+    background-color: orange;
+}
+
+.status-offline {
+    background-color: gray;
+}

@@ -5,6 +5,9 @@
         "logout": "Log out",
         "save": "Speichern"
     },
+    "avatar-bar": {
+        "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
+    },
     "chat": {
         "subthread": {
             "open": "{{count}} Antworten anzeigen"

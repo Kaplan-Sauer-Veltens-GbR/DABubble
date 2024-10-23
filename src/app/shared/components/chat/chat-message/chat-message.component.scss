@@ -12,91 +12,93 @@
     @include dflex($d: column);
     width: 100%;
     position: relative;
-}
-
-.message-container {
-    @include dflex(flex-start, $g: clamp(2vw, 30px, 4vw));
-    cursor: pointer;
-    position: relative;
-    padding: 10px clamp(2vw, 45px, 4vw);
-    margin-top: 20px; //remove after testing!
-    width: 100%;
-
-    &.msg-ownership {
-        flex-direction: row-reverse;
-    }
 
     &:hover {
-        background-color: $colorBG;
-        .msg {
-            &__body {
-                background-color: white;
-            }
-        }
-    }
-
-
-    .avatar {
-        align-self: flex-start;
-        > img {
-            border-radius: 40px;
-            width: clamp(3vw, 70px, 11.7vw);
-        }
-    }
-
-    .msg {
-        @include dflex(center, flex-start, 8px, column);
-        &.msg-ownership {
-            align-items: flex-end;
-        }
-
-        .timestamp {
-            font-weight: 400;
-            font-size: clamp(1vw, 14px, 4vw);
-            color: $colorGray;
-        }
-
-        &__header {
-            @include flexHeaderAndFooter();
-            &.msg-ownership {
-                flex-direction: row-reverse;
-            }
-
-            .user-name {
-                font-weight: 700;
-                font-size: 18px;
-                &:hover {
-                    color: $colorPurple1;
+        .message-container {
+            background-color: $colorBG;
+            .msg {
+                &__body {
+                    cursor: auto;
+                    background-color: white;
                 }
             }
         }
+    }
 
-        &__body {
-            background-color: $colorBG;
-            padding: 15px;
-            border-top-right-radius: 30px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            font-weight: 400;
-            font-size: 18px;
+    .message-container {
+        @include dflex(flex-start, $g: clamp(2vw, 30px, 4vw));
+        cursor: pointer;
+        position: relative;
+        padding: 10px clamp(2vw, 45px, 4vw);
+        margin-top: 20px; //remove after testing!
+        width: 100%;
 
-            &.msg-ownership {
-                background-color: $colorPurple2;
-                border-top-right-radius: unset;
-                border-top-left-radius: 30px;
-                color: white;
+        &.msg-ownership {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            align-self: flex-start;
+            > img {
+                border-radius: 40px;
+                width: clamp(3vw, 70px, 11.7vw);
             }
         }
 
-        &__footer {
-            @include flexHeaderAndFooter();
-            white-space: nowrap;
-            .subthread-link {
-                color: $colorPurple3;
-                font-size: clamp(1vw, 18px, 4vw);
+        .msg {
+            @include dflex(center, flex-start, 8px, column);
+            &.msg-ownership {
+                align-items: flex-end;
+            }
 
-                &:hover {
+            .timestamp {
+                font-weight: 400;
+                font-size: clamp(1vw, 14px, 4vw);
+                color: $colorGray;
+            }
+
+            &__header {
+                @include flexHeaderAndFooter();
+                &.msg-ownership {
+                    flex-direction: row-reverse;
+                }
+
+                .user-name {
                     font-weight: 700;
+                    font-size: 18px;
+                    &:hover {
+                        color: $colorPurple1;
+                    }
+                }
+            }
+
+            &__body {
+                background-color: $colorBG;
+                padding: 15px;
+                border-top-right-radius: 30px;
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+                font-weight: 400;
+                font-size: 18px;
+
+                &.msg-ownership {
+                    background-color: $colorPurple2;
+                    border-top-right-radius: unset;
+                    border-top-left-radius: 30px;
+                    color: white;
+                }
+            }
+
+            &__footer {
+                @include flexHeaderAndFooter();
+                white-space: nowrap;
+                .subthread-link {
+                    color: $colorPurple3;
+                    font-size: clamp(1vw, 18px, 4vw);
+
+                    &:hover {
+                        font-weight: 700;
+                    }
                 }
             }
         }
