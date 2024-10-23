@@ -1,8 +1,8 @@
 <div class="reaction-details">
     <app-icon [iconName]="reaction"></app-icon>
-    <p class="user-list">{{exampleUsers[0]}}@if (exampleUsers.length > 1){&nbsp;{{otherReactions()}}}</p>
-    @if (exampleUsers.length < 2) {
-        <span>hat reagiert</span>
+    <p class="user-list">{{firstReaction()}}@if (exampleUsers.length > 1){&nbsp;{{otherReactions()}}}</p>
+    @if (exampleUsers.length == 1) {
+        <span>{{reactionGrammar()}}</span>
     } @else {
         <span>haben reagiert</span>
     }

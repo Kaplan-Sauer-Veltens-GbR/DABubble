@@ -11,32 +11,30 @@ import { IconLibaryComponent } from '../../../../../icon-component/icon-libary.c
 })
 export class ReactionDetailsComponent {
   @Input() reaction!: IconName;
-  exampleUsers: string[] = ['Kevin', 'Sophie', 'You'];
+  exampleUsers: string[] = ['Torben', 'Michael'];
   selfReacted: boolean = false;
 
   firstReaction() {
-
+    return this.exampleUsers.length == 1 && this.selfReacted ?
+      'Du' :
+      this.exampleUsers[0];
   }
 
-  /**
-   * 
-   * @returns string
-   */
+  reactionGrammar() {
+    return this.selfReacted ? 'hast reagiert' : 'hat reagiert';
+  }
+
+
   otherReactions() {
     let total = this.exampleUsers.length - 1;
     if (total == 1) {
-      if (this.selfReacted) {
-        return 'und Du';
-      } else {
-        return `und ${this.exampleUsers[1]}`;
-      }
+      return this.selfReacted ?
+        'und Du' : `und ${this.exampleUsers[1]}`;
     } else if (total >= 2) {
       if (this.selfReacted) {
-        if (total - 1 == 1) {return `ein weiterer und Du` } else {
-          return `, ${total - 1} weitere und Du`;
-        }
+        return total - 1 == 1 ? `ein anderer und Du` : `, ${total - 1} andere und Du`;
       } else {
-        return `und ${total} weitere`;
+        return `und ${total} andere`;
       }
     }
     return '';
