@@ -1,3 +1,5 @@
 <div class="reaction-bar" [ngClass]="{'msg-ownership': isOwner}">
-    <app-single-reaction-icon></app-single-reaction-icon>
+    @for (reaction of exampleMsg.reactions; track $index) {
+        <app-single-reaction-icon [reactionDetails]="reaction"></app-single-reaction-icon>
+    }
 </div>

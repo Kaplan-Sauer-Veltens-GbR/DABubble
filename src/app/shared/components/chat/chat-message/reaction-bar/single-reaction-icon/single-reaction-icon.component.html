@@ -1,4 +1,7 @@
 <div class="reaction-icon">
-        <app-reaction-details class="reaction-details"></app-reaction-details>
-    [img] [n]
+    <app-reaction-details class="reaction-details" [reaction]="key"></app-reaction-details>
+    <ng-container>
+        <app-icon [iconName]="key"></app-icon>
+        <span>{{reactionDetails[key]}}</span>
+    </ng-container>
 </div>

@@ -11,4 +11,8 @@ import { SingleReactionIconComponent } from './single-reaction-icon/single-react
 })
 export class ReactionBarComponent {
   @Input() isOwner: boolean = false;
+
+  exampleMsg = {
+    reactions: [{'raisingHands': 2}, {'whiteHeavyCheckmark': 3}]
+  }
 }
