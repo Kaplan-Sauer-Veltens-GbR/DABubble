@@ -20,7 +20,7 @@ export class ReactionDetailsComponent {
 
   @Input() reaction!: IconName;
   exampleUsers: string[] = ['Kevin', 'Torben', 'Paul'];
-  selfReacted: boolean = false;
+  selfReacted: boolean = true;
 
   firstReaction() {
     return this.exampleUsers.length == 1 && this.selfReacted ?
@@ -51,4 +51,5 @@ export class ReactionDetailsComponent {
     }
     return '';
   }
+
 }
