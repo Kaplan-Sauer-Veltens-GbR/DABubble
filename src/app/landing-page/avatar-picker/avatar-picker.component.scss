@@ -5,9 +5,8 @@ $input-button-height: 60px;
 
 .avatar-picker-card {
   @extend .box--floating;
-  overflow:hidden;
-  width: 550px;
-  height: 500px;
+  overflow: hidden;
+  @include forcedSize(550px, null !important);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -15,18 +14,72 @@ $input-button-height: 60px;
 }
 
 .back-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    left: 24px;
-    top: 64px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 24px;
+  top: 64px;
 }
 
 .avatar-picker-title {
-    font-size: 46px;
-    font-weight: 700;
-    color: $colorPurple1;
-    margin-block-start: 0.33em;
-    margin-block-end: 0;
+  font-size: 46px;
+  font-weight: 700;
+  color: $colorPurple1;
+  margin-block-start: 0.33em;
+  margin-block-end: 0;
+}
+
+.avatar-preview {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  @include dflex(center, center, 0, column);
+
+  span {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 16px;
+  }
+
+  img {
+    @include forcedSize(136px);
+  }
+}
+
+.avatar-list {
+  width: 80%;
+
+  .avatar-list-title {
+    display: block;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+}
+
+.avatars {
+  @include dflex(space-between, center, 10px);
+  margin-top: 10px;
+
+  img {
+    @include forcedSize(64px);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.upload-section {
+  @include dflex(space-between, center);
+  margin: 36px 0 24px 0;
+  width: 80%;
+  span {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
 }
