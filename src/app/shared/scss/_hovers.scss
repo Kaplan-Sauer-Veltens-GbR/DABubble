@@ -1,0 +1,19 @@
+@use './abstracts/' as *;
+
+.normal--hover {
+    transition: transform 85ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      color: $colorPurple1;
+    }
+  
+  }
+
+  .close--hover {
+    transition: transform 85ms ease-in-out;
+    &:hover {
+      filter: $colorTransformPurple3;
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }

@@ -1,6 +1,47 @@
-@use '../../../../shared/scss/abstracts/_index.scss' as *;
-@use '../../../../shared/scss/_boxes.scss';
-
+@use "../../../../shared/scss/abstracts/_index.scss" as *;
+@use "../../../../shared/scss/_boxes.scss";
+@use "../../../../shared/scss/_hovers.scss";
 .box--floating {
-    align-items: unset;
+  align-items: unset;
+  border-top-right-radius: 0;
+  max-width: 415px;
+  max-height: 411px;
+  // width: 100%;// not sure
+  height: 100%;
+  gap: 15px;
+}
+
+.headline {
+  @include dflex(space-between, center);
+}
+
+.bg-circle-close {
+  &:hover {
+    background-color: $colorBG;
+    border-radius: 20px;
+    margin-left: 29px;
+    @include dflex(center, center);
+  }
+}
+
+.bg-circle {
+  background-color: $colorBG;
+  width: 32px;
+  height: 32px;
+  border-radius: 20px;
+  margin-left: 29px;
+  @include dflex(center, center);
+}
+
+.btn-wrapper {
+  @include dflex(flex-start, center, 15px);
+  font-size: 18px;
+}
+
+app-user-avatar-tag {
+    &:hover {
+        background-color: $colorBG;
+        width: fit-content;
+        border-radius: 40px;
+    }
 }

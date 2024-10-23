@@ -4,6 +4,8 @@
     @include dflex(unset,center,15px);
     font-size: 18px;
     position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .profile {
@@ -22,7 +24,7 @@
     border-radius: 40px;
     z-index: 10;
     position: absolute;
-    left: 40px;
+    left: 60px;
     bottom: 5px;
 }
 
