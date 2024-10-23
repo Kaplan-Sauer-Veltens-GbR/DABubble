@@ -1,10 +1,10 @@
-<div class="reaction-details">
+<div *transloco="let t; prefix: 'reaction-details'" class="reaction-details">
     <app-icon [iconName]="reaction"></app-icon>
     <p class="user-list">{{firstReaction()}}@if (exampleUsers.length > 1){&nbsp;{{otherReactions()}}}</p>
     @if (exampleUsers.length == 1) {
-        <span>{{reactionGrammar()}}</span>
+        <span>{{t(reactionGrammar(true))}}</span>
     } @else {
-        <span>haben reagiert</span>
+        <span>{{t(reactionGrammar(false), getGrammarArgument())}}</span>
     }
     <!-- CAVE: beware of grammar! more ppl = haben reagier
      "Person A und Du", "Person A, x weitere und du" -->

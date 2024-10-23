@@ -21,4 +21,12 @@ export class ChatMessageComponent {
   onHover(state: boolean) {
     this.displayPopover = state;
   }
+
+  translateReplyAmount() {
+    if (this.replyAmount == 1) {
+      return 'chat.subthread.replies.single';
+    } else {
+      return 'chat.subthread.replies.multiple';
+    }
+  }
 }

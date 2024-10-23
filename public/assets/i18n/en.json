@@ -7,7 +7,11 @@
     },
     "chat": {
         "subthread": {
-            "open": "Show {{count}} replies"
+            "open": "Show ",
+            "replies": {
+                "single": "one reply",
+                "multiple": "{{amount}} replies"
+            }
         }
     },
     "email": {
@@ -19,14 +23,23 @@
         "title": "Profile",
         "msg": "Message"
     },
+    "reaction-details": {
+        "reaction-summary": {
+            "only-one": {
+                "own": "have reacted",
+                "other": "has reacted"
+            },
+            "multiple": "{{argument}}reacted"
+        }
+    },
     "settings": {
         "profile": "Open your Profile",
         "language": {
             "toggle": "Change language to: ",
             "german": "German",
             "english": "English"
-            }
-        },
+        }
+    },
     "user": {
         "name": {
             "full": "Full Name",
@@ -37,6 +50,10 @@
             "true": "Activ",
             "false": "Offline"
         }
+    },
+    "wordlist": {
+        "and": "and",
+        "you": "you"
     },
     "workspace": {
         "is-open": {
