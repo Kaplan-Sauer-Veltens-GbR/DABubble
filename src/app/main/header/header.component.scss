@@ -1,0 +1,36 @@
+@use "../../shared/scss/abstracts/" as *;
+
+$isDesktopDevice: 720px;
+
+header {
+    .wrapper {
+        background-color: $colorBG;
+        @include dflex(space-between, $g: clamp(10px, 4vw, 80px));
+
+        .logo {
+            @include dflex(flex-start, center);
+            > img {
+                width: min(240px, 100% - 2em);
+                user-select: none;
+            }
+        }
+
+        .toolbar {
+            @include dflex(space-between);
+            @media (orientation: landscape) and (min-width: $isDesktopDevice) {
+                flex: 1;
+            }
+            user-select: none;
+        }
+    }
+}
+
+.searchbar {
+    &.searchbar--desktop {
+        @include hideWhenMobile($isDesktopDevice);
+    }
+
+    &.searchbar--mobile {
+        @include hideWhenDesktop($isDesktopDevice);
+    }
+}
