@@ -3,21 +3,17 @@ import { IconLibaryComponent } from "../../../shared/components/icon-component/i
 import { CommonModule } from '@angular/common';
 import { AvatarMenuPopupComponent } from "./avatar-menu-popup/avatar-menu-popup.component";
 import { SettingsService } from '../../../services/settings.service';
+import { UserAvatarComponent } from "../../../shared/components/user-avatar/user-avatar.component";
 
 @Component({
   selector: 'avatar-menu',
   standalone: true,
-  imports: [CommonModule, IconLibaryComponent, AvatarMenuPopupComponent],
+  imports: [CommonModule, IconLibaryComponent, AvatarMenuPopupComponent, UserAvatarComponent],
   templateUrl: './avatar-menu.component.html',
   styleUrl: './avatar-menu.component.scss'
 })
 export class AvatarMenuComponent {
   settings: SettingsService = inject(SettingsService);
-
-  exampleUser: {name: string, onlineStatus: 'online' | 'away' | 'offline'} = {
-    name: 'Frederik Beck',
-    onlineStatus: 'offline'
-  }
 
   toggleSettings(){
     this.settings.displaySettings = !this.settings.displaySettings;

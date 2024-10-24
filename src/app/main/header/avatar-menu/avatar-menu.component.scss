@@ -44,32 +44,4 @@ $desktopResolution: 850px;
         font-size: clamp(18px, 2vw, 32px);
         @include hideWhenMobile($desktopResolution);
     }
-
-    .avatar {
-        position: relative;
-        @include dflex();
-        > img {
-            border-radius: 50%;
-            height: 70px;
-            width: 70px;
-        }
-        .online-status {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 16px;
-            height: 16px;
-            border: 2px solid $colorBG;
-            border-radius: 50%;
-            &.is-online {
-                background-color: $colorOnline;
-            }
-            &.is-away {
-                background-color: $colorGray;
-            }
-            &.is-offline {
-                background-color: $colorError;
-            }
-        }
-    }
 }
