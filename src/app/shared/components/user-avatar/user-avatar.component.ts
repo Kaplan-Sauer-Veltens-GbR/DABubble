@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { OnlineStatusService } from '../../../services/online-status.service';
 
 @Component({
   selector: 'user-avatar',
@@ -9,11 +10,14 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user-avatar.component.scss'
 })
 export class UserAvatarComponent {
+  onlineStatus: OnlineStatusService = inject(OnlineStatusService);
+
   @Input() hideUsername: boolean = false;
   @Input() size: number = 50;
-  @Input() exampleUser: {name: string, onlineStatus: 'online' | 'away' | 'offline'} = {
+  @Input() exampleUser: {name: string, lastActivity: number, isOffline: boolean} = {
     name: 'Frederik Beck',
-    onlineStatus: 'offline'
+    lastActivity: Date.now(),
+    isOffline: true
   }
 
 }
