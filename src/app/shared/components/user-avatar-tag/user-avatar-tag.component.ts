@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { StatusService } from '../../../services/activity-status/status.service';
 
 
 
@@ -11,9 +12,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user-avatar-tag.component.scss'
 })
 export class UserAvatarTagComponent {
- 
+public Status = inject(StatusService) 
 @Input() src:string = './assets/images/avatars/demo_avatar.png'
 @Input() isYou:boolean = false;
+activityStatus = this.Status.getStatus(this.Status.currentStatus)
+
 
 
 }
