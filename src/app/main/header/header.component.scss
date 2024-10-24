@@ -8,7 +8,7 @@ header {
         @include dflex(space-between, $g: clamp(10px, 4vw, 80px));
 
         .logo {
-            width: fit-content;
+            @include dflex(flex-start, center);
             > img {
                 width: min(240px, 100% - 2em);
                 user-select: none;
