@@ -1,9 +1,0 @@
-<div class="user-information" [attr.aria-label]="exampleUser.name + ': ' + onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.isOffline)">
-    <div class="avatar">
-        <img src="/assets/images/avatars/demo_avatar.png" [ngStyle]="{'height': size+'px', 'width': size+'px'}" draggable="false" alt="">
-        <div class="online-status" [ngClass]="'is-'+onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.isOffline)"></div>
-    </div>
-    @if (!hideUsername) {
-        <span class="user-name">{{exampleUser.name}}</span>
-    }
-</div>

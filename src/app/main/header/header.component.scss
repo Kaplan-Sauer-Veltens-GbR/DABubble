@@ -1,6 +1,6 @@
 @use "../../shared/scss/abstracts/" as *;
 
-$isDesktopDevice: 720px;
+$desktopResolution: 720px;
 
 header {
     .wrapper {
@@ -8,29 +8,39 @@ header {
         @include dflex(space-between, $g: clamp(10px, 4vw, 80px));
 
         .logo {
-            @include dflex(flex-start, center);
-            > img {
+            width: fit-content;
+            >img {
                 width: min(240px, 100% - 2em);
-                user-select: none;
             }
         }
 
         .toolbar {
             @include dflex(space-between);
-            @media (orientation: landscape) and (min-width: $isDesktopDevice) {
+            @media (orientation: landscape) and (min-width: $desktopResolution) {
                 flex: 1;
             }
-            user-select: none;
         }
     }
 }
 
 .searchbar {
     &.searchbar--desktop {
-        @include hideWhenMobile($isDesktopDevice);
+        @media (orientation: landscape) and (min-width: $desktopResolution) {
+        }
+
+        @media (orientation: portrait) or (max-width: ($desktopResolution - 1px)) {
+            display: none;
+        }
     }
 
     &.searchbar--mobile {
-        @include hideWhenDesktop($isDesktopDevice);
+        color: red;
+        @media (orientation: portrait) {
+            
+        }
+
+        @media (orientation: landscape) and (min-width: ($desktopResolution)) {
+            display: none;
+        }
     }
 }

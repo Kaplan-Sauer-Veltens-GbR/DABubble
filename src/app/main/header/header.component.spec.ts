@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { getTranslocoModule } from '../../modules/transloco-testing/transloco-testing.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -9,9 +8,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        getTranslocoModule(),
-        HeaderComponent]
+      imports: [HeaderComponent]
     })
     .compileComponents();
 
