@@ -1,6 +1,7 @@
 @use "../../shared/scss/abstracts/" as *;
 
-$desktopResolution: 720px;
+$isDesktopDevice: 720px;
+$isMobileDevice: 719px;
 
 header {
     .wrapper {
@@ -16,7 +17,7 @@ header {
 
         .toolbar {
             @include dflex(space-between);
-            @media (orientation: landscape) and (min-width: $desktopResolution) {
+            @media (orientation: landscape) and (min-width: $isDesktopDevice) {
                 flex: 1;
             }
         }
@@ -25,10 +26,10 @@ header {
 
 .searchbar {
     &.searchbar--desktop {
-        @media (orientation: landscape) and (min-width: $desktopResolution) {
+        @media (orientation: landscape) and (min-width: $isDesktopDevice) {
         }
 
-        @media (orientation: portrait) or (max-width: ($desktopResolution - 1px)) {
+        @media (orientation: portrait) or (max-width: ($isMobileDevice)) {
             display: none;
         }
     }
@@ -39,7 +40,7 @@ header {
             
         }
 
-        @media (orientation: landscape) and (min-width: ($desktopResolution)) {
+        @media (orientation: landscape) and (min-width: ($isDesktopDevice)) {
             display: none;
         }
     }

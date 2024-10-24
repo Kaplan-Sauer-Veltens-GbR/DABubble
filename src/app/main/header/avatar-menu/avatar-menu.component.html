@@ -1,1 +1,9 @@
-<p>avatar-menu works!</p>
+<section class="avatar-menu">
+    <span class="user-name">Frederik Beck</span>
+    <div class="avatar">
+        <img src="/assets/images/avatars/demo_avatar.png" alt="">
+        <div class="online-status" [ngClass]="'is-'+exampleUser.onlineStatus"></div>
+    </div>
+    <app-icon iconName="arrowDown" class="icon"></app-icon>
+    <app-icon iconName="arrowDownPurple" class="icon--hovered"></app-icon>
+</section>
