@@ -1,0 +1,46 @@
+@use "../../shared/scss/abstracts/" as *;
+
+$desktopResolution: 720px;
+
+header {
+    .wrapper {
+        background-color: $colorBG;
+        @include dflex(space-between, $g: clamp(10px, 4vw, 80px));
+
+        .logo {
+            width: fit-content;
+            >img {
+                width: min(240px, 100% - 2em);
+            }
+        }
+
+        .toolbar {
+            @include dflex(space-between);
+            @media (orientation: landscape) and (min-width: $desktopResolution) {
+                flex: 1;
+            }
+        }
+    }
+}
+
+.searchbar {
+    &.searchbar--desktop {
+        @media (orientation: landscape) and (min-width: $desktopResolution) {
+        }
+
+        @media (orientation: portrait) or (max-width: ($desktopResolution - 1px)) {
+            display: none;
+        }
+    }
+
+    &.searchbar--mobile {
+        color: red;
+        @media (orientation: portrait) {
+            
+        }
+
+        @media (orientation: landscape) and (min-width: ($desktopResolution)) {
+            display: none;
+        }
+    }
+}

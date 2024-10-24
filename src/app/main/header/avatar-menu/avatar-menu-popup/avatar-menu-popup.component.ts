@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
+
 import { CommonModule } from '@angular/common';
+import { IconLibaryComponent } from '../../../../shared/components/icon-component/icon-libary.component';
+
 
 @Component({
-  selector: 'app-profile-menu',
+  selector: 'avatar-menu-popup',
   standalone: true,
   imports: [CommonModule, TranslocoModule, IconLibaryComponent],
-  templateUrl: './profile-menu.component.html',
-  styleUrl: './profile-menu.component.scss'
+  templateUrl: './avatar-menu-popup.component.html',
+  styleUrl: './avatar-menu-popup.component.scss'
 })
-export class ProfileMenuComponent {
+export class AvatarMenuPopupComponent {
   languageFeatureAllowed: boolean = true;
 
   translocoService: TranslocoService = inject(TranslocoService);
