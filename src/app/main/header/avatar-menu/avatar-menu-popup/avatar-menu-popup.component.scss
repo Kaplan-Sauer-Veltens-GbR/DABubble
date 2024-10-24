@@ -2,6 +2,13 @@
 @use '../../../../shared/scss/abstracts/' as *;
 
 .profile-menu {
+    transition: height 1000ms ease-in-out;
+
+
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 100%;
     @include dflex(center, center, 15px, column);
     width: fit-content;
     border-top-right-radius: 0;
@@ -11,10 +18,11 @@
         cursor: pointer;
         padding: 10px 45px;
         font-weight: 600;
-        font-size: clamp(16px, 5vw, 24px);
+        font-size: clamp(16px, 4.5vw, 24px);
         border-radius: 100px;
         box-sizing: border-box;
         transition: all 120ms;
+        white-space: nowrap;
         &:hover {
             color: $colorPurple3;
             background-color: $colorBG;

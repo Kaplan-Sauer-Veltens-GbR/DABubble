@@ -21,3 +21,15 @@
     min-height: $h;
     max-height: $h;
 }
+
+@mixin hideWhenMobile($minDesktopResulution) {
+    @media (orientation: portrait) or (max-width: ($minDesktopResulution - 1px)) {
+        display: none;
+    }
+}
+
+@mixin hideWhenDesktop($minDesktopResulution) {
+    @media (orientation: landscape) and (min-width: ($minDesktopResulution)) {
+        display: none;
+    }
+}

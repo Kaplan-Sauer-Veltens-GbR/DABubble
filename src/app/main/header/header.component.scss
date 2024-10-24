@@ -1,7 +1,6 @@
 @use "../../shared/scss/abstracts/" as *;
 
 $isDesktopDevice: 720px;
-$isMobileDevice: 719px;
 
 header {
     .wrapper {
@@ -10,8 +9,9 @@ header {
 
         .logo {
             width: fit-content;
-            >img {
+            > img {
                 width: min(240px, 100% - 2em);
+                user-select: none;
             }
         }
 
@@ -20,28 +20,17 @@ header {
             @media (orientation: landscape) and (min-width: $isDesktopDevice) {
                 flex: 1;
             }
+            user-select: none;
         }
     }
 }
 
 .searchbar {
     &.searchbar--desktop {
-        @media (orientation: landscape) and (min-width: $isDesktopDevice) {
-        }
-
-        @media (orientation: portrait) or (max-width: ($isMobileDevice)) {
-            display: none;
-        }
+        @include hideWhenMobile($isDesktopDevice);
     }
 
     &.searchbar--mobile {
-        color: red;
-        @media (orientation: portrait) {
-            
-        }
-
-        @media (orientation: landscape) and (min-width: ($isDesktopDevice)) {
-            display: none;
-        }
+        @include hideWhenDesktop($isDesktopDevice);
     }
 }

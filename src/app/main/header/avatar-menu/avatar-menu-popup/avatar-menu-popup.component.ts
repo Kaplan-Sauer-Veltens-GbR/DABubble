@@ -3,6 +3,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 import { CommonModule } from '@angular/common';
 import { IconLibaryComponent } from '../../../../shared/components/icon-component/icon-libary.component';
+import { SettingsService } from '../../../../services/settings.service';
 
 
 @Component({
@@ -13,16 +14,5 @@ import { IconLibaryComponent } from '../../../../shared/components/icon-componen
   styleUrl: './avatar-menu-popup.component.scss'
 })
 export class AvatarMenuPopupComponent {
-  languageFeatureAllowed: boolean = true;
-
-  translocoService: TranslocoService = inject(TranslocoService);
-
-  setLanguageTo(language: 'de' | 'en') {
-    this.translocoService.setActiveLang(language);
-    localStorage.setItem('language', language);
-  }
-
-  isActiveLanguage(language: 'de' | 'en'): boolean {
-    return language === this.translocoService.getActiveLang();
-  }
+  settings: SettingsService = inject(SettingsService);
 }
