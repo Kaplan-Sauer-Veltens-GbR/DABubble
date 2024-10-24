@@ -1,5 +1,5 @@
-@use "../../../scss/abstracts/" as *;
-@use "../../../scss/boxes" as *;
+@use "../../../../shared/scss/boxes" as *;
+@use '../../../../shared/scss/abstracts/' as *;
 
 .profile-menu {
     @include dflex(center, center, 15px, column);
