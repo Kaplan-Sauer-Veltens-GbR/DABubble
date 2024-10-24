@@ -31,4 +31,5 @@ describe('OnlineStatusService', () => {
     const result = service.getStatus(timestamp, true);
     expect(result).toBe('offline');
   });
+  
 });

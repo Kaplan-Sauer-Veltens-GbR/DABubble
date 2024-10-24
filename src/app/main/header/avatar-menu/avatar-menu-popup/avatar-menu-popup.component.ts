@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { CommonModule } from '@angular/common';
 import { IconLibaryComponent } from '../../../../shared/components/icon-component/icon-libary.component';

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-
 import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 import { AvatarMenuPopupComponent } from './avatar-menu-popup.component';
 
