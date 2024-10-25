@@ -64,6 +64,7 @@ header {
   padding: 0 25px;
 
   .add-channel {
+    cursor: pointer;
     padding: 0 20px;
     @include dflex(unset, center, 10px);
     font-size: 18px;
@@ -77,9 +78,10 @@ header {
   font-size: 18px;
   font-weight: 400;
   max-height: fit-content;
-  overflow-y: auto;
+  overflow-y: auto; // discuss what max-height should be and when it should scroll
 
   .channel-tab {
+    cursor: pointer;
     padding: 0 20px;
     display: flex;
     gap: 10px;
@@ -96,6 +98,7 @@ header {
 }
 
 .selected {
+  cursor: default;
   font-weight: 700;
   color: $colorPurple3;
 }

@@ -6,6 +6,11 @@
     transform: scale(1.05);
     color: $colorPurple1;
   }
+  &.no-scale {
+    &:hover {
+      transform: scale(1);
+    }
+  }
 }
 
 .icon--hover {
