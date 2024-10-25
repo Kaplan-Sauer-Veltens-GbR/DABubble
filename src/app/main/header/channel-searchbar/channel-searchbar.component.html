@@ -1,4 +1,4 @@
-<div class="search__main" (click)="focusInput()">
-    <input #search type="text">
+<div *transloco="let t; prefix:''" class="search__main" (click)="focusInput()">
+    <input #search type="text" [attr.aria-label]="t('searchbar')">
     <app-icon iconName="searchGrey" suffix="svg"></app-icon>
 </div>
