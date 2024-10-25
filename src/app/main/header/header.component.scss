@@ -20,7 +20,7 @@ header {
             justify-content: flex-end;
             align-items: center;
             flex: 1;
-            @media (orientation: landscape) and (min-width: $isDesktopDevice) {
+            @media (orientation: landscape) and (min-width: $isDesktopDevice) and (pointer: fine) {
                 justify-content: space-between;
                 gap: 40px;
             }

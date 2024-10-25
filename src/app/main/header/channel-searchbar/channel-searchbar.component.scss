@@ -13,5 +13,7 @@
         width: 100%;
         border: none;
         outline: none;
+        font-size: clamp(16px, 2vw, 18px);
+        color: $colorGray;
     }
 }

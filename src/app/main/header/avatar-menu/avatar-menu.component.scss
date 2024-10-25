@@ -1,7 +1,7 @@
 @use "../../../shared/scss/abstracts/" as *;
 @use "../../../shared/scss/icons" as *;
 
-$desktopResolution: 850px;
+$desktopResolution: 950px;
 
 .avatar-menu {
     position: relative;
@@ -14,12 +14,12 @@ $desktopResolution: 850px;
 }
 
 .inner-wrapper {
-    @include dflex($g: 20px);
+    @include dflex($g: clamp(8px, 1vw, 20px));
     cursor: pointer;
     transition: all 100ms ease-in;
 
     .icon {
-        @include hideWhenMobile($desktopResolution);
+        @include hideWhenMobile($desktopResolution - 150px);
     }
 
     .icon--hovered {
@@ -34,7 +34,7 @@ $desktopResolution: 850px;
             display: none;
             &--hovered {
                 display: inline;
-                @include hideWhenMobile($desktopResolution);
+                @include hideWhenMobile($desktopResolution - 150px);
             }
         }
     }

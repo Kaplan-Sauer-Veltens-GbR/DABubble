@@ -23,13 +23,13 @@
 }
 
 @mixin hideWhenMobile($minDesktopResulution) {
-    @media (orientation: portrait) or (max-width: ($minDesktopResulution - 1px)) {
+    @media (orientation: portrait) or (max-width: ($minDesktopResulution - 1px)) or (pointer: coarse)  {
         display: none;
     }
 }
 
 @mixin hideWhenDesktop($minDesktopResulution) {
-    @media (orientation: landscape) and (min-width: ($minDesktopResulution)) {
+    @media (orientation: landscape) and (min-width: $minDesktopResulution) and (pointer: fine) {
         display: none;
     }
 }

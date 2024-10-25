@@ -35,7 +35,10 @@
             "multiple": "haben reagiert"
         }
     },
-    "searchbar": "Dea Babbel durchsuchen",
+    "searchbar": {
+        "aria": "Dea Babbel durchsuchen",
+        "visual": "DABubble durchsuchen"
+    },
     "settings": {
         "profile": "Eigenes Profil öffnen",
         "language": {
@@ -57,7 +60,7 @@
     },
     "wordlist": {
         "and": "und",
-        "others": "andere", 
+        "others": "andere",
         "one": "eine",
         "you": "Du"
     },
