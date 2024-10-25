@@ -37,6 +37,7 @@ header {
     }
 
     &.searchbar--mobile {
+        margin-top: min(32px, 8vh - 2rem);
         @include hideWhenDesktop($isDesktopDevice);
     }
 }

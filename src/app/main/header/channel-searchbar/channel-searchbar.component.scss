@@ -1,8 +1,17 @@
+@use "./../../../shared/scss/abstracts/" as *;
+
 .search__main {
-    display: flex;
+    @include dflex(flex-start, center, 10px);
     width: 100%;
-    align-items: center;
-    >input {
+    padding: 8px 20px;
+    background-color: white;
+    border-radius: 42px;
+    border: 1px solid $colorLines;
+    outline: 1px;
+    cursor: text;
+    > input {
         width: 100%;
+        border: none;
+        outline: none;
     }
 }

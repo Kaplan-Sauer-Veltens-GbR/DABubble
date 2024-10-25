@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from '../../../shared/components/icon-component/icon-libary.component';
 
 @Component({
@@ -9,5 +9,11 @@ import { IconLibaryComponent } from '../../../shared/components/icon-component/i
   styleUrl: './channel-searchbar.component.scss'
 })
 export class ChannelSearchbarComponent {
+  @ViewChild('search') searchInput!: ElementRef;
 
+  focusInput() {
+    this.searchInput.nativeElement.focus();
+    console.log('focus!');
+    
+  }
 }
