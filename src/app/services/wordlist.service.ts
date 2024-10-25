@@ -5,7 +5,7 @@ import { TranslocoService } from '@jsverse/transloco';
   providedIn: 'root'
 })
 export class WordlistService {
-  translocoService: TranslocoService = inject(TranslocoService);
+  private translocoService: TranslocoService = inject(TranslocoService);
 
   constructor() { }
 
