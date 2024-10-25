@@ -16,20 +16,20 @@
       <app-icon class="icon--hover" iconName="add"></app-icon>
     </div>
   </div>
-  <div class="channel-container">
-    <div [ngStyle]="{'max-height': toggleChannel[0] ? 'fit-content' : '0'}" class="channel-wrapper">
+  <div  class="channel-container" [ngClass]="{'expanded': toggleChannel[0], 'collapsed': !toggleChannel[0]}">
+    <div  class="channel-wrapper mb-25">
       @for(placeholder of [1,2]; track placeholder) {
       <div [ngClass]="{ selected: selected }" class="channel-tab">
         <app-icon iconName="tag"></app-icon>
         <span>Entwicklerteam</span>
       </div>
       }
-      <div class="add-channel">
-        <app-icon class="icon--hover" iconName="addCircle"></app-icon>
-        <span class="normal--hover no-scale ">Channel hinzufügen</span>
+     
     </div>
-    </div>
-   
+    <div class="add-channel icon--hover">
+      <app-icon  iconName="addCircle"></app-icon>
+      <span>Channel hinzufügen</span>
+  </div>
     
   </div>
 </aside>

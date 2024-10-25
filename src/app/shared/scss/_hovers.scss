@@ -19,7 +19,9 @@
   &:hover {
     filter: $colorTransformPurple3;
     cursor: pointer;
-    transform: scale(1.1);
+    &.scale {
+      transform: scale(1.1);
+    }
   }
 }
 

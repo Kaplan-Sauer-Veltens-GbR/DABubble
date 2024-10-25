@@ -62,14 +62,28 @@ header {
 
 .channel-container {
   padding: 0 25px;
+  overflow-y: auto; // discuss what max-height should be and when it should scroll
+  // transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
+  &.collapsed {
+    max-height: 0;
+  }
 
+  &.expanded {
+    max-height: fit-content; // if transition not used we use this 
+    // max-height: 350px // else we use this 
+  }
   .add-channel {
     cursor: pointer;
     padding: 0 20px;
     @include dflex(unset, center, 10px);
     font-size: 18px;
     font-weight: 400;
-    margin-top: 12px;
+
+    &:hover {
+      app-icon {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 
@@ -77,8 +91,6 @@ header {
   @include dflex(unset, unset, 13px, column);
   font-size: 18px;
   font-weight: 400;
-  max-height: fit-content;
-  overflow-y: auto; // discuss what max-height should be and when it should scroll
 
   .channel-tab {
     cursor: pointer;
