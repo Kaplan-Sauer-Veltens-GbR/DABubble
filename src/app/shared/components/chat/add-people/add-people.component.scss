@@ -1,0 +1,12 @@
+@use "./../../../scss/abstracts/" as *;
+@use "./../../../scss/boxes" as *;
+@use './../../../scss/icons' as *;
+
+.add-people-box {
+    position: relative;
+    .close-btn {
+        position: absolute;
+        top: 36px;
+        right: 36px;
+    }
+}

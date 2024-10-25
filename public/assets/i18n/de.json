@@ -5,6 +5,9 @@
         "logout": "Log out",
         "save": "Speichern"
     },
+    "add-people": {
+        "headline": "Leute hinzufügen"
+    },
     "avatar-bar": {
         "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
     },
