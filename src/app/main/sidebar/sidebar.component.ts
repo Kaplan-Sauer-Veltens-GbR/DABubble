@@ -11,5 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
 @Input() selected:boolean = false;
-toggleChannel:boolean = false;
+toggleChannel:boolean [] = [true,true];
+
+
+toggleList(index:number) {
+this.toggleChannel[index] = !this.toggleChannel[index]
 }
+}
+

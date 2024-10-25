@@ -7,7 +7,7 @@
     <app-icon iconName="edit"></app-icon>
   </header>
   <div class="channels mb-30">
-    <div class="channel-list">
+    <div class="channel-list" (click)="toggleList(0)">
       <app-icon iconName="arrowDrop"></app-icon>
       <app-icon iconName="workspaces"></app-icon>
       <h3>Channels</h3>
@@ -17,18 +17,19 @@
     </div>
   </div>
   <div class="channel-container">
-    <div class="channel-wrapper mb-25">
+    <div [ngStyle]="{'max-height': toggleChannel[0] ? 'fit-content' : '0'}" class="channel-wrapper">
       @for(placeholder of [1,2]; track placeholder) {
       <div [ngClass]="{ selected: selected }" class="channel-tab">
         <app-icon iconName="tag"></app-icon>
         <span>Entwicklerteam</span>
       </div>
       }
-    </div>
-    <div class="add-channel">
+      <div class="add-channel">
         <app-icon iconName="addCircle"></app-icon>
         <span>Channel hinzufügen</span>
     </div>
+    </div>
+   
     
   </div>
 </aside>
