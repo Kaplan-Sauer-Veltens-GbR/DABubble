@@ -8,7 +8,8 @@ describe('SettingsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [getTranslocoModule()]
+      imports: [
+        getTranslocoModule()]
     });
     service = TestBed.inject(SettingsService);
   });
