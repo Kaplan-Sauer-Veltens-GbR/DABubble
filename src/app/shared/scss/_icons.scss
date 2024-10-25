@@ -9,7 +9,7 @@
 }
 
 .icon--hoverable {
-    @include dflex();
+    @include dflex(center, center);
     height: 40px;
     width: 40px;
     cursor: pointer;
