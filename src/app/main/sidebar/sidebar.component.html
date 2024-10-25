@@ -1,0 +1,34 @@
+<aside>
+  <header class="mb-25">
+    <div class="dev-space">
+      <img src="./assets/images/logo/workspace.png" alt="" />
+      <h2>Devspace</h2>
+    </div>
+    <app-icon iconName="edit"></app-icon>
+  </header>
+  <div class="channels mb-30">
+    <div class="channel-list">
+      <app-icon iconName="arrowDrop"></app-icon>
+      <app-icon iconName="workspaces"></app-icon>
+      <h3>Channels</h3>
+    </div>
+    <div class="hover-circle">
+      <app-icon class="icon--hover" iconName="add"></app-icon>
+    </div>
+  </div>
+  <div class="channel-container">
+    <div class="channel-wrapper mb-25">
+      @for(placeholder of [1,2]; track placeholder) {
+      <div [ngClass]="{ selected: selected }" class="channel-tab">
+        <app-icon iconName="tag"></app-icon>
+        <span>Entwicklerteam</span>
+      </div>
+      }
+    </div>
+    <div class="add-channel">
+        <app-icon iconName="addCircle"></app-icon>
+        <span>Channel hinzufügen</span>
+    </div>
+    
+  </div>
+</aside>
