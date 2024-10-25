@@ -4,6 +4,6 @@
         <div class="online-status" [ngClass]="'is-'+onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.isOffline)"></div>
     </div>
     @if (!hideUsername) {
-        <span class="user-name">{{exampleUser.name}}</span>
+        <span aria-hidden="true" class="user-name">{{exampleUser.name}}</span>
     }
 </div>
