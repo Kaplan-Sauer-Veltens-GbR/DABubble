@@ -1,22 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
-
-import { Auth } from '@angular/fire/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../../environments/environment.development';
 
 describe('AuthService', () => {
   let service: AuthService;
-
-  // Mock für Auth
-  const authMock = {
-    signInWithRedirect: jasmine.createSpy('signInWithRedirect').and.returnValue(Promise.resolve(true)),
-    signInWithPopup: jasmine.createSpy('signInWithPopup').and.returnValue(Promise.resolve(true))
-  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        { provide: Auth, useValue: authMock }
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
       ]
     });
     service = TestBed.inject(AuthService);

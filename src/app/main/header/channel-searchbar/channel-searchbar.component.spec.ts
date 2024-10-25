@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChannelSearchbarComponent } from './channel-searchbar.component';
+import { getTranslocoModule } from '../../../modules/transloco-testing/transloco-testing.module';
 
 describe('ChannelSearchbarComponent', () => {
   let component: ChannelSearchbarComponent;
@@ -8,7 +9,9 @@ describe('ChannelSearchbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChannelSearchbarComponent]
+      imports: [
+        getTranslocoModule(),
+        ChannelSearchbarComponent]
     })
     .compileComponents();
 

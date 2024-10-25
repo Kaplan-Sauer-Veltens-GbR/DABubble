@@ -5,7 +5,7 @@ $isDesktopDevice: 720px;
 header {
     .wrapper {
         background-color: $colorBG;
-        @include dflex(space-between, $g: clamp(10px, 4vw, 80px));
+        @include dflex(flex-start, $g: clamp(10px, 4vw, 80px));
 
         .logo {
             @include dflex(flex-start, center);
@@ -16,9 +16,13 @@ header {
         }
 
         .toolbar {
-            @include dflex(space-between);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex: 1;
             @media (orientation: landscape) and (min-width: $isDesktopDevice) {
-                flex: 1;
+                justify-content: space-between;
+                gap: 40px;
             }
             user-select: none;
         }
@@ -26,11 +30,14 @@ header {
 }
 
 .searchbar {
+    @include dflex();
+    flex: 1;
     &.searchbar--desktop {
         @include hideWhenMobile($isDesktopDevice);
     }
 
     &.searchbar--mobile {
+        margin-top: min(32px, 8vh - 2rem);
         @include hideWhenDesktop($isDesktopDevice);
     }
 }
