@@ -32,7 +32,10 @@
             "multiple": "{{argument}}reacted"
         }
     },
-    "searchbar": "Search inside Dee Ey Bubble",
+    "searchbar": {
+        "aria": "Search inside Dee Ey Bubble",
+        "visual": "Search in DABubble…"
+    },
     "settings": {
         "profile": "Open your Profile",
         "language": {
