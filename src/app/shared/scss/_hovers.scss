@@ -17,3 +17,14 @@
       transform: scale(1.1);
     }
   }
+
+
+  .avatar--hover {
+    cursor: pointer;
+    &:hover {
+      background-color: $colorBG;
+      width: fit-content;
+      border-radius: 40px;
+      color: $colorPurple3;
+  }
+}

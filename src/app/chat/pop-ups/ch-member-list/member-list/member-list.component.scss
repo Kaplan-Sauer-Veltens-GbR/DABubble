@@ -24,14 +24,14 @@
   }
 }
 
-.bg-circle {
-  background-color: $colorBG;
-  width: 32px;
-  height: 32px;
-  border-radius: 20px;
- 
-  @include dflex(center, center);
-}
+  .bg-circle {
+    background-color: $colorBG;
+    width: 32px;
+    height: 32px;
+    border-radius: 20px;
+  
+    @include dflex(center, center);
+  }
 
 .btn-wrapper {
   @include dflex(flex-start, center, 15px);
@@ -46,7 +46,6 @@
     border-radius: 40px;
     color: $colorPurple3;
    app-icon {
-        
             filter: $colorTransformPurple3;
         }
     }
@@ -55,10 +54,3 @@
 
 
 
-app-user-avatar-tag {
-    &:hover {
-        background-color: $colorBG;
-        width: fit-content;
-        border-radius: 40px;
-    }
-}
