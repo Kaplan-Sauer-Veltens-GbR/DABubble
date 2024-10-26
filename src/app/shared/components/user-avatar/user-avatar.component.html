@@ -1,4 +1,4 @@
-<div *transloco="let t" class="user-information" role="status" [attr.aria-label]="exampleUser.name + ': ' + onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.isOffline)">
+<div *transloco="let t" class="user-information" role="status" [attr.aria-label]="returnAriaLabel()">
     <div class="avatar">
         <img src="/assets/images/avatars/demo_avatar.png" [ngStyle]="{'height': size+'px', 'width': size+'px'}" draggable="false" alt="">
         @if (!hideOnlineStatus) {

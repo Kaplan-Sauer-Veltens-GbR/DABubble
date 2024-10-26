@@ -6,7 +6,9 @@
     flex-wrap: wrap;
     border: 1px solid $colorLines;
     border-radius: 30px;
-    padding: 4px;
+    padding: 15px 20px;
+    row-gap: 10px;
+    column-gap: 4px;
     cursor: text;
     min-height: 40px;
     background-color: white;
@@ -20,7 +22,6 @@
     font-size: 18px;
     border-radius: 30px;
     padding: 4px 8px;
-    margin-right: 4px;
     color: $colorGray;
   }
   

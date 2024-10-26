@@ -35,4 +35,12 @@ export class UserAvatarComponent {
     return this.exampleUser.name + suffix;
   }
 
+  returnAriaLabel(): string {
+    if (!this.hideOnlineStatus) {
+      return this.exampleUser.name + ': ' + this.onlineStatus.getStatus(this.exampleUser.lastActivity, this.exampleUser.isOffline);
+    } else {
+      return this.exampleUser.name;
+    }
+  }
+
 }

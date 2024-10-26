@@ -5,6 +5,16 @@
         "logout": "Log out",
         "save": "Save"
     },
+    "add-people": {
+        "headline": "Add users",
+        "user-selector": {
+            "placeholder": "Enter name",
+            "add": "Add {{name}}"
+        }
+    },
+    "avatar-bar": {
+        "open": "Manage group members. Current total members: {{amount}}"
+    },
     "chat": {
         "subthread": {
             "open": "Show ",

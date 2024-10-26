@@ -6,7 +6,11 @@
         "save": "Speichern"
     },
     "add-people": {
-        "headline": "Leute hinzufügen"
+        "headline": "Leute hinzufügen",
+        "user-selector": {
+            "placeholder": "Name eingeben",
+            "add": "{{name}} hinzufügen"
+        }
     },
     "avatar-bar": {
         "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
