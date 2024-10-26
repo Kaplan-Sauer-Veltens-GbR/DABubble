@@ -20,6 +20,16 @@
             }
         }
     },
+    "channel": {
+        "edit-popover": {
+            "channel-name": "Channel-Name",
+            "created-by": "Erstellt von",
+            "description": "Beschreibung",
+            "edit": "Bearbeiten",
+            "leave": "Channel verlassen",
+            "save": "Speichern"
+        }
+    },
     "email": {
         "address": "E-Mail-Adresse",
         "send": "Neue E-Mail an: {{recipient}}"

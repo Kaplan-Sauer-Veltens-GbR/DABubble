@@ -14,6 +14,16 @@
             }
         }
     },
+    "channel": {
+        "edit-popover": {
+            "channel-name": "Channel name",
+            "created-by": "Created by",
+            "description": "Description",
+            "edit": "Edit",
+            "leave": "Leave channel",
+            "save": "Save"
+        }
+    },
     "email": {
         "address": "E-mail address",
         "send": "New E-mail to: {{recipient}}"

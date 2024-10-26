@@ -1,5 +1,5 @@
-@use "../../../shared/scss/abstracts/_index.scss" as *;
-@use "../../../shared/scss/_boxes.scss";
+@use "./../../../shared/scss/abstracts/_index.scss" as *;
+@use "./../../../shared/scss/_boxes.scss";
 
 .box--floating {
   align-items: unset;
@@ -19,7 +19,7 @@ header {
 }
 
 .channel-name {
-  display: flex; //change that later to the mixin
+  display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
   font-size: 18px;

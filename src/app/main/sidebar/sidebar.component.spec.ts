@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarComponent } from './sidebar.component';
+import { getTranslocoModule } from '../../modules/transloco-testing/transloco-testing.module';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -8,7 +9,9 @@ describe('SidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarComponent]
+      imports: [
+        getTranslocoModule(),
+        SidebarComponent]
     })
     .compileComponents();
 

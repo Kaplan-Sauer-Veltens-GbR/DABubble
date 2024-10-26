@@ -1,7 +1,8 @@
 @use '../../../scss/abstracts/' as *;
 
 .button {
-    @include dflex($g: 10px);
+    @include dflex(center, $g: 10px);
+    
     border-radius: 25px;
     padding: 12px 25px;
     cursor: pointer;

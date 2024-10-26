@@ -1,59 +1,63 @@
-<div class="box--floating no-overflow">
-  <header>
-    <div>
-    <h2>#</h2>
-    <h2 aria-label="">{{channelName}}</h2>
-  </div>
-    <app-icon aria-label="close-button" class="close" iconName="close"></app-icon>
-  </header>
-  @if(editMode) {
-  <div class="channel-name">
-    <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
-  </div>
-  <app-input-fields placeholder="{{channelName}}" class="mb-30">
-    <app-icon #iconSlot iconName="tag"></app-icon>
-  </app-input-fields>
-}@else {
-  <div class="before-edit-container">
-  <div class="channel-name">
-    <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Bearbeiten</span>
-  </div>
-  <div class="before-edit-content">
-  <app-icon #iconSlot iconName="tag"></app-icon>
-  <span>Entwicklerteam</span>
-</div>
-</div>
-}
+<!-- !!!CAVE!!! Need to add aria-labels! -->
 
-@if(editMode) {
-  <div class="channel-name">
-    <span aria-label="">Beschreibung</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Speichern</span>
-  </div>
-  <app-input-fields placeholder="{{description}}" class="mb-30">
-  </app-input-fields>
-  <div class="seperator mb-30"></div>
-
-  <div class="created-by mb-45">
-    <span class="mb-20" aria-label="">Erstellt von</span>
-    <h2 aria-label="">{{author}}</h2>
-  </div>
-}@else {
-  <div class="before-edit-container">
+<ng-container *transloco="let t; prefix'channel.edit-popover'">
+  <div class="box--floating no-overflow">
+    <header>
+      <div>
+        <h2>#</h2>
+        <h2 aria-label="">{{channelName}}</h2>
+      </div>
+      <app-icon aria-label="close-button" class="close" iconName="close"></app-icon>
+    </header>
+    @if(editMode) {
     <div class="channel-name">
-      <span aria-label="">Channel-Name</span> <span (click)="saveEdit()" class="save-btn" aria-label="">Bearbeiten</span>
+      <span aria-label="">{{t('channel-name')}}</span> <span (click)="saveEdit()" class="save-btn" aria-label="">{{t('save')}}</span>
     </div>
-    <div class="before-edit-content mb-30">
-    <span>{{description}}</span>
+    <app-input-fields placeholder="{{channelName}}" class="mb-30">
+      <app-icon #iconSlot iconName="tag"></app-icon>
+    </app-input-fields>
+    }@else {
+    <div class="before-edit-container">
+      <div class="channel-name">
+        <span aria-label="">{{t('channel-name')}}</span> <span (click)="saveEdit()" class="save-btn" aria-label="">{{t('edit')}}</span>
+      </div>
+      <div class="before-edit-content">
+        <app-icon #iconSlot iconName="tag"></app-icon>
+        <span>Entwicklerteam</span>
+      </div>
+    </div>
+    }
+
+    @if(editMode) {
+    <div class="channel-name">
+      <span aria-label="">{{t('description')}}</span> <span (click)="saveEdit()" class="save-btn" aria-label="">{{t('save')}}</span>
+    </div>
+    <app-input-fields placeholder="{{description}}" class="mb-30">
+    </app-input-fields>
+    <div class="seperator mb-30"></div>
+
+    <div class="created-by mb-45">
+      <span class="mb-20" aria-label="">{{t('created-by')}}</span>
+      <h2 aria-label="">{{author}}</h2>
+    </div>
+    }@else {
+    <div class="before-edit-container">
+      <div class="channel-name">
+        <span aria-label="">{{t('channel-name')}}</span> <span (click)="saveEdit()" class="save-btn" aria-label="">{{t('edit')}}</span>
+      </div>
+      <div class="before-edit-content mb-30">
+        <span>{{description}}</span>
+      </div>
+      <div class="seperator mb-30"></div>
+      <div class="created-by">
+        <span class="mb-20" aria-label="">{{t('created-by')}}</span>
+        <h2 aria-label="">{{author}}</h2>
+      </div>
+    </div>
+
+    }
+    <div class="btn-container">
+      <app-button aria-label="" [filled]="true">{{t('leave')}}</app-button>
+    </div>
   </div>
-  <div class="seperator mb-30"></div>
-  <div class="created-by">
-    <span class="mb-20"  aria-label="">Erstellt von</span>
-    <h2 aria-label="">{{author}}</h2>
-  </div>
-  </div>
-  
-}
-  <div class="btn-container">
-  <app-button aria-label="" [filled]="true"> Channel verlassen</app-button>
-</div>
-</div>
+</ng-container>
