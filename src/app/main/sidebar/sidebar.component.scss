@@ -6,6 +6,8 @@ aside {
   max-height: calc(940px - 64px);
   width: calc(366px - 60px);
   height: calc(940px - 64px);
+  border-radius: 30px;
+  background-color: white;
 }
 
 header {
@@ -122,4 +124,7 @@ header {
 
 user-avatar {
   padding-left: 20px;
+  &:last-child {
+    margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required 
+  }
 }
