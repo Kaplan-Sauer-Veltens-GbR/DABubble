@@ -30,7 +30,7 @@ header {
 }
 
 .searchbar {
-    @include dflex();
+    @include dflex(center, center);
     flex: 1;
     &.searchbar--desktop {
         @include hideWhenMobile($isDesktopDevice);

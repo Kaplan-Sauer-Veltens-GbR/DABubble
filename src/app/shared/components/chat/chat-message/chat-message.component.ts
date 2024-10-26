@@ -5,7 +5,7 @@ import { ReactionBarComponent } from "./reaction-bar/reaction-bar.component";
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-chat-message',
+  selector: 'chat-message',
   standalone: true,
   imports: [CommonModule, ReactionPopoverComponent, ReactionBarComponent, TranslocoModule],
   templateUrl: './chat-message.component.html',

@@ -14,7 +14,7 @@ $desktopResolution: 950px;
 }
 
 .inner-wrapper {
-    @include dflex($g: clamp(8px, 1vw, 20px));
+    @include dflex(center, $g: clamp(8px, 1vw, 20px));
     cursor: pointer;
     transition: all 100ms ease-in;
 
