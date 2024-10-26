@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberListComponent } from './member-list.component';
+import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('MemberListComponent', () => {
   let component: MemberListComponent;
@@ -8,7 +9,9 @@ describe('MemberListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MemberListComponent]
+      imports: [
+        getTranslocoModule(),
+        MemberListComponent]
     })
     .compileComponents();
 
