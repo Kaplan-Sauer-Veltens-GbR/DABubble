@@ -8,7 +8,7 @@
   </header>
   <div class="channels mb-30">
     <div class="channel-list" (click)="toggleList(0)">
-      <app-icon iconName="arrowDrop"></app-icon>
+      <app-icon class="simple-animation" [ngStyle]="{'transform': !toggleChannel[0] ? 'rotate(270deg  )' : 'rotate(0deg)'}" iconName="arrowDrop"></app-icon>
       <app-icon iconName="workspaces"></app-icon>
       <h3>Channels</h3>
     </div>

@@ -114,3 +114,7 @@ header {
   font-weight: 700;
   color: $colorPurple3;
 }
+
+.simple-animation {
+  transition: transform 125ms ease-out;
+}
