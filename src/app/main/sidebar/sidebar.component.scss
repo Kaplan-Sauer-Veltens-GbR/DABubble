@@ -1,0 +1,130 @@
+@use "../../shared/scss/abstracts/_index.scss" as *;
+@use "../../shared/scss/_hovers.scss";
+aside {
+  padding: 32px 30px 32px 30px;
+  max-width: calc(366px - 60px);
+  max-height: calc(940px - 64px);
+  width: calc(366px - 60px);
+  height: calc(940px - 64px);
+  border-radius: 30px;
+  background-color: white;
+}
+
+header {
+  @include dflex(space-between, center, 15px);
+}
+
+.dev-space {
+  @include dflex(flex-start, center, 15px);
+  > h2 {
+    margin: 0;
+  }
+}
+
+.drop-down {
+  @include dflex(space-between);
+  > .channel-list {
+    @include dflex();
+    > :nth-child(2) {
+      margin-left: 15px;
+    }
+    > :nth-child(3) {
+      margin-left: 10px;
+    }
+
+    app-icon:nth-child(1) {
+      @include dflex(center);
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover {
+      color: $colorPurple3;
+      cursor: pointer;
+      app-icon {
+        filter: $colorTransformPurple3;
+      }
+      app-icon:nth-child(1) {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  app-icon {
+    @include dflex(center);
+    width: 24px;
+    height: 24px;
+  }
+  h3 {
+    margin: 0;
+
+    font-size: 20px;
+  }
+}
+
+.drop-down-container {
+  padding: 0 25px;
+  // overflow-y: auto; // discuss what max-height should be and when if it should scroll or be hidden
+  overflow-y: hidden;
+  // transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
+  &.collapsed {
+    max-height: 0;
+  }
+
+  &.expanded {
+    max-height: fit-content; // if transition not used we use this 
+    // max-height: 350px // else we use this 
+  }
+  .add-channel {
+    cursor: pointer;
+    padding: 0 20px;
+    @include dflex(unset, center, 10px);
+    font-size: 18px;
+    font-weight: 400;
+
+    &:hover {
+      app-icon {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.drop-down-wrapper {
+  @include dflex(unset, unset, 13px, column);
+  font-size: 18px;
+  font-weight: 400;
+
+  .channel-tab {
+    cursor: pointer;
+    padding: 0 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}
+
+.mb-25 {
+  margin-bottom: 25px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.selected {
+  cursor: default;
+  font-weight: 700;
+  color: $colorPurple3;
+}
+
+.simple-animation {
+  transition: transform 125ms ease-out;
+}
+
+user-avatar {
+  padding-left: 20px;
+  &:last-child {
+    margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required 
+  }
+}
