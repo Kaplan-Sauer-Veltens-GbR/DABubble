@@ -1,0 +1,21 @@
+<div class="input-container">
+    @for (user of selectedUsers; track $index) {
+    <div class="chip">
+        <user-avatar [size]="34" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
+        <span class="remove-chip" (click)="removeUser(user)">✕</span>
+    </div>
+    }
+
+    <input type="text" [(ngModel)]="searchText" (input)="filterUsers()" (keydown)="handleBackspace($event)" placeholder="Personen hinzufügen" class="input-field" />
+</div>
+
+@if (filteredUsers.length && searchText) {
+<ul class="suggestions">
+    @for (user of filteredUsers; track $index) {
+    <li (click)="addUser(user)">
+        <img [src]="user.avatar" alt="{{ user.name }}" class="avatar">
+        {{ user.name }}
+    </li>
+    }
+</ul>
+}

@@ -1,0 +1,73 @@
+@use './../../../scss/abstracts/' as *;
+
+.input-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid $colorLines;
+    border-radius: 30px;
+    padding: 4px;
+    cursor: text;
+    min-height: 40px;
+    background-color: white;
+  }
+  
+  .chip {
+    display: flex;
+    align-items: center;
+    background-color: $colorBG;
+    font-weight: 400;
+    font-size: 18px;
+    border-radius: 30px;
+    padding: 4px 8px;
+    margin-right: 4px;
+    color: $colorGray;
+  }
+  
+  .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+  
+  .remove-chip {
+    cursor: pointer;
+    margin-left: 4px;
+    color: $colorGray;
+    &:hover {
+        color: $colorPurple2;
+    }
+  }
+  
+  .input-field {
+    border: none;
+    outline: none;
+    flex: 1;
+    min-width: 120px;
+    color: $colorGray;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+  }
+  
+  .suggestions li {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .suggestions li:hover {
+    background-color: #f0f0f0;
+  }
