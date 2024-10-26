@@ -60,9 +60,10 @@ header {
   }
 }
 
-.channel-container {
+.drop-down-container {
   padding: 0 25px;
-  overflow-y: auto; // discuss what max-height should be and when it should scroll
+  // overflow-y: auto; // discuss what max-height should be and when if it should scroll or be hidden
+  overflow-y: hidden;
   // transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
   &.collapsed {
     max-height: 0;
@@ -87,7 +88,7 @@ header {
   }
 }
 
-.channel-wrapper {
+.drop-down-wrapper {
   @include dflex(unset, unset, 13px, column);
   font-size: 18px;
   font-weight: 400;
@@ -117,4 +118,8 @@ header {
 
 .simple-animation {
   transition: transform 125ms ease-out;
+}
+
+user-avatar {
+  padding-left: 20px;
 }

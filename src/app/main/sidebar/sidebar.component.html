@@ -23,10 +23,10 @@
     </div>
   </div>
   <div
-    class="channel-container mb-25"
+    class="drop-down-container mb-25"
     [ngClass]="{ expanded: toggleChannel[0], collapsed: !toggleChannel[0] }"
   >
-    <div class="channel-wrapper mb-25">
+    <div class="drop-down-wrapper mb-25">
       @for(placeholder of [1,2]; track placeholder) {
       <div [ngClass]="{ selected: selected }" class="channel-tab">
         <app-icon iconName="tag"></app-icon>
@@ -52,4 +52,15 @@
       <h3>Direktnachrichten</h3>
     </div>
   </div>
+  <div
+  class="drop-down-container mb-25"
+  [ngClass]="{ expanded: toggleChannel[1], collapsed: !toggleChannel[1] }"
+>
+  <div class="drop-down-wrapper mb-25">
+    @for(placeholder of [1,2]; track placeholder) {
+    <user-avatar [size]="50"></user-avatar>
+    }
+  </div>
+  
+</div>
 </aside>
