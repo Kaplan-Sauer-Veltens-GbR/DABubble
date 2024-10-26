@@ -4,7 +4,7 @@ import { WorkspaceService } from '../../../services/workspace.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-workspace-fab',
+  selector: 'workspace-fab',
   standalone: true,
   imports: [TranslocoModule, CommonModule],
   templateUrl: './workspace-fab.component.html',
