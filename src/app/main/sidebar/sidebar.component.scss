@@ -19,7 +19,7 @@ header {
   }
 }
 
-.channels {
+.drop-down {
   @include dflex(space-between);
   > .channel-list {
     @include dflex();
