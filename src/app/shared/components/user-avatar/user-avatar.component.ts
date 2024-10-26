@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { OnlineStatusService } from '../../../services/online-status.service';
 import { WordlistService } from '../../../services/wordlist.service';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { capitalize } from '../../../utils/string.utils';
 
 @Component({
   selector: 'user-avatar',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [CommonModule],
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.scss'
 })
