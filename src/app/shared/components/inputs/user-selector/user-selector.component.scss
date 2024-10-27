@@ -23,8 +23,16 @@
     border-radius: 30px;
     padding: 4px 8px;
     color: $colorGray;
+    gap: 4px;
     &.chip--marked {
       outline: 1px solid $colorError;
+    }
+
+    .delete-user-icon {
+      display: flex;
+      &:hover {
+        filter: $colorTransformPurple2;
+      }
     }
   }
   

@@ -34,18 +34,18 @@ export class UserSelectorComponent {
     { name: 'Simone Münster', avatar: 'url' },
   ];
   filteredUsers: ExampleUser[] = this.allUsers;
-  focusedChip: number = -1;
-  focusedSuggestion: number = -1;
+  selectedChip: number = -1;
+  selectedSuggestion: number = -1;
 
-  returnPlaceholder() {
+  getPlaceholder() {
     if (this.selectedUsers.length === 0) {
       return this.translocoService.translate('add-people.user-selector.placeholder');
     }
     return '';
   }
 
-  
-  returnTimestamp() {
+
+  getTimestamp() {
     return Date.now();
   }
 
@@ -54,7 +54,7 @@ export class UserSelectorComponent {
   filterUsers() {
     this.filteredUsers = this.allUsers
       .filter(user =>
-        user.name.toLowerCase().includes(this.searchText.toLowerCase())
+        user.name.toLowerCase().includes(this.searchText.toLowerCase().trim())
       )
       .filter(user => !this.selectedUsers.some(u => u.name === user.name));
   }
@@ -62,14 +62,15 @@ export class UserSelectorComponent {
   // CAVE: Change this to User ID later, since users can have the same name
   addUser(user: ExampleUser) {
     if (!this.selectedUsers.some(u => u.name === user.name)) {
-      this.selectedUsers.push({ ...user, timestamp: this.returnTimestamp() });
+      this.selectedUsers.push({ ...user, timestamp: this.getTimestamp() });
     }
     this.searchText = '';
+    this.focusInput();
   }
 
   deleteUserInput() {
-    if (this.focusedChip !== -1) {
-      this.unselectUser(this.selectedUsers[this.focusedChip]);
+    if (this.selectedChip !== -1) {
+      this.unselectUser(this.selectedUsers[this.selectedChip]);
     } else {
       this.unselectUser(this.selectedUsers[this.selectedUsers.length - 1]);
     }
@@ -80,51 +81,112 @@ export class UserSelectorComponent {
     this.selectedUsers = this.selectedUsers.filter(u => u !== user);
   }
 
-  focusPreviousChip() {
-    if (this.isInitialChipSelection()) {
-      this.focusedChip = this.selectedUsers.length;
+  isInvalidSuggestionIndex() {
+    return this.selectedSuggestion <= -1;
+  }
+
+  isPreviousSuggestionKey(event: KeyboardEvent): boolean {
+    return (event.key === 'Tab' && event.shiftKey) || event.key === 'ArrowUp';
+  }
+
+  isNextSuggestionKey(event: KeyboardEvent): boolean {
+    return event.key === 'Tab' || event.key === 'ArrowDown';
+  }
+
+  isSelectionKey(event: KeyboardEvent): boolean {
+    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown';
+  }
+
+  isMovingCursor(event: KeyboardEvent): boolean {
+    return event.key === 'ArrowLeft' || event.key === 'ArrowRight';
+  }
+
+  handleSuggestionNavigation(event: KeyboardEvent) {
+    if (this.isPreviousSuggestionKey(event)) {
+      this.selectPreviousSuggestion();
+    } else if (this.isNextSuggestionKey(event)) {
+      this.selectNextSuggestion();
     }
-    this.focusedChip--;
+  }
+
+  selectPreviousSuggestion() {
+    this.selectedSuggestion--;
+    if (this.isInvalidSuggestionIndex()) {
+      this.selectedSuggestion = this.filteredUsers.length - 1;
+    }
+    console.log(this.selectedSuggestion);
+
+  }
+
+  selectNextSuggestion() {
+    this.selectedSuggestion++;
+    if (this.selectedSuggestion >= this.filteredUsers.length) {
+      this.selectedSuggestion = 0;
+    }
+    console.log(this.selectedSuggestion);
+  }
+
+  selectPreviousChip() {
+    if (this.isInitialChipSelection()) {
+      this.selectedChip = this.selectedUsers.length;
+    }
+    this.selectedChip--;
     if (this.firstChipIsAllreadySelected()) {
-      this.focusedChip = 0;
+      this.selectedChip = 0;
     }
   }
 
   isInitialChipSelection() {
-    return this.focusedChip === -1;
+    return this.selectedChip === -1;
   }
 
   firstChipIsAllreadySelected() {
-    return this.focusedChip <= -1;
+    return this.selectedChip <= -1;
   }
 
-  focusNextChip() {
-    this.nextChipExists() ? this.focusedChip++ : (this.focusedChip = -1);
+  selectNextChip() {
+    this.nextChipExists() ? this.selectedChip++ : (this.selectedChip = -1);
   }
 
   nextChipExists() {
-    return this.focusedChip !== -1 && this.focusedChip < this.selectedUsers.length - 1;
+    return this.selectedChip !== -1 && this.selectedChip < this.selectedUsers.length - 1;
   }
 
-  resetChipFocus() {
-    this.focusedChip = -1;
+  resetChipAndSuggestionIndex() {
+    this.selectedChip = -1;
+    this.selectedSuggestion = -1;
+  }
+
+  hasSuggestions(): boolean {
+    return !!(this.filteredUsers.length && this.searchText.trim());
   }
 
   searchFieldKeyboardInput(event: KeyboardEvent) {
+    if (this.hasSuggestions()) {
+      if (this.isSelectionKey(event)) {
+        event.preventDefault();
+      }
+      this.handleSuggestionNavigation(event);
+    } else {
+      this.selectedSuggestion = -1;
+    }
+
+    //Chip Related Inputs
     if (!this.searchText && this.selectedUsers.length) {
       if (event.key === 'Backspace') {
         this.deleteUserInput();
       } else if (event.key === 'ArrowLeft') {
-        this.focusPreviousChip();
+        this.selectPreviousChip();
       } else if (event.key === 'ArrowRight') {
-        this.focusNextChip();
+        this.selectNextChip();
       }
     }
+
   }
 
   focusInput() {
     this.searchInput.nativeElement.focus();
-    this.resetChipFocus();
+    this.resetChipAndSuggestionIndex();
   }
 
 }
