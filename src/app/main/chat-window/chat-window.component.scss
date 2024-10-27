@@ -1,0 +1,26 @@
+@use '../../shared/scss/abstracts/_index.scss' as *;
+@use '../../shared/scss/_boxes.scss';
+@use '../../shared/scss/_hovers.scss';
+
+section {
+    border-radius: 30px;
+    padding: 20px;
+    background-color: white;
+
+    header {
+        @include dflex(space-between);
+        padding: 25px 45px 25px 45px;
+
+        >div {
+            @include dflex(flex-start,center,10px);
+        }
+    }
+}
+
+.bg-circle {
+    background-color: $colorBG;
+    width: 40px;
+    height: 40px;
+    @include dflex(center,center);
+    border-radius: 40px;
+}
