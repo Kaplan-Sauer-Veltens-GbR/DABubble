@@ -1,6 +1,6 @@
 <section>
   <header>
-    <div>
+    <div (click)="this.workspace.toggle()">
       <app-icon iconName="tag"></app-icon>
       <h2>Entwicklerteam</h2>
       <app-icon iconName="arrowDown"></app-icon>
@@ -12,6 +12,7 @@
       </div>
     </div>
   </header>
+ 
   <main>
     @for(dbObject of [1]; track dbObject) { @for(time of [1,2]; track time ) {
     <div class="day-line">
@@ -29,3 +30,6 @@
     </div>
   </main>
 </section>
+@if(this.workspace.isOpen) {
+    <channel-edit></channel-edit>
+  }
