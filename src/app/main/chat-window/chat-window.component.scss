@@ -4,17 +4,26 @@
 
 section {
     border-radius: 30px;
-    padding: 20px;
+    // padding: 20px;
     background-color: white;
-
+    box-sizing: border-box;
+   
     header {
         @include dflex(space-between);
         padding: 25px 45px 25px 45px;
+        margin-bottom: 150px;
 
         >div {
             @include dflex(flex-start,center,10px);
         }
     }
+
+    .text-field{
+        padding  : 0 45px;
+        margin-top: 60px;
+    }
+
+     
 }
 
 .bg-circle {
@@ -24,3 +33,36 @@ section {
     @include dflex(center,center);
     border-radius: 40px;
 }
+
+.seperator {
+    height: 1px;
+    background-color: $colorLines;
+    margin: 0 15px;
+     flex: 1;
+    
+}
+
+.day-line {
+    width: 100%;
+    @include dflex(flex-start center);
+
+    .seperator {
+        &:nth-child(1) {
+            margin-right: 0;
+        }
+        &:nth-child(3) {
+            margin-left: 0;
+        }
+    }
+
+    .box--bordered {
+        padding: 5px 15px;
+    }
+    margin-bottom: 20px;
+}
+
+.day-box {
+    width: fit-content;
+
+}
+

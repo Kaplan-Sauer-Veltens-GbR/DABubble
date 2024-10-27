@@ -9,8 +9,22 @@
       <div class="bg-circle">
         <app-icon class="icon--hover scale" iconName="personAdd"></app-icon>
       </div>
-      
     </div>
   </header>
-  <main></main>
+  <main>
+    @for(dbObject of [1]; track dbObject) { @for(time of [1,2]; track time ) {
+    <div class="day-line">
+      <div class="seperator"></div>
+      <div class="box--bordered day-box">Dienstag, 14 Januar</div>
+      <div class="seperator"></div>
+    </div>
+    @for(message of [1]; track message) {
+        <div>
+    <chat-message></chat-message>
+</div>
+    } } }
+    <div class="text-field">
+    <app-text-message-field></app-text-message-field>
+    </div>
+  </main>
 </section>
