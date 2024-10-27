@@ -18,6 +18,7 @@ export class UserAvatarComponent {
   translocoService: TranslocoService = inject(TranslocoService);
 
   @Input() hideUsername: boolean = false;
+  @Input() strikeUsername: boolean = false;
   @Input() hideOnlineStatus: boolean = false;
   @Input() owner: boolean = false;
   @Input() size: number = 50;

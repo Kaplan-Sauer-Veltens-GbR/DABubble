@@ -6,6 +6,6 @@
         }
     </div>
     @if (!hideUsername) {
-    <span aria-hidden="true" class="user-name">{{returnUsername()}}</span>
+    <span aria-hidden="true" [ngClass]="{'--striked': strikeUsername}" class="user-name">{{returnUsername()}}</span>
     }
 </div>
