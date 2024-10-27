@@ -22,8 +22,9 @@ section {
     }
 
     .text-field{
-        padding  : 0 45px;
+        padding  : 0 clamp(10px, 45px, 2vw);
         margin-top: 60px;
+        padding-bottom: 40px;
     }
 
      
