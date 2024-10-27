@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class WorkspaceService {
   isOpen: boolean = true;
-  currentDialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut' | null =
+  currentDialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut' | 'textEdit' | null =
     null;
   isSelected:boolean = false;
   constructor() {}
