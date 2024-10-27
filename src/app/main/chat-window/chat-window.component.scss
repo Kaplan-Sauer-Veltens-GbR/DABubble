@@ -10,8 +10,11 @@ section {
    
     header {
         @include dflex(space-between);
-        padding: 25px 45px 25px 45px;
+        padding: 30px 45px 0 45px;
         margin-bottom: 150px;
+        h2 {
+            margin: 0
+        }
 
         >div {
             @include dflex(flex-start,center,10px);
@@ -64,4 +67,8 @@ section {
 .day-box {
     width: fit-content;
 
+}
+
+.field--hover {
+    padding: 0 10px;
 }
