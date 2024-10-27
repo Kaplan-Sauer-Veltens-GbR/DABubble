@@ -32,7 +32,7 @@
         padding: 10px clamp(2vw, 45px, 4vw);
         margin-top: 20px; //remove after testing!
         width: 100%;
-
+        box-sizing: border-box; // fixed my issue in the chat-window , if its messing with other components than because i add this ~Phillip
         &.msg-ownership {
             flex-direction: row-reverse;
         }
