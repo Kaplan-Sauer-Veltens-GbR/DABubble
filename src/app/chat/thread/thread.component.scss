@@ -1,7 +1,7 @@
 @use "../../shared/scss/abstracts/_index.scss" as *;
 
 aside {
-    padding: 32px clamp(20px, 5vw, 40px) 0;
+   
     border-radius: 30px;
     background-color: white;
 
@@ -14,6 +14,7 @@ chat-message {
 
 .headline {
    padding-bottom: 32px;
+   padding: 32px clamp(20px, 5vw, 40px) 0;
     @include dflex(space-between,center,5px);
     app-icon  {
         display: flex;
@@ -22,6 +23,7 @@ chat-message {
 }
  
 header {
+ 
 @include dflex(unset,center,5px);
     h2 {
         margin: 0;
