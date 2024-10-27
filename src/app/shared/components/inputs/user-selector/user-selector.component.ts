@@ -24,6 +24,7 @@ export class UserSelectorComponent {
   translocoService: TranslocoService = inject(TranslocoService);
 
   @ViewChild('search') searchInput!: ElementRef;
+  @ViewChild('suggestionBox') suggestionBox!: ElementRef;
 
   searchText: string = '';
   selectedUsers: ExampleUser[] = [];
@@ -32,6 +33,11 @@ export class UserSelectorComponent {
     { name: 'Antonia Neumann', avatar: 'url' },
     { name: 'Franziska Walther', avatar: 'url' },
     { name: 'Simone Münster', avatar: 'url' },
+    { name: 'Timo Borcher', avatar: 'url' },
+    { name: 'Kerstin Zander', avatar: 'url' },
+    { name: 'Patricia Meyer', avatar: 'url' },
+    { name: 'Felix Hahn', avatar: 'url' },
+    { name: 'Hendrik Underberg', avatar: 'url' },
   ];
   filteredUsers: ExampleUser[] = this.allUsers;
   selectedChip: number = -1;
@@ -47,6 +53,29 @@ export class UserSelectorComponent {
 
   getTimestamp() {
     return Date.now();
+  }
+
+  manageSuggestionSelection(event: KeyboardEvent) {
+    if (this.hasSuggestions()) {
+      if (this.isSelectionKey(event)) {
+        event.preventDefault();
+      }
+      this.handleSuggestionNavigation(event);
+    } else {
+      this.selectedSuggestion = -1;
+    }
+  }
+
+  manageChipSelection(event: KeyboardEvent) {
+    if (!this.searchText && this.selectedUsers.length) {
+      if (event.key === 'Backspace') {
+        this.deleteUserInput();
+      } else if (event.key === 'ArrowLeft') {
+        this.selectPreviousChip();
+      } else if (event.key === 'ArrowRight') {
+        this.selectNextChip();
+      }
+    }
   }
 
 
@@ -93,8 +122,12 @@ export class UserSelectorComponent {
     return event.key === 'Tab' || event.key === 'ArrowDown';
   }
 
+  isSuggestionConfirmationKey(event: KeyboardEvent): boolean {
+    return event.key === 'Enter' && !this.isInvalidSuggestionIndex();
+  }
+
   isSelectionKey(event: KeyboardEvent): boolean {
-    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown';
+    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter';
   }
 
   isMovingCursor(event: KeyboardEvent): boolean {
@@ -106,6 +139,18 @@ export class UserSelectorComponent {
       this.selectPreviousSuggestion();
     } else if (this.isNextSuggestionKey(event)) {
       this.selectNextSuggestion();
+    } else if (this.isSuggestionConfirmationKey(event)) {
+      this.addUser(this.filteredUsers[this.selectedSuggestion]);
+      this.resetChipAndSuggestionIndex();
+    }
+    this.scrollToSelectedSuggestion();
+  }
+
+  scrollToSelectedSuggestion() {
+    const suggestionElements = this.suggestionBox.nativeElement.querySelectorAll('li');
+    const selectedElement = suggestionElements[this.selectedSuggestion];
+    if (selectedElement) {
+      selectedElement.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
   }
 
@@ -131,7 +176,7 @@ export class UserSelectorComponent {
       this.selectedChip = this.selectedUsers.length;
     }
     this.selectedChip--;
-    if (this.firstChipIsAllreadySelected()) {
+    if (this.firstChipIsAlreadySelected()) {
       this.selectedChip = 0;
     }
   }
@@ -140,7 +185,7 @@ export class UserSelectorComponent {
     return this.selectedChip === -1;
   }
 
-  firstChipIsAllreadySelected() {
+  firstChipIsAlreadySelected() {
     return this.selectedChip <= -1;
   }
 
@@ -162,26 +207,8 @@ export class UserSelectorComponent {
   }
 
   searchFieldKeyboardInput(event: KeyboardEvent) {
-    if (this.hasSuggestions()) {
-      if (this.isSelectionKey(event)) {
-        event.preventDefault();
-      }
-      this.handleSuggestionNavigation(event);
-    } else {
-      this.selectedSuggestion = -1;
-    }
-
-    //Chip Related Inputs
-    if (!this.searchText && this.selectedUsers.length) {
-      if (event.key === 'Backspace') {
-        this.deleteUserInput();
-      } else if (event.key === 'ArrowLeft') {
-        this.selectPreviousChip();
-      } else if (event.key === 'ArrowRight') {
-        this.selectNextChip();
-      }
-    }
-
+    this.manageSuggestionSelection(event);
+    this.manageChipSelection(event);
   }
 
   focusInput() {

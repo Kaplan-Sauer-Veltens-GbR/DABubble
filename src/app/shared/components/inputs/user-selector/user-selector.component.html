@@ -3,7 +3,7 @@
         @for (user of selectedUsers; let i = $index; track $index) {
         <div class="chip" [ngClass]="{'chip--marked':selectedChip == i}">
             <user-avatar [size]="34" aria-hidden="true" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
-            <span role="button" [attr.aria-label]="t('delete-user', {'user': user.name})" class="remove-chip" (keydown.enter)="unselectUser(user)" (click)="unselectUser(user)">
+            <span role="button" [attr.aria-label]="t('delete-user', {'user': user.name})" class="--remove" (click)="unselectUser(user)">
                 <app-icon iconName="close" class="delete-user-icon"></app-icon>
             </span>
         </div>
@@ -13,9 +13,9 @@
     </div>
 
     @if (hasSuggestions()) {
-    <ul class="suggestions">
-        @for (user of filteredUsers; track $index) {
-        <li role="button" [attr.aria-label]="t('add-user', {'user': user.name})" [attr.tabindex]="0" (keydown.enter)="addUser(user)" (click)="addUser(user)">
+    <ul class="suggestions" #suggestionBox>
+        @for (user of filteredUsers; let i = $index; track $index) {
+        <li [ngClass]="{'--selected': selectedSuggestion == i}" role="button" [attr.aria-label]="t('add-user', {'user': user.name})" (keydown.enter)="addUser(user)" (click)="addUser(user)">
             <img [src]="user.avatar" alt="" class="avatar">
             {{ user.name }}
         </li>

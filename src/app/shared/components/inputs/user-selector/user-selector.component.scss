@@ -28,6 +28,15 @@
       outline: 1px solid $colorError;
     }
 
+    & .--remove {
+      cursor: pointer;
+      margin-left: 4px;
+      color: $colorGray;
+      &:hover {
+          color: $colorPurple2;
+      }
+    }
+
     .delete-user-icon {
       display: flex;
       &:hover {
@@ -41,15 +50,6 @@
     height: 24px;
     border-radius: 50%;
     margin-right: 4px;
-  }
-  
-  .remove-chip {
-    cursor: pointer;
-    margin-left: 4px;
-    color: $colorGray;
-    &:hover {
-        color: $colorPurple2;
-    }
   }
   
   .input-field {
@@ -74,15 +74,16 @@
     max-height: 150px;
     overflow-y: auto;
     background-color: white;
-  }
-  
-  .suggestions li {
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .suggestions li:hover {
-    background-color: #f0f0f0;
+    scroll-behavior: smooth;
+
+    & li {
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    & li:hover, & li.--selected {
+      background-color: #f0f0f0;
+    }
   }
