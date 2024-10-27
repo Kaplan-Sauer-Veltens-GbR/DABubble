@@ -7,7 +7,6 @@ import { IconLibaryComponent } from "../../icon-component/icon-libary.component"
 
 interface ExampleUser {
   name: string;
-  avatar: string;
   timestamp?: number; // Optionales Feld, da es nur an bestimmten Stellen verwendet wird
 }
 
@@ -29,15 +28,15 @@ export class UserSelectorComponent {
   searchText: string = '';
   selectedUsers: ExampleUser[] = [];
   allUsers: ExampleUser[] = [
-    { name: 'Elias Neumann', avatar: 'url' },
-    { name: 'Antonia Neumann', avatar: 'url' },
-    { name: 'Franziska Walther', avatar: 'url' },
-    { name: 'Simone Münster', avatar: 'url' },
-    { name: 'Timo Borcher', avatar: 'url' },
-    { name: 'Kerstin Zander', avatar: 'url' },
-    { name: 'Patricia Meyer', avatar: 'url' },
-    // { name: 'Felix Hahn', avatar: 'url' },
-    { name: 'Hendrik Underberg', avatar: 'url' },
+    { name: 'Elias Neumann' },
+    { name: 'Antonia Neumann' },
+    { name: 'Franziska Walther'},
+    { name: 'Simone Münster'},
+    { name: 'Timo Borcher'},
+    { name: 'Kerstin Zander'},
+    { name: 'Patricia Meyer'},
+    { name: 'Felix Hahn'},
+    { name: 'Hendrik Underberg'},
   ];
   filteredUsers: ExampleUser[] = this.allUsers;
   selectedChip: number = -1;

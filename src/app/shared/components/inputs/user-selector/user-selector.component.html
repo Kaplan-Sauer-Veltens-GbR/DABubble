@@ -16,8 +16,7 @@
     <ul class="suggestions" #suggestionBox>
         @for (user of filteredUsers; let i = $index; track $index) {
         <li [ngClass]="{'--selected': selectedSuggestion == i}" role="button" [attr.aria-label]="t('add-user', {'user': user.name})" (keydown.enter)="addUser(user)" (click)="addUser(user)">
-            <img [src]="user.avatar" alt="" class="avatar">
-            {{ user.name }}
+            <user-avatar [hideUsername]="false" [hideOnlineStatus]="true" [size]="30" [exampleUser]="{'name': user.name, 'lastActivity': 0, 'isOffline': false}"></user-avatar>
         </li>
         }
     </ul>
