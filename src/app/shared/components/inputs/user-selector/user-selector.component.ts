@@ -70,7 +70,11 @@ export class UserSelectorComponent {
         } else {
           this.removeUser(this.selectedUsers[this.selectedUsers.length - 1]);
         } 
+        this.focusInput();
       } else if (event.key === 'ArrowLeft') {
+        if (this.focusedChip === -1) {
+          this.focusedChip = this.selectedUsers.length;
+        }
         this.focusedChip--;
         if (this.focusedChip <= -1) {
           this.focusedChip = 0;
@@ -95,5 +99,8 @@ export class UserSelectorComponent {
 
   focusInput() {
     this.searchInput.nativeElement.focus();
+    this.focusedChip = -1;
+    console.log(this.focusedChip);
+    
   }
 }
