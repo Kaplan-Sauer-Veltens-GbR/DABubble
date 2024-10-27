@@ -1,6 +1,6 @@
 <section>
   <header>
-    <div (click)="this.workspace.toggle()">
+    <div (click)="this.workspace.openDialog('channelEdit')">
       <app-icon iconName="tag"></app-icon>
       <h2>Entwicklerteam</h2>
       <app-icon iconName="arrowDown"></app-icon>
@@ -30,7 +30,7 @@
     </div>
   </main>
 </section>
-@if(this.workspace.isOpen) {
+@if(this.workspace.currentDialog === 'channelEdit') {
     <div>
     <channel-edit></channel-edit>
 </div>

@@ -14,7 +14,17 @@ export class WorkspaceService {
   }
 
   openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut') {
-    this.currentDialog = dialog;
+    if(this.currentDialog === dialog) {
+      console.log('close');
+      
+      this.closeDialog();
+    }else {
+      this.currentDialog = dialog;
+      console.log(this.currentDialog, 'open');
+    }
+
+    
+  
   }
 
   closeDialog() {
