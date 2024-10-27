@@ -88,7 +88,7 @@ export class UserSelectorComponent {
       if (this.shouldInitializeSuggestionSelection()) {
         this.selectNextSuggestion();
       }
-      
+      this.resetChip() //
   }
 
   // CAVE: Change this to User ID later, since users can have the same name
@@ -158,12 +158,16 @@ export class UserSelectorComponent {
   }
 
   selectNextChip() {
-    this.nextChipExists() ? this.selectedChip++ : (this.selectedChip = -1);
+    this.nextChipExists() ? this.selectedChip++ : (this.resetChip());
   }
 
   resetChipAndSuggestionIndex() {
     this.selectedChip = -1;
     this.selectedSuggestion = -1;
+  }
+
+  resetChip() {
+    this.selectedChip = -1;
   }
 
   searchFieldKeyboardInput(event: KeyboardEvent) {
