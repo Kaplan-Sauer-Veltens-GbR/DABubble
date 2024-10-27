@@ -3,7 +3,7 @@
         @for (user of selectedUsers; let i = $index; track $index) {
         <div class="chip" [ngClass]="{'chip--marked':focusedChip == i}">
             <user-avatar [size]="34" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
-            <span class="remove-chip" (click)="removeUser(user)">✕</span>
+            <span class="remove-chip" (click)="unselectUser(user)">✕</span>
         </div>
         }
 
