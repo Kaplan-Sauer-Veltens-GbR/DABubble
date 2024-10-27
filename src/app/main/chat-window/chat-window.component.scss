@@ -72,3 +72,14 @@ section {
 .field--hover {
     padding: 0 10px;
 }
+
+.selected {
+    background-color: $colorBG;
+    width: fit-content;
+    border-radius: 40px;
+    color: $colorPurple3;
+   app-icon {
+            filter: $colorTransformPurple3;
+        }
+    
+}
