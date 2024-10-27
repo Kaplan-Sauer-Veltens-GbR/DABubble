@@ -66,15 +66,17 @@ header {
   padding: 0 25px;
   // overflow-y: auto; // discuss what max-height should be and when if it should scroll or be hidden
   overflow-y: hidden;
-  // transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
+  transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
   &.collapsed {
     max-height: 0;
   }
 
   &.expanded {
-    max-height: fit-content; // if transition not used we use this 
-    // max-height: 350px // else we use this 
+    max-height: fit-content; // if transition not used we use this or if we only use this for the channels and not for the user list looks like in this way on figma
+    // max-height: 550px; // else we use this 
+   
   }
+
   .add-channel {
     cursor: pointer;
     padding: 0 20px;
