@@ -36,7 +36,7 @@ export class UserSelectorComponent {
     { name: 'Timo Borcher', avatar: 'url' },
     { name: 'Kerstin Zander', avatar: 'url' },
     { name: 'Patricia Meyer', avatar: 'url' },
-    { name: 'Felix Hahn', avatar: 'url' },
+    // { name: 'Felix Hahn', avatar: 'url' },
     { name: 'Hendrik Underberg', avatar: 'url' },
   ];
   filteredUsers: ExampleUser[] = this.allUsers;
@@ -86,6 +86,10 @@ export class UserSelectorComponent {
         user.name.toLowerCase().includes(this.searchText.toLowerCase().trim())
       )
       .filter(user => !this.selectedUsers.some(u => u.name === user.name));
+      if (this.shouldInitializeSuggestionSelection()) {
+        this.selectNextSuggestion();
+      }
+      
   }
 
   // CAVE: Change this to User ID later, since users can have the same name
@@ -108,6 +112,10 @@ export class UserSelectorComponent {
 
   unselectUser(user: ExampleUser) {
     this.selectedUsers = this.selectedUsers.filter(u => u !== user);
+  }
+
+  shouldInitializeSuggestionSelection(): boolean {
+    return this.selectedSuggestion === -1 && this.filteredUsers.length > 0;
   }
 
   isInvalidSuggestionIndex() {
@@ -159,8 +167,6 @@ export class UserSelectorComponent {
     if (this.isInvalidSuggestionIndex()) {
       this.selectedSuggestion = this.filteredUsers.length - 1;
     }
-    console.log(this.selectedSuggestion);
-
   }
 
   selectNextSuggestion() {
@@ -168,7 +174,6 @@ export class UserSelectorComponent {
     if (this.selectedSuggestion >= this.filteredUsers.length) {
       this.selectedSuggestion = 0;
     }
-    console.log(this.selectedSuggestion);
   }
 
   selectPreviousChip() {
