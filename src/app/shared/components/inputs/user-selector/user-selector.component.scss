@@ -23,6 +23,9 @@
     border-radius: 30px;
     padding: 4px 8px;
     color: $colorGray;
+    &.chip--marked {
+      outline: 1px solid $colorError;
+    }
   }
   
   .avatar {
@@ -49,6 +52,9 @@
     color: $colorGray;
     font-size: 18px;
     font-weight: 400;
+    &.marked-chip--exists {
+      caret-color: transparent;
+    }
   }
   
   .suggestions {

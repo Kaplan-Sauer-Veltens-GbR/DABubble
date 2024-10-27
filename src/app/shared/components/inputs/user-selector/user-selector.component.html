@@ -1,15 +1,15 @@
 <ng-container *transloco="let t; prefix:'add-people.user-selector'">
     <div class="input-container" (click)="focusInput()">
-        @for (user of selectedUsers; track $index) {
-        <div class="chip">
+        @for (user of selectedUsers; let i = $index; track $index) {
+        <div class="chip" [ngClass]="{'chip--marked':focusedChip == i}">
             <user-avatar [size]="34" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
             <span class="remove-chip" (click)="removeUser(user)">✕</span>
         </div>
         }
-    
-        <input #search type="text" [(ngModel)]="searchText" (input)="filterUsers()" (keydown)="handleBackspace($event)" [placeholder]="t('placeholder')" class="input-field">
+
+        <input #search type="text" [(ngModel)]="searchText" [ngClass]="{'marked-chip--exists':focusedChip != -1}" (input)="filterUsers()" (keydown)="handleKeyInput($event)" tabindex="0" [placeholder]="returnPlaceholder()" class="input-field">
     </div>
-    
+
     @if (filteredUsers.length && searchText) {
     <ul class="suggestions">
         @for (user of filteredUsers; track $index) {
