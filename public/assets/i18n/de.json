@@ -9,7 +9,8 @@
         "headline": "Leute hinzufügen",
         "user-selector": {
             "placeholder": "Name eingeben",
-            "add": "{{name}} hinzufügen"
+            "add-user": "{{user}} hinzufügen",
+            "delete-user": "{{user}} entfernen"
         }
     },
     "avatar-bar": {

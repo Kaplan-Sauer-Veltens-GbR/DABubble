@@ -3,6 +3,7 @@ import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
 
 interface ExampleUser {
   name: string;
@@ -13,7 +14,7 @@ interface ExampleUser {
 @Component({
   selector: 'user-selector',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserAvatarComponent, TranslocoModule],
+  imports: [CommonModule, FormsModule, UserAvatarComponent, TranslocoModule, IconLibaryComponent],
   templateUrl: './user-selector.component.html',
   styleUrl: './user-selector.component.scss'
 })
@@ -43,9 +44,11 @@ export class UserSelectorComponent {
     return '';
   }
 
+  
   returnTimestamp() {
     return Date.now();
   }
+
 
   // CAVE: Change this to User ID later, since users can have the same name
   filterUsers() {
@@ -107,7 +110,7 @@ export class UserSelectorComponent {
     this.focusedChip = -1;
   }
 
-  handleKeyInput(event: KeyboardEvent) {
+  searchFieldKeyboardInput(event: KeyboardEvent) {
     if (!this.searchText && this.selectedUsers.length) {
       if (event.key === 'Backspace') {
         this.deleteUserInput();

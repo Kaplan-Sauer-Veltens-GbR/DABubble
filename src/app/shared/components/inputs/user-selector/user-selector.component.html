@@ -2,18 +2,20 @@
     <div class="input-container" (click)="focusInput()">
         @for (user of selectedUsers; let i = $index; track $index) {
         <div class="chip" [ngClass]="{'chip--marked':focusedChip == i}">
-            <user-avatar [size]="34" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
-            <span class="remove-chip" (click)="unselectUser(user)">✕</span>
+            <user-avatar [size]="34" aria-hidden="true" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar>
+            <span role="button" [attr.aria-label]="t('delete-user', {'user': user.name})" class="remove-chip" (keydown.enter)="unselectUser(user)" (click)="unselectUser(user)">
+                <app-icon iconName="close"></app-icon>
+            </span>
         </div>
         }
 
-        <input #search type="text" [(ngModel)]="searchText" [ngClass]="{'marked-chip--exists':focusedChip != -1}" (input)="filterUsers()" (keydown)="handleKeyInput($event)" tabindex="0" [placeholder]="returnPlaceholder()" class="input-field">
+        <input #search type="text" [(ngModel)]="searchText" [ngClass]="{'marked-chip--exists':focusedChip != -1}" (input)="filterUsers()" (keydown)="searchFieldKeyboardInput($event)" tabindex="0" [placeholder]="returnPlaceholder()" class="input-field">
     </div>
 
     @if (filteredUsers.length && searchText) {
     <ul class="suggestions">
         @for (user of filteredUsers; track $index) {
-        <li role="button" [attr.aria-label]="t('add', user)" [attr.tabindex]="0" (click)="addUser(user)">
+        <li role="button" [attr.aria-label]="t('add-user', {'user': user.name})" [attr.tabindex]="0" (keydown.enter)="addUser(user)" (click)="addUser(user)">
             <img [src]="user.avatar" alt="" class="avatar">
             {{ user.name }}
         </li>
