@@ -113,34 +113,6 @@ export class UserSelectorComponent {
     this.selectedUsers = this.selectedUsers.filter(u => u !== user);
   }
 
-  shouldInitializeSuggestionSelection(): boolean {
-    return this.selectedSuggestion === -1 && this.filteredUsers.length > 0;
-  }
-
-  isInvalidSuggestionIndex() {
-    return this.selectedSuggestion <= -1;
-  }
-
-  isPreviousSuggestionKey(event: KeyboardEvent): boolean {
-    return (event.key === 'Tab' && event.shiftKey) || event.key === 'ArrowUp';
-  }
-
-  isNextSuggestionKey(event: KeyboardEvent): boolean {
-    return event.key === 'Tab' || event.key === 'ArrowDown';
-  }
-
-  isSuggestionConfirmationKey(event: KeyboardEvent): boolean {
-    return event.key === 'Enter' && !this.isInvalidSuggestionIndex();
-  }
-
-  isSelectionKey(event: KeyboardEvent): boolean {
-    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter';
-  }
-
-  isMovingCursor(event: KeyboardEvent): boolean {
-    return event.key === 'ArrowLeft' || event.key === 'ArrowRight';
-  }
-
   handleSuggestionNavigation(event: KeyboardEvent) {
     if (this.isPreviousSuggestionKey(event)) {
       this.selectPreviousSuggestion();
@@ -185,29 +157,13 @@ export class UserSelectorComponent {
     }
   }
 
-  isInitialChipSelection() {
-    return this.selectedChip === -1;
-  }
-
-  firstChipIsAlreadySelected() {
-    return this.selectedChip <= -1;
-  }
-
   selectNextChip() {
     this.nextChipExists() ? this.selectedChip++ : (this.selectedChip = -1);
-  }
-
-  nextChipExists() {
-    return this.selectedChip !== -1 && this.selectedChip < this.selectedUsers.length - 1;
   }
 
   resetChipAndSuggestionIndex() {
     this.selectedChip = -1;
     this.selectedSuggestion = -1;
-  }
-
-  hasSuggestions(): boolean {
-    return !!(this.filteredUsers.length && this.searchText.trim());
   }
 
   searchFieldKeyboardInput(event: KeyboardEvent) {
@@ -218,6 +174,52 @@ export class UserSelectorComponent {
   focusInput() {
     this.searchInput.nativeElement.focus();
     this.resetChipAndSuggestionIndex();
+  }
+
+  //Beginn Helper Functions
+
+  isSelectionKey(event: KeyboardEvent): boolean {
+    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter';
+  }
+
+  hasSuggestions(): boolean {
+    return !!(this.filteredUsers.length && this.searchText.trim());
+  }
+
+  shouldInitializeSuggestionSelection(): boolean {
+    return this.selectedSuggestion === -1 && this.filteredUsers.length > 0;
+  }
+
+  isInvalidSuggestionIndex() {
+    return this.selectedSuggestion <= -1;
+  }
+
+  isPreviousSuggestionKey(event: KeyboardEvent): boolean {
+    return (event.key === 'Tab' && event.shiftKey) || event.key === 'ArrowUp';
+  }
+
+  isNextSuggestionKey(event: KeyboardEvent): boolean {
+    return event.key === 'Tab' || event.key === 'ArrowDown';
+  }
+
+  isSuggestionConfirmationKey(event: KeyboardEvent): boolean {
+    return event.key === 'Enter' && !this.isInvalidSuggestionIndex();
+  }
+
+  isMovingCursor(event: KeyboardEvent): boolean {
+    return event.key === 'ArrowLeft' || event.key === 'ArrowRight';
+  }
+
+  isInitialChipSelection() {
+    return this.selectedChip === -1;
+  }
+
+  firstChipIsAlreadySelected() {
+    return this.selectedChip <= -1;
+  }
+
+  nextChipExists() {
+    return this.selectedChip !== -1 && this.selectedChip < this.selectedUsers.length - 1;
   }
 
 }
