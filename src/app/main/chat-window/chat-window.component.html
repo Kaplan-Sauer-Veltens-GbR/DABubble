@@ -13,8 +13,8 @@
     </div>
   </header>
  
-  <main>
-    @for(dbObject of [1]; track dbObject) { @for(time of [1,2]; track time ) {
+  <main class="chat">
+    @for(dbObject of [1]; track dbObject) { @for(time of [1,2,3]; track time ) {
     <div class="day-line">
       <div class="seperator"></div>
       <div class="box--bordered day-box">Dienstag, 14 Januar</div>
@@ -25,10 +25,11 @@
     <chat-message></chat-message>
 </div>
     } } }
-    <div class="text-field">
+    
+  </main>
+  <div class="text-field">
     <app-text-message-field></app-text-message-field>
     </div>
-  </main>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {
     <div>
