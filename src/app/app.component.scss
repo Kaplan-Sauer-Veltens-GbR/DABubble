@@ -5,5 +5,15 @@ span {
 }
 
 main {
-    @include dflex()
+    @include dflex(unset,unset, 20px)
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; // Vollbildhöhe
+}
+
+chat-window {
+    flex: 1;
 }
