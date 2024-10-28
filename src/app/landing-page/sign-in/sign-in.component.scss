@@ -1,12 +1,13 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
+@use "../../shared/scss/_hovers.scss" as *;
 
 $input-button-height: 60px;
 
 .login-card {
   @extend .box--floating;
-  @include dflex(center, center,0,column);
-  overflow:hidden;
+  @include dflex(center, center, 0, column);
+  overflow: hidden;
   width: 550px;
   padding: 30px;
   border-radius: 12px;
@@ -73,6 +74,8 @@ $input-button-height: 60px;
   margin-bottom: 32px;
   background-color: $colorBG;
   border: none !important;
+
+  @extend .normal--hover;
 }
 
 .signin-google-btn {

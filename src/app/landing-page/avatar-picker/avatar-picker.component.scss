@@ -1,12 +1,13 @@
 @use "../../shared/scss/_boxes.scss" as *;
 @use "../../shared/scss/abstracts" as *;
+@use "../../shared/scss/_hovers.scss" as *;
 
 $input-button-height: 60px;
 
 .avatar-picker-card {
   @extend .box--floating;
   overflow: hidden;
-  @include dflex(center, center,0,column);
+  @include dflex(center, center, 0, column);
   @include forcedSize(550px, null !important);
   padding: 30px;
   border-radius: 12px;
@@ -21,6 +22,8 @@ $input-button-height: 60px;
   position: absolute;
   left: 24px;
   top: 64px;
+  @extend .icon--hover;
+  @extend .hover-circle;
 }
 
 .avatar-picker-title {
