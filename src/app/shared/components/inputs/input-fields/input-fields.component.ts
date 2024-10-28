@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterContentInit, Input, ContentChild, ElementRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input-fields',
@@ -10,14 +10,15 @@ import { Component, AfterContentInit, Input, ContentChild, ElementRef } from '@a
 })
 export class InputFieldsComponent {
   @ContentChild('iconSlot', { static: true }) iconContent: ElementRef | undefined;
-@Input() placeholder:string = 'Enter';
-@Input() pattern:string = '';
-@Input() type:string = 'text';
-@Input() value:string = '';
-@Input() required: boolean = false;
-hasProjectedContent: boolean = false;
+  @Input() placeholder: string = 'Enter';
+  @Input() pattern: string = '';
+  @Input() type: string = 'text';
+  @Input() value: string = '';
+  @Input() required: boolean = false;
+  hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {
-    this.hasProjectedContent = document.querySelector('app-icon-libary') !== null;
+    this.hasProjectedContent = !!this.iconContent;
+
   }
 }

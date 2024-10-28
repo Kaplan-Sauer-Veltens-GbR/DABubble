@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReactionDetailsComponent } from './reaction-details.component';
+import { getTranslocoModule } from '../../../../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('ReactionDetailsComponent', () => {
   let component: ReactionDetailsComponent;
@@ -8,7 +9,9 @@ describe('ReactionDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactionDetailsComponent]
+      imports: [
+        getTranslocoModule(),
+        ReactionDetailsComponent]
     })
     .compileComponents();
 

@@ -5,14 +5,14 @@ import { ReactionBarComponent } from "./reaction-bar/reaction-bar.component";
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-chat-message',
+  selector: 'chat-message',
   standalone: true,
   imports: [CommonModule, ReactionPopoverComponent, ReactionBarComponent, TranslocoModule],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss'
 })
 export class ChatMessageComponent {
-  @Input() isOwner: boolean = false;
+  @Input() isOwner: boolean = true;
 
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
@@ -20,5 +20,13 @@ export class ChatMessageComponent {
 
   onHover(state: boolean) {
     this.displayPopover = state;
+  }
+
+  translateReplyAmount() {
+    if (this.replyAmount == 1) {
+      return 'chat.subthread.replies.single';
+    } else {
+      return 'chat.subthread.replies.multiple';
+    }
   }
 }

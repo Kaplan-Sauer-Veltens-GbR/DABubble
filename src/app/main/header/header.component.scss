@@ -1,0 +1,43 @@
+@use "../../shared/scss/abstracts/" as *;
+
+$isDesktopDevice: 720px;
+
+header {
+    .wrapper {
+        background-color: $colorBG;
+        @include dflex(flex-start, $g: clamp(10px, 4vw, 80px));
+
+        .logo {
+            @include dflex(flex-start, center);
+            > img {
+                width: min(240px, 100% - 2em);
+                user-select: none;
+            }
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex: 1;
+            @media (orientation: landscape) and (min-width: $isDesktopDevice) and (pointer: fine) {
+                justify-content: space-between;
+                gap: 40px;
+            }
+            user-select: none;
+        }
+    }
+}
+
+.searchbar {
+    @include dflex(center, center);
+    flex: 1;
+    &.searchbar--desktop {
+        @include hideWhenMobile($isDesktopDevice);
+    }
+
+    &.searchbar--mobile {
+        margin-top: min(32px, 8vh - 2rem);
+        @include hideWhenDesktop($isDesktopDevice);
+    }
+}

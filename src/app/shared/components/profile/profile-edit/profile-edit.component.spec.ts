@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileEditComponent } from './profile-edit.component';
+import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('ProfileEditComponent', () => {
   let component: ProfileEditComponent;
@@ -8,7 +9,9 @@ describe('ProfileEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfileEditComponent]
+      imports: [
+        getTranslocoModule(),
+        ProfileEditComponent]
     })
     .compileComponents();
 

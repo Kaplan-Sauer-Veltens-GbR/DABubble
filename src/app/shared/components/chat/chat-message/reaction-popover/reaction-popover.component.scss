@@ -1,4 +1,5 @@
 @use '../../../../scss/abstracts/' as *;
+@use '../../../../scss/icons' as *;
 
 .reaction-popover{
     display: none;
@@ -20,8 +21,9 @@
     }
 
     &.--hovered {
-        display: unset;
+        @include dflex($g: 5px);
         animation: fadeIn 200ms forwards;
+        transition: all 2s;
     }
 }
 

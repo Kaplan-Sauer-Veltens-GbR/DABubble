@@ -1,0 +1,9 @@
+<section class="avatar-menu">
+    <avatar-menu-popup class="popup-menu" [ngClass]="{'--open': settings.displaySettings}"></avatar-menu-popup>
+    <div class="inner-wrapper" (click)="toggleSettings()">
+        <span class="user-name">Frederik Beck</span>
+        <user-avatar [size]="70" [hideUsername]="true"></user-avatar>
+        <app-icon iconName="arrowDown" class="icon"></app-icon>
+        <app-icon iconName="arrowDownPurple" class="icon icon--hovered"></app-icon>
+    </div>
+</section>

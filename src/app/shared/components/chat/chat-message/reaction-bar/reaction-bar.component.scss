@@ -1,9 +1,15 @@
-@use '../../../../scss/abstracts/' as *;
+@use "../../../../scss/abstracts/" as *;
+@use "../../../../scss/icons" as *;
 
 .reaction-bar {
-    @include dflex(flex-start);
+    @include dflex(flex-start, $g: 10px);
 
     &.msg-ownership {
         justify-content: flex-end;
     }
+}
+
+.icon-background--white {
+    border-radius: 30px;
+    background-color: white !important;
 }

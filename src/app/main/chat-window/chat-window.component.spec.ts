@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkspaceMenuComponent } from './workspace-menu.component';
+import { ChatWindowComponent } from './chat-window.component';
 
-describe('WorkspaceMenuComponent', () => {
-  let component: WorkspaceMenuComponent;
-  let fixture: ComponentFixture<WorkspaceMenuComponent>;
+describe('ChatWindowComponent', () => {
+  let component: ChatWindowComponent;
+  let fixture: ComponentFixture<ChatWindowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WorkspaceMenuComponent]
+      imports: [ChatWindowComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WorkspaceMenuComponent);
+    fixture = TestBed.createComponent(ChatWindowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

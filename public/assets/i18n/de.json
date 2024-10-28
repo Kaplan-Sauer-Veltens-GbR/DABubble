@@ -1,12 +1,33 @@
 {
     "actions": {
         "cancel": "Abbrechen",
-        "save": "Speichern",
-        "edit": "Editieren"
+        "edit": "Editieren",
+        "logout": "Log out",
+        "save": "Speichern"
+    },
+    "add-people": {
+        "headline": "Leute hinzufügen"
+    },
+    "avatar-bar": {
+        "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
     },
     "chat": {
         "subthread": {
-            "open": "{{count}} Antworten anzeigen"
+            "open": " anzeigen",
+            "replies": {
+                "single": "eine Antwort",
+                "multiple": "{{amount}} Antworten"
+            }
+        }
+    },
+    "channel": {
+        "edit-popover": {
+            "channel-name": "Channel-Name",
+            "created-by": "Erstellt von",
+            "description": "Beschreibung",
+            "edit": "Bearbeiten",
+            "leave": "Channel verlassen",
+            "save": "Speichern"
         }
     },
     "email": {
@@ -18,6 +39,27 @@
         "title": "Profil",
         "msg": "Nachricht"
     },
+    "reaction-details": {
+        "reaction-summary": {
+            "only-one": {
+                "own": "hast reagiert",
+                "other": "hat reagiert"
+            },
+            "multiple": "haben reagiert"
+        }
+    },
+    "searchbar": {
+        "aria": "Dea Babbel durchsuchen",
+        "visual": "DABubble durchsuchen…"
+    },
+    "settings": {
+        "profile": "Eigenes Profil öffnen",
+        "language": {
+            "toggle": "Ändere Sprache zu: ",
+            "german": "Deutsch",
+            "english": "Englisch"
+        }
+    },
     "user": {
         "name": {
             "full": "Vollständiger Name",
@@ -28,6 +70,12 @@
             "true": "Aktiv",
             "false": "Abwesend"
         }
+    },
+    "wordlist": {
+        "and": "und",
+        "others": "andere",
+        "one": "eine",
+        "you": "Du"
     },
     "workspace": {
         "is-open": {

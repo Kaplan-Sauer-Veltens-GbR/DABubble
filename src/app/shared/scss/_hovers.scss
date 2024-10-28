@@ -1,0 +1,58 @@
+@use "./abstracts/" as *;
+
+.normal--hover {
+  transition: transform 85ms ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    color: $colorPurple1;
+  }
+  &.no-scale {
+    &:hover {
+      transform: scale(1);
+    }
+  }
+}
+
+.icon--hover {
+  transition: transform 85ms ease-in-out;
+
+  &:hover {
+    filter: $colorTransformPurple3;
+    cursor: pointer;
+    &.scale {
+      transform: scale(1.1);  
+    }
+  }
+}
+
+.hover-circle {
+  &:hover {
+    border-radius: 40px;
+    background-color: $colorBG;
+    filter: none;
+  }
+}
+
+.avatar--hover {
+  cursor: pointer;
+  &:hover {
+    background-color: $colorBG;
+    width: fit-content;
+    border-radius: 40px;
+    color: $colorPurple3;
+  }
+}
+
+.field--hover {
+  &:hover {
+    cursor: pointer;
+    background-color: $colorBG;
+    width: fit-content;
+    border-radius: 40px;
+    color: $colorPurple3;
+   app-icon {
+            filter: $colorTransformPurple3;
+        }
+    }
+
+}

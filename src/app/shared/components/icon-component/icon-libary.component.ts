@@ -9,7 +9,7 @@ import { InputFieldsComponent } from '../inputs/input-fields/input-fields.compon
 import { IconName } from '../../../interfaces/icon-names.model';
 
 @Component({
-  selector: 'app-icon-libary',
+  selector: 'app-icon',
   standalone: true,
   imports: [CommonModule,],
   templateUrl: './icon-libary.component.html',
@@ -20,7 +20,8 @@ export class IconLibaryComponent implements AfterContentInit {
   @Input() iconName: IconName = '';
   @Input() iconAlt: string = '';
   @Input() iconClass: string = '';
-  @Input() suffix: string = 'png';
+  @Input() suffix: string = 'svg';
+  @Input() round: boolean = false;
   @Input() width: string = '';
   @Input() height: string = '';
   isInInputField: boolean = false;

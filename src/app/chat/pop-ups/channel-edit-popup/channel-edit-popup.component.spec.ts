@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChannelEditPopupComponent } from './channel-edit-popup.component';
 import { By } from '@angular/platform-browser';
+import { getTranslocoModule } from '../../../modules/transloco-testing/transloco-testing.module';
+import { TranslocoService } from '@jsverse/transloco';
 
 describe('ChannelEditPopupComponent', () => {
   let component: ChannelEditPopupComponent;
@@ -9,7 +11,9 @@ describe('ChannelEditPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChannelEditPopupComponent]
+      imports: [
+        getTranslocoModule(),
+        ChannelEditPopupComponent]
     })
     .compileComponents();
 
@@ -36,6 +40,7 @@ describe('ChannelEditPopupComponent', () => {
     const spanElements = fixture.debugElement.queryAll(By.css('span'));
     const secondSpan = spanElements[1].nativeElement; 
 
+    console.log(secondSpan.textContent);
     
     expect(secondSpan.textContent).toBe('Speichern');  
   });

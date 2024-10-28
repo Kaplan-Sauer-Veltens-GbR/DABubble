@@ -1,0 +1,9 @@
+<div *transloco="let t; prefix: 'avatar-bar'" role="button" [attr.aria-label]="t('open', {'amount': exampleUsers.length})" class="avatar-bar"
+(click)="openMemberManagement()">
+    @for (avatar of [1, 2, 3]; track $index) {
+        @if ($index < 3 && exampleUsers[$index]) {
+             <img aria-hidden="true" class="avatar-images" src="/assets/icons/proxys/00c.Characters{{$index}}.png" alt="">
+        }
+    }
+    <span aria-hidden="true">{{exampleUsers.length}}</span>
+</div>
