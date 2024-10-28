@@ -109,3 +109,9 @@ header {
   @include dflex(unset, center, 10px);
 }
 
+.pop-up {
+  position: absolute;
+  width: 100%;
+  max-width: 872px;
+  max-height: 616px;
+}
