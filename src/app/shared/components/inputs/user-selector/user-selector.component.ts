@@ -73,6 +73,9 @@ export class UserSelectorComponent {
         this.selectPreviousChip();
       } else if (event.key === 'ArrowRight') {
         this.selectNextChip();
+      } else if (this.isTabbingFromChipToInput(event)) {
+        event.preventDefault();
+        this.resetChip();
       }
     }
   }
@@ -213,6 +216,10 @@ export class UserSelectorComponent {
   isMovingCursor(event: KeyboardEvent): boolean {
     return event.key === 'ArrowLeft' || event.key === 'ArrowRight';
   }
+
+  isTabbingFromChipToInput(event: KeyboardEvent): boolean {
+    return event.key === 'Tab' && this.selectedChip !== -1;
+  } 
 
   isInitialChipSelection() {
     return this.selectedChip === -1;
