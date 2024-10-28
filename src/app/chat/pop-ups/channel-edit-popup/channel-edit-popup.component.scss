@@ -112,5 +112,6 @@ header {
 .pop-up {
   position: absolute;
   width: 100%;
-  max-width: calc(872px - clamp(2vw, 40px, 4vw));
+  max-width: 872px;
+  max-height: 616px;
 }
