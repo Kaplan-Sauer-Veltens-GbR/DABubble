@@ -8,7 +8,7 @@ $input-button-height: 60px;
   @extend .box--floating;
   overflow: hidden;
   @include dflex(center, center, 0, column);
-  @include forcedSize(550px, null !important);
+  @include forcedSize(600px, null !important);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -51,7 +51,7 @@ $input-button-height: 60px;
 }
 
 .avatar-list {
-  width: 80%;
+  width: 90%;
 
   .avatar-list-title {
     display: block;
@@ -81,7 +81,7 @@ $input-button-height: 60px;
 .upload-section {
   @include dflex(space-between, center);
   margin: 24px 0 24px 0;
-  width: 80%;
+  width: 90%;
   span {
     font-size: 20px;
     text-align: center;

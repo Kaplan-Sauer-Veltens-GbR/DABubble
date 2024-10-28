@@ -8,7 +8,7 @@ $input-button-height: 60px;
   @extend .box--floating;
   @include dflex(center, center, 0, column);
   overflow: hidden;
-  width: 550px;
+  @include forcedSize(600px, null !important);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -24,7 +24,7 @@ $input-button-height: 60px;
 
 .login-subtitle {
   width: 90%;
-  font-size: 14px;
+  font-size: 20px;
   color: $colorGray;
   margin-bottom: 20px;
 }
@@ -32,7 +32,7 @@ $input-button-height: 60px;
 .forgot-password {
   display: block;
   color: $colorPurple1;
-  font-size: 14px;
+  font-size: 18px;
   text-decoration: none;
   margin-bottom: 32px;
 }
