@@ -3,6 +3,7 @@
 $isDesktopDevice: 720px;
 
 header {
+    margin-bottom: 20px;
     .wrapper {
         background-color: $colorBG;
         @include dflex(flex-start, $g: clamp(10px, 4vw, 80px));
