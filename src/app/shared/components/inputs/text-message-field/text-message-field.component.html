@@ -1,15 +1,18 @@
 <div class="message-container">
 
-  <form action="" id="submit-message" >
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" action="" id="submit-message" >
   <textarea
     [placeholder]="placeholder"
     [attr.pattern]="pattern ? pattern : null"
     [required]="required"
+    name="message"
+    [(ngModel)]="message"
+    (keydown.enter)="submitForm(myForm, $event)"
   ></textarea>
 </form>
 
   <div class="icon-container">
-    <div class="send">
+    <div (click)="submitForm(myForm, $event)" class="send">
       <app-icon iconName="sendBlue"></app-icon>
     </div>
     <div class="icon-line">
