@@ -5,6 +5,7 @@ $input-button-height: 60px;
 
 .login-card {
   @extend .box--floating;
+  @include dflex(center, center,0,column);
   overflow:hidden;
   width: 550px;
   padding: 30px;

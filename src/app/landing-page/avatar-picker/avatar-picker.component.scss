@@ -6,6 +6,7 @@ $input-button-height: 60px;
 .avatar-picker-card {
   @extend .box--floating;
   overflow: hidden;
+  @include dflex(center, center,0,column);
   @include forcedSize(550px, null !important);
   padding: 30px;
   border-radius: 12px;
