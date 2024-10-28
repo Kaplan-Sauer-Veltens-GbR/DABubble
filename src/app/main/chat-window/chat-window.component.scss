@@ -9,6 +9,7 @@ section {
   box-sizing: border-box;
   max-height: 940px;
   height: 100%;
+  
 
   header {
     @include dflex(space-between);
