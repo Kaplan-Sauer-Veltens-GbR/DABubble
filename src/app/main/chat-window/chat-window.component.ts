@@ -7,11 +7,12 @@ import { TextMessageFieldComponent } from "../../shared/components/inputs/text-m
 import { WorkspaceService } from '../../services/workspace.service';
 import { ChannelEditPopupComponent } from '../../chat/pop-ups/channel-edit-popup/channel-edit-popup.component';
 import { AddPeopleComponent } from "../../shared/components/chat/add-people/add-people.component";
+import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-list/member-list.component";
 
 @Component({
   selector: 'chat-window',
   standalone: true,
-  imports: [CommonModule, IconLibaryComponent, AvatarBarComponent, ChatMessageComponent, TextMessageFieldComponent, ChannelEditPopupComponent, AddPeopleComponent],
+  imports: [CommonModule, IconLibaryComponent, AvatarBarComponent, ChatMessageComponent, TextMessageFieldComponent, ChannelEditPopupComponent, AddPeopleComponent, MemberListComponent],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss'
 })

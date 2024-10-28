@@ -6,7 +6,7 @@
       <app-icon iconName="arrowDown"></app-icon>
     </div>
     <div>
-      <app-avatar-bar></app-avatar-bar>
+      <app-avatar-bar (click)="workspace.openDialog('memberList')"></app-avatar-bar>
       <div class="bg-circle">
         <app-icon (click)="workspace.openDialog('addMember')" class="icon--hover scale" iconName="personAdd"></app-icon>
       </div>
@@ -39,6 +39,10 @@
     <div class="pop-up">
       <add-people-overlay></add-people-overlay>
   </div>
+  }@else if (workspace.currentDialog === 'memberList') {
+    <div class="pop-up">
+      <app-member-list></app-member-list>
+    </div>
   }
 
 
