@@ -8,7 +8,7 @@
     padding: 40px clamp(2vw, 40px, 4vw);
     max-height: calc(100vh - (2.5 * clamp(2vw, 40px, 4vw)));
     overflow-y: scroll;
-
+    box-sizing: border-box; // added from phillip testing for style fixing
     &.no-overflow {
         overflow: hidden;
     }
@@ -19,4 +19,5 @@
     border-radius: 20px;
     border: 1px solid $colorLines;
     padding: 20px;
+    box-sizing: border-box;// added from phillip testing for style fixing
 }
