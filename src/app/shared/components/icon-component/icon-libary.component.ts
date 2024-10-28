@@ -1,17 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterContentInit,
-  Component,
-  Input,
-  Optional,
-} from '@angular/core';
+import { AfterContentInit, Component, Input, Optional } from '@angular/core';
 import { InputFieldsComponent } from '../inputs/input-fields/input-fields.component';
 import { IconName } from '../../../interfaces/icon-names.model';
 
 @Component({
   selector: 'app-icon',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './icon-libary.component.html',
   styleUrl: './icon-libary.component.scss',
 })
@@ -26,9 +21,7 @@ export class IconLibaryComponent implements AfterContentInit {
   @Input() height: string = '';
   isInInputField: boolean = false;
 
-  constructor(
-    @Optional()  private inputField: InputFieldsComponent
-  ) {}
+  constructor(@Optional() private inputField: InputFieldsComponent) {}
 
   get iconSrc(): string {
     const pathModifier = this.suffix == 'png' ? 'png/' : '';
