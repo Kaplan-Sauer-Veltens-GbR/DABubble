@@ -11,7 +11,8 @@ main {
 .main-container {
     display: flex;
     flex-direction: column;
-    height: 100vh; // Vollbildhöhe
+    height: 100vh;
+    padding: 25px 20px;
 }
 
 chat-window {
