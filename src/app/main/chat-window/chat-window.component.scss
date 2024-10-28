@@ -87,3 +87,6 @@ section {
     filter: $colorTransformPurple3;
   }
 }
+.pop-up {
+  @include pop-up(absolute, 100%, 872px ,616px,  0,  0 , -50% , -50%)
+}
