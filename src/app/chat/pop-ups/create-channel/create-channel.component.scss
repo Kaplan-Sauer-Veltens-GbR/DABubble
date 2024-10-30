@@ -1,3 +1,8 @@
 @use '../../../shared/scss/abstracts/_index.scss' as* ;
 @use '../../../shared/scss/_boxes.scss';
 @use '../../../shared/scss/_hovers.scss';
+
+header {
+    width: 100%;
+    @include dflex(space-between);
+}
