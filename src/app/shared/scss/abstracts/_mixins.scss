@@ -41,15 +41,17 @@
   $maxH: 0,
   $t: 0,
   $l: 0,
+  $r,
   $tr1: -50%,
   $tr2: -50%
 ) {
   position: absolute;
-  width: 100%;
-  max-width: 872px;
-  max-height: 616px;
-  top: 50%;
-  left: 50%;
+  width: $w;
+  max-width: $maxW;
+  max-height: $maxH;
+  top: $t;
+  left: $l;
+  right: $r;
   transform: translate($tr1, $tr2);
   z-index: 100;
 }
