@@ -35,3 +35,13 @@ span {
     height: 100%;
     @include dflex(flex-start,unset,20px,column)
 }
+
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row {
+    @include dflex(flex-start,center,5px);
+}

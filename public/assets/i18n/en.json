@@ -29,7 +29,8 @@
             "input-headline-name": "Channel name",
             "input-headline-description": "Description",
              "input-name-placeholder": "e.g. cooperative projects.",
-            "input-description-placeholder": "Your description"
+            "input-description-placeholder": "Your description",
+             "btn": "Establish"
         }
     },
     "email": {

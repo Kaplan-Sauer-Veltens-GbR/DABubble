@@ -35,7 +35,8 @@
             "input-headline-name": "Channel-name",
             "input-headline-description": "Beschreibung",
             "input-name-placeholder": "z.B. Kooperationsprojekte",
-            "input-description-placeholder": "Deine Beschreibung"
+            "input-description-placeholder": "Deine Beschreibung",
+            "btn": "Erstellen"
         }
     },
     "email": {

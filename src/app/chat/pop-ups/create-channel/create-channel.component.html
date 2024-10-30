@@ -18,8 +18,12 @@
             <app-icon #iconSlot iconName="tagGrey"></app-icon>
         </app-input-fields>
         </div>
-      <div><h3>{{t('input-headline-description')}}</h3>
+      <div><div class="row"><h3>{{t('input-headline-description')}}</h3> <span>(optional)</span></div>
         <app-input-fields placeholder="{{t('input-description-placeholder')}}"></app-input-fields></div>
+        <div class="btn">
+            <app-button [filled]="true">{{t('btn')}}</app-button>
+        </div>
     </div>
+    
   </div>
 </ng-container>
