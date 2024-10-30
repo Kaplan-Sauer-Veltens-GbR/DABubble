@@ -22,6 +22,9 @@
             "edit": "Edit",
             "leave": "Leave channel",
             "save": "Save"
+        },
+        "create-popover": {
+            "channel-headline": "Create channel"
         }
     },
     "email": {

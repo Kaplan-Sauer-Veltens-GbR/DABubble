@@ -28,6 +28,9 @@
             "edit": "Bearbeiten",
             "leave": "Channel verlassen",
             "save": "Speichern"
+        },
+        "create-popover": {
+            "channel-headline": "Channel erstellen"
         }
     },
     "email": {
