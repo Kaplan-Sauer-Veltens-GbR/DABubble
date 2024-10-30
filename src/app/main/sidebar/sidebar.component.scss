@@ -136,3 +136,17 @@ user-avatar {
  margin-left: -500px;
   
 }
+
+.pop-up {
+  @include pop-up(
+    absolute,
+    100%,
+    872px,
+    616px,
+    clamp(40%, 2vh, 50%),
+    50%,
+    0,
+    -50%,
+    -50%
+  );
+}

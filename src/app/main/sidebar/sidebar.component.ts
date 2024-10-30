@@ -5,11 +5,12 @@ import { AvatarBarComponent } from '../../shared/components/chat/avatar-bar/avat
 import { UserAvatarComponent } from '../../shared/components/user-avatar/user-avatar.component';
 import { WorkspaceFabComponent } from "./workspace-fab/workspace-fab.component";
 import { WorkspaceService } from '../../services/workspace.service';
+import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create-channel.component";
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [IconLibaryComponent, CommonModule, UserAvatarComponent, WorkspaceFabComponent],
+  imports: [IconLibaryComponent, CommonModule, UserAvatarComponent, WorkspaceFabComponent, CreateChannelComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

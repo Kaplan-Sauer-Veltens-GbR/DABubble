@@ -11,6 +11,7 @@ export class WorkspaceService {
     | 'addMember'
     | 'logOut'
     | 'textEdit'
+    | 'create-channel'
     | null = null;
   isSelected: boolean = false;
   constructor() {}
