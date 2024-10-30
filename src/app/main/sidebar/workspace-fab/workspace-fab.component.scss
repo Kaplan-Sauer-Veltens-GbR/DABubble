@@ -1,9 +1,10 @@
 @use "../../../shared/scss/abstracts/" as *;
 
 .workspace-fab {
+    background-color: white;
     position: absolute;
     left: 0;
-    bottom: 40%;
+    bottom: clamp(5%, 2vh, 40%);
     @include dflex(space-between, $g: 10px, $d: row-reverse);
     padding: 14px 23px;
     box-sizing: border-box;
