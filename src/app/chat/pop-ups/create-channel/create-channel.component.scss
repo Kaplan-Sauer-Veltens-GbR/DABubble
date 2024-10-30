@@ -5,4 +5,13 @@
 header {
     width: 100%;
     @include dflex(space-between);
+
+    .hover-circle {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
+
