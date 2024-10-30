@@ -1,0 +1,29 @@
+<!-- aria-label Cave -->
+
+<ng-container *transloco="let t; prefix: 'channel.create-popover'">
+  <div class="box--floating no-overflow max-size">
+    <header class="mb-20">
+      <h2>{{ t("channel-headline") }}</h2>
+      <div class="hover-circle">
+        <app-icon class="icon--hover scale" iconName="close"></app-icon>
+      </div>
+    </header>
+    <div class="mb-20">
+      <span>{{ t("description") }}</span>
+    </div>
+    <div class="column">
+      <div>
+        <h3>{{t('input-headline-name')}}</h3>
+        <app-input-fields placeholder="{{t('input-name-placeholder')}}">
+            <app-icon #iconSlot iconName="tagGrey"></app-icon>
+        </app-input-fields>
+        </div>
+      <div><div class="row"><h3>{{t('input-headline-description')}}</h3> <span>(optional)</span></div>
+        <app-input-fields placeholder="{{t('input-description-placeholder')}}"></app-input-fields></div>
+        <div class="btn">
+            <app-button [filled]="true">{{t('btn')}}</app-button>
+        </div>
+    </div>
+    
+  </div>
+</ng-container>

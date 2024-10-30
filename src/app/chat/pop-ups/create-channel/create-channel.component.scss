@@ -1,0 +1,47 @@
+@use '../../../shared/scss/abstracts/_index.scss' as* ;
+@use '../../../shared/scss/_boxes.scss';
+@use '../../../shared/scss/_hovers.scss';
+
+
+.max-size {
+    max-height: 539px;
+    max-width: 872px;
+}
+
+header {
+    width: 100%;
+    @include dflex(space-between);
+    h2 { margin: 0;};
+    .hover-circle {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+span {
+    font-size: 18px;
+    font-weight: 400px;
+}
+
+.column {
+    width: 100%;
+    height: 100%;
+    @include dflex(flex-start,unset,20px,column)
+}
+
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row {
+    @include dflex(flex-start,center,5px);
+}

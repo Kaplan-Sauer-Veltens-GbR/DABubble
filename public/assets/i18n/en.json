@@ -22,6 +22,15 @@
             "edit": "Edit",
             "leave": "Leave channel",
             "save": "Save"
+        },
+        "create-popover": {
+            "channel-headline": "Create channel",
+            "description": "Channels are designed for your team’s communication. Ideally, they should be topic-based, such as #marketing, for example.",
+            "input-headline-name": "Channel name",
+            "input-headline-description": "Description",
+             "input-name-placeholder": "e.g. cooperative projects.",
+            "input-description-placeholder": "Your description",
+             "btn": "Establish"
         }
     },
     "email": {
