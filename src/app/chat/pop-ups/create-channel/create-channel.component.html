@@ -1,12 +1,25 @@
-  
-   
-   <ng-container *transloco="let t; prefix: 'channel.create-popover'">
-    <div class="box--floating no-overflow">
-        <header>
-        <h2>{{t('channel-headline')}}</h2>
-        <div class="hover-circle">
+<!-- aria-label Cave -->
+
+<ng-container *transloco="let t; prefix: 'channel.create-popover'">
+  <div class="box--floating no-overflow max-size">
+    <header class="mb-20">
+      <h2>{{ t("channel-headline") }}</h2>
+      <div class="hover-circle">
         <app-icon class="icon--hover scale" iconName="close"></app-icon>
+      </div>
+    </header>
+    <div class="mb-20">
+      <span>{{ t("description") }}</span>
     </div>
-        </header>
+    <div class="column">
+      <div>
+        <h3>Channel-name</h3>
+        <app-input-fields placeholder="{{t('input-name-placeholder')}}">
+            <app-icon #iconSlot iconName="tagGrey"></app-icon>
+        </app-input-fields>
+        </div>
+      <div><h3>Beschreibung</h3>
+        <app-input-fields placeholder="{{t('input-description-placeholder')}}"></app-input-fields></div>
     </div>
-    </ng-container>
+  </div>
+</ng-container>
