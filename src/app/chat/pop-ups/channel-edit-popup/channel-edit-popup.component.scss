@@ -3,7 +3,9 @@
 
 .box--floating {
   align-items: unset;
+  border-top-left-radius: 0;
 }
+
 h2 {
   margin: 0;
 }
@@ -68,24 +70,23 @@ header {
 }
 
 .created-by {
-    font-size:18px ;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    h2 {
-        font-size: 24px;
-        font-weight: 400;
-        color: $colorPurple3;
-    }
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: $colorPurple3;
+  }
 }
 
 .btn-container {
-    display: flex;
-    justify-content: flex-end;
-    app-button {
-    
-        width: 204px;
-    }
+  display: flex;
+  justify-content: flex-end;
+  app-button {
+    width: 204px;
+  }
 }
 
 .before-edit-container {
@@ -104,3 +105,6 @@ header {
   @include dflex(unset, center, 10px);
 }
 
+.pop-up {
+  @include pop-up(absolute, 100%, 872px ,616px,  0,  0 , -50% , -50%)
+}

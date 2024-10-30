@@ -1,13 +1,13 @@
 <!-- !!!CAVE!!! Need to add aria-labels! -->
 
 <ng-container *transloco="let t; prefix'channel.edit-popover'">
-  <div class="box--floating no-overflow">
+  <div class="box--floating no-overflow pop-up">
     <header>
       <div>
         <h2>#</h2>
         <h2 aria-label="">{{channelName}}</h2>
       </div>
-      <app-icon aria-label="close-button" class="close" iconName="close"></app-icon>
+      <app-icon (click)="workspace.closeDialog()" aria-label="close-button" class="close" iconName="close"></app-icon>
     </header>
     @if(editMode) {
     <div class="channel-name">
