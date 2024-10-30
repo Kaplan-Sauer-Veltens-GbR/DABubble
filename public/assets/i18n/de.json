@@ -32,6 +32,8 @@
         "create-popover": {
             "channel-headline": "Channel erstellen",
             "description": "Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein  #marketing zum Beispiel.",
+            "input-headline-name": "Channel-name",
+            "input-headline-description": "Beschreibung",
             "input-name-placeholder": "z.B. Kooperationsprojekte",
             "input-description-placeholder": "Deine Beschreibung"
         }
