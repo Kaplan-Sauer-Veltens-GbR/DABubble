@@ -20,7 +20,7 @@
       <h3>Channels</h3>
     </div>
     <div class="hover-circle">
-      <app-icon class="icon--hover" iconName="add"></app-icon>
+      <app-icon (click)="workspace.openDialog('createChannel')" class="icon--hover" iconName="add"></app-icon>
     </div>
   </div>
   <div
@@ -67,7 +67,7 @@
 </aside>
 
 
-@if(workspace.currentDialog === 'create-channel') {
+@if(workspace.currentDialog === 'createChannel') {
   <div class="pop-up">
     <app-create-channel></app-create-channel>
   </div>

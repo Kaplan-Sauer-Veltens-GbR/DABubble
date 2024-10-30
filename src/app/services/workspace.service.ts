@@ -11,7 +11,7 @@ export class WorkspaceService {
     | 'addMember'
     | 'logOut'
     | 'textEdit'
-    | 'create-channel'
+    | 'createChannel'
     | null = null;
   isSelected: boolean = false;
   constructor() {}
@@ -20,7 +20,7 @@ export class WorkspaceService {
     this.isOpen = !this.isOpen;
   }
 
-  openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut') {
+  openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut'|'textEdit'|'createChannel') {
     if (this.currentDialog === dialog) {
 
       this.closeDialog();
