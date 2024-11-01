@@ -6,10 +6,21 @@
         "save": "Save"
     },
     "add-people": {
+        "add-button": "Add",
+        "create-button": "Create",
         "headline": "Add users",
+        "radio-buttons": {
+            "all": {
+                "part-1": "Add all members of ",
+                "part-2": "DABubble",
+                "part-3": "."
+            },
+            "specific": "Add only following users"
+        },
         "user-selector": {
             "placeholder": "Enter name",
-            "add": "Add {{name}}"
+            "add-user": "Add {{user}}",
+            "delete-user": "Remove {{user}}"
         }
     },
     "avatar-bar": {

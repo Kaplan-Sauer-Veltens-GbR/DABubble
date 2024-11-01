@@ -6,7 +6,17 @@
         "save": "Speichern"
     },
     "add-people": {
+        "add-button": "Hinzufügen",
+        "create-button": "Erstellen",
         "headline": "Leute hinzufügen",
+        "radio-buttons": {
+            "all": {
+                "part-1": "Alle Mitglieder von",
+                "part-2": "DABubble",
+                "part-3": "hinzufügen."
+            },
+            "specific": "Bestimmte Leute hinzufügen"
+        },
         "user-selector": {
             "placeholder": "Name eingeben",
             "add-user": "{{user}} hinzufügen",
