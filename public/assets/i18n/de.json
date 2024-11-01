@@ -11,9 +11,10 @@
         "headline": "Leute hinzufügen",
         "radio-buttons": {
             "all": {
-                "part-1": "Alle Mitglieder von",
+                "part-1": "Alle Benutzer von",
                 "part-2": "DABubble",
-                "part-3": "hinzufügen."
+                "part-3": "hinzufügen.",
+                "aria": "Alle Benutzer von DABubble hinzufügen"
             },
             "specific": "Bestimmte Leute hinzufügen"
         },

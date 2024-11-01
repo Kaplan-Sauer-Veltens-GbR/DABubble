@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -19,14 +19,15 @@ interface ExampleUser {
 })
 
 export class UserSelectorComponent {
-
   translocoService: TranslocoService = inject(TranslocoService);
+
+  @Output() emittedUsers: EventEmitter<ExampleUser[]> = new EventEmitter<ExampleUser[]>();
+  selectedUsers: ExampleUser[] = [];
 
   @ViewChild('search') searchInput!: ElementRef;
   @ViewChild('suggestionBox') suggestionBox!: ElementRef;
 
   searchText: string = '';
-  selectedUsers: ExampleUser[] = [];
   allUsers: ExampleUser[] = [
     { name: 'Elias Neumann' },
     { name: 'Antonia Neumann' },
@@ -41,6 +42,10 @@ export class UserSelectorComponent {
   filteredUsers: ExampleUser[] = this.allUsers;
   selectedChip: number = -1;
   selectedSuggestion: number = -1;
+
+  emitSelectedUsers(): void {
+    this.emittedUsers.emit(this.selectedUsers);
+  }
 
   getPlaceholder() {
     if (this.selectedUsers.length === 0) {
@@ -98,6 +103,7 @@ export class UserSelectorComponent {
   addUser(user: ExampleUser) {
     if (!this.selectedUsers.some(u => u.name === user.name)) {
       this.selectedUsers.push({ ...user, timestamp: this.getTimestamp() });
+      this.emitSelectedUsers();
     }
     this.searchText = '';
     this.focusInput();
@@ -114,6 +120,7 @@ export class UserSelectorComponent {
 
   unselectUser(user: ExampleUser) {
     this.selectedUsers = this.selectedUsers.filter(u => u !== user);
+    this.emitSelectedUsers();
   }
 
   handleSuggestionNavigation(event: KeyboardEvent) {

@@ -4,22 +4,22 @@
 
     @if (standalone) {
     <div class="radio-button-box">
-        <app-radio-button (click)="toggleRadioButton(0)" role="radio" name="add-ppl-option" [checked]="isFirstOption" [attr.aria-checked]="isFirstOption">
-            <span>{{t('radio-buttons.all.part-1')}}
+        <app-radio-button (click)="toggleRadioButton(0)" role="radio" [attr.aria-label]="t('radio-buttons.all.aria')"  name="add-ppl-option" [checked]="isFirstOption" [attr.aria-checked]="isFirstOption">
+            <span aria-hidden="true">{{t('radio-buttons.all.part-1')}}
                 <span class="highlight">{{t('radio-buttons.all.part-2')}}</span>
                 {{t('radio-buttons.all.part-3')}}</span>
         </app-radio-button>
-        <app-radio-button (click)="toggleRadioButton(1)" role="radio" name="add-ppl-option" [checked]="!isFirstOption" [attr.aria-checked]="!isFirstOption"><span>{{t('radio-buttons.specific')}}</span></app-radio-button>
+        <app-radio-button (click)="toggleRadioButton(1)" role="radio" [attr.aria-label]="t('radio-buttons.specific')" name="add-ppl-option" [checked]="!isFirstOption" [attr.aria-checked]="!isFirstOption"><span aria-hidden="true">{{t('radio-buttons.specific')}}</span></app-radio-button>
     </div>
     } @else {
         <span class="channel-name"># Channelname</span>
     }
 
     @if (!isFirstOption || !standalone) {
-    <user-selector class="user-selector"></user-selector>
+    <user-selector (emittedUsers)="onUserSelected($event)" class="user-selector"></user-selector>
     }
 
     <div class="footer">
-        <app-button [disabled]="!isValid()">{{t(getSubmitButtonText())}}</app-button>
+        <app-button role="button" [disabled]="!isValid()">{{t(getSubmitButtonText())}}</app-button>
     </div>
 </section>

@@ -6,6 +6,11 @@ import { UserSelectorComponent } from "../../inputs/user-selector/user-selector.
 import { ButtonComponent } from "../../inputs/button/button.component";
 import { RadioButtonComponent } from "../../inputs/radio-button/radio-button.component";
 
+interface ExampleUser {
+  name: string;
+  timestamp?: number; // Optionales Feld, da es nur an bestimmten Stellen verwendet wird
+}
+
 @Component({
   selector: 'add-people-overlay',
   standalone: true,
@@ -16,8 +21,7 @@ import { RadioButtonComponent } from "../../inputs/radio-button/radio-button.com
 export class AddPeopleComponent {
   @Input() standalone: boolean = true;
 
-  selectedUsers = [];
-
+  selectedUsers: ExampleUser[] = [];
   isFirstOption: boolean = true;
 
   getSubmitButtonText(): string {
@@ -39,7 +43,12 @@ export class AddPeopleComponent {
     } else if (this.selectedUsers.length){
       return true;
     } else {
-      return false
+      return false;
     }
+  }
+
+  onUserSelected(users: ExampleUser[]): void {
+    this.selectedUsers = users;
+    console.table(this.selectedUsers);
   }
 }
