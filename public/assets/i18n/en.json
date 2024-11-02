@@ -5,6 +5,28 @@
         "logout": "Log out",
         "save": "Save"
     },
+    "add-people": {
+        "add-button": "Add",
+        "create-button": "Create",
+        "headline": "Add users",
+        "radio-buttons": {
+            "all": {
+                "part-1": "Add all users of ",
+                "part-2": "DABubble",
+                "part-3": ".",
+                "aria": "Add all users of DABubble"
+            },
+            "specific": "Add only following users"
+        },
+        "user-selector": {
+            "placeholder": "Enter name",
+            "add-user": "Add {{user}}",
+            "delete-user": "Remove {{user}}"
+        }
+    },
+    "avatar-bar": {
+        "open": "Manage group members. Current total members: {{amount}}"
+    },
     "chat": {
         "subthread": {
             "open": "Show ",

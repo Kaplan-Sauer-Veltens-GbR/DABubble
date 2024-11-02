@@ -18,6 +18,8 @@ export class UserAvatarComponent {
   translocoService: TranslocoService = inject(TranslocoService);
 
   @Input() hideUsername: boolean = false;
+  @Input() strikeUsername: boolean = false;
+  @Input() hideOnlineStatus: boolean = false;
   @Input() owner: boolean = false;
   @Input() size: number = 50;
   @Input() exampleUser: {name: string, lastActivity: number, isOffline: boolean} = {
@@ -32,6 +34,14 @@ export class UserAvatarComponent {
       suffix = ` (${capitalize(this.translocoService.translate('wordlist.you'))})`;
     } 
     return this.exampleUser.name + suffix;
+  }
+
+  returnAriaLabel(): string {
+    if (!this.hideOnlineStatus) {
+      return this.exampleUser.name + ': ' + this.onlineStatus.getStatus(this.exampleUser.lastActivity, this.exampleUser.isOffline);
+    } else {
+      return this.exampleUser.name;
+    }
   }
 
 }

@@ -30,4 +30,7 @@
 
 .user-name {
     font-size: clamp(16px, 2vw, 20px);
+    &.--striked {
+        text-decoration: line-through;
+    }
 }
