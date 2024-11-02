@@ -12,11 +12,11 @@
         <app-radio-button (click)="toggleRadioButton(1)" role="radio" [attr.aria-label]="t('radio-buttons.specific')" name="add-ppl-option" [checked]="!isFirstOption" [attr.aria-checked]="!isFirstOption"><span aria-hidden="true">{{t('radio-buttons.specific')}}</span></app-radio-button>
     </div>
     } @else {
-        <span class="channel-name"># Channelname</span>
+        <span class="channel-name"># {{channelName}}</span>
     }
 
     @if (!isFirstOption || !standalone) {
-    <user-selector (emittedUsers)="onUserSelected($event)" class="user-selector"></user-selector>
+        <user-selector (emittedUsers)="onUserSelected($event)" class="user-selector"></user-selector>
     }
 
     <div class="footer">

@@ -23,6 +23,8 @@ export class AddPeopleComponent {
 
   selectedUsers: ExampleUser[] = [];
   isFirstOption: boolean = true;
+  channelName: string = 'Example Channel';
+
 
   getSubmitButtonText(): string {
     return !this.standalone ? 'add-button' : 'create-button';
