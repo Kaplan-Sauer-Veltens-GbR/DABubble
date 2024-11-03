@@ -14,15 +14,15 @@
 
       <form>
         <app-input-fields placeholder="Name und Nachname" type="text" [required]="true">
-          <app-icon iconName="user"></app-icon>
+          <app-icon #iconSlot iconName="user"></app-icon>
         </app-input-fields>
 
         <app-input-fields placeholder="beispielname@email.com" type="email" [required]="true">
-          <app-icon iconName="mailReg"></app-icon>
+          <app-icon #iconSlot iconName="mailReg"></app-icon>
         </app-input-fields>
 
         <app-input-fields placeholder="Passwort" type="password" [required]="true">
-          <app-icon iconName="password"></app-icon>
+          <app-icon #iconSlot iconName="password"></app-icon>
         </app-input-fields>
 
         <label class="privacy-check">
