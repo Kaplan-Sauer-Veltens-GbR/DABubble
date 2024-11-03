@@ -14,7 +14,5 @@ export class ChannelSearchbarComponent {
 
   focusInput() {
     this.searchInput.nativeElement.focus();
-    console.log('focus!');
-    
   }
 }

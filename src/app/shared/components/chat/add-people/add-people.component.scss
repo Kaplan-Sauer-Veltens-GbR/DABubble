@@ -1,12 +1,39 @@
 @use "./../../../scss/abstracts/" as *;
 @use "./../../../scss/boxes" as *;
-@use './../../../scss/icons' as *;
+@use "./../../../scss/icons" as *;
 
 .add-people-box {
     position: relative;
+
+    > h3 {
+        margin-block-start: 0;
+    }
+
+    .channel-name {
+        color: $colorPurple2;
+        font-size: 18px;
+    }
+
     .close-btn {
         position: absolute;
-        top: 36px;
-        right: 36px;
+        top: 32px;
+        right: 32px;
+    }
+
+    > .radio-button-box {
+        @include dflex(flex-start, flex-start, 20px, column);
+        .highlight {
+            color: $colorPurple3;
+        }
+    }
+
+    .user-selector {
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .footer {
+        width: 100%;
+        @include dflex(flex-end);
     }
 }

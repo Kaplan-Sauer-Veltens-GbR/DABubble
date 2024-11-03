@@ -1,35 +1,54 @@
 @mixin dflex($j: flex-start, $a: center, $g: 0, $d: row) {
-    display: flex;
-    flex-direction: $d;
-    align-items: $a;
-    justify-content: $j;
-    gap: $g;
+  display: flex;
+  flex-direction: $d;
+  align-items: $a;
+  justify-content: $j;
+  gap: $g;
 }
 
 @mixin forcedSize($w: null, $h: null) {
-    @if $w == null {
-        $w: 0;
-    } 
-    @if $h == null {
-        $h: $w;
-    }
+  @if $w == null {
+    $w: 0;
+  }
+  @if $h == null {
+    $h: $w;
+  }
 
-    width: $w;
-    min-width: $w;
-    max-width: $w;
-    height: $h;
-    min-height: $h;
-    max-height: $h;
+  width: $w;
+  min-width: $w;
+  max-width: $w;
+  height: $h;
+  min-height: $h;
+  max-height: $h;
 }
 
 @mixin hideWhenMobile($minDesktopResulution) {
-    @media (orientation: portrait) or (max-width: ($minDesktopResulution - 1px)) or (pointer: coarse)  {
-        display: none;
-    }
+  @media (orientation: portrait) or (max-width: ($minDesktopResulution - 1px)) or (pointer: coarse) {
+    display: none;
+  }
 }
 
 @mixin hideWhenDesktop($minDesktopResulution) {
-    @media (orientation: landscape) and (min-width: $minDesktopResulution) and (pointer: fine) {
-        display: none;
-    }
+  @media (orientation: landscape) and (min-width: $minDesktopResulution) and (pointer: fine) {
+    display: none;
+  }
+}
+
+@mixin pop-up(
+  $pos: absolute,
+  $w: 100%,
+  $maxW: 0,
+  $maxH: 0,
+  $t: 0,
+  $l: 0,
+  $tr1: -50%,
+  $tr2: -50%
+) {
+  position: absolute;
+  width: 100%;
+  max-width: 872px;
+  max-height: 616px;
+  top: 50%;
+  left: 50%;
+  transform: translate($tr1, $tr2);
 }

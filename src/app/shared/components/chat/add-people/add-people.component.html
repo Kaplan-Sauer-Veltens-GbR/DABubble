@@ -1,4 +1,25 @@
-<section class="add-people-box box--floating" [ngStyle]="curvedEdge ? {} : {'border-top-right-radius' : '0px'}">
+<section *transloco="let t; prefix:'add-people'" class="add-people-box box--floating" [ngStyle]="standalone ? {} : {'border-top-right-radius' : '0px'}">
     <app-icon iconName="close" class="close-btn icon--hoverable" suffix="svg"></app-icon>
-    <h3>Leute hinzufügen</h3>
+    <h3>{{t('headline')}}</h3>
+
+    @if (standalone) {
+    <div class="radio-button-box">
+        <app-radio-button (click)="toggleRadioButton(0)" role="radio" [attr.aria-label]="t('radio-buttons.all.aria')"  name="add-ppl-option" [checked]="isFirstOption" [attr.aria-checked]="isFirstOption">
+            <span aria-hidden="true">{{t('radio-buttons.all.part-1')}}
+                <span class="highlight">{{t('radio-buttons.all.part-2')}}</span>
+                {{t('radio-buttons.all.part-3')}}</span>
+        </app-radio-button>
+        <app-radio-button (click)="toggleRadioButton(1)" role="radio" [attr.aria-label]="t('radio-buttons.specific')" name="add-ppl-option" [checked]="!isFirstOption" [attr.aria-checked]="!isFirstOption"><span aria-hidden="true">{{t('radio-buttons.specific')}}</span></app-radio-button>
+    </div>
+    } @else {
+        <span class="channel-name"># {{channelName}}</span>
+    }
+
+    @if (!isFirstOption || !standalone) {
+        <user-selector (emittedUsers)="onUserSelected($event)" class="user-selector"></user-selector>
+    }
+
+    <div class="footer">
+        <app-button role="button" [disabled]="!isValid()">{{t(getSubmitButtonText())}}</app-button>
+    </div>
 </section>

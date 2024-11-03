@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddPeopleComponent } from './add-people.component';
+import { UserSelectorComponent } from './user-selector.component';
 import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
-describe('AddPeopleComponent', () => {
-  let component: AddPeopleComponent;
-  let fixture: ComponentFixture<AddPeopleComponent>;
+describe('UserSelectorComponent', () => {
+  let component: UserSelectorComponent;
+  let fixture: ComponentFixture<UserSelectorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         getTranslocoModule(),
-        AddPeopleComponent]
+        UserSelectorComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddPeopleComponent);
+    fixture = TestBed.createComponent(UserSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

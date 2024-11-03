@@ -6,7 +6,23 @@
         "save": "Speichern"
     },
     "add-people": {
-        "headline": "Leute hinzufügen"
+        "add-button": "Hinzufügen",
+        "create-button": "Erstellen",
+        "headline": "Leute hinzufügen",
+        "radio-buttons": {
+            "all": {
+                "part-1": "Alle Benutzer von",
+                "part-2": "DABubble",
+                "part-3": "hinzufügen.",
+                "aria": "Alle Benutzer von DABubble hinzufügen"
+            },
+            "specific": "Bestimmte Leute hinzufügen"
+        },
+        "user-selector": {
+            "placeholder": "Name eingeben",
+            "add-user": "{{user}} hinzufügen",
+            "delete-user": "{{user}} entfernen"
+        }
     },
     "avatar-bar": {
         "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
@@ -28,6 +44,15 @@
             "edit": "Bearbeiten",
             "leave": "Channel verlassen",
             "save": "Speichern"
+        },
+        "create-popover": {
+            "channel-headline": "Channel erstellen",
+            "description": "Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein  #marketing zum Beispiel.",
+            "input-headline-name": "Channel-name",
+            "input-headline-description": "Beschreibung",
+            "input-name-placeholder": "z.B. Kooperationsprojekte",
+            "input-description-placeholder": "Deine Beschreibung",
+            "btn": "Erstellen"
         }
     },
     "email": {
