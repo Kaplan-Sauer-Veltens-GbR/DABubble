@@ -1,12 +1,12 @@
 @use "../shared/scss/abstracts/" as *;
+@use "../shared/scss/_boxes.scss" as *;
+@use "../shared/scss/_hovers.scss" as *;
+@use "../shared/scss/icons" as *;
 
 section {
-    width: 100vw;
-    
-    background-color: $colorBG;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-

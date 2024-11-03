@@ -61,4 +61,5 @@ export type IconName =
 'google' |
 'user' |
 'password' |
-'mailReg'
+'mailReg' |
+'dabubble-logo'
