@@ -98,4 +98,10 @@ section {
     -50%,
     -50%
   );
+  &.addMember {
+    right: 5%;
+    top: 20%;
+    left: unset;
+    transform:translate(0,0);
+  }
 }

@@ -4,7 +4,7 @@
     background-color: white;
     position: absolute;
     left: 0;
-    bottom: clamp(5%, 2vh, 40%);
+    bottom: clamp(15%, 25vh, 30%);
     @include dflex(space-between, $g: 10px, $d: row-reverse);
     padding: 14px 23px;
     box-sizing: border-box;

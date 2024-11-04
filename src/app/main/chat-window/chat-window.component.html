@@ -6,9 +6,9 @@
       <app-icon iconName="arrowDown"></app-icon>
     </div>
     <div>
-      <app-avatar-bar (click)="workspace.openDialog('addMember')"></app-avatar-bar>
+      <app-avatar-bar (click)="workspace.openDialog('memberList')"></app-avatar-bar>
       <div class="bg-circle">
-        <app-icon (click)="workspace.openDialog('memberList')" class="icon--hover scale" iconName="personAdd"></app-icon>
+        <app-icon (click)="workspace.openDialog('addMember')" class="icon--hover scale" iconName="personAdd"></app-icon>
       </div>
     </div>
   </header>
@@ -35,12 +35,12 @@
     <div class="pop-up">
     <channel-edit></channel-edit>
 </div>
-  } @else if (workspace.currentDialog === 'memberList') {
-    <div class="pop-up">
+  } @else if (workspace.currentDialog === 'addMember') {
+    <div class="pop-up addMember">
       <add-people-overlay></add-people-overlay>
   </div>
-  }@else if (workspace.currentDialog === 'addMember') {
-    <div class="pop-up">
+  }@else if (workspace.currentDialog === 'memberList') {
+    <div class="pop-up" >
       <app-member-list></app-member-list>
     </div>
   }
