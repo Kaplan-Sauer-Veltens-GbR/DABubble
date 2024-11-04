@@ -13,6 +13,7 @@ section {
   box-sizing: border-box;
   background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
   overflow: hidden;
+  position: relative;
 }
 
 .animation-container {
@@ -20,13 +21,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  // overflow: hidden;
 
   .logo-wrapper {
+    width: 150px;
     position: relative;
     z-index: 2;
-
-  background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+    background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+    background-position: center;
+    background-size: 100vw 100vh;
     padding: 10px;
     animation: moveLogoLeft 1s forwards;
   }
@@ -44,13 +46,12 @@ section {
 }
 
 ::ng-deep .dabubble-logo img {
-  width: 150px;
+  width: 130px;
   z-index: 3;
   animation: fadeInLogo 1s forwards;
 }
 
-
-
+// Keyframes für die Animationen
 
 @keyframes moveLogoLeft {
   0% {
@@ -60,7 +61,6 @@ section {
     transform: translateX(-20px);
   }
 }
-
 
 @keyframes revealText {
   0% {
