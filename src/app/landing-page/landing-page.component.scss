@@ -12,65 +12,63 @@ section {
   padding: 32px;
   box-sizing: border-box;
   background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
-  overflow: hidden; // Verhindert, dass die Animation sichtbar ist, bis der Text die richtige Position erreicht
+  overflow: hidden;
 }
 
 .animation-container {
+  position: relative;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: hidden; // Verhindert, dass Teile der Schrift zu früh sichtbar werden
+  justify-content: center;
+  // overflow: hidden;
 
   .logo-wrapper {
     position: relative;
-    z-index: 2; // Das Logo bleibt über dem Text
-    animation: moveLogoLeft 1s forwards; // Animation, um das Logo nach links zu verschieben
+    z-index: 2;
+
+  background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+    padding: 10px;
+    animation: moveLogoLeft 1s forwards;
   }
 
   .animation-text {
     font-size: 48px;
     color: white;
-    opacity: 0; // Schrift anfangs unsichtbar
+    opacity: 0;
     position: relative;
-    z-index: 1; // Text bleibt unter dem Logo
-    transform: translateX(100%); // Startet außerhalb des sichtbaren Bereichs, rechts vom Bildschirm
-    animation: slideInText 2s forwards 1s; // Animation startet mit einer Verzögerung von 1s
-    white-space: nowrap; // Verhindert Zeilenumbrüche, um den Text linear gleiten zu lassen
+    z-index: 1;
+    transform: translateX(-300px);
+    animation: revealText 2s forwards 1s;
+    white-space: nowrap;
   }
 }
 
 ::ng-deep .dabubble-logo img {
-  width: 100px;
+  width: 150px;
+  z-index: 3;
   animation: fadeInLogo 1s forwards;
-  z-index: 3; // Das Logo soll sicher über dem Text bleiben
 }
 
-// Keyframes für die Animationen
 
-// Animation, um das Logo leicht nach links zu verschieben
+
+
 @keyframes moveLogoLeft {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-20px); // Logo leicht nach links bewegen
+    transform: translateX(-20px);
   }
 }
 
-// Animation für den Text, der von rechts ins Sichtfeld gleitet
-@keyframes slideInText {
+
+@keyframes revealText {
   0% {
-    opacity: 0; // Startet unsichtbar
-    transform: translateX(100%); // Startet rechts außerhalb des Bildschirms
-  }
-  50% {
-    opacity: 1; // Wird sichtbar, während es ins Sichtfeld kommt
+    opacity: 0;
+    transform: translateX(-200px);
   }
   100% {
-    transform: translateX(0); // Text endet direkt neben dem Logo
-    opacity: 1; // Voll sichtbar
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
