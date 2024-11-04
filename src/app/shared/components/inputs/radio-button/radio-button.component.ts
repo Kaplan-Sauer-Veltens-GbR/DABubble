@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class RadioButtonComponent {
   @Input() name: string = 'radio-btn';
-
+  @Input() checked: boolean = false;
 }
