@@ -1,4 +1,5 @@
-import { Component ,OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { AvatarPickerComponent } from "./avatar-picker/avatar-picker.component";
@@ -9,14 +10,20 @@ import { IconLibaryComponent } from "../shared/components/icon-component/icon-li
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [SignInComponent, SignUpComponent, AvatarPickerComponent, ResetPasswordEmailComponent, ResetPasswordComponent, IconLibaryComponent],
+  imports: [
+    SignInComponent, SignUpComponent, AvatarPickerComponent,
+    ResetPasswordEmailComponent, ResetPasswordComponent, IconLibaryComponent,CommonModule
+  ],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+  styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  showAnimation = true;
+  showAnimation = true; // Diese Variable steuert, ob die Animation sichtbar ist
 
   ngOnInit() {
-
+    // Verberge die Animation nach 3 Sekunden
+    setTimeout(() => {
+      this.showAnimation = false;
+    }, 3000);
   }
 }

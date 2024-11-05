@@ -7,6 +7,20 @@ section {
   width: 100vw;
   height: 100vh;
   display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  box-sizing: border-box;
+  background-color: $colorBG;
+  overflow: hidden;
+  position: relative;
+}
+
+.animation {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 32px;
@@ -45,13 +59,13 @@ section {
   }
 }
 
-::ng-deep .dabubble-logo img {
+::ng-deep .dabubble-logo-animation img {
   width: 130px;
   z-index: 3;
   animation: fadeInLogo 1s forwards;
 }
 
-// Keyframes für die Animationen
+
 
 @keyframes moveLogoLeft {
   0% {
@@ -71,4 +85,48 @@ section {
     opacity: 1;
     transform: translateX(0px);
   }
+}
+
+// styling für den inhalt der landingpage
+
+.logo-signup-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 150px;
+  }
+}
+
+::ng-deep .dabubble-logo {
+  img {
+    width: 70px;
+  }
+}
+
+.logo-container {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.signUp-container {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  gap: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: $colorPurple1;
+  &:hover {
+    border-radius: 40px;
+    background-color: $colorBG;
+    filter: none;
+  }
+}
+.privacy-container {
+  display: flex;
+  gap: 48px;
 }

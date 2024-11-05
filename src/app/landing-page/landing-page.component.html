@@ -1,11 +1,18 @@
-<!-- <section>
+<!-- Animation wird nur angezeigt, solange `showAnimation` true ist -->
+<div *ngIf="showAnimation" class="animation">
+  <div class="animation-container">
+    <div class="logo-wrapper">
+      <app-icon class="dabubble-logo-animation" iconName="dabubble-logo"></app-icon>
+    </div>
+    <span class="animation-text">DABubble</span>
+  </div>
+</div>
+
+<!-- Inhalt der Landing-Page wird angezeigt, wenn `showAnimation` false ist -->
+<section *ngIf="!showAnimation">
   <div class="logo-signup-container">
     <div class="logo-container">
-      <app-icon
-        class="dabubble-logo"
-        #iconSlot
-        iconName="dabubble-logo"
-      ></app-icon>
+      <app-icon class="dabubble-logo" #iconSlot iconName="dabubble-logo"></app-icon>
       <span>DABubble</span>
     </div>
 
@@ -23,13 +30,4 @@
     <span><a href="">Impressum</a></span>
     <span><a href="">Datenschutz</a></span>
   </div>
-</section> -->
-<section>
-  <div class="animation-container">
-    <div class="logo-wrapper">
-      <app-icon class="dabubble-logo" iconName="dabubble-logo"></app-icon>
-    </div>
-    <span class="animation-text">DABubble</span>
-  </div>
 </section>
-
