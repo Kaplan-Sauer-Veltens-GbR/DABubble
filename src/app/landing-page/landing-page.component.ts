@@ -18,12 +18,12 @@ import { IconLibaryComponent } from "../shared/components/icon-component/icon-li
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  showAnimation = true; // Diese Variable steuert, ob die Animation sichtbar ist
+  showAnimation = true;
 
   ngOnInit() {
-    // Verberge die Animation nach 3 Sekunden
+
     setTimeout(() => {
       this.showAnimation = false;
-    }, 3000);
+    }, 5000);
   }
 }

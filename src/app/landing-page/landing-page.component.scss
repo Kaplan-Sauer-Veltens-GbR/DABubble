@@ -25,7 +25,7 @@ section {
   align-items: center;
   padding: 32px;
   box-sizing: border-box;
-  background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+  background: linear-gradient(1.46deg, #313ae6 1.22%, #797ef3 98.76%);
   overflow: hidden;
   position: relative;
 }
@@ -35,16 +35,17 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: slideToCorner 2s forwards 3s;
 
   .logo-wrapper {
     width: 150px;
     position: relative;
     z-index: 2;
-    background: linear-gradient(1.46deg, #313AE6 1.22%, #797EF3 98.76%);
+    background: linear-gradient(1.46deg, #313ae6 1.22%, #797ef3 98.76%);
     background-position: center;
     background-size: 100vw 100vh;
     padding: 10px;
-    animation: moveLogoLeft 1s forwards;
+    animation: moveLogoLeft 1s forwards, removeBackground 3s forwards 2s;
   }
 
   .animation-text {
@@ -65,7 +66,25 @@ section {
   animation: fadeInLogo 1s forwards;
 }
 
+// Keyframes für die Animationen
 
+@keyframes backgroundToColorBG {
+  0% {
+    background: linear-gradient(1.46deg, #313ae6 1.22%, #797ef3 98.76%);
+  }
+  100% {
+    background: $colorBG;
+  }
+}
+
+@keyframes removeBackground {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: none;
+  }
+}
 
 @keyframes moveLogoLeft {
   0% {
@@ -83,11 +102,22 @@ section {
   }
   100% {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
-// styling für den inhalt der landingpage
+@keyframes slideToCorner {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translate(-35vw, -50vh);
+    opacity: 0;
+  }
+}
+
+// Styling für den Inhalt der Landing-Page
 
 .logo-signup-container {
   width: 100%;
@@ -126,6 +156,7 @@ a {
     filter: none;
   }
 }
+
 .privacy-container {
   display: flex;
   gap: 48px;
