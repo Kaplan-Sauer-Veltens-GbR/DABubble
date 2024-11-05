@@ -5,20 +5,23 @@ import { Injectable } from '@angular/core';
 })
 export class WorkspaceService {
   isOpen: boolean = true;
-  currentDialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut' | 'textEdit' | null =
-    null;
-  isSelected:boolean = false;
+  currentDialog:
+    | 'channelEdit'
+    | 'memberList'
+    | 'addMember'
+    | 'logOut'
+    | 'textEdit'
+    | 'createChannel'
+    | null = null;
+  isSelected: boolean = false;
   constructor() {}
-
 
   toggle() {
     this.isOpen = !this.isOpen;
   }
 
-
-  openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut') {
+  openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut'|'textEdit'|'createChannel') {
     if (this.currentDialog === dialog) {
-      console.log('close');
 
       this.closeDialog();
     } else {
@@ -27,14 +30,11 @@ export class WorkspaceService {
     }
   }
 
-
   closeDialog() {
     this.currentDialog = null;
   }
 
-
   whenSelected() {
     this.isSelected = !this.isSelected;
-    }
+  }
 }
-

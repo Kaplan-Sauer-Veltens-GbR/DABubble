@@ -1,86 +1,107 @@
-@use '../../shared/scss/abstracts/_index.scss' as *;
-@use '../../shared/scss/_boxes.scss';
-@use '../../shared/scss/_hovers.scss';
+@use "../../shared/scss/abstracts/_index.scss" as *;
+@use "../../shared/scss/_boxes.scss";
+@use "../../shared/scss/_hovers.scss";
 
 section {
-    border-radius: 30px;
-    // padding: 20px;
-    background-color: white;
-    box-sizing: border-box;
-   
-    header {
-        @include dflex(space-between);
-        padding: 30px 45px 0 45px;
-        margin-bottom: 150px;
-        h2 {
-            margin: 0
-        }
+  border-radius: 30px;
+  // padding: 20px;
+  background-color: white;
+  box-sizing: border-box;
+  max-height: 940px;
+  height: 100%;
 
-        >div {
-            @include dflex(flex-start,center,10px);
-        }
+  header {
+    @include dflex(space-between);
+    padding: 30px 45px 0 45px;
+    margin-bottom: clamp(55px, 10vh, 150px);
+    h2 {
+      margin: 0;
     }
 
-    .text-field{
-        padding  : 0 clamp(10px, 45px, 2vw);
-        margin-top: 60px;
-        padding-bottom: 40px;
+    > div {
+      @include dflex(flex-start, center, 10px);
     }
+  }
 
-     
+  .text-field {
+    padding: 0 clamp(10px, 45px, 2vw);
+    margin-top: 60px;
+    padding-bottom: 40px;
+  }
+}
+
+.chat {
+  overflow-y: auto;
+  max-height: 550px;
 }
 
 .bg-circle {
-    background-color: $colorBG;
-    width: 40px;
-    height: 40px;
-    @include dflex(center,center);
-    border-radius: 40px;
+  background-color: $colorBG;
+  width: 40px;
+  height: 40px;
+  @include dflex(center, center);
+  border-radius: 40px;
 }
 
 .seperator {
-    height: 1px;
-    background-color: $colorLines;
-    margin: 0 15px;
-     flex: 1;
-    
+  height: 1px;
+  background-color: $colorLines;
+  margin: 0 15px;
+  flex: 1;
 }
 
 .day-line {
-    width: 100%;
-    @include dflex(flex-start center);
+  width: 100%;
+  @include dflex(flex-start, center);
 
-    .seperator {
-        &:nth-child(1) {
-            margin-right: 0;
-        }
-        &:nth-child(3) {
-            margin-left: 0;
-        }
+  .seperator {
+    &:nth-child(1) {
+      margin-right: 0;
     }
+    &:nth-child(3) {
+      margin-left: 0;
+    }
+  }
 
-    .box--bordered {
-        padding: 5px 15px;
-    }
-    margin-bottom: 20px;
+  .box--bordered {
+    padding: 5px 15px;
+  }
+  margin-bottom: 20px;
 }
 
 .day-box {
-    width: fit-content;
-
+  width: fit-content;
 }
 
 .field--hover {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 .selected {
-    background-color: $colorBG;
-    width: fit-content;
-    border-radius: 40px;
-    color: $colorPurple3;
-   app-icon {
-            filter: $colorTransformPurple3;
-        }
-    
+  background-color: $colorBG;
+  width: fit-content;
+  border-radius: 40px;
+  color: $colorPurple3;
+  app-icon {
+    filter: $colorTransformPurple3;
+  }
+}
+.pop-up {
+  @include pop-up(
+    absolute,
+    100%,
+    872px,
+    616px,
+    clamp(40%, 2vh, 50%),
+    50%,
+    0,
+    -50%,
+    -50%
+  );
+  &.addMember {
+    right: 5%;
+    top: 20%;
+    left: unset;
+    transform:translate(0,0);
+  }
 }

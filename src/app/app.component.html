@@ -1,3 +1,12 @@
-
-<app-playground></app-playground>
-<router-outlet />
+<div class="main-container">
+<app-header></app-header>
+<main>
+<app-sidebar></app-sidebar>
+<div class="app-container">
+<router-outlet></router-outlet>
+</div>
+</main>
+</div>
+@if(workspace.currentDialog != null) {
+    <div class="overlay"></div>
+}

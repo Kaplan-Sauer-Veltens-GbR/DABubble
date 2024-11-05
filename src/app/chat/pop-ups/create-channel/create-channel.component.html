@@ -5,13 +5,13 @@
     <header class="mb-20">
       <h2>{{ t("channel-headline") }}</h2>
       <div class="hover-circle">
-        <app-icon class="icon--hover scale" iconName="close"></app-icon>
+        <app-icon (click)="workspace.closeDialog()" class="icon--hover scale" iconName="close"></app-icon>
       </div>
     </header>
     <div class="mb-20">
       <span>{{ t("description") }}</span>
     </div>
-    <div class="column">
+    <div class="column">  
       <div>
         <h3>{{t('input-headline-name')}}</h3>
         <app-input-fields placeholder="{{t('input-name-placeholder')}}">
