@@ -138,6 +138,10 @@ section {
 .logo-container {
   font-size: 24px;
   font-weight: 800;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
 }
 
 .signUp-container {
@@ -147,15 +151,17 @@ section {
   gap: 24px;
 }
 
-a {
+::ng-deep .links {
   text-decoration: none;
   color: $colorPurple1;
+
   &:hover {
     border-radius: 40px;
     background-color: $colorBG;
     filter: none;
   }
 }
+
 
 .privacy-container {
   display: flex;
