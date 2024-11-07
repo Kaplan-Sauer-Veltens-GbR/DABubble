@@ -3,6 +3,7 @@ import { Auth, GoogleAuthProvider, OAuthCredential, onAuthStateChanged, signInWi
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
 import { Observable } from 'rxjs';
+import { DbService } from './db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthService {
   private auth = inject(Auth);
   private provider = new GoogleAuthProvider();
   private firestore = inject(Firestore);
+  private dataBase = inject(DbService)
   constructor() {}
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ getCredential(result:UserCredential){
       this.getCredential(result);
       this.getAuthState().subscribe((user) => {    // should create a observable  
         if (user) {
+          this.dataBase.saveUserData(user) // from db service
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);

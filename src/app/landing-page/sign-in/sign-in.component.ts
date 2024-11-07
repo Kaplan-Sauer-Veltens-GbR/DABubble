@@ -15,6 +15,7 @@ import {
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -32,4 +33,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignInComponent {
   public auth = inject(AuthService)
+  public dataBase = inject(DbService)
+
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+   
+  }
 }

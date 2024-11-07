@@ -8,7 +8,7 @@ import { User } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class DbService {
-  private auth = inject(AuthService);
+  
   private firestore = inject(Firestore);
   constructor() { }
   
@@ -23,7 +23,10 @@ async saveUserData(user:User):Promise<void> {
     photoURL: user.photoURL,
     lastLogin: new Date(),
     status: ''
+    
   }
+  console.log(userData,'hallo');
+  
 }
 
 
