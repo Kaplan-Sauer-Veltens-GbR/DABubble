@@ -29,5 +29,6 @@ export class AppComponent {
     if (isloggedIn) {
       this.router.navigate([`main/user`,this.authService.getLocalStorage('userUID')]);
     }
+    this.authService.getAuthState();
   }
 }
