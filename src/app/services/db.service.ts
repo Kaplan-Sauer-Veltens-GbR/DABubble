@@ -32,16 +32,14 @@ export class DbService {
   
 }
 
-updateOnDB(userData:UserData,userRef:DocumentReference) {
-  setDoc(userRef,userData, {merge:true})
-  this.routeWithId(userData.uid)
-}
+  updateOnDB(userData:UserData,userRef:DocumentReference) {
+    setDoc(userRef,userData, {merge:true})
+    this.routeWithId(userData.uid)
+  }
 
 
-routeWithId(uId:string) {
-this.router.navigate(['user',uId])
-}
+  routeWithId(uId:string) {
+  this.router.navigate(['main/user',uId])
+  }}
 
-
-}
- 
+  
