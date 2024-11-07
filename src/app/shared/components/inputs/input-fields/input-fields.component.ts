@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, ElementRef, Input } from '@angular/core';
+import { Component, ContentChild, ElementRef, input, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,8 @@ export class InputFieldsComponent {
   @Input() type: string = 'text';
   @Input() value: string = '';
   @Input() required: boolean = false;
-  @Input() inputId:string =``
+  @Input() inputId:string = '';
+  @Input() ngValue:string = '';
   hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {

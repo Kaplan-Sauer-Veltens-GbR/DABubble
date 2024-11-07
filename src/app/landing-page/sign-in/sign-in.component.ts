@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 import { IconLibaryComponent } from '../../shared/components/icon-component/icon-libary.component';
@@ -29,24 +29,23 @@ import { DbService } from '../../services/db.service';
     ButtonComponent,
     InputFieldsComponent,
     IconLibaryComponent,
+    
   ],
 })
 export class SignInComponent {
   public auth = inject(AuthService)
   public dataBase = inject(DbService)
-
-  email:string = '';
-  password:string = '';
+  email:string = ''
 
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    
    
   }
 
-  onSubmit() {
-    console.log(this.email);
+
+  onSubmit(form:any) {
+    console.log();
     
   }
 }

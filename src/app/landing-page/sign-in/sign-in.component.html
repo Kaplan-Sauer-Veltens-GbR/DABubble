@@ -5,12 +5,12 @@
       Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.
     </p>
 
-    <form (ngSubmit)="onSubmit()" #loginForm>
-      <app-input-fields placeholder="beispielname@email.com" name="email" [(ngModel)]="email" type="email" [required]="true" icon="mail">
+    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)"  >
+      <app-input-fields  [(ngModel)]="email"  placeholder="beispielname@email.com"  type="email" [required]="true" icon="mail">
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
 
-      <app-input-fields [(ngModel)]="password" name="password" placeholder="Passwort" type="password" [required]="true" icon="lock">
+      <app-input-fields   placeholder="Passwort" type="password" [required]="true" icon="lock">
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
 
@@ -26,7 +26,7 @@
       </button>
 
       <div class="action-buttons">
-        <app-button (click)="onSubmit()" [filled]="true" label="Anmelden">Anmelden</app-button>
+        <app-button (click)="onSubmit(signInForm)" [filled]="true" label="Anmelden">Anmelden</app-button>
         <app-button [filled]="false" label="Gäste-Login">Gäste-Login</app-button>
       </div>
     </form>
