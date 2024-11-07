@@ -76,7 +76,13 @@ getCredential(result:UserCredential){
     const userUID =localStorage.getItem('userUID');
     return userUID !== null
   }
+
+  getLocalStorage(storageKey:string) {
+    return localStorage.getItem(storageKey);
+  }
 }
+
+
 
 
 

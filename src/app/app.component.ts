@@ -26,9 +26,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     const isloggedIn = this.authService.checkUserLoggedIn();
-    const userUID =localStorage.getItem('userUID');
     if (isloggedIn) {
-      this.router.navigate([`main/user`,userUID]);
+      this.router.navigate([`main/user`,this.authService.getLocalStorage('userUID')]);
     }
   }
 }
