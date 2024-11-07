@@ -35,14 +35,17 @@ import { DbService } from '../../services/db.service';
 export class SignInComponent {
   public auth = inject(AuthService)
   public dataBase = inject(DbService)
-  email:string = ''
+  signInData= {
+    email: '',
+    password: ''
+  }
+  
 
 
   ngOnInit(): void {
     
    
   }
-
 
   onSubmit(form:any) {
     console.log();

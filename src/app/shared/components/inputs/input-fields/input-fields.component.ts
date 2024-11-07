@@ -17,7 +17,6 @@ export class InputFieldsComponent {
   @Input() value: string = '';
   @Input() required: boolean = false;
   @Input() inputId:string = '';
-  @Input() ngValue:string = '';
   hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {
