@@ -8,5 +8,6 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 export const routes: Routes = [
     {path: 'playground', component: PlaygroundComponent},
     {path: '', component: LandingPageComponent},
+    {path: 'user/:uid', component: ChatWindowComponent}
 
 ];
