@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, ElementRef, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-fields',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './input-fields.component.html',
   styleUrls: ['./input-fields.component.scss']
 })

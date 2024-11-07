@@ -35,6 +35,9 @@ export class SignInComponent {
   public auth = inject(AuthService)
   public dataBase = inject(DbService)
 
+  email:string = '';
+  password:string = '';
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -43,6 +46,7 @@ export class SignInComponent {
   }
 
   onSubmit() {
+    console.log(this.email);
     
   }
 }

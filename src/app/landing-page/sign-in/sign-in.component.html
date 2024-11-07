@@ -6,11 +6,11 @@
     </p>
 
     <form (ngSubmit)="onSubmit()" #loginForm>
-      <app-input-fields placeholder="beispielname@email.com" name="" type="email" [required]="true" icon="mail">
+      <app-input-fields placeholder="beispielname@email.com" name="email" [(ngModel)]="email" type="email" [required]="true" icon="mail">
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
 
-      <app-input-fields placeholder="Passwort" type="password" [required]="true" icon="lock">
+      <app-input-fields [(ngModel)]="password" name="password" placeholder="Passwort" type="password" [required]="true" icon="lock">
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
 
