@@ -60,6 +60,7 @@ getCredential(result:UserCredential){
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);
+          localStorage.setItem('userUID', user.uid)
           
          
           
@@ -70,7 +71,12 @@ getCredential(result:UserCredential){
         }
       });
     });
-  }}
+  }
+  checkUserLoggedIn():boolean {
+    const userUID =localStorage.getItem('userUID');
+    return userUID !== null
+  }
+}
 
 
  

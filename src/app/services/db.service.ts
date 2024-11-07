@@ -42,4 +42,4 @@ export class DbService {
   this.router.navigate(['main/user',uId])
   }}
 
-  
+
