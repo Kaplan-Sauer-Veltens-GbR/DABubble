@@ -41,4 +41,8 @@ export class SignInComponent {
     //Add 'implements OnInit' to the class.
    
   }
+
+  onSubmit() {
+    
+  }
 }

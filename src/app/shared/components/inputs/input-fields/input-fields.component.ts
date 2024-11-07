@@ -15,6 +15,7 @@ export class InputFieldsComponent {
   @Input() type: string = 'text';
   @Input() value: string = '';
   @Input() required: boolean = false;
+  @Input() inputId:string =``
   hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {

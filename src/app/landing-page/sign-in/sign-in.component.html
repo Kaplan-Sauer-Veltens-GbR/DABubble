@@ -5,8 +5,8 @@
       Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.
     </p>
 
-    <form>
-      <app-input-fields placeholder="beispielname@email.com" type="email" [required]="true" icon="mail">
+    <form (ngSubmit)="onSubmit()" #loginForm>
+      <app-input-fields placeholder="beispielname@email.com" name="" type="email" [required]="true" icon="mail">
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
 
@@ -26,7 +26,7 @@
       </button>
 
       <div class="action-buttons">
-        <app-button [filled]="true" label="Anmelden">Anmelden</app-button>
+        <app-button (click)="onSubmit()" [filled]="true" label="Anmelden">Anmelden</app-button>
         <app-button [filled]="false" label="Gäste-Login">Gäste-Login</app-button>
       </div>
     </form>

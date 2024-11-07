@@ -9,6 +9,7 @@ import {
   signInWithRedirect,
   User,
   UserCredential,
+  createUserWithEmailAndPassword
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -71,7 +72,6 @@ export class AuthService {
 
   signInWithGooglePopup() {
     signInWithPopup(this.auth, this.provider).then((result) => {
-     
       this.getAuthState().subscribe((user) => {
         // should create a observable
         if (user) {
@@ -95,4 +95,14 @@ export class AuthService {
   getLocalStorage(storageKey: string) {
     return localStorage.getItem(storageKey);
   }
+
+async createUserWithEmailAndPassword(email:string , password:string) {
+try {
+  const userCredential = await createUserWithEmailAndPassword(this.auth,email,password)
+  console.log('user succefully created', userCredential.user);
+  
+}catch(error) {
+  
+}
+}
 }
