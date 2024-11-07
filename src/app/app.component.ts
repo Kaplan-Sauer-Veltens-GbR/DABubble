@@ -25,7 +25,6 @@ export class AppComponent {
   private router = inject(Router);
 
   ngOnInit(): void {
-    debugger
     const isloggedIn = this.authService.checkUserLoggedIn();
     const userUID =localStorage.getItem('userUID');
     if (isloggedIn) {
