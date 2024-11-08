@@ -53,7 +53,9 @@ export class SignInComponent {
   }
 
   onSubmit(form:any) {
-    console.log(this.email);
+    
+    
+   this.auth.signIn(this.email,this.password)
     
   }
 }

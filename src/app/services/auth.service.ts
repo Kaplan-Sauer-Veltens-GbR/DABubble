@@ -9,13 +9,17 @@ import {
   signInWithRedirect,
   User,
   UserCredential,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  AuthErrorCodes,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
 import { Observable } from 'rxjs';
 import { DbService } from './db.service';
 import { Router } from '@angular/router';
+import { FirebaseError } from '@angular/fire/app';
 
 @Injectable({
   providedIn: 'root',
@@ -34,13 +38,12 @@ export class AuthService {
     return signInWithRedirect(this.auth, this.provider);
   }
 
-
   async logout() {
     try {
-      debugger
+      debugger;
       await this.auth.signOut();
       this.router.navigate(['']);
-      localStorage.removeItem('userUID')
+      localStorage.removeItem('userUID');
     } catch (error) {
       console.error('error  loggin out', error);
     }
@@ -51,9 +54,8 @@ export class AuthService {
     return new Observable((observer) => {
       onAuthStateChanged(this.auth, (user) => {
         observer.next(user);
-        if(user === null) {
+        if (user === null) {
           console.log('der benutzer ist off');
-          
         }
       });
     });
@@ -80,7 +82,6 @@ export class AuthService {
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);
           localStorage.setItem('userUID', user.uid);
-        
         } else {
           console.log('user not logged in / or not found');
         }
@@ -96,13 +97,40 @@ export class AuthService {
     return localStorage.getItem(storageKey);
   }
 
-async createUserWithEmailAndPassword(email:string , password:string) {
-try {
-  const userCredential = await createUserWithEmailAndPassword(this.auth,email,password)
-  console.log('user succefully created', userCredential.user);
-  
-}catch(error) {
-  
-}
-}
+  async createUserWithEmailAndPassword(
+    email: string,
+    password: string
+  ): Promise<void> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      console.log('user succefully created', userCredential.user);
+    } catch (error) {}
+  }
+
+  async signIn(email: string, password: string): Promise<void> {
+    try {
+      const unserCredential = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      console.log(unserCredential, 'logged in');
+    } catch (error: any) {
+     //check if error really is a firebase error
+      if (error instanceof FirebaseError) {
+        if (error.code === AuthErrorCodes.INVALID_EMAIL) {
+          console.error('Ungültiges E-Mail-Format:', error.message);
+        } else if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+          console.error('Falsches Passwort:', error.message);
+        }
+      } else {
+        console.error('unkown error:', error);
+       
+      }
+    }
+  }
 }
