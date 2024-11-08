@@ -43,7 +43,7 @@ export class AuthService {
       debugger;
       await this.auth.signOut();
       this.router.navigate(['']);
-      localStorage.removeItem('userUID');
+      this.removeUIDLocal('userUID')
     } catch (error) {
       console.error('error  loggin out', error);
     }
@@ -81,7 +81,7 @@ export class AuthService {
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);
-          localStorage.setItem('userUID', user.uid);
+          this.saveUIDLocal('UserUID',user.uid)
         } else {
           console.log('user not logged in / or not found');
         }
@@ -91,6 +91,14 @@ export class AuthService {
   checkUserLoggedIn(): boolean {
     const userUID = localStorage.getItem('userUID');
     return userUID !== null;
+  }
+
+  saveUIDLocal(key:string,uID:string) {
+    localStorage.setItem(key, uID);
+  }
+
+  removeUIDLocal(key:string) {
+    localStorage.removeItem(key);
   }
 
   getLocalStorage(storageKey: string) {
@@ -128,7 +136,7 @@ export class AuthService {
       if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('wrong password / or email:', error.message);
       } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
-        console.error('input is not a valid email pattern')
+        console.error('input is not a valid email pattern');
       }
     } else {
       console.error('unkown error:', error);
