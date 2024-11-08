@@ -130,6 +130,8 @@ export class AuthService {
       console.log(unserCredential, 'logged in');
       const uID = unserCredential.user.uid;
       this.saveUIDLocal('userUID',uID);
+      const currentUser = this.auth.currentUser;
+     
       this.dataBase.routeWithId(uID);
     } catch (error: any) {
       this.handleFirbaseError(error);

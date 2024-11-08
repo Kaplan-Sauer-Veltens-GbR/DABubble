@@ -40,7 +40,8 @@ export class DbService {
 
 
   routeWithId(uId:string) {
-  this.router.navigate(['main/user',uId])
+   
+  this.router.navigate(['main/user',uId]) // add to ow nservice so i can use auth methodes on it tomorrow
   }}
 
 
