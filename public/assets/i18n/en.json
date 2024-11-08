@@ -1,111 +1,136 @@
 {
-    "actions": {
-        "cancel": "Cancel",
-        "edit": "Edit",
-        "logout": "Log out",
-        "save": "Save"
+  "actions": {
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "logout": "Log out",
+    "save": "Save"
+  },
+  "add-people": {
+    "add-button": "Add",
+    "create-button": "Create",
+    "headline": "Add users",
+    "radio-buttons": {
+      "all": {
+        "part-1": "Add all users of ",
+        "part-2": "DABubble",
+        "part-3": ".",
+        "aria": "Add all users of DABubble"
+      },
+      "specific": "Add only following users"
     },
-    "add-people": {
-        "add-button": "Add",
-        "create-button": "Create",
-        "headline": "Add users",
-        "radio-buttons": {
-            "all": {
-                "part-1": "Add all users of ",
-                "part-2": "DABubble",
-                "part-3": ".",
-                "aria": "Add all users of DABubble"
-            },
-            "specific": "Add only following users"
-        },
-        "user-selector": {
-            "placeholder": "Enter name",
-            "add-user": "Add {{user}}",
-            "delete-user": "Remove {{user}}"
-        }
-    },
-    "avatar-bar": {
-        "open": "Manage group members. Current total members: {{amount}}"
-    },
-    "chat": {
-        "subthread": {
-            "open": "Show ",
-            "replies": {
-                "single": "one reply",
-                "multiple": "{{amount}} replies"
-            }
-        }
-    },
-    "channel": {
-        "edit-popover": {
-            "channel-name": "Channel name",
-            "created-by": "Created by",
-            "description": "Description",
-            "edit": "Edit",
-            "leave": "Leave channel",
-            "save": "Save"
-        },
-        "create-popover": {
-            "channel-headline": "Create channel",
-            "description": "Channels are designed for your team’s communication. Ideally, they should be topic-based, such as #marketing, for example.",
-            "input-headline-name": "Channel name",
-            "input-headline-description": "Description",
-             "input-name-placeholder": "e.g. cooperative projects.",
-            "input-description-placeholder": "Your description",
-             "btn": "Establish"
-        }
-    },
-    "email": {
-        "address": "E-mail address",
-        "send": "New E-mail to: {{recipient}}"
-    },
-    "profile": {
-        "open": "Display {{name}}s profile",
-        "title": "Profile",
-        "msg": "Message"
-    },
-    "reaction-details": {
-        "reaction-summary": {
-            "only-one": {
-                "own": "have reacted",
-                "other": "has reacted"
-            },
-            "multiple": "{{argument}}reacted"
-        }
-    },
-    "searchbar": {
-        "aria": "Search inside Dee Ey Bubble",
-        "visual": "Search in DABubble…"
-    },
-    "settings": {
-        "profile": "Open your Profile",
-        "language": {
-            "toggle": "Change language to: ",
-            "german": "German",
-            "english": "English"
-        }
-    },
-    "user": {
-        "name": {
-            "full": "Full Name",
-            "first": "First Name",
-            "last": "Last Name"
-        },
-        "online": {
-            "true": "Activ",
-            "false": "Offline"
-        }
-    },
-    "wordlist": {
-        "and": "and",
-        "others": "others", 
-        "one": "one",
-        "you": "you"
-    },
-    "workspace": {
-        "is-open": {
-            "true": "Close workspace menu",
-            "false": "Open workspace menu"
-        }
+    "user-selector": {
+      "placeholder": "Enter name",
+      "add-user": "Add {{user}}",
+      "delete-user": "Remove {{user}}"
     }
+  },
+  "avatar-bar": {
+    "open": "Manage group members. Current total members: {{amount}}"
+  },
+  "chat": {
+    "subthread": {
+      "open": "Show ",
+      "replies": {
+        "single": "one reply",
+        "multiple": "{{amount}} replies"
+      }
+    }
+  },
+  "channel": {
+    "edit-popover": {
+      "channel-name": "Channel name",
+      "created-by": "Created by",
+      "description": "Description",
+      "edit": "Edit",
+      "leave": "Leave channel",
+      "save": "Save"
+    },
+    "create-popover": {
+      "channel-headline": "Create channel",
+      "description": "Channels are designed for your team’s communication. Ideally, they should be topic-based, such as #marketing, for example.",
+      "input-headline-name": "Channel name",
+      "input-headline-description": "Description",
+      "input-name-placeholder": "e.g. cooperative projects.",
+      "input-description-placeholder": "Your description",
+      "btn": "Establish"
+    }
+  },
+  "email": {
+    "address": "E-mail address",
+    "send": "New E-mail to: {{recipient}}"
+  },
+  "login-page": {
+    "headline": "Log In",
+    "description": "We recommend that you use the e-mail address that you use at work.",
+    "inputs": {
+      "email": "examplename@email.com",
+      "password": "Password"
+    },
+    "forgot-password": "Forgot Password?",
+    "google-signin": "Sign in with Google",
+    "login": {
+      "regular": "Log in",
+      "guest": "Guest login"
+    }
+  },
+  "profile": {
+    "open": "Display {{name}}s profile",
+    "title": "Profile",
+    "msg": "Message"
+  },
+  "reaction-details": {
+    "reaction-summary": {
+      "only-one": {
+        "own": "have reacted",
+        "other": "has reacted"
+      },
+      "multiple": "{{argument}}reacted"
+    }
+  },
+  "searchbar": {
+    "aria": "Search inside Dee Ey Bubble",
+    "visual": "Search in DABubble…"
+  },
+  "settings": {
+    "profile": "Open your Profile",
+    "language": {
+      "toggle": "Change language to: ",
+      "german": "German",
+      "english": "English"
+    }
+  },
+  "sidebar": {
+    "buttons": {
+      "add-channel": "Create channel",
+      "new-message": "Neue Nachricht verfassen"
+    },
+    "sections": {
+      "channels": "Channels",
+      "directs": "Direct messages"
+    }
+  },
+  "user": {
+    "name": {
+      "full": "Full Name",
+      "first": "First Name",
+      "last": "Last Name"
+    },
+    "online": {
+      "true": "Activ",
+      "false": "Offline"
+    }
+  },
+  "wordlist": {
+    "and": "and",
+    "or": "or",
+    "others": "others",
+    "one": "one",
+    "you": "you"
+  },
+  "workspace": {
+    "is-open": {
+      "true": "Close workspace menu",
+      "false": "Open workspace menu"
+    }
+  }
 }

@@ -14,6 +14,7 @@ import {
 } from '@angular/fire/auth';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,6 +28,7 @@ import { Observable } from 'rxjs';
     ButtonComponent,
     InputFieldsComponent,
     IconLibaryComponent,
+    TranslocoModule,
   ],
 })
 export class SignInComponent {
@@ -35,10 +37,7 @@ export class SignInComponent {
 
   constructor() {}
 
-  ngOnInit(): void {
-  
-    
-  }
+  ngOnInit(): void {}
 
   signInWithGoogleRedirect() {
     return signInWithRedirect(this.auth, this.provider);
@@ -58,30 +57,30 @@ export class SignInComponent {
     });
   }
 
-getAuthState(): Observable<User | null> { // get the auth to an observable. 
-  return new Observable((observer) => {
-    onAuthStateChanged(this.auth,(user) => {
-      observer.next(user);
-    })
-  })
-}
-
+  getAuthState(): Observable<User | null> {
+    // get the auth to an observable.
+    return new Observable((observer) => {
+      onAuthStateChanged(this.auth, (user) => {
+        observer.next(user);
+      });
+    });
+  }
 
   signInTest() {
     signInWithPopup(this.auth, this.provider).then((result) => {
-      this.getAuthState().subscribe((user) => {    // should create a observable  
+      this.getAuthState().subscribe((user) => {
+        // should create a observable
         if (user) {
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           const uid = user.uid;
           console.log(uid);
-          
+
           // ...
-        }else {
+        } else {
           console.log('fail');
-          
         }
       });
     });
-  }}
-
+  }
+}

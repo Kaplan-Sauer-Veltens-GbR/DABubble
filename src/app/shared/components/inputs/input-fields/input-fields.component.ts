@@ -6,19 +6,21 @@ import { Component, ContentChild, ElementRef, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './input-fields.component.html',
-  styleUrls: ['./input-fields.component.scss']
+  styleUrls: ['./input-fields.component.scss'],
 })
 export class InputFieldsComponent {
-  @ContentChild('iconSlot', { static: true }) iconContent: ElementRef | undefined;
+  @ContentChild('iconSlot', { static: true }) iconContent:
+    | ElementRef
+    | undefined;
   @Input() placeholder: string = 'Enter';
   @Input() pattern: string = '';
   @Input() type: string = 'text';
   @Input() value: string = '';
   @Input() required: boolean = false;
+  @Input() autocomplete: string = '';
   hasProjectedContent: boolean = false;
 
   ngAfterContentInit(): void {
     this.hasProjectedContent = !!this.iconContent;
-
   }
 }

@@ -6,11 +6,12 @@ import { UserAvatarComponent } from '../../shared/components/user-avatar/user-av
 import { WorkspaceFabComponent } from "./workspace-fab/workspace-fab.component";
 import { WorkspaceService } from '../../services/workspace.service';
 import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create-channel.component";
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [IconLibaryComponent, CommonModule, UserAvatarComponent, WorkspaceFabComponent, CreateChannelComponent],
+  imports: [IconLibaryComponent, CommonModule, TranslocoModule, UserAvatarComponent, WorkspaceFabComponent, CreateChannelComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

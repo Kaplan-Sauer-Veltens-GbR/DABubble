@@ -1,111 +1,136 @@
 {
-    "actions": {
-        "cancel": "Abbrechen",
-        "edit": "Editieren",
-        "logout": "Log out",
-        "save": "Speichern"
+  "actions": {
+    "cancel": "Abbrechen",
+    "edit": "Editieren",
+    "logout": "Log out",
+    "save": "Speichern"
+  },
+  "add-people": {
+    "add-button": "Hinzufügen",
+    "create-button": "Erstellen",
+    "headline": "Leute hinzufügen",
+    "radio-buttons": {
+      "all": {
+        "part-1": "Alle Benutzer von",
+        "part-2": "DABubble",
+        "part-3": "hinzufügen.",
+        "aria": "Alle Benutzer von DABubble hinzufügen"
+      },
+      "specific": "Bestimmte Leute hinzufügen"
     },
-    "add-people": {
-        "add-button": "Hinzufügen",
-        "create-button": "Erstellen",
-        "headline": "Leute hinzufügen",
-        "radio-buttons": {
-            "all": {
-                "part-1": "Alle Benutzer von",
-                "part-2": "DABubble",
-                "part-3": "hinzufügen.",
-                "aria": "Alle Benutzer von DABubble hinzufügen"
-            },
-            "specific": "Bestimmte Leute hinzufügen"
-        },
-        "user-selector": {
-            "placeholder": "Name eingeben",
-            "add-user": "{{user}} hinzufügen",
-            "delete-user": "{{user}} entfernen"
-        }
-    },
-    "avatar-bar": {
-        "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
-    },
-    "chat": {
-        "subthread": {
-            "open": " anzeigen",
-            "replies": {
-                "single": "eine Antwort",
-                "multiple": "{{amount}} Antworten"
-            }
-        }
-    },
-    "channel": {
-        "edit-popover": {
-            "channel-name": "Channel-Name",
-            "created-by": "Erstellt von",
-            "description": "Beschreibung",
-            "edit": "Bearbeiten",
-            "leave": "Channel verlassen",
-            "save": "Speichern"
-        },
-        "create-popover": {
-            "channel-headline": "Channel erstellen",
-            "description": "Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein  #marketing zum Beispiel.",
-            "input-headline-name": "Channel-name",
-            "input-headline-description": "Beschreibung",
-            "input-name-placeholder": "z.B. Kooperationsprojekte",
-            "input-description-placeholder": "Deine Beschreibung",
-            "btn": "Erstellen"
-        }
-    },
-    "email": {
-        "address": "E-Mail-Adresse",
-        "send": "Neue E-Mail an: {{recipient}}"
-    },
-    "profile": {
-        "open": "Profil von {{name}} anzeigen",
-        "title": "Profil",
-        "msg": "Nachricht"
-    },
-    "reaction-details": {
-        "reaction-summary": {
-            "only-one": {
-                "own": "hast reagiert",
-                "other": "hat reagiert"
-            },
-            "multiple": "haben reagiert"
-        }
-    },
-    "searchbar": {
-        "aria": "Dea Babbel durchsuchen",
-        "visual": "DABubble durchsuchen…"
-    },
-    "settings": {
-        "profile": "Eigenes Profil öffnen",
-        "language": {
-            "toggle": "Ändere Sprache zu: ",
-            "german": "Deutsch",
-            "english": "Englisch"
-        }
-    },
-    "user": {
-        "name": {
-            "full": "Vollständiger Name",
-            "first": "Vorname",
-            "last": "Nachname"
-        },
-        "online": {
-            "true": "Aktiv",
-            "false": "Abwesend"
-        }
-    },
-    "wordlist": {
-        "and": "und",
-        "others": "andere",
-        "one": "eine",
-        "you": "Du"
-    },
-    "workspace": {
-        "is-open": {
-            "true": "Workspace-Menü schließen",
-            "false": "Workspace-Menü öffnen"
-        }
+    "user-selector": {
+      "placeholder": "Name eingeben",
+      "add-user": "{{user}} hinzufügen",
+      "delete-user": "{{user}} entfernen"
     }
+  },
+  "avatar-bar": {
+    "open": "Gruppenmitglieder verwalten. Aktuelle Gesamtmitglieder: {{amount}}"
+  },
+  "chat": {
+    "subthread": {
+      "open": " anzeigen",
+      "replies": {
+        "single": "eine Antwort",
+        "multiple": "{{amount}} Antworten"
+      }
+    }
+  },
+  "channel": {
+    "edit-popover": {
+      "channel-name": "Channel-Name",
+      "created-by": "Erstellt von",
+      "description": "Beschreibung",
+      "edit": "Bearbeiten",
+      "leave": "Channel verlassen",
+      "save": "Speichern"
+    },
+    "create-popover": {
+      "channel-headline": "Channel erstellen",
+      "description": "Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein  #marketing zum Beispiel.",
+      "input-headline-name": "Channel-name",
+      "input-headline-description": "Beschreibung",
+      "input-name-placeholder": "z.B. Kooperationsprojekte",
+      "input-description-placeholder": "Deine Beschreibung",
+      "btn": "Erstellen"
+    }
+  },
+  "email": {
+    "address": "E-Mail-Adresse",
+    "send": "Neue E-Mail an: {{recipient}}"
+  },
+  "login-page": {
+    "headline": "Anmeldung",
+    "description": "Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
+    "inputs": {
+      "email": "beispielname@email.com",
+      "password": "Passwort"
+    },
+    "forgot-password": "Passwort vergessen?",
+    "google-signin": "Anmelden mit Google",
+    "login": {
+      "regular": "Anmelden",
+      "guest": "Gäste-Login"
+    }
+  },
+  "profile": {
+    "open": "Profil von {{name}} anzeigen",
+    "title": "Profil",
+    "msg": "Nachricht"
+  },
+  "reaction-details": {
+    "reaction-summary": {
+      "only-one": {
+        "own": "hast reagiert",
+        "other": "hat reagiert"
+      },
+      "multiple": "haben reagiert"
+    }
+  },
+  "searchbar": {
+    "aria": "Dea Babbel durchsuchen",
+    "visual": "DABubble durchsuchen…"
+  },
+  "settings": {
+    "profile": "Eigenes Profil öffnen",
+    "language": {
+      "toggle": "Ändere Sprache zu: ",
+      "german": "Deutsch",
+      "english": "Englisch"
+    }
+  },
+  "sidebar": {
+    "buttons": {
+      "add-channel": "Channel hinzufügen",
+      "new-message": "Neue Nachricht verfassen"
+    },
+    "sections": {
+      "channels": "Channels",
+      "directs": "Direktnachrichten"
+    }
+  },
+  "user": {
+    "name": {
+      "full": "Vollständiger Name",
+      "first": "Vorname",
+      "last": "Nachname"
+    },
+    "online": {
+      "true": "Aktiv",
+      "false": "Abwesend"
+    }
+  },
+  "wordlist": {
+    "and": "und",
+    "or": "oder",
+    "others": "andere",
+    "one": "eine",
+    "you": "Du"
+  },
+  "workspace": {
+    "is-open": {
+      "true": "Workspace-Menü schließen",
+      "false": "Workspace-Menü öffnen"
+    }
+  }
 }
