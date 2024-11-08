@@ -121,19 +121,17 @@ export class AuthService {
       console.log(unserCredential, 'logged in');
     } catch (error: any) {
       this.handleFirbaseError(error);
-      
     }
   }
-  handleFirbaseError(error:FirebaseError) {
+  handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
-      if (error.code === AuthErrorCodes.INVALID_EMAIL) {
-        console.error('wrong email', error.message);
-      } else if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
-        console.error('wrong passsword:', error.message);
+      if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        console.error('wrong password / or email:', error.message);
+      } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        console.error('input is not a valid email pattern')
       }
     } else {
       console.error('unkown error:', error);
     }
+  }
 }
-}
-
