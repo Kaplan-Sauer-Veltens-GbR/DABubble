@@ -43,7 +43,7 @@ export class AuthService {
       debugger;
       await this.auth.signOut();
       this.router.navigate(['']);
-      this.removeUIDLocal('userUID')
+      this.removeUIDLocal('userUID');
     } catch (error) {
       console.error('error  loggin out', error);
     }
@@ -72,9 +72,8 @@ export class AuthService {
     return usertoken;
   }
 
-  signInWithGooglePopup(event:Event)
-     {
-      event.preventDefault();
+  signInWithGooglePopup(event: Event) {
+    event.preventDefault();
     signInWithPopup(this.auth, this.provider).then((result) => {
       this.getAuthState().subscribe((user) => {
         // should create a observable
@@ -83,7 +82,7 @@ export class AuthService {
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);
-          this.saveUIDLocal('userUID',user.uid)
+          this.saveUIDLocal('userUID', user.uid);
         } else {
           console.log('user not logged in / or not found');
         }
@@ -95,11 +94,11 @@ export class AuthService {
     return userUID !== null;
   }
 
-  saveUIDLocal(key:string,uID:string) {
+  saveUIDLocal(key: string, uID: string) {
     localStorage.setItem(key, uID);
   }
 
-  removeUIDLocal(key:string) {
+  removeUIDLocal(key: string) {
     localStorage.removeItem(key);
   }
 
@@ -129,6 +128,9 @@ export class AuthService {
         password
       );
       console.log(unserCredential, 'logged in');
+      const uID = unserCredential.user.uid;
+      this.saveUIDLocal('userUID',uID);
+      this.dataBase.routeWithId(uID);
     } catch (error: any) {
       this.handleFirbaseError(error);
     }

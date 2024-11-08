@@ -26,7 +26,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     const isloggedIn = this.authService.checkUserLoggedIn();
-    debugger
     if (isloggedIn) {
       this.router.navigate([`main/user`,this.authService.getLocalStorage('userUID')]);
     }
