@@ -35,10 +35,7 @@ import { DbService } from '../../services/db.service';
 export class SignInComponent {
   public auth = inject(AuthService)
   public dataBase = inject(DbService)
-  signInData= {
-    email: '',
-    password: ''
-  }
+
   
 
 

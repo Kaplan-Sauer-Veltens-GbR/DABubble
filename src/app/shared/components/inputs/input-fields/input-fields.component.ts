@@ -19,8 +19,8 @@ export class InputFieldsComponent {
   @Input() inputId:string = '';
   hasProjectedContent: boolean = false;
 
-  ngAfterContentInit(): void {
-    this.hasProjectedContent = !!this.iconContent;
-
-  }
+ ngOnInit(): void {
+  this.hasProjectedContent = !!this.iconContent;
+  
+ }
 }
