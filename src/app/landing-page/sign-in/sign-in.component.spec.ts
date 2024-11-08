@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInComponent } from './sign-in.component';
+import { Auth } from '@angular/fire/auth';
+import { getTranslocoModule } from '../../modules/transloco-testing/transloco-testing.module';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,9 +10,9 @@ describe('SignInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SignInComponent]
-    })
-    .compileComponents();
+      imports: [getTranslocoModule(), SignInComponent],
+      providers: [{ provide: Auth, useValue: {} }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SignInComponent);
     component = fixture.componentInstance;
