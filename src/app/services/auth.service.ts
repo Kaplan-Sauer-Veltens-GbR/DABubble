@@ -120,17 +120,20 @@ export class AuthService {
       );
       console.log(unserCredential, 'logged in');
     } catch (error: any) {
-     //check if error really is a firebase error
-      if (error instanceof FirebaseError) {
-        if (error.code === AuthErrorCodes.INVALID_EMAIL) {
-          console.error('Ungültiges E-Mail-Format:', error.message);
-        } else if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
-          console.error('Falsches Passwort:', error.message);
-        }
-      } else {
-        console.error('unkown error:', error);
-       
-      }
+      this.handleFirbaseError(error);
+      
     }
   }
+  handleFirbaseError(error:FirebaseError) {
+    if (error instanceof FirebaseError) {
+      if (error.code === AuthErrorCodes.INVALID_EMAIL) {
+        console.error('wrong email', error.message);
+      } else if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        console.error('wrong passsword:', error.message);
+      }
+    } else {
+      console.error('unkown error:', error);
+    }
 }
+}
+
