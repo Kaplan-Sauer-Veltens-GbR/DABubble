@@ -72,7 +72,9 @@ export class AuthService {
     return usertoken;
   }
 
-  signInWithGooglePopup() {
+  signInWithGooglePopup(event:Event)
+     {
+      event.preventDefault();
     signInWithPopup(this.auth, this.provider).then((result) => {
       this.getAuthState().subscribe((user) => {
         // should create a observable
@@ -81,7 +83,7 @@ export class AuthService {
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
           console.log(user);
-          this.saveUIDLocal('UserUID',user.uid)
+          this.saveUIDLocal('userUID',user.uid)
         } else {
           console.log('user not logged in / or not found');
         }

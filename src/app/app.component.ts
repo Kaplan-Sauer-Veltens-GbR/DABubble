@@ -12,9 +12,9 @@ import { AuthService } from './services/auth.service';
   standalone: true,
   imports: [
     RouterOutlet,
-    ChatWindowComponent,
-    HeaderComponent,
-    SidebarComponent,
+    // ChatWindowComponent,
+    // HeaderComponent,
+    // SidebarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -26,9 +26,12 @@ export class AppComponent {
 
   ngOnInit(): void {
     const isloggedIn = this.authService.checkUserLoggedIn();
+    debugger
     if (isloggedIn) {
       this.router.navigate([`main/user`,this.authService.getLocalStorage('userUID')]);
     }
     this.authService.getAuthState();
+
   }
+  
 }

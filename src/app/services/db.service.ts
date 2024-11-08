@@ -15,6 +15,7 @@ export class DbService {
   constructor() { }
   
   async saveUserData(user:User):Promise<void> {
+    debugger
     if(!user) return
     const userRef = doc(this.firestore ,`users/${user.uid}`)
     const userData:UserData = {
