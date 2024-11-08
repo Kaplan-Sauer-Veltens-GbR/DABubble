@@ -36,8 +36,16 @@ export class SignInComponent {
   public auth = inject(AuthService)
   public dataBase = inject(DbService)
 
+  email: string = '';  
+  password: string = '';
   
+  onEmailChange(newEmail: string) {
+    this.email = newEmail;
+  }
 
+  onPasswordChange(newPassword: string) {
+    this.password = newPassword;
+  }
 
   ngOnInit(): void {
     
@@ -45,7 +53,7 @@ export class SignInComponent {
   }
 
   onSubmit(form:any) {
-    console.log();
+    console.log(this.email);
     
   }
 }

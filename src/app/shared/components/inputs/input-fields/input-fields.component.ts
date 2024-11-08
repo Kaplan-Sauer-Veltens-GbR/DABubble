@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, ElementRef, input, Input } from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, input, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,13 +14,17 @@ export class InputFieldsComponent {
   @Input() placeholder: string = 'Enter';
   @Input() pattern: string = '';
   @Input() type: string = 'text';
-  @Input() value: string = '';
   @Input() required: boolean = false;
   @Input() inputId:string = '';
   hasProjectedContent: boolean = false;
-
+  @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  value: string = '';
  ngOnInit(): void {
   this.hasProjectedContent = !!this.iconContent;
   
  }
+
+ updateValue(event: any): void {
+  this.valueChange.emit(event);  
+}
 }
