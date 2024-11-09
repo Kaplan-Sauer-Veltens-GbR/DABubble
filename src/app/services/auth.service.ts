@@ -91,14 +91,17 @@ export class AuthService {
 
   async createUserWithEmailAndPassword(
     email: string,
-    password: string
+    password: string,
+    name: string
   ): Promise<void> {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         email,
-        password
+        password,
+
       );
+    
       console.log('user succefully created', userCredential.user);
       this.dataBase.saveUserData(userCredential.user)
     } catch (error) {}
