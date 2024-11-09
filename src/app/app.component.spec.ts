@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TranslocoTestingModule } from '@jsverse/transloco';
+import { getTranslocoModule } from './modules/transloco-testing/transloco-testing.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [getTranslocoModule(), AppComponent],
     }).compileComponents();
   });
 
@@ -13,5 +15,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
 });

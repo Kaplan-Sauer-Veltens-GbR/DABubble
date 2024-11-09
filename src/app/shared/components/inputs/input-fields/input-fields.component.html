@@ -1,9 +1,28 @@
 <div class="input-field">
-    @if(hasProjectedContent) {
-    <ng-container>
-        <ng-content></ng-content>
-    </ng-container>
-    }
-    <input (ngModelChange)="updateValue($event)" [(ngModel)]="value" [ngClass]="{'padding-icon-included':hasProjectedContent}" [type]="type" [placeholder]="placeholder" [attr.pattern]="pattern ? pattern : null" [required]="required">
-
+  @if(hasProjectedContent) {
+  <ng-container>
+    <ng-content></ng-content>
+  </ng-container>
+  } @if (autocomplete == '') {
+  <input
+    (ngModelChange)="updateValue($event)"
+    [(ngModel)]="value"
+    [ngClass]="{ 'padding-icon-included': hasProjectedContent }"
+    [type]="type"
+    [placeholder]="placeholder"
+    [attr.pattern]="pattern ? pattern : null"
+    [required]="required"
+  />
+  } @else {
+  <input
+    (ngModelChange)="updateValue($event)"
+    [(ngModel)]="value"
+    [ngClass]="{ 'padding-icon-included': hasProjectedContent }"
+    [type]="type"
+    [autocomplete]="autocomplete"
+    [placeholder]="placeholder"
+    [attr.pattern]="pattern ? pattern : null"
+    [required]="required"
+  />
+  }
 </div>

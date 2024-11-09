@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 import { IconLibaryComponent } from '../../shared/components/icon-component/icon-libary.component';
@@ -14,6 +19,7 @@ import {
 } from '@angular/fire/auth';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../services/auth.service';
 import { DbService } from '../../services/db.service';
 
@@ -29,16 +35,16 @@ import { DbService } from '../../services/db.service';
     ButtonComponent,
     InputFieldsComponent,
     IconLibaryComponent,
-    
+    TranslocoModule,
   ],
 })
 export class SignInComponent {
-  public auth = inject(AuthService)
-  public dataBase = inject(DbService)
+  public auth = inject(AuthService);
+  public dataBase = inject(DbService);
 
-  email: string = '';  
+  email: string = '';
   password: string = '';
-  
+
   onEmailChange(newEmail: string) {
     this.email = newEmail;
   }
@@ -47,15 +53,9 @@ export class SignInComponent {
     this.password = newPassword;
   }
 
-  ngOnInit(): void {
-    
-   
-  }
+  ngOnInit(): void {}
 
-  onSubmit(form:any) {
-    
-    
-   this.auth.signIn(this.email,this.password)
-    
+  onSubmit(form: any) {
+    this.auth.signIn(this.email, this.password);
   }
 }

@@ -1,5 +1,5 @@
 <workspace-fab></workspace-fab>
-<aside [ngClass]="{'sidebar-closed': !workspace.isOpen}">
+<aside *transloco="let t; prefix:'sidebar'" [ngClass]="{'sidebar-closed': !workspace.isOpen}">
   <header class="mb-25">
     <div class="dev-space">
       <img src="./assets/images/logo/workspace.png" alt="" />
@@ -17,7 +17,7 @@
         iconName="arrowDrop"
       ></app-icon>
       <app-icon iconName="workspaces"></app-icon>
-      <h3>Channels</h3>
+      <h3>{{t('sections.channels')}}</h3>
     </div>
     <div class="hover-circle">
       <app-icon (click)="workspace.openDialog('createChannel')" class="icon--hover" iconName="add"></app-icon>
@@ -35,9 +35,9 @@
       </div>
       }
     </div>
-    <div class="add-channel icon--hover">
+    <div role="button" [attr.aria-label]="t('buttons.add-channel')" class="add-channel icon--hover">
       <app-icon iconName="addCircle"></app-icon>
-      <span>Channel hinzufügen</span>
+      <span aria-hidden="true">{{t('buttons.add-channel')}}</span>
     </div>
   </div>
   <div class="drop-down mb-30">
@@ -50,7 +50,7 @@
         iconName="arrowDrop"
       ></app-icon>
       <app-icon iconName="accCircle"></app-icon>
-      <h3>Direktnachrichten</h3>
+      <h3>{{t('sections.directs')}}</h3>
     </div>
   </div>
   <div
@@ -62,7 +62,7 @@
     <user-avatar [size]="50"></user-avatar>
     }
   </div>
-  
+
 </div>
 </aside>
 

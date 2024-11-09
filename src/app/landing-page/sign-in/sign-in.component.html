@@ -1,33 +1,52 @@
-<div class="login-container">
+<div *transloco="let t" class="login-container">
   <div class="login-card">
-    <h1 class="login-title">Anmeldung</h1>
-    <p class="login-subtitle">
-      Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.
-    </p>
+    <h1 class="login-title">{{ t("login-page.headline") }}</h1>
+    <p class="login-subtitle">{{ t("login-page.description") }}</p>
 
-    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)"  >
-      <app-input-fields (valueChange)="onEmailChange($event)"    placeholder="beispielname@email.com"  type="email" [required]="true" icon="mail">
+    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+      <app-input-fields
+        (valueChange)="onEmailChange($event)"
+        [placeholder]="t('login-page.inputs.email')"
+        type="email"
+        [required]="true"
+        icon="mail"
+      >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
 
-      <app-input-fields (valueChange)="onPasswordChange($event)"   placeholder="Passwort" type="password" [required]="true" icon="lock">
+      <app-input-fields
+        (valueChange)="onPasswordChange($event)"
+        [placeholder]="t('login-page.inputs.password')"
+        type="password"
+        [required]="true"
+        icon="lock"
+      >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
 
-      <a routerLink="reset-password-email" class="forgot-password">Passwort vergessen?</a>
+      <a routerLink="reset-password-email" class="forgot-password">{{
+        t("login-page.forgot-password")
+      }}</a>
 
       <div class="divider">
-        <span>ODER</span>
+        <span>{{ t("wordlist.or").toUpperCase() }}</span>
       </div>
 
-      <button (click)="auth.signInWithGooglePopup($event)" class="signin-google-btn">
+      <button
+        (click)="auth.signInWithGooglePopup($event)"
+        class="signin-google-btn"
+      >
         <app-icon #iconSlot iconName="google"></app-icon>
-        Anmelden mit Google
+        {{ t("login-page.google-signin") }}
       </button>
 
       <div class="action-buttons">
-        <app-button (click)="onSubmit(signInForm)" [filled]="true" label="Anmelden">Anmelden</app-button>
-        <app-button [filled]="false" label="Gäste-Login">Gäste-Login</app-button>
+        <app-button (click)="onSubmit(signInForm)" [filled]="true">{{
+          t("login-page.login.regular")
+        }}</app-button>
+        <app-button [filled]="false">{{
+          t("login-page.login.guest")
+        }}</app-button>
       </div>
     </form>
   </div>
