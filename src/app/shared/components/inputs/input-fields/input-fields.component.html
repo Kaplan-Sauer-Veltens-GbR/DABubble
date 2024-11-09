@@ -5,7 +5,8 @@
   </ng-container>
   } @if (autocomplete == '') {
   <input
-    [value]="value"
+    (ngModelChange)="updateValue($event)"
+    [(ngModel)]="value"
     [ngClass]="{ 'padding-icon-included': hasProjectedContent }"
     [type]="type"
     [placeholder]="placeholder"
@@ -14,7 +15,8 @@
   />
   } @else {
   <input
-    [value]="value"
+    (ngModelChange)="updateValue($event)"
+    [(ngModel)]="value"
     [ngClass]="{ 'padding-icon-included': hasProjectedContent }"
     [type]="type"
     [autocomplete]="autocomplete"

@@ -8,7 +8,7 @@ import { WorkspaceService } from '../../services/workspace.service';
 import { ChannelEditPopupComponent } from '../../chat/pop-ups/channel-edit-popup/channel-edit-popup.component';
 import { AddPeopleComponent } from "../../shared/components/chat/add-people/add-people.component";
 import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-list/member-list.component";
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -18,4 +18,5 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 })
 export class ChatWindowComponent {
   public workspace = inject(WorkspaceService);
+  private  route = inject(ActivatedRoute)
 }

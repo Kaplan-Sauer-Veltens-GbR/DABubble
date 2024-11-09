@@ -51,3 +51,7 @@ Thumbs.db
 
 #Playground 
 /src/app/playground
+
+#.bat file for git add. and commit
+
+/up.bat

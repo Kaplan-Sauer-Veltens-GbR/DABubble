@@ -1,10 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, ContentChild, ElementRef, Input } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  input,
+  Input,
+  Output,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-fields',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './input-fields.component.html',
   styleUrls: ['./input-fields.component.scss'],
 })
@@ -15,12 +24,16 @@ export class InputFieldsComponent {
   @Input() placeholder: string = 'Enter';
   @Input() pattern: string = '';
   @Input() type: string = 'text';
-  @Input() value: string = '';
   @Input() required: boolean = false;
   @Input() autocomplete: string = '';
   hasProjectedContent: boolean = false;
-
-  ngAfterContentInit(): void {
+  @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  value: string = '';
+  ngOnInit(): void {
     this.hasProjectedContent = !!this.iconContent;
+  }
+
+  updateValue(event: any): void {
+    this.valueChange.emit(event);
   }
 }

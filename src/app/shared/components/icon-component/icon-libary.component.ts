@@ -10,7 +10,7 @@ import { IconName } from '../../../interfaces/icon-names.model';
   templateUrl: './icon-libary.component.html',
   styleUrl: './icon-libary.component.scss',
 })
-export class IconLibaryComponent implements AfterContentInit {
+export class IconLibaryComponent {
   private baseSrc: string = './assets/icons/icon-libary/';
   @Input() iconName: IconName = '';
   @Input() iconAlt: string = '';
@@ -28,11 +28,13 @@ export class IconLibaryComponent implements AfterContentInit {
     return `${this.baseSrc}${pathModifier}${this.iconName}.${this.suffix}`;
   }
 
-  ngAfterContentInit(): void {
+  ngOnInit(): void {
     if (this.inputField) {
       this.isInInputField = true;
     } else {
       this.isInInputField = false;
     }
   }
+
+ 
 }
