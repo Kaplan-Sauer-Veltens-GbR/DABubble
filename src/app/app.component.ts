@@ -25,11 +25,11 @@ export class AppComponent {
   private router = inject(Router);
 
   ngOnInit(): void {
-    const isloggedIn = this.authService.checkUserLoggedIn();
-    if (isloggedIn) {
-      this.router.navigate([`main/user`,this.authService.getLocalStorage('userUID')]);
-    }
-    this.authService.getAuthState();
+  //   const isloggedIn = this.authService.checkUserLoggedIn();
+  //   if (isloggedIn) {
+    
+  //   }
+   
 
   }
   

@@ -16,11 +16,10 @@ import {
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { DbService } from './db.service';
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
-import { RoutingService } from './routing.service';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +30,14 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
-  private routing = inject(RoutingService);
-  constructor() {}
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+
+  constructor() {
+	onAuthStateChanged(this.auth, (user) => {
+		this.currentUserSubject.next(user);  // Update the observable with the new user state
+	  });
+	
+  }
 
   ngOnInit(): void {}
 
@@ -44,23 +49,13 @@ export class AuthService {
     try {
       debugger;
       await this.auth.signOut();
-      this.router.navigate(['']);
-      this.removeUIDLocal('userUID');
     } catch (error) {
       console.error('error  loggin out', error);
     }
   }
 
   getAuthState(): Observable<User | null> {
-    // get the auth to an observable.
-    return new Observable((observer) => {
-      onAuthStateChanged(this.auth, (user) => {
-        observer.next(user);
-        if (user === null) {
-          console.log('der benutzer ist off');
-        }
-      });
-    });
+    return this.currentUserSubject.asObservable();
   }
 
   getCredential(result: UserCredential) {
@@ -77,18 +72,15 @@ export class AuthService {
   signInWithGooglePopup(event: Event) {
     event.preventDefault();
     signInWithPopup(this.auth, this.provider).then((result) => {
-      this.getAuthState().subscribe((user) => {
-        // should create a observable
-        if (user) {
-          this.dataBase.saveUserData(user); // from db service
-          // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
-          // https://firebase.google.com/docs/reference/js/auth.user
-          console.log(user,'test123');
-          this.saveUIDLocal('userUID', user.uid);
-        } else {
-          console.log('user not logged in / or not found');
-        }
-      });
+      const user = result.user;
+      if (user) {
+        this.dataBase.saveUserData(user); // from db service
+        // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
+        // https://firebase.google.com/docs/reference/js/auth.user
+        console.log(user, 'test123');
+      } else {
+        console.log('user not logged in / or not found');
+      }
     });
   }
   checkUserLoggedIn(): boolean {
@@ -96,17 +88,6 @@ export class AuthService {
     return userUID !== null;
   }
 
-  saveUIDLocal(key: string, uID: string) {
-    localStorage.setItem(key, uID);
-  }
-
-  removeUIDLocal(key: string) {
-    localStorage.removeItem(key);
-  }
-
-  getLocalStorage(storageKey: string) {
-    return localStorage.getItem(storageKey);
-  }
 
   async createUserWithEmailAndPassword(
     email: string,
@@ -131,10 +112,8 @@ export class AuthService {
       );
       console.log(unserCredential, 'logged in');
       const uID = unserCredential.user.uid;
-      this.saveUIDLocal('userUID',uID);
-      const currentUser = this.auth.currentUser;
-     
-      this.routing.routeWithId(uID);
+
+    
     } catch (error: any) {
       this.handleFirbaseError(error);
     }
@@ -149,5 +128,27 @@ export class AuthService {
     } else {
       console.error('unkown error:', error);
     }
+  }
+
+  isCurrentUser(uId: string) {
+    return this.getAuthState().pipe(
+      map((user) => (user ? user.uid === uId : false))
+    );
+  }
+
+  routeWithId(uId: string) {
+	const currentUser = this.auth.currentUser;
+	if(currentUser ){
+		this.router.navigate(['main/user', uId]);
+	}else {
+		console.error('user not authenticated');
+		this.router.navigate([''])
+		
+	}
+        
+  }
+
+  getCurrentUser():User | null {
+	return this.auth.currentUser;
   }
 }

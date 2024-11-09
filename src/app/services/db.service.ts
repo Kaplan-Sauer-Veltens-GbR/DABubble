@@ -11,7 +11,7 @@ import { UserData } from '../interfaces/user-model';
 import { User } from '@angular/fire/auth';
 import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { RoutingService } from './routing.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,6 @@ import { RoutingService } from './routing.service';
 export class DbService {
   private router = inject(Router);
   private firestore = inject(Firestore);
-  private routing = inject(RoutingService);
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {
@@ -40,6 +39,8 @@ export class DbService {
 
   updateOnDB(userData: UserData, userRef: DocumentReference) {
     setDoc(userRef, userData, { merge: true });
-    this.routing.routeWithId(userData.uid);
+    
   }
+
+  
 }

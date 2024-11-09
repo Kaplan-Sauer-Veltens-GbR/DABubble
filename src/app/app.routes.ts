@@ -13,6 +13,12 @@ export const routes: Routes = [
     path: 'main',
     component: MainComponent,
     canActivate: [AuthGuard],
-    children: [{ path: 'user/:uid', component: ChatWindowComponent }],
+    children: [
+      {
+        path: 'user/:uid',
+        component: ChatWindowComponent,
+        
+      },
+    ],
   },
 ];

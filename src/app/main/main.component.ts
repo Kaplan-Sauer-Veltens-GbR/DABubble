@@ -4,7 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkspaceService } from '../services/workspace.service';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Auth } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 
 
@@ -20,11 +20,20 @@ public workspace = inject(WorkspaceService)
 private router = inject(Router)
 private route = inject(ActivatedRoute)
 private authService = inject(AuthService)
+user: User | null = null;
 ngOnInit() {
-const isloggedIn = this.authService.checkUserLoggedIn()
-if(!isloggedIn) {
-  this.router.navigate([''])
-}
+  this.authService.getAuthState().subscribe((user) => {
+    if (user) {
+      console.log('User logged in:', user);
+      this.user = user;
+      this.authService.routeWithId(user.uid);
+    } else {
+      console.log('No user logged in');
+      this.user = null;
+      this.router.navigate(['']);
+    }
+  });
+
 }
 
 }
