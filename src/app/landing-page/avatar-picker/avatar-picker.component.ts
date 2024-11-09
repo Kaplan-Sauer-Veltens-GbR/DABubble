@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IconLibaryComponent } from '../../shared/components/icon-component/icon-libary.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-avatar-picker',
@@ -14,5 +15,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './avatar-picker.component.scss'
 })
 export class AvatarPickerComponent {
-
+public authService = inject(AuthService)
 }
