@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { DbService } from './db.service';
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
+import { RoutingService } from './routing.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,7 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
+  private routing = inject(RoutingService);
   constructor() {}
 
   ngOnInit(): void {}
@@ -81,7 +83,7 @@ export class AuthService {
           this.dataBase.saveUserData(user); // from db service
           // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
           // https://firebase.google.com/docs/reference/js/auth.user
-          console.log(user);
+          console.log(user,'test123');
           this.saveUIDLocal('userUID', user.uid);
         } else {
           console.log('user not logged in / or not found');
@@ -132,7 +134,7 @@ export class AuthService {
       this.saveUIDLocal('userUID',uID);
       const currentUser = this.auth.currentUser;
      
-      this.dataBase.routeWithId(uID);
+      this.routing.routeWithId(uID);
     } catch (error: any) {
       this.handleFirbaseError(error);
     }
