@@ -19,4 +19,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent { }
+export class SignUpComponent {
+  
+ }
