@@ -30,13 +30,13 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
-  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  private currentUserSubject: BehaviorSubject<User | null> =
+    new BehaviorSubject<User | null>(null);
 
   constructor() {
-	onAuthStateChanged(this.auth, (user) => {
-		this.currentUserSubject.next(user);  // Update the observable with the new user state
-	  });
-	
+    onAuthStateChanged(this.auth, (user) => {
+      this.currentUserSubject.next(user); // Update the observable with the new user state
+    });
   }
 
   ngOnInit(): void {}
@@ -88,7 +88,6 @@ export class AuthService {
     return userUID !== null;
   }
 
-
   async createUserWithEmailAndPassword(
     email: string,
     password: string
@@ -112,8 +111,6 @@ export class AuthService {
       );
       console.log(unserCredential, 'logged in');
       const uID = unserCredential.user.uid;
-
-    
     } catch (error: any) {
       this.handleFirbaseError(error);
     }
@@ -137,18 +134,16 @@ export class AuthService {
   }
 
   routeWithId(uId: string) {
-	const currentUser = this.auth.currentUser;
-	if(currentUser ){
-		this.router.navigate(['main/user', uId]);
-	}else {
-		console.error('user not authenticated');
-		this.router.navigate([''])
-		
-	}
-        
+    const currentUser = this.auth.currentUser;
+    if (currentUser) {
+      this.router.navigate(['main/user', uId]);
+    } else {
+      console.error('user not authenticated');
+      this.router.navigate(['']);
+    }
   }
 
-  getCurrentUser():User | null {
-	return this.auth.currentUser;
-  }
+//   getCurrentUser(): User | null {
+//     return this.auth.currentUser;
+//   }
 }
