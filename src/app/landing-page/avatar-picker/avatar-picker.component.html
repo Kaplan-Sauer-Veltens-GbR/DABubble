@@ -43,7 +43,7 @@
 
 
     <div class="action-buttons">
-      <app-button (click)="authService.createUserWithEmailAndPassword()" [filled]="true" label="Weiter"> <a>Weiter</a></app-button>
+      <app-button (click)="authService.createUserWithEmailAndPassword(email,password,name,profilePicture)"  [filled]="true" label="Weiter"> <a>Weiter</a></app-button>
     </div>
   </div>
 </div>

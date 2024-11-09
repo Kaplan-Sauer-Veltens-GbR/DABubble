@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../shared/components/inputs/button/button.co
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { InputValidationService } from '../../services/input-validation.service';
 
 @Component({
   selector: 'app-avatar-picker',
@@ -15,5 +16,16 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './avatar-picker.component.scss'
 })
 export class AvatarPickerComponent {
-public authService = inject(AuthService)
+public authService = inject(AuthService);
+public inputChecker = inject(InputValidationService);
+email:string = this.inputChecker.email;
+password:string = this.inputChecker.password;
+name:string = this.inputChecker.name;
+profilePicture:string = this.inputChecker.profilePicture;
+
+ngOnInit(): void {
+
+
+  
+}
 }
