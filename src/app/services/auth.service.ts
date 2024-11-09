@@ -100,6 +100,7 @@ export class AuthService {
         password
       );
       console.log('user succefully created', userCredential.user);
+      this.dataBase.saveUserData(userCredential.user)
     } catch (error) {}
   }
 
@@ -149,5 +150,7 @@ export class AuthService {
   //   getCurrentUser(): User | null {
   //     return this.auth.currentUser;
   //   }
+
+ 
 
 }

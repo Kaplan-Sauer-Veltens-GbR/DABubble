@@ -3,9 +3,9 @@
     <h1 class="login-title">{{ t("login-page.headline") }}</h1>
     <p class="login-subtitle">{{ t("login-page.description") }}</p>
 
-    <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+    <form #signInForm="ngForm" (ngSubmit)="onSubmit()">
       <app-input-fields
-        (valueChange)="onEmailChange($event)"
+        (valueChange)="inputCheck.onEmailChange($event)"
         [placeholder]="t('login-page.inputs.email')"
         type="email"
         [required]="true"
@@ -15,7 +15,7 @@
       </app-input-fields>
 
       <app-input-fields
-        (valueChange)="onPasswordChange($event)"
+        (valueChange)="inputCheck.onPasswordChange($event)"
         [placeholder]="t('login-page.inputs.password')"
         type="password"
         [required]="true"
@@ -41,7 +41,7 @@
       </button>
 
       <div class="action-buttons">
-        <app-button (click)="onSubmit(signInForm)" [filled]="true">{{
+        <app-button (click)="onSubmit()" [filled]="true">{{
           t("login-page.login.regular")
         }}</app-button>
         <app-button [filled]="false">{{

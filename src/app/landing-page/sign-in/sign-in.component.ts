@@ -22,6 +22,7 @@ import { Observable } from 'rxjs';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../services/auth.service';
 import { DbService } from '../../services/db.service';
+import { InputValidationService } from '../../services/input-validation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,21 +42,11 @@ import { DbService } from '../../services/db.service';
 export class SignInComponent {
   public auth = inject(AuthService);
   public dataBase = inject(DbService);
-
-  email: string = '';
-  password: string = '';
-
-  onEmailChange(newEmail: string) {
-    this.email = newEmail;
-  }
-
-  onPasswordChange(newPassword: string) {
-    this.password = newPassword;
-  }
-
+  public inputCheck = inject(InputValidationService)
+ 
   ngOnInit(): void {}
 
-  onSubmit(form: any) {
-    this.auth.signIn(this.email, this.password);
+  onSubmit() {
+    this.auth.signIn(this.inputCheck.email, this.inputCheck.password);
   }
 }
