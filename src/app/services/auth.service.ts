@@ -13,6 +13,7 @@ import {
   signInWithEmailAndPassword,
   fetchSignInMethodsForEmail,
   AuthErrorCodes,
+  updateProfile,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -99,12 +100,16 @@ export class AuthService {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         email,
-        password,
-
+        password
       );
-    
-      console.log('user succefully created', userCredential.user);
-      this.dataBase.saveUserData(userCredential.user)
+      if (userCredential.user) {
+        await updateProfile(userCredential.user, {
+          displayName: name,
+          photoURL: profilePircture,
+        });
+        console.log('user succefully created', userCredential.user);
+        this.dataBase.saveUserData(userCredential.user);
+      }
     } catch (error) {}
   }
 
@@ -154,7 +159,4 @@ export class AuthService {
   //   getCurrentUser(): User | null {
   //     return this.auth.currentUser;
   //   }
-
- 
-
 }
