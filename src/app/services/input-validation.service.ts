@@ -10,6 +10,7 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
+  profilePicture:string = '';
 
   onEmailChange(newEmail: string) {
     this.email = newEmail;
@@ -20,7 +21,12 @@ export class InputValidationService {
   }
 
   onNameChange(newName:string) {
-    this.name = newName
+    this.name = newName;
+  }
+
+  
+  onProfileChange(newProfilePicture:string) {
+    this.profilePicture = newProfilePicture;
   }
 
 }

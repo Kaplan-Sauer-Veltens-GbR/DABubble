@@ -92,7 +92,8 @@ export class AuthService {
   async createUserWithEmailAndPassword(
     email: string,
     password: string,
-    name: string
+    name: string,
+    profilePircture: string
   ): Promise<void> {
     try {
       const userCredential = await createUserWithEmailAndPassword(

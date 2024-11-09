@@ -25,6 +25,6 @@ export class SignUpComponent {
   public inputCheck = inject(InputValidationService)
   private authService = inject(AuthService)
   onSubmit() {
-    this.authService.createUserWithEmailAndPassword(this.inputCheck.email,this.inputCheck.password)
+    this.authService.createUserWithEmailAndPassword(this.inputCheck.email,this.inputCheck.password,this.inputCheck.name,)
   }
  }
