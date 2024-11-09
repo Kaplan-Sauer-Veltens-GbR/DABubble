@@ -1,7 +1,9 @@
 <div class="avatar-picker-container">
   <div class="avatar-picker-card">
     <button class="back-button">
+      <a routerLink="/signup">
       <app-icon iconName="back"></app-icon>
+      </a>
     </button>
     <h1 class="avatar-picker-title">Wähle deinen Avatar</h1>
 
@@ -41,7 +43,7 @@
 
 
     <div class="action-buttons">
-      <app-button [filled]="true" label="Weiter">Weiter</app-button>
+      <app-button [filled]="true" label="Weiter"> <a>Weiter</a></app-button>
     </div>
   </div>
 </div>

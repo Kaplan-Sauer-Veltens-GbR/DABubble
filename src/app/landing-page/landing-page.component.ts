@@ -24,6 +24,6 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.showAnimation = false;
-    }, 5000);
+    }, 0);
   }
 }

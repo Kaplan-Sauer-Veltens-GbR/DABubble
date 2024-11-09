@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
 import { IconLibaryComponent } from '../../shared/components/icon-component/icon-libary.component';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -12,8 +12,9 @@ import { IconLibaryComponent } from '../../shared/components/icon-component/icon
     ButtonComponent,
     InputFieldsComponent,
     FormsModule,
-    IconLibaryComponent,  // Stelle sicher, dass die Komponente hier eingebunden ist
+    IconLibaryComponent,  
     CommonModule,
+    RouterModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
