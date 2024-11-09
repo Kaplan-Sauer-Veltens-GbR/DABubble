@@ -4,7 +4,6 @@ import {
   ContentChild,
   ElementRef,
   EventEmitter,
-  input,
   Input,
   Output,
 } from '@angular/core';
