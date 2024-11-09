@@ -11,8 +11,6 @@ import { IconLibaryComponent } from '../shared/components/icon-component/icon-li
   selector: 'app-landing-page',
   standalone: true,
   imports: [
-    SignInComponent,
-    IconLibaryComponent,
     CommonModule,
   ],
   templateUrl: './landing-page.component.html',
