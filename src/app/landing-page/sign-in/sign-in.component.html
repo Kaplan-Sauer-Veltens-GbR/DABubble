@@ -14,7 +14,7 @@
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
 
-      <a href="#" class="forgot-password">Passwort vergessen?</a>
+      <a routerLink="reset-password-email" class="forgot-password">Passwort vergessen?</a>
 
       <div class="divider">
         <span>ODER</span>
@@ -26,8 +26,8 @@
       </button>
 
       <div class="action-buttons">
-        <app-button [filled]="true" label="Anmelden">Anmelden</app-button>
-        <app-button [filled]="false" label="Gäste-Login">Gäste-Login</app-button>
+        <app-button [filled]="true" label="Anmelden"> <a class="signIn-btn" routerLink="/" >Anmelden</a> </app-button>
+        <app-button [filled]="false" label="Gäste-Login"><a routerLink="/" >Gäste-Login</a> </app-button>
       </div>
     </form>
   </div>

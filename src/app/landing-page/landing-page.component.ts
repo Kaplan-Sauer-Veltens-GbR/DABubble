@@ -6,12 +6,12 @@ import { AvatarPickerComponent } from "./avatar-picker/avatar-picker.component";
 import { ResetPasswordEmailComponent } from "./reset-password-email/reset-password-email.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { IconLibaryComponent } from "../shared/components/icon-component/icon-libary.component";
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
-    SignInComponent, SignUpComponent, AvatarPickerComponent,
+    SignInComponent, SignUpComponent,RouterModule, AvatarPickerComponent,
     ResetPasswordEmailComponent, ResetPasswordComponent, IconLibaryComponent,CommonModule
   ],
   templateUrl: './landing-page.component.html',
@@ -24,6 +24,6 @@ export class LandingPageComponent implements OnInit {
 
     setTimeout(() => {
       this.showAnimation = false;
-    }, 5000);
+    }, 0);
   }
 }

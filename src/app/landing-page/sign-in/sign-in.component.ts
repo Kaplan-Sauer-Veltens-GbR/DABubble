@@ -14,6 +14,8 @@ import {
 } from '@angular/fire/auth';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -26,18 +28,18 @@ import { Observable } from 'rxjs';
     ReactiveFormsModule,
     ButtonComponent,
     InputFieldsComponent,
-    IconLibaryComponent,
+    IconLibaryComponent, RouterModule
   ],
 })
 export class SignInComponent {
   private auth = inject(Auth);
   private provider = new GoogleAuthProvider();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
-  
-    
+
+
   }
 
   signInWithGoogleRedirect() {
@@ -58,13 +60,13 @@ export class SignInComponent {
     });
   }
 
-getAuthState(): Observable<User | null> { // get the auth to an observable. 
-  return new Observable((observer) => {
-    onAuthStateChanged(this.auth,(user) => {
-      observer.next(user);
+  getAuthState(): Observable<User | null> { // get the auth to an observable. 
+    return new Observable((observer) => {
+      onAuthStateChanged(this.auth, (user) => {
+        observer.next(user);
+      })
     })
-  })
-}
+  }
 
 
   signInTest() {
@@ -75,13 +77,14 @@ getAuthState(): Observable<User | null> { // get the auth to an observable.
           // https://firebase.google.com/docs/reference/js/auth.user
           const uid = user.uid;
           console.log(uid);
-          
+
           // ...
-        }else {
+        } else {
           console.log('fail');
-          
+
         }
       });
     });
-  }}
+  }
+}
 
