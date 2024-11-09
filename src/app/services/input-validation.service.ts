@@ -9,6 +9,7 @@ export class InputValidationService {
 
   email: string = '';
   password: string = '';
+  name: string = '';
 
   onEmailChange(newEmail: string) {
     this.email = newEmail;
@@ -16,6 +17,10 @@ export class InputValidationService {
 
   onPasswordChange(newPassword: string) {
     this.password = newPassword;
+  }
+
+  onNameChange(newName:string) {
+    this.name = newName
   }
 
 }

@@ -11,16 +11,18 @@
       DABubble-Konto.
     </p>
 
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <app-input-fields
         placeholder="Name und Nachname"
         type="text"
         [required]="true"
+        (valueChange)="inputCheck.onNameChange($event)"
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
 
       <app-input-fields
+      (valueChange)="inputCheck.onEmailChange($event)"
         placeholder="beispielname@email.com"
         type="email"
         [required]="true"
@@ -29,6 +31,7 @@
       </app-input-fields>
 
       <app-input-fields
+        (valueChange)="inputCheck.onPasswordChange($event)"
         placeholder="Passwort"
         type="password"
         [required]="true"
