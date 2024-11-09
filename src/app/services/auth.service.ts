@@ -78,7 +78,7 @@ export class AuthService {
         // User is signed in, siehe die Dokumentation für eine Liste der verfügbaren Eigenschaften
         // https://firebase.google.com/docs/reference/js/auth.user
         console.log(user, 'test123');
-		this.routeWithId(user.uid)
+        this.routeWithId(user.uid);
       } else {
         console.log('user not logged in / or not found');
       }
@@ -110,10 +110,10 @@ export class AuthService {
         email,
         password
       );
-	  
+
       console.log(unserCredential, 'logged in');
       const uID = unserCredential.user.uid;
-	  this.routeWithId(uID);
+      this.routeWithId(uID);
     } catch (error: any) {
       this.handleFirbaseError(error);
     }
@@ -146,7 +146,7 @@ export class AuthService {
     }
   }
 
-//   getCurrentUser(): User | null {
-//     return this.auth.currentUser;
-//   }
+  //   getCurrentUser(): User | null {
+  //     return this.auth.currentUser;
+  //   }
 }
