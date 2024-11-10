@@ -14,4 +14,11 @@ export class ButtonComponent {
   @Input() filled: boolean = true;
   @Input() disabled: boolean = false;
   @Input() icon: IconName = '';
+
+  onclick(event:Event) {
+    if(this.disabled) {
+      event.preventDefault();
+      return;
+    }
+  }
 }
