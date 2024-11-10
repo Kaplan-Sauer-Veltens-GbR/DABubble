@@ -18,11 +18,9 @@
     <div class="avatar-list">
       <span class="avatar-list-title">Aus der Liste wählen</span>
       <div class="avatars">
-        <img src="assets/images/avatars/avatar1.png" alt="Avatar 1" />
-        <img src="assets/images/avatars/avatar2.png" alt="Avatar 2" />
-        <img src="assets/images/avatars/avatar3.png" alt="Avatar 3" />
-        <img src="assets/images/avatars/avatar4.png" alt="Avatar 4" />
-        <img src="assets/images/avatars/avatar5.png" alt="Avatar 5" />
+      @for(avatar of avatarImages; track avatar; let i = $index) {
+        <img (click)="setPhotoPath(avatar)" [src]="avatar" [alt]="'Avatar' + (i+1)">
+      }
       </div>
     </div>
 

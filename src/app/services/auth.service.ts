@@ -108,6 +108,7 @@ export class AuthService {
           photoURL: profilePircture,
         });
         console.log('user succefully created', userCredential.user);
+        this.routeWithId(userCredential.user.uid)
         this.dataBase.saveUserData(userCredential.user);
       }
     } catch (error) {}
