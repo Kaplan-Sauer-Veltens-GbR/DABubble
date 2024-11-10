@@ -123,6 +123,7 @@ section {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  max-height: 68px;
 
   img {
     width: 150px;
@@ -149,6 +150,20 @@ section {
   flex-direction: column;
   text-align: end;
   gap: 24px;
+  .hover-box {
+    &:hover {
+   
+      border-radius: 30px;
+      border: solid 1px $colorLines;
+    }
+  }
+}
+
+.hover-box {
+  height:41px;
+  width: 144px;
+  box-sizing: border-box;
+  @include dflex(center);
 }
 
 ::ng-deep .links {
