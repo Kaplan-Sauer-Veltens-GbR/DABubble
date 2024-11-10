@@ -15,6 +15,7 @@
       </app-input-fields>
 
       <app-input-fields
+      appFormValidation
         (valueChange)="inputCheck.onPasswordChange($event)"
         [placeholder]="t('login-page.inputs.password')"
         type="password"
