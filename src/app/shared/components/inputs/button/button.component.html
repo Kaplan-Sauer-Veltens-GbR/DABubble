@@ -1,4 +1,4 @@
-<div class="button" [ngClass]="{'--filled': filled, '--disabled': disabled}">
+<div (click)="handleClick($event)" class="button" [ngClass]="{'--filled': filled, '--disabled': disabled}">
     @if (icon != '' && filled) {
         <app-icon [iconName]="icon" style="filter: brightness(0) saturate(100%) invert(1)"></app-icon>
     } <ng-content></ng-content>
