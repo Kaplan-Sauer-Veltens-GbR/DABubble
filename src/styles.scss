@@ -22,3 +22,10 @@ body {
 * {
         font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
+
+.error-message {
+        display: flex;
+        align-items: flex-start;
+        width: 100;
+        margin-bottom: 32px;
+      } 

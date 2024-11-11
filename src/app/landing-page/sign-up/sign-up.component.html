@@ -11,7 +11,8 @@
       DABubble-Konto.
     </p>
 
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">^
+      
       <app-input-fields
         placeholder="Name und Nachname"
         type="text"
@@ -21,7 +22,7 @@
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-
+      <span class="error-message">Error Message</span> 
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
         placeholder="beispielname@email.com"
