@@ -22,20 +22,19 @@ export class InputValidationService {
   }
 
   onPasswordChange(newPassword: string) {
-    const passwordIncludes = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-    if(passwordIncludes.test(newPassword)) {
+    const passwordIncludes =
+      /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (passwordIncludes.test(newPassword)) {
       this.password = newPassword;
       return true;
-    }else {
+    } else {
       return false;
     }
-    
   }
 
   onNameChange(newName: string) {
-    debugger;
     const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
-    if (namePattern.test(newName) && this.name.length >= 3) {
+    if (namePattern.test(newName) && newName.length >= 3) {
       this.name = newName;
       return true;
     } else {
@@ -48,8 +47,21 @@ export class InputValidationService {
   }
 
   checkIsFormValid() {
-    if (!this.passedValidation) {
+    debugger
+    if (!this.checkInputValidation()) {
       return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkInputValidation() {
+    if (
+      this.onPasswordChange(this.password) &&
+      this.onEmailChange(this.email) &&
+      this.onNameChange(this.name)
+    ) {
+      return (this.passedValidation = true);
     } else {
       return false;
     }
