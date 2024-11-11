@@ -26,6 +26,7 @@ export class SignUpComponent {
   public inputCheck = inject(InputValidationService)
   private authService = inject(AuthService)
   private router = inject(Router)
+
   onSubmit() {
     this.router.navigate(['avatar-picker']);
   }

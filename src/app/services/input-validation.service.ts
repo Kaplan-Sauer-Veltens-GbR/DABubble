@@ -12,7 +12,6 @@ export class InputValidationService {
   name: string = '';
   profilePicture:string = '';
   passedValidation:boolean = false
-
   onEmailChange(newEmail: string) {
     this.email = newEmail;
   }
@@ -23,17 +22,30 @@ export class InputValidationService {
   }
 
   onNameChange(newName:string) {
-    this.name = newName;
+    debugger
+    const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
+    if(namePattern.test(newName) && this.name.length >= 3) {
+      this.name = newName;
+    return true;
+    }else {
+    
+     return false;
+    }
   }
 
   
+
   onProfileChange(newProfilePicture:string) {
     this.profilePicture = newProfilePicture;
   }
 
 
-  checkIfNameisValid() {
-
+  checkIsFormValid() {
+    if(!this.passedValidation) {
+      return true;
+    }else {
+      return false;
+    }
   }
 }
  

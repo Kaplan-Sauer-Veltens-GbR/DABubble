@@ -17,6 +17,7 @@
         type="text"
         [required]="true"
         (valueChange)="inputCheck.onNameChange($event)"
+        pattern="^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$"
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
@@ -24,7 +25,7 @@
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
         placeholder="beispielname@email.com"
-        type="email"
+        type="text"
         [required]="true"
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
@@ -45,7 +46,7 @@
       </label>
 
       <div class="action-buttons">
-        <app-button (buttonClick)="onSubmit()" [disabled]="false" [filled]="true" label="Weiter">
+        <app-button (buttonClick)="onSubmit()" [disabled]="inputCheck.checkIsFormValid()" [filled]="true" label="Weiter">
           <a>Weiter</a>
         </app-button>
       </div>
