@@ -22,7 +22,14 @@ export class InputValidationService {
   }
 
   onPasswordChange(newPassword: string) {
-    this.password = newPassword;
+    const passwordIncludes = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    if(passwordIncludes.test(newPassword)) {
+      this.password = newPassword;
+      return true;
+    }else {
+      return false;
+    }
+    
   }
 
   onNameChange(newName: string) {
