@@ -7,5 +7,5 @@ import { Directive } from '@angular/core';
 export class ValidationErrorDirective {
 
   constructor() { }
-
+ // will ad a tooltip how password should look like etc
 }
