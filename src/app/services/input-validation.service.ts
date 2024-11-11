@@ -11,6 +11,7 @@ export class InputValidationService {
   name: string = '';
   profilePicture: string = '';
   passedValidation: boolean = false;
+  agreedToLegalNotice:boolean = false;
   onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailPattern.test(newEmail)) {
@@ -58,11 +59,17 @@ export class InputValidationService {
     if (
       this.onPasswordChange(this.password) &&
       this.onEmailChange(this.email) &&
-      this.onNameChange(this.name)
+      this.onNameChange(this.name) &&
+      this.agreedToLegalNotice
     ) {
       return (this.passedValidation = true);
     } else {
       return false;
     }
   }
+
+  toggleLegalNotice() {
+    this.agreedToLegalNotice = !this.agreedToLegalNotice;
+  }
+  
 }
