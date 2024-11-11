@@ -55,7 +55,7 @@ export class InputValidationService {
     }
   }
 
-  checkInputValidation() {
+  checkInputValidation() {  
     if (
       this.onPasswordChange(this.password) &&
       this.onEmailChange(this.email) &&
