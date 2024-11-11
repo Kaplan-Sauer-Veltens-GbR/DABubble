@@ -11,6 +11,7 @@ export class InputValidationService {
   password: string = '';
   name: string = '';
   profilePicture:string = '';
+  passedValidation:boolean = false
 
   onEmailChange(newEmail: string) {
     this.email = newEmail;
@@ -18,6 +19,7 @@ export class InputValidationService {
 
   onPasswordChange(newPassword: string) {
     this.password = newPassword;
+    
   }
 
   onNameChange(newName:string) {
@@ -29,4 +31,9 @@ export class InputValidationService {
     this.profilePicture = newProfilePicture;
   }
 
+
+  checkIfNameisValid() {
+
+  }
 }
+ 
