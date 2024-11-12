@@ -48,7 +48,6 @@ export class AuthService {
 
   async logout() {
     try {
-      debugger;
       await this.auth.signOut();
     } catch (error) {
       console.error('error  loggin out', error);
@@ -108,7 +107,7 @@ export class AuthService {
           photoURL: profilePircture,
         });
         console.log('user succefully created', userCredential.user);
-        this.routeWithId(userCredential.user.uid)
+        this.routeWithId(userCredential.user.uid);
         this.dataBase.saveUserData(userCredential.user);
       }
     } catch (error) {}

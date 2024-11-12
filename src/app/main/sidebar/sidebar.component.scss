@@ -3,13 +3,16 @@
 aside {
   padding: 32px 30px 32px 30px;
   max-width: calc(366px - 60px);
-  max-height: calc(940px - 64px);
+  // max-height: calc(940px - 64px);
   width: calc(366px - 60px);
-  height: calc(940px - 64px);
+  // height: calc(940px - 64px);
+  // max-height: fit-content;
+  height: 67%;
   border-radius: 30px;
   background-color: white;
   transition: margin-left 125ms ease-in-out;
   transform: translateX(0);
+  overflow: auto;
 }
 
 header {
@@ -68,15 +71,14 @@ header {
   padding: 0 25px;
   // overflow-y: auto; // discuss what max-height should be and when if it should scroll or be hidden
   overflow-y: hidden;
-  transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it 
+  transition: max-height 125ms ease-in-out; // not shure with the animation if is needed cant tell from figma even with 125ms is quite fast maybe we dont need it
   &.collapsed {
     max-height: 0;
   }
 
   &.expanded {
     max-height: fit-content; // if transition not used we use this or if we only use this for the channels and not for the user list looks like in this way on figma
-    // max-height: 550px; // else we use this 
-   
+    // max-height: 550px; // else we use this
   }
 
   .add-channel {
@@ -129,24 +131,13 @@ header {
 user-avatar {
   padding-left: 20px;
   &:last-child {
-    margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required 
+    margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required
   }
 }
 .sidebar-closed {
- margin-left: -500px;
-  
+  margin-left: -500px;
 }
 
 .pop-up {
-  @include pop-up(
-    absolute,
-    100%,
-    872px,
-    616px,
-    clamp(45%, 2vh, 50%),
-    50%,
-    0,
-    -50%,
-    -50%
-  );
+  @include pop-up(absolute, 100%, 872px, 616px, clamp(45%, 2vh, 50%), 50%, 0, -50%, -50%);
 }

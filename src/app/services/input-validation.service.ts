@@ -47,7 +47,6 @@ export class InputValidationService {
   }
 
   checkIsFormValid() {
-    debugger
     if (!this.checkInputValidation()) {
       return true;
     } else {
@@ -55,7 +54,7 @@ export class InputValidationService {
     }
   }
 
-  checkInputValidation() {  
+  checkInputValidation() {
     if (
       this.onPasswordChange(this.password) &&
       this.onEmailChange(this.email) &&

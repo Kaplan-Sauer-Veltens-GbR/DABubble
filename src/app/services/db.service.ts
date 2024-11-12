@@ -12,7 +12,6 @@ import { User } from '@angular/fire/auth';
 import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +21,6 @@ export class DbService {
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {
-    debugger;
     if (!user) return;
     const userRef = doc(this.firestore, `users/${user.uid}`);
     const userData: UserData = {
@@ -39,8 +37,5 @@ export class DbService {
 
   updateOnDB(userData: UserData, userRef: DocumentReference) {
     setDoc(userRef, userData, { merge: true });
-    
   }
-
-  
 }
