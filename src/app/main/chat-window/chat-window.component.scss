@@ -7,13 +7,14 @@ section {
   // padding: 20px;
   background-color: white;
   box-sizing: border-box;
-  max-height: 940px;
-  height: 100%;
+  // max-height: 940px;
+  // height: 100%;
+  height: 73%;
 
   header {
     @include dflex(space-between);
     padding: 30px 45px 0 45px;
-    margin-bottom: clamp(55px, 10vh, 150px);
+    // margin-bottom: clamp(55px, 10vh, 150px);
     h2 {
       margin: 0;
     }
@@ -25,14 +26,16 @@ section {
 
   .text-field {
     padding: 0 clamp(10px, 45px, 2vw);
-    margin-top: 60px;
+    // margin-top: 60px;
+    margin-top: 8px;
     padding-bottom: 40px;
   }
 }
 
 .chat {
   overflow-y: auto;
-  max-height: 550px;
+  // max-height: 550px;
+  height: 70%;
 }
 
 .bg-circle {
@@ -66,6 +69,7 @@ section {
   .box--bordered {
     padding: 5px 15px;
   }
+  margin-top: 8px;
   margin-bottom: 20px;
 }
 
@@ -87,21 +91,11 @@ section {
   }
 }
 .pop-up {
-  @include pop-up(
-    absolute,
-    100%,
-    872px,
-    616px,
-    clamp(40%, 2vh, 50%),
-    50%,
-    0,
-    -50%,
-    -50%
-  );
+  @include pop-up(absolute, 100%, 872px, 616px, clamp(40%, 2vh, 50%), 50%, 0, -50%, -50%);
   &.addMember {
     right: 5%;
     top: 20%;
     left: unset;
-    transform:translate(0,0);
+    transform: translate(0, 0);
   }
 }
