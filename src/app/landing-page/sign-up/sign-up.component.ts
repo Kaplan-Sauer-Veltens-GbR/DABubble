@@ -19,7 +19,7 @@ import { ValidationErrorDirective } from '../../directives/validation-error.dire
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-   
+    ValidationErrorDirective
     
   ],
   templateUrl: './sign-up.component.html',
@@ -29,7 +29,10 @@ export class SignUpComponent {
   public inputCheck = inject(InputValidationService);
   private authService = inject(AuthService);
   private router = inject(Router);
-  ValidationError:boolean = false;
+ 
+  ngOnInit(): void {
+    
+  }
 
   onSubmit() {
     this.router.navigate(['avatar-picker']);

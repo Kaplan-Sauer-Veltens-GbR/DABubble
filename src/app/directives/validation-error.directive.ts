@@ -17,7 +17,7 @@ if(this.ValidationError) {
   this.applyStylingClass();
 
 }else {
-
+this.hideMessage();
 }
 }
 

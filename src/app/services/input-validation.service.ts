@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ValidationError } from '../interfaces/validation-error';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +14,23 @@ export class InputValidationService {
   profilePicture: string = '';
   passedValidation: boolean = false;
   agreedToLegalNotice:boolean = false;
+  private validationErrorSubject = new BehaviorSubject<ValidationError>({
+    field: '',
+    status: false
+  })
+
+  validationError$ = this.validationErrorSubject.asObservable();
+
+
   onEmailChange(newEmail: string) {
+    debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailPattern.test(newEmail)) {
       this.email = newEmail;
       return true;
+     
     } else {
+     
       return false;
     }
   }
@@ -30,6 +43,7 @@ export class InputValidationService {
       return true;
     } else {
       return false;
+
     }
   }
 
