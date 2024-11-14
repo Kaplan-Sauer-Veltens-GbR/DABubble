@@ -1,7 +1,7 @@
 import { Directive, ElementRef, inject, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appValidationError]',
+  selector: '[ValidationError]',
   standalone: true
 })
 export class ValidationErrorDirective {
@@ -10,10 +10,10 @@ export class ValidationErrorDirective {
  // will add a tooltip how password should look like etc
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
-@Input() errorMessage:boolean = false;
+@Input() ValidationError:boolean = false;
 
 ngOnChanges(): void {
-if(this.errorMessage) {
+if(this.ValidationError) {
   this.applyStylingClass();
 
 }else {
