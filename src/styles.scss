@@ -3,31 +3,35 @@
 @use "./app/shared/scss/abstracts/_colors.scss" as *;
 
 html {
-        scroll-behavior: smooth;
-
+  scroll-behavior: smooth;
 }
 
 body {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        margin: 0;
-        // padding: 25px 20px;
-        // padding: min(64px, 5vw);
-        background-color: $colorBG;
-        min-height: 100vh;
-        box-sizing: border-box;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  margin: 0;
+  // padding: 25px 20px;
+  // padding: min(64px, 5vw);
+  background-color: $colorBG;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 * {
-        font-family: "Nunito", Arial, Helvetica, sans-serif;
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
 
 .error-message {
-        display: flex;
-        align-items: flex-start;
-        color: #ED1E79;
-        font-size: 14px;
-        margin-top: -25px;
-        margin-left: 8px;
-      } 
+  display: flex;
+  align-items: flex-start;
+  color: #ed1e79;
+  font-size: 14px;
+  margin-top: -25px;
+  margin-left: 8px;
+}
+
+.d-none {
+  display: none;
+  
+}

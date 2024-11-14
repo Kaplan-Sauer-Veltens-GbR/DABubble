@@ -22,7 +22,7 @@
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-      <span class="error-message">Error Message</span> 
+      <span [appValidationError]="false" >Error Message</span> 
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
         placeholder="beispielname@email.com"
