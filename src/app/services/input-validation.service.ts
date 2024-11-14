@@ -7,7 +7,6 @@ import { ValidationError } from '../interfaces/validation-error';
 })
 export class InputValidationService {
   constructor() {}
-
   email: string = '';
   password: string = '';
   name: string = '';
@@ -28,17 +27,18 @@ export class InputValidationService {
   onEmailChange(newEmail: string) {
     debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (emailPattern.test(newEmail)) {
+      if (emailPattern.test(newEmail)) {
       this.email = newEmail;
       this.setValidationError('email', false);
       return true;
     } else {
-      this.setValidationError('email', true);
       return false;
+      
     }
   }
 
   onPasswordChange(newPassword: string) {
+
     const passwordIncludes =
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (passwordIncludes.test(newPassword)) {
@@ -46,20 +46,17 @@ export class InputValidationService {
       this.setValidationError('password', false);
       return true;
     } else {
-      this.setValidationError('password', true);
       return false;
     }
   }
 
   onNameChange(newName: string) {
-    debugger;
     const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.name = newName;
       this.setValidationError('name', false);
       return true;
     } else {
-      this.setValidationError('name', true);
       return false;
     }
   }
@@ -92,4 +89,10 @@ export class InputValidationService {
   toggleLegalNotice() {
     this.agreedToLegalNotice = !this.agreedToLegalNotice;
   }
-}
+
+
+  onInputLeave(field: string) {
+      this.setValidationError(field, true);
+    }
+  }
+

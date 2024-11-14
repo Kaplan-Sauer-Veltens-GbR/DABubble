@@ -18,6 +18,7 @@
         type="text"
         [required]="true"
         (valueChange)="inputCheck.onNameChange($event)"
+        (blurEvent)="inputCheck.onInputLeave('name')"
         
       >
         <app-icon #iconSlot iconName="user"></app-icon>
@@ -25,6 +26,7 @@
       <span ValidationError="name" >Error Message</span> 
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
+      (blurEvent)="inputCheck.onInputLeave('email')"
         placeholder="beispielname@email.com"
         type="text"
         [required]="true"
@@ -34,6 +36,7 @@
       <span ValidationError="email" >Error Message</span> 
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
+        (blurEvent)="inputCheck.onInputLeave('password')"
         placeholder="Passwort"
         type="password"
         [required]="true"

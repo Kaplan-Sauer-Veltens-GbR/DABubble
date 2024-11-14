@@ -12,9 +12,11 @@
     [placeholder]="placeholder"
     [attr.pattern]="pattern ? pattern : null"
     [required]="required"
+    (blur)="onBlur()"
   />
   } @else {
   <input
+    (blur)="onBlur()"
     (ngModelChange)="updateValue($event)"
     [(ngModel)]="value"
     [ngClass]="{ 'padding-icon-included': hasProjectedContent }"

@@ -27,9 +27,14 @@ export class InputFieldsComponent {
   @Input() autocomplete: string = '';
   hasProjectedContent: boolean = false;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() blurEvent = new EventEmitter<void>()
   value: string = '';
   ngOnInit(): void {
     this.hasProjectedContent = !!this.iconContent;
+  }
+
+  onBlur() {
+    this.blurEvent.emit();
   }
 
   updateValue(event: any): void {
