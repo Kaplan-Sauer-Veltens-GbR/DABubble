@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appValidationError]',
@@ -7,5 +7,10 @@ import { Directive } from '@angular/core';
 export class ValidationErrorDirective {
 
   constructor() { }
- // will ad a tooltip how password should look like etc
+ // will add a tooltip how password should look like etc
+  private el = inject(ElementRef);
+  private renderer2 = inject(Renderer2);
+ applyStylingClass() {
+
+ }
 }
