@@ -55,8 +55,10 @@ export class InputValidationService {
     const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.name = newName;
+      this.setValidationError('name',false);
       return true;
     } else {
+      this.setValidationError('name',true);
       return false;
     }
   }
