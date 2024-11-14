@@ -22,6 +22,10 @@ export class InputValidationService {
   validationError$ = this.validationErrorSubject.asObservable();
 
 
+  setValidationError(field:string,status:boolean) {
+    this.validationErrorSubject.next({field,status});
+  };
+
   onEmailChange(newEmail: string) {
     debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
