@@ -12,29 +12,28 @@ export class ValidationErrorDirective {
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
   private validationService = inject(InputValidationService)
+  @Input('ValidationError') field!: string; 
  
 
 
   constructor() {
+    debugger
     this.subscription = this.validationService.validationError$.subscribe(error => {
       if(error.status) {
-
+        if(error.field === this.field ) {
+          this.applyStylingClass();
+        }
+      }else {
+        this.hideMessage();
       }
     })
    }
 
 
-ngOnChanges(): void {
-if(this.ValidationError) {
-  this.applyStylingClass();
-
-}else {
-this.hideMessage();
-}
-}
 
 
  applyStylingClass() {
+  this.renderer.removeClass(this.el.nativeElement,'d-none')
   this.renderer.addClass(this.el.nativeElement,'error-message')
  }
 

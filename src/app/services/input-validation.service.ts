@@ -52,6 +52,7 @@ export class InputValidationService {
   }
 
   onNameChange(newName: string) {
+    debugger
     const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.name = newName;
