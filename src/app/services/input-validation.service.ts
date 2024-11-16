@@ -53,8 +53,10 @@ export class InputValidationService {
   }
 
   onNameChange(newName: string) {
+    debugger
     this.name = newName;
     this.notClearedName = newName;
+    console.log(this.notClearedName.length);
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.setValidationError('name', false);
@@ -97,7 +99,7 @@ export class InputValidationService {
     debugger
     console.log(value);
     
-    const namePattern =  /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]*$/;
+    const namePattern =  /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value) ) {
       this.setValidationError(field, true);
     } else {
