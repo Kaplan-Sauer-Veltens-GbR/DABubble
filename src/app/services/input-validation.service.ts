@@ -25,24 +25,21 @@ export class InputValidationService {
   }
 
   onEmailChange(newEmail: string) {
-    debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (emailPattern.test(newEmail)) {
-      this.email = newEmail;
+    this.email = newEmail;
+    if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
       return true;
     } else {
       return false;
-      
     }
   }
 
   onPasswordChange(newPassword: string) {
-
     const passwordIncludes =
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    this.password = newPassword;
     if (passwordIncludes.test(newPassword)) {
-      this.password = newPassword;
       this.setValidationError('password', false);
       return true;
     } else {
@@ -51,9 +48,9 @@ export class InputValidationService {
   }
 
   onNameChange(newName: string) {
+    this.name = newName;
     const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
-      this.name = newName;
       this.setValidationError('name', false);
       return true;
     } else {
@@ -90,9 +87,47 @@ export class InputValidationService {
     this.agreedToLegalNotice = !this.agreedToLegalNotice;
   }
 
-
-  onInputLeave(field: string) {
+  onInputLeaveName(field: string, value: string) {
+    debugger
+    console.log(value);
+    
+    const namePattern =  /^[A-Za-zÄÖÜäöüß-]{3,}$/;
+    if (!namePattern.test(value) ) {
       this.setValidationError(field, true);
+    } else {
+      this.setValidationError(field, false);
+      this.name = '';
+     
     }
   }
+
+  onInputLeaveEmail(field: string, value: string) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(value)) {
+      this.setValidationError(field, true);
+    } else {
+      this.setValidationError(field, false);
+      this.email = '';
+     
+    }
+  }
+
+  onInputLeavePassword(field: string, value: string) {
+    const passwordIncludes =
+    /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordIncludes.test(value)) {
+      this.setValidationError(field, true);
+    } else {
+      this.setValidationError(field, false);
+      this.password = '';
+     
+    }
+  }
+
+
+}
+
+
+
+
 
