@@ -1,3 +1,16 @@
 @use '../../../shared/scss/abstracts/_index.scss' as*;
 @use '../../../shared/scss/_boxes.scss';
 
+div {
+    word-wrap: break-word;
+    max-width: 175px;
+    max-height: fit-content;
+    min-width: 50px;
+    min-height: 25px;
+    position: absolute;
+    z-index: 20;
+    pointer-events: all;
+    display: block;
+    top: 0;
+   
+}
