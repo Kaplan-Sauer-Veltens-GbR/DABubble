@@ -1,6 +1,7 @@
 import { Directive, ElementRef, inject, Input, Renderer2 } from '@angular/core';
 import { InputValidationService } from '../services/input-validation.service';
 import { Subscription } from 'rxjs';
+import { ValidationError } from '../interfaces/validation-error';
 
 @Directive({
   selector: '[ValidationError]',
@@ -12,26 +13,29 @@ export class ValidationErrorDirective {
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
   private validationService = inject(InputValidationService);
-  @Input('ValidationError') field!: string;
+  @Input('ValidationError') field!: keyof ValidationError; 
 
 
 
 
 
+ 
 
   constructor() {
+    // Subscription zum Fehlerstatus des Formulars
     this.subscription = this.validationService.validationError$.subscribe(
-      (error) => {
-        if (error.status) {
-          if (error.fields === this.field) {
-            this.applyStylingClass();
-          }
+      (errors) => {
+        // Überprüfen, ob der Fehlerstatus für das betreffende Feld auf "true" gesetzt ist
+        if (errors[this.field]) {
+          this.applyStylingClass(); // Fehlerstil anwenden
         } else {
-          this.hideMessage();
+          this.hideMessage(); // Fehlernachricht ausblenden
         }
       }
     );
   }
+
+
 
   applyStylingClass() {
     this.renderer.removeClass(this.el.nativeElement, 'd-none');

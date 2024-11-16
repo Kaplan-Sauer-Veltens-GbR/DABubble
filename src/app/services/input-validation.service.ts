@@ -20,8 +20,7 @@ export class InputValidationService {
     email: false,
     password: false,
     name: false,
-    status:false,
-    fields: ''
+   
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
