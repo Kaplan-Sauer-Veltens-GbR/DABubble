@@ -36,7 +36,6 @@ export class ValidationErrorDirective {
   }
 
 
-
   applyStylingClass() {
     this.renderer.removeClass(this.el.nativeElement, 'd-none');
     this.renderer.addClass(this.el.nativeElement, 'error-message');
