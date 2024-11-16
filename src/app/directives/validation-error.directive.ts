@@ -23,7 +23,7 @@ export class ValidationErrorDirective {
     this.subscription = this.validationService.validationError$.subscribe(
       (error) => {
         if (error.status) {
-          if (error.field === this.field) {
+          if (error.fields === this.field) {
             this.applyStylingClass();
           }
         } else {

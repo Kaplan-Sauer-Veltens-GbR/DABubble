@@ -17,14 +17,19 @@ export class InputValidationService {
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
-    field: '',
-    status: false,
+    email: false,
+    password: false,
+    name: false,
+    status:false,
+    fields: ''
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
 
-  setValidationError(field: string, status: boolean) {
-    this.validationErrorSubject.next({ field, status });
+  setValidationError(field: keyof ValidationError, status: boolean) {
+    const currentErrors = this.validationErrorSubject.value;
+    currentErrors[field] = status; // Aktualisiert nur den Fehlerstatus für das angegebene Feld
+    this.validationErrorSubject.next(currentErrors); // Setzt die gesamte Fehlerstruktur zurück
   }
 
   onEmailChange(newEmail: string) {
@@ -101,9 +106,9 @@ export class InputValidationService {
     
     const namePattern =  /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value) ) {
-      this.setValidationError(field, true);
+      this.setValidationError(field as keyof ValidationError, true);
     } else {
-      this.setValidationError(field, false);
+      this.setValidationError(field as keyof ValidationError, false);
       this.name = '';
      
     }
@@ -112,9 +117,9 @@ export class InputValidationService {
   onInputLeaveEmail(field: string, value: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
-      this.setValidationError(field, true);
+      this.setValidationError(field as keyof ValidationError, true);
     } else {
-      this.setValidationError(field, false);
+      this.setValidationError(field as keyof ValidationError, false);
       this.email = '';
      
     }
@@ -124,9 +129,9 @@ export class InputValidationService {
     const passwordIncludes =
     /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordIncludes.test(value)) {
-      this.setValidationError(field, true);
+      this.setValidationError(field as keyof ValidationError, true);
     } else {
-      this.setValidationError(field, false);
+      this.setValidationError(field as keyof ValidationError, false);
       this.password = '';
      
     }
