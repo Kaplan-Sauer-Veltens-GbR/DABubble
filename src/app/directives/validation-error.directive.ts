@@ -8,7 +8,7 @@ import { ValidationError } from '../interfaces/validation-error';
   standalone: true,
 })
 export class ValidationErrorDirective {
-  // will add a tooltip how password should look like etc
+  
   private subscription: Subscription;
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
@@ -22,14 +22,13 @@ export class ValidationErrorDirective {
  
 
   constructor() {
-    // Subscription zum Fehlerstatus des Formulars
     this.subscription = this.validationService.validationError$.subscribe(
       (errors) => {
-        // Überprüfen, ob der Fehlerstatus für das betreffende Feld auf "true" gesetzt ist
+        
         if (errors[this.field]) {
-          this.applyStylingClass(); // Fehlerstil anwenden
+          this.applyStylingClass();
         } else {
-          this.hideMessage(); // Fehlernachricht ausblenden
+          this.hideMessage();
         }
       }
     );
