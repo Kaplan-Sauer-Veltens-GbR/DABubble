@@ -10,6 +10,9 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
+  notClearedEmail:string = '';
+  notClearedPassword:string = '';
+  notClearedName:string = '';
   profilePicture: string = '';
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
@@ -27,6 +30,7 @@ export class InputValidationService {
   onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;
+    this.notClearedEmail = newEmail
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
       return true;
@@ -39,6 +43,7 @@ export class InputValidationService {
     const passwordIncludes =
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     this.password = newPassword;
+    this.notClearedPassword = newPassword;
     if (passwordIncludes.test(newPassword)) {
       this.setValidationError('password', false);
       return true;
@@ -49,7 +54,8 @@ export class InputValidationService {
 
   onNameChange(newName: string) {
     this.name = newName;
-    const namePattern = /^[A-Za-zÄÖÜäöüß]+([ '-][A-Za-zÄÖÜäöüß]+)*$/;
+    this.notClearedName = newName;
+    const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.setValidationError('name', false);
       return true;
@@ -72,9 +78,9 @@ export class InputValidationService {
 
   checkInputValidation() {
     if (
-      this.onPasswordChange(this.password) &&
-      this.onEmailChange(this.email) &&
-      this.onNameChange(this.name) &&
+      this.onPasswordChange(this.notClearedPassword) &&
+      this.onEmailChange(this.notClearedEmail) &&
+      this.onNameChange(this.notClearedName) &&
       this.agreedToLegalNotice
     ) {
       return (this.passedValidation = true);
@@ -91,7 +97,7 @@ export class InputValidationService {
     debugger
     console.log(value);
     
-    const namePattern =  /^[A-Za-zÄÖÜäöüß-]{3,}$/;
+    const namePattern =  /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]*$/;
     if (!namePattern.test(value) ) {
       this.setValidationError(field, true);
     } else {
