@@ -23,7 +23,7 @@
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-      <span ValidationError="name" >Error Message</span> 
+      <span ValidationError="name" >Bitte geben sie ihren vollständigen Namen an </span> 
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
       (blurEvent)="inputCheck.onInputLeaveEmail('email',inputCheck.email)"
@@ -33,7 +33,7 @@
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
-      <span ValidationError="email" >Error Message</span> 
+      <span ValidationError="email" >bitte verwenden sie eine gültige Email</span> 
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
         (blurEvent)="inputCheck.onInputLeavePassword('password',inputCheck.password)"
@@ -43,7 +43,7 @@
       >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
-      <span ValidationError="password" >Error Message</span> 
+      <span ValidationError="password" >Bitte Nutzen sie ein sichereres passwort hovern sie über mich für mehr infos</span> 
       <label class="privacy-check">
         <input (click)="inputCheck.toggleLegalNotice()" type="checkbox" required />
         Ich stimme der <a href="#">Datenschutzerklärung </a> zu.
