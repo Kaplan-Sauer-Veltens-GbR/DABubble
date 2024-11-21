@@ -36,8 +36,10 @@ export class SignUpComponent {
   }
 
   hoverOvertoolTip(field:string) {
-    this.mouseOverPasswordTip = true;
-    console.log(this.mouseOverPasswordTip);
+    setTimeout(() => {
+      this.mouseOverPasswordTip = true; // maybe also create a UI element for displaying the loading of the tooltip or we screw that tool tip apart just an idea. 
+    }, 1000);
+ 
     
   }
 

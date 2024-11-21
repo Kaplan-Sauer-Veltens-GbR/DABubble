@@ -57,7 +57,6 @@ export class InputValidationService {
   }
 
   onNameChange(newName: string) {
-    debugger
     this.name = newName;
     this.notClearedName = newName;
     console.log(this.notClearedName.length);
