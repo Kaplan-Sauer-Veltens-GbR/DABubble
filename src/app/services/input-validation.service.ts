@@ -1,6 +1,7 @@
-import { Injectable, Input } from '@angular/core';
+import { inject, Injectable, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ValidationError } from '../interfaces/validation-error';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class InputValidationService {
   profilePicture: string = '';
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
+  private authService = inject(AuthService)
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
     email: false,
     password: false,

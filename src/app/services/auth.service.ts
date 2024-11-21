@@ -21,6 +21,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { DbService } from './db.service';
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
+import { InputValidationService } from './input-validation.service';
 
 @Injectable({
   providedIn: 'root',
@@ -85,10 +86,10 @@ export class AuthService {
       }
     });
   }
-  checkUserLoggedIn(): boolean {
-    const userUID = localStorage.getItem('userUID');
-    return userUID !== null;
-  }
+  // checkUserLoggedIn(): boolean {
+  //   const userUID = localStorage.getItem('userUID');
+  //   return userUID !== null;
+  // }
 
   async createUserWithEmailAndPassword(
     email: string,
@@ -160,4 +161,6 @@ export class AuthService {
   //   getCurrentUser(): User | null {
   //     return this.auth.currentUser;
   //   }
+
+ 
 }
