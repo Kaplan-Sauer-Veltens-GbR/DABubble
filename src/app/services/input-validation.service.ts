@@ -2,8 +2,13 @@ import { inject, Injectable, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ValidationError } from '../interfaces/validation-error';
 import { AuthService } from './auth.service';
-import { collection, Firestore, getDocs, where } from '@angular/fire/firestore';
-import { query } from '@angular/animations';
+import {
+  collection,
+  Firestore,
+  getDocs,
+  where,
+  query,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -13,19 +18,18 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
-  notClearedEmail:string = '';
-  notClearedPassword:string = '';
-  notClearedName:string = '';
+  notClearedEmail: string = '';
+  notClearedPassword: string = '';
+  notClearedName: string = '';
   profilePicture: string = '';
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
-  private authService = inject(AuthService)
-  private fireStore = inject(Firestore)
+  private authService = inject(AuthService);
+  private fireStore = inject(Firestore);
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
     email: false,
     password: false,
     name: false,
-   
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
@@ -39,7 +43,7 @@ export class InputValidationService {
   onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;
-    this.notClearedEmail = newEmail
+    this.notClearedEmail = newEmail;
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
       return true;
@@ -104,16 +108,15 @@ export class InputValidationService {
   }
 
   onInputLeaveName(field: string, value: string) {
-    debugger
+    debugger;
     console.log(value);
-    
-    const namePattern =  /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
-    if (!namePattern.test(value) ) {
+
+    const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
+    if (!namePattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
     } else {
       this.setValidationError(field as keyof ValidationError, false);
       this.name = '';
-     
     }
   }
 
@@ -124,29 +127,22 @@ export class InputValidationService {
     } else {
       this.setValidationError(field as keyof ValidationError, false);
       this.email = '';
-     
     }
   }
 
   onInputLeavePassword(field: string, value: string) {
     const passwordIncludes =
-    /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordIncludes.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
     } else {
       this.setValidationError(field as keyof ValidationError, false);
       this.password = '';
-     
     }
   }
 
-   async checkIfEmailExists(email:string) {
-    const userCollection = collection(this.fireStore,'users')
+  async checkIfEmailExists(email: string) {
+    const userCollection = collection(this.fireStore, 'users');
     const userQuery = query(userCollection, where('email', '==', true));
   }
 }
-
-
-
-
-

@@ -1,11 +1,8 @@
 @use "../../shared/scss/abstracts/_index.scss" as *;
 
 aside {
-   
     border-radius: 30px;
     background-color: white;
-
-   
 }
 
 chat-message {
@@ -13,25 +10,23 @@ chat-message {
 }
 
 .headline {
-   padding-bottom: 32px;
-   padding: 32px clamp(20px, 5vw, 40px) 0;
-    @include dflex(space-between,center,5px);
-    app-icon  {
+    padding-bottom: 32px;
+    padding: 32px clamp(20px, 5vw, 40px) 0;
+    @include dflex(space-between, center, 5px);
+    app-icon {
         display: flex;
         cursor: pointer;
     }
 }
- 
+
 header {
- 
-@include dflex(unset,center,5px);
+    @include dflex(unset, center, 5px);
     h2 {
         margin: 0;
     }
     span {
         color: $colorPurple2;
     }
-  
 }
 
 .message-field {
