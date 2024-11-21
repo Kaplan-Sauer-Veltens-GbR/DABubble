@@ -32,6 +32,7 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
+
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
 

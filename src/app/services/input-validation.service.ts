@@ -2,6 +2,8 @@ import { inject, Injectable, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ValidationError } from '../interfaces/validation-error';
 import { AuthService } from './auth.service';
+import { collection, Firestore, getDocs, where } from '@angular/fire/firestore';
+import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +20,7 @@ export class InputValidationService {
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
   private authService = inject(AuthService)
+  private fireStore = inject(Firestore)
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
     email: false,
     password: false,
@@ -137,7 +140,10 @@ export class InputValidationService {
     }
   }
 
-
+   async checkIfEmailExists(email:string) {
+    const userCollection = collection(this.fireStore,'users')
+    const userQuery = query(userCollection, where('email', '==', true));
+  }
 }
 
 

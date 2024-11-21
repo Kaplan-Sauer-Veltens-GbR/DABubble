@@ -32,7 +32,7 @@ export class SignUpComponent {
   private router = inject(Router);
   mouseOverPasswordTip:boolean = false;
   ngOnInit(): void {
-    
+    this.inputCheck.checkIfEmailExists('hallo')
   }
 
   hoverOvertoolTip(field:string) {
