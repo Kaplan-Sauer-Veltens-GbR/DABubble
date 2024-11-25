@@ -25,7 +25,7 @@ export class InputValidationService {
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
   private authService = inject(AuthService);
-  private fireStore = inject(Firestore);
+  private firestore = inject(Firestore);
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
     email: false,
     password: false,
@@ -46,10 +46,13 @@ export class InputValidationService {
     this.notClearedEmail = newEmail;
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
+      this.checkIfEmailExists(newEmail);
       return true;
+      
     } else {
       return false;
     }
+    
   }
 
   onPasswordChange(newPassword: string) {
@@ -68,7 +71,6 @@ export class InputValidationService {
   onNameChange(newName: string) {
     this.name = newName;
     this.notClearedName = newName;
-    console.log(this.notClearedName.length);
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]*$/;
     if (namePattern.test(newName) && newName.length >= 3) {
       this.setValidationError('name', false);
@@ -108,15 +110,13 @@ export class InputValidationService {
   }
 
   onInputLeaveName(field: string, value: string) {
-    debugger;
     console.log(value);
-
+    
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
     } else {
       this.setValidationError(field as keyof ValidationError, false);
-      this.name = '';
     }
   }
 
@@ -126,7 +126,6 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, true);
     } else {
       this.setValidationError(field as keyof ValidationError, false);
-      this.email = '';
     }
   }
 
@@ -137,12 +136,17 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, true);
     } else {
       this.setValidationError(field as keyof ValidationError, false);
-      this.password = '';
     }
   }
 
   async checkIfEmailExists(email: string) {
-    const userCollection = collection(this.fireStore, 'users');
+    const userCollection = collection(this.firestore, 'users');
     const userQuery = query(userCollection, where('email', '==', true));
+     const userQuerySnapshot = await getDocs(userQuery);
+     userQuerySnapshot.forEach((doc) =>
+      { 
+        console.log(doc.id);
+        
+     })
   }
 }

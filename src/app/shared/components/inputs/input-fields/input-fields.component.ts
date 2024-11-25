@@ -28,7 +28,7 @@ export class InputFieldsComponent {
   hasProjectedContent: boolean = false;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() blurEvent = new EventEmitter<void>()
-  value: string = '';
+  @Input() value: string = '';
   ngOnInit(): void {
     this.hasProjectedContent = !!this.iconContent;
   }
@@ -37,7 +37,8 @@ export class InputFieldsComponent {
     this.blurEvent.emit();
   }
 
-  updateValue(event: any): void {
-    this.valueChange.emit(event);
+  updateValue(event: string): void {
+    this.value = event;
+    this.valueChange.emit(this.value);
   }
 }
