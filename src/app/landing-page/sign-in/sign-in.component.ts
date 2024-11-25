@@ -48,6 +48,7 @@ export class SignInComponent {
   ngOnInit(): void {}
 
   onSubmit() {
+    this.inputCheck.checkIfEmailExists(this.inputCheck.email)
     this.auth.signIn(this.inputCheck.email, this.inputCheck.password);
   }
 }
