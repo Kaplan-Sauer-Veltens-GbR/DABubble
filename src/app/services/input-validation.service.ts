@@ -46,7 +46,7 @@ export class InputValidationService {
     this.notClearedEmail = newEmail;
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
-      this.checkIfEmailExists(newEmail);
+      
       return true;
       
     } else {
@@ -124,9 +124,12 @@ export class InputValidationService {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
+      
     } else {
       this.setValidationError(field as keyof ValidationError, false);
+      
     }
+    
   }
 
   onInputLeavePassword(field: string, value: string) {
@@ -141,12 +144,20 @@ export class InputValidationService {
 
   async checkIfEmailExists(email: string) {
     const userCollection = collection(this.firestore, 'users');
-    const userQuery = query(userCollection, where('email', '==', true));
+    const userQuery = query(userCollection, where('email', '==', email));
      const userQuerySnapshot = await getDocs(userQuery);
+     if(userQuerySnapshot.empty) {
+     this.setValidationError('email',true)
+      
+    }
      userQuerySnapshot.forEach((doc) =>
       { 
-        console.log(doc.id);
-        
+       
+        console.log('Gefundener Benutzer:', doc.id);  // Hier bekommst du die Dokument-ID
+        // Wenn du das gesamte Dokument möchtest:
+        console.log('Dokumentdaten:', doc.data());
      })
   }
+
+  
 }

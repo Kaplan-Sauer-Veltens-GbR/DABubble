@@ -45,5 +45,6 @@ export class SignUpComponent {
 
   onSubmit() {
     this.router.navigate(['avatar-picker']);
+    
   }
  }
