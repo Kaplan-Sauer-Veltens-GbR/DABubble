@@ -13,7 +13,7 @@
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-
+      <span ValidationError="email">Email existiert nicht</span>
       <app-input-fields
       appFormValidation
         (valueChange)="inputCheck.onPasswordChange($event)"

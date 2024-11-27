@@ -22,7 +22,6 @@ private route = inject(ActivatedRoute)
 private authService = inject(AuthService)
 user: User | null = null;
 ngOnInit() {
-  debugger
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
       console.log('User logged in:', user);

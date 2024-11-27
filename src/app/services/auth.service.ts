@@ -22,6 +22,7 @@ import { DbService } from './db.service';
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
 import { InputValidationService } from './input-validation.service';
+import { UserData } from '../interfaces/user-model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,7 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
+  
 
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
@@ -44,13 +46,15 @@ export class AuthService {
 
   ngOnInit(): void {}
 
+
+  
+
   signInWithGoogleRedirect() {
     return signInWithRedirect(this.auth, this.provider);
   }
 
   async logout() {
     try {
-      debugger;
       await this.auth.signOut();
     } catch (error) {
       console.error('error  loggin out', error);
@@ -118,14 +122,15 @@ export class AuthService {
 
   async signIn(email: string, password: string): Promise<void> {
     try {
-      const unserCredential = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         this.auth,
         email,
         password
       );
-
-      console.log(unserCredential, 'logged in');
-      const uID = unserCredential.user.uid;
+      this.dataBase.saveUserData(userCredential.user)
+      console.log(userCredential.user);
+      
+      const uID = userCredential.user.uid;
       this.routeWithId(uID);
     } catch (error: any) {
       this.handleFirbaseError(error);

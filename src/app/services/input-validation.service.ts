@@ -44,6 +44,8 @@ export class InputValidationService {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;
     this.notClearedEmail = newEmail;
+    console.log(this.email);
+    
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
       
@@ -157,7 +159,9 @@ export class InputValidationService {
        
         console.log('Dokumentdaten:', doc.data());
      })
+     this.setValidationError('email',false)
      return true;
+     
   }
 
   
