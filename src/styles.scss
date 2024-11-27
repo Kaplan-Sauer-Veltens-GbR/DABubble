@@ -16,5 +16,22 @@ body {
 }
 
 * {
-        font-family: "Nunito", Arial, Helvetica, sans-serif;
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
+}
+
+.error-message {
+  display: flex;
+  align-items: flex-start;
+  color: #ed1e79;
+  font-size: 14px;
+  margin-top: -25px;
+  margin-left: 8px;
+  position: relative;
+  
+}
+
+.d-none {
+  display: none;
+  
+
 }

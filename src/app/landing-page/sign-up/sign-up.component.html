@@ -6,42 +6,51 @@
     <div class="header-container">
       <h1 class="signup-title">Konto erstellen</h1>
     </div>
-    <p class="signup-subtitle">
+    <p class="signup-subtitle" >
       Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
       DABubble-Konto.
     </p>
 
     <form (ngSubmit)="onSubmit()">
+      
       <app-input-fields
         placeholder="Name und Nachname"
         type="text"
         [required]="true"
         (valueChange)="inputCheck.onNameChange($event)"
+        (blurEvent)="inputCheck.onInputLeaveName('name',inputCheck.name)"
         
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-
+      <span ValidationError="name" >Bitte geben sie ihren vollständigen Namen an </span> 
       <app-input-fields
       (valueChange)="inputCheck.onEmailChange($event)"
+      (blurEvent)="inputCheck.onInputLeaveEmail('email',inputCheck.email)"
         placeholder="beispielname@email.com"
         type="text"
         [required]="true"
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
-
+      <span ValidationError="email" >bitte verwenden sie eine gültige Email</span> 
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
+        (blurEvent)="inputCheck.onInputLeavePassword('password',inputCheck.password)"
         placeholder="Passwort"
         type="password"
         [required]="true"
       >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
-
+      <span ValidationError="password" (mouseleave)="this.leaveToolTip('password')" (mouseenter)="this.hoverOvertoolTip('password')" >Bitte Nutzen sie ein sichereres passwort hovern sie über mich für mehr infos</span> 
+      @if(mouseOverPasswordTip){
+        <tooltip>
+        <span  #tooltip>Mindestens 8 Zeichen, ein Großbuchstabe, eine Zahl und ein Sonderzeichen</span>
+      </tooltip>
+      }
       <label class="privacy-check">
-        <input type="checkbox" required />
+        <input (click)="inputCheck.toggleLegalNotice()" type="checkbox" required />
         Ich stimme der <a href="#">Datenschutzerklärung </a> zu.
       </label>
 
@@ -53,3 +62,4 @@
     </form>
   </div>
 </div>
+   

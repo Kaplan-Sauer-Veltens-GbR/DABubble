@@ -7,6 +7,8 @@ import { IconLibaryComponent } from '../../shared/components/icon-component/icon
 import { Router, RouterModule } from '@angular/router';
 import { InputValidationService } from '../../services/input-validation.service';
 import { AuthService } from '../../services/auth.service';
+import { ValidationErrorDirective } from '../../directives/validation-error.directive';
+import { TooltipComponent } from "./tooltip/tooltip.component";
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -14,20 +16,35 @@ import { AuthService } from '../../services/auth.service';
     ButtonComponent,
     InputFieldsComponent,
     FormsModule,
-    IconLibaryComponent,  
+    IconLibaryComponent,
     CommonModule,
     RouterModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    ValidationErrorDirective,
+    TooltipComponent
+],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
-  public inputCheck = inject(InputValidationService)
-  private authService = inject(AuthService)
-  private router = inject(Router)
+  public inputCheck = inject(InputValidationService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  mouseOverPasswordTip:boolean = false;
+  ngOnInit(): void {
+    this.inputCheck.checkIfEmailExists('hallo')
+  }
+
+  hoverOvertoolTip(field:string) {
+    this.mouseOverPasswordTip = true;
+  }
+
+  leaveToolTip(field:string) {
+    this.mouseOverPasswordTip = false;
+  }
 
   onSubmit() {
     this.router.navigate(['avatar-picker']);
+    
   }
  }
