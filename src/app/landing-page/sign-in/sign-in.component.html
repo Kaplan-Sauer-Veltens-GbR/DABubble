@@ -45,7 +45,7 @@
         <app-button (click)="onSubmit()" [filled]="true">{{
           t("login-page.login.regular")
         }}</app-button>
-        <app-button [filled]="false">{{
+        <app-button (click)="auth.guestLogin()" [filled]="false">{{
           t("login-page.login.guest")
         }}</app-button>
       </div>

@@ -14,6 +14,7 @@ import {
   fetchSignInMethodsForEmail,
   AuthErrorCodes,
   updateProfile,
+  signInAnonymously,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -168,5 +169,11 @@ export class AuthService {
   //     return this.auth.currentUser;
   //   }
 
- 
+   async guestLogin() {
+   const guestCredential = await signInAnonymously(this.auth);
+   this.routeWithId(guestCredential.user.uid)
+   }
+
+  
 }
+ 
