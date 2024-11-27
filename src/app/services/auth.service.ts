@@ -165,10 +165,6 @@ export class AuthService {
     }
   }
 
-  //   getCurrentUser(): User | null {
-  //     return this.auth.currentUser;
-  //   }
-
    async guestLogin() {
    const guestCredential = await signInAnonymously(this.auth);
    this.routeWithId(guestCredential.user.uid)
