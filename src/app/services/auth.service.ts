@@ -121,7 +121,7 @@ export class AuthService {
     } catch (error) {}
   }
 
-  async signIn(email: string, password: string): Promise<void> {
+  async signIn(email: string, password: string): Promise<boolean> {
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.auth,
@@ -133,14 +133,19 @@ export class AuthService {
       
       const uID = userCredential.user.uid;
       this.routeWithId(uID);
+      return true
     } catch (error: any) {
       this.handleFirbaseError(error);
+     return false
     }
   }
+
+
   handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
       if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('wrong password / or email:', error.message);
+        
       } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('input is not a valid email pattern');
       }
