@@ -147,7 +147,7 @@ export class AuthService {
         console.error('wrong password / or email:', error.message);
         
       } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
-        console.error('input is not a valid email pattern');
+        console.error('input is not a valid email pattern / or password wrong');
       }
     } else {
       console.error('unkown error:', error);
