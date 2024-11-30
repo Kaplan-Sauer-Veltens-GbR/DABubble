@@ -7,13 +7,12 @@ import { CommonModule } from '@angular/common';
 import { Auth, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [HeaderComponent,SidebarComponent,RouterOutlet,CommonModule],
+  imports: [HeaderComponent, SidebarComponent, RouterOutlet, CommonModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrl: './main.component.scss',
 })
 export class MainComponent {
 public workspace = inject(WorkspaceService)
@@ -22,7 +21,6 @@ private route = inject(ActivatedRoute)
 private authService = inject(AuthService)
 user: User | null = null;
 ngOnInit() {
-  debugger
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
       console.log('User logged in:', user);

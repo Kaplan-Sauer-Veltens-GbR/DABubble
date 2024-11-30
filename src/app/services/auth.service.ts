@@ -14,6 +14,7 @@ import {
   fetchSignInMethodsForEmail,
   AuthErrorCodes,
   updateProfile,
+  signInAnonymously,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -22,6 +23,7 @@ import { DbService } from './db.service';
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
 import { InputValidationService } from './input-validation.service';
+import { UserData } from '../interfaces/user-model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +34,7 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
+  
 
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
@@ -44,13 +47,15 @@ export class AuthService {
 
   ngOnInit(): void {}
 
+
+  
+
   signInWithGoogleRedirect() {
     return signInWithRedirect(this.auth, this.provider);
   }
 
   async logout() {
     try {
-      debugger;
       await this.auth.signOut();
     } catch (error) {
       console.error('error  loggin out', error);
@@ -110,31 +115,37 @@ export class AuthService {
           photoURL: profilePircture,
         });
         console.log('user succefully created', userCredential.user);
-        this.routeWithId(userCredential.user.uid)
+        this.routeWithId(userCredential.user.uid);
         this.dataBase.saveUserData(userCredential.user);
       }
     } catch (error) {}
   }
 
-  async signIn(email: string, password: string): Promise<void> {
+  async signIn(email: string, password: string): Promise<boolean> {
     try {
-      const unserCredential = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         this.auth,
         email,
         password
       );
-
-      console.log(unserCredential, 'logged in');
-      const uID = unserCredential.user.uid;
+      this.dataBase.saveUserData(userCredential.user)
+      console.log(userCredential.user);
+      
+      const uID = userCredential.user.uid;
       this.routeWithId(uID);
+      return true
     } catch (error: any) {
       this.handleFirbaseError(error);
+     return false
     }
   }
+
+
   handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
       if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('wrong password / or email:', error.message);
+        
       } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('input is not a valid email pattern / or password wrong');
       }
@@ -159,9 +170,11 @@ export class AuthService {
     }
   }
 
-  //   getCurrentUser(): User | null {
-  //     return this.auth.currentUser;
-  //   }
+   async guestLogin() {
+   const guestCredential = await signInAnonymously(this.auth);
+   this.routeWithId(guestCredential.user.uid)
+   }
 
- 
+  
 }
+ 

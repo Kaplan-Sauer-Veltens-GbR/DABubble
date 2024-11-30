@@ -3,19 +3,51 @@
 @use "./app/shared/scss/abstracts/_colors.scss" as *;
 
 html {
-  scroll-behavior: smooth;
+        scroll-behavior: smooth;  
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 2px;
+  height: 16px;
+}
+::-webkit-scrollbar-thumb {
+  background: #797ef3;
+  border: 13px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #797cf3;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #797ef3;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 43px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-track:active {
+  background: #ffffff;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 }
 
 body {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  margin: 0;
-  // padding: 25px 20px;
-  // padding: min(64px, 5vw);
-  background-color: $colorBG;
-  min-height: 100vh;
-  box-sizing: border-box;
+        margin: 0;
+        background-color: $colorBG;
+        height: 100vh;
+        max-height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
 }
 
 * {

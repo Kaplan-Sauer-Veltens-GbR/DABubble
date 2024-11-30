@@ -23,6 +23,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../services/auth.service';
 import { DbService } from '../../services/db.service';
 import { InputValidationService } from '../../services/input-validation.service';
+import { ValidationErrorDirective } from '../../directives/validation-error.directive';
 
 @Component({
   selector: 'app-sign-in',
@@ -37,6 +38,7 @@ import { InputValidationService } from '../../services/input-validation.service'
     InputFieldsComponent,
     IconLibaryComponent,
     TranslocoModule,
+    ValidationErrorDirective
     
   ],
 })

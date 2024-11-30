@@ -36,19 +36,18 @@ export class InputValidationService {
 
   setValidationError(field: keyof ValidationError, status: boolean) {
     const currentErrors = this.validationErrorSubject.value;
-    currentErrors[field] = status; // Aktualisiert nur den Fehlerstatus für das angegebene Feld
-    this.validationErrorSubject.next(currentErrors); // Setzt die gesamte Fehlerstruktur zurück
+    currentErrors[field] = status; 
+    this.validationErrorSubject.next(currentErrors); 
   }
 
   onEmailChange(newEmail: string) {
+
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;
     this.notClearedEmail = newEmail;
     if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
-      
       return true;
-      
     } else {
       return false;
     }
@@ -121,6 +120,7 @@ export class InputValidationService {
   }
 
   onInputLeaveEmail(field: string, value: string) {
+    debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
@@ -157,7 +157,9 @@ export class InputValidationService {
        
         console.log('Dokumentdaten:', doc.data());
      })
+     this.setValidationError('email',false)
      return true;
+     
   }
 
   
