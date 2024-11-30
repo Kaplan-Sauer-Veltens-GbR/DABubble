@@ -31,7 +31,6 @@ avatarImages: string[] = [
 ];
 
 setPhotoPath(path:string) {
-  
   this.profilePicture = path;
   
   
