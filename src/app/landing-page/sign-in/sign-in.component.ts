@@ -57,4 +57,4 @@ export class SignInComponent {
     this.inputCheck.setValidationError('password',true)
    }
   }
-}
+} // right version
