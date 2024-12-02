@@ -32,10 +32,10 @@ export class DbService {
       status: '',
     };
     console.log(userData, 'hallo');
-    this.updateOnDB(userData, userRef);
+    this.updateUser(userData, userRef);
   }
 
-  updateOnDB(userData: UserData, userRef: DocumentReference) {
+  updateUser(userData: UserData, userRef: DocumentReference) {
     setDoc(userRef, userData, { merge: true });
   }
 }
