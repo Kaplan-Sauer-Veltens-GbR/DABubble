@@ -86,7 +86,10 @@ export class InputValidationService {
   }
 
   checkIsFormValid() {
+    console.log(this.passedValidation);
+    
     if (this.passedValidation) {
+
       return true;
     } else {
       return false;
@@ -118,9 +121,10 @@ export class InputValidationService {
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
+      this.nameIsValid = false;
     } else {
       this.setValidationError(field as keyof ValidationError, false);
-      this.nameIsValid = true
+      this.nameIsValid = true;
     }
   }
 
@@ -129,7 +133,7 @@ export class InputValidationService {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
-      
+      this.emailIsValid = false;
     } else {
       this.setValidationError(field as keyof ValidationError, false);
       this.emailIsValid = true; // maybe auch beim schreiben direkt hinufügen damit man nicht immer die form verlassen mus für den check
@@ -142,9 +146,10 @@ export class InputValidationService {
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordIncludes.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
+      this.passwordIsValid = false;
     } else {
       this.setValidationError(field as keyof ValidationError, false);
-      this.passedValidation = true
+      this.passwordIsValid = true;
     }
   }
 
