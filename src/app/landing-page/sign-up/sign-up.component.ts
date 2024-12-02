@@ -34,7 +34,7 @@ export class SignUpComponent {
   private cdRef = inject(ChangeDetectorRef)
   mouseOverPasswordTip:boolean = false;
   ngOnInit(): void {
-    
+  
   }
 
   hoverOvertoolTip(field:string) {
@@ -46,12 +46,15 @@ export class SignUpComponent {
   }
 
   async onSubmit() {
+    debugger
     const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
   if(emailExists) {
     debugger
     this.inputCheck.setValidationError('email' as keyof ValidationError, true);
     return
   }else {
+    debugger
+    this.inputCheck.resetValidationResults();
     this.router.navigate(['avatar-picker']);
   }
     

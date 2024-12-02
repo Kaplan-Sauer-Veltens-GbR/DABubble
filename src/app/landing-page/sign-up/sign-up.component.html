@@ -55,7 +55,7 @@
       </label>
 
       <div class="action-buttons">
-        <app-button (buttonClick)="onSubmit()" [disabled]="inputCheck.checkIsFormValid()" [filled]="true" label="Weiter">
+        <app-button (buttonClick)="onSubmit()" [disabled]="!inputCheck.checkIsFormValid()" [filled]="true" label="Weiter">
           <a>Weiter</a>
         </app-button>
       </div>
