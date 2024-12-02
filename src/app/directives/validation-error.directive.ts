@@ -26,6 +26,8 @@ export class ValidationErrorDirective {
       (errors) => {
         
         if (errors[this.field]) {
+          
+          
           this.applyStylingClass();
         } else {
           this.hideMessage();

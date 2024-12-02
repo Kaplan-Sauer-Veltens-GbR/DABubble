@@ -148,15 +148,9 @@ export class InputValidationService {
      const userQuerySnapshot = await getDocs(userQuery);
      if(userQuerySnapshot.empty) {
      this.setValidationError('email',true)
-      return false
+      return false;
     }
-     userQuerySnapshot.forEach((doc) =>
-      { 
-       
-        console.log('Gefundener Benutzer:', doc.id);
-       
-        console.log('Dokumentdaten:', doc.data());
-     })
+    
      this.setValidationError('email',false)
      return true;
      
