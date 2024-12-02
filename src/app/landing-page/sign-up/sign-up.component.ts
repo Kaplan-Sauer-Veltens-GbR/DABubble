@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/inputs/button/button.component';
 import { InputFieldsComponent } from '../../shared/components/inputs/input-fields/input-fields.component';
@@ -9,6 +9,7 @@ import { InputValidationService } from '../../services/input-validation.service'
 import { AuthService } from '../../services/auth.service';
 import { ValidationErrorDirective } from '../../directives/validation-error.directive';
 import { TooltipComponent } from "./tooltip/tooltip.component";
+import { ValidationError } from '../../interfaces/validation-error';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -30,6 +31,7 @@ export class SignUpComponent {
   public inputCheck = inject(InputValidationService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private cdRef = inject(ChangeDetectorRef)
   mouseOverPasswordTip:boolean = false;
   ngOnInit(): void {
     
@@ -46,7 +48,8 @@ export class SignUpComponent {
   async onSubmit() {
     const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
   if(emailExists) {
-    
+    debugger
+    this.inputCheck.setValidationError('email' as keyof ValidationError, true);
     return
   }else {
     this.router.navigate(['avatar-picker']);

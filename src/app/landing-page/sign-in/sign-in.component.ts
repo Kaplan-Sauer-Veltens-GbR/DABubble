@@ -50,11 +50,14 @@ export class SignInComponent {
   ngOnInit(): void {}
 
     async onSubmit() {
-    this.inputCheck.checkIfEmailExists(this.inputCheck.email)
+   const emailNotExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
    const result =  await this.auth.signIn(this.inputCheck.email, this.inputCheck.password);
-   debugger
+  
    if(result === false) {
     this.inputCheck.setValidationError('password',true)
+
+   } if(!emailNotExists) {
+    this.inputCheck.setValidationError('email',true)
    }
   }
 } 

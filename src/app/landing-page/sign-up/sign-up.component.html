@@ -33,7 +33,7 @@
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
-      <span *ngIf="(this.inputCheck.validationError$ | async)?.email === true">bitte verwenden sie eine gültige Email</span> 
+      <span  ValidationError="email">bitte verwenden sie eine gültige Email</span> 
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
         (blurEvent)="inputCheck.onInputLeavePassword('password',inputCheck.password)"

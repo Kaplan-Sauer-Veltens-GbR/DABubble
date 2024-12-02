@@ -92,16 +92,20 @@ export class InputValidationService {
   }
 
   checkInputValidation() {
-    if (
-      this.onPasswordChange(this.notClearedPassword) &&
-      this.onEmailChange(this.notClearedEmail) &&
-      this.onNameChange(this.notClearedName) &&
+
+    const validationResults = [
+      this.onPasswordChange(this.notClearedPassword),
+      this.onEmailChange(this.notClearedEmail),
+      this.onNameChange(this.notClearedName),
       this.agreedToLegalNotice
-    ) {
-      return (this.passedValidation = true);
-    } else {
-      return false;
-    }
+  ];
+
+  // Alle Felder müssen gültig sein, damit die Gesamtvalidierung true zurückgibt
+  const isValid = validationResults.every(result => result === true);
+
+  // Wenn alle Bedingungen erfüllt sind, gibt es true zurück
+  this.passedValidation = isValid;
+  return isValid;
   }
 
   toggleLegalNotice() {
@@ -147,11 +151,11 @@ export class InputValidationService {
     const userQuery = query(userCollection, where('email', '==', email));
      const userQuerySnapshot = await getDocs(userQuery);
      if(userQuerySnapshot.empty) {
-     this.setValidationError('email',true)
+    //  this.setValidationError('email',true)
       return false;
     }
     
-     this.setValidationError('email',false)
+    //  this.setValidationError('email',false)
      return true;
      
   }
