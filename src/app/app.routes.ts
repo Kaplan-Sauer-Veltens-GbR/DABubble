@@ -7,6 +7,7 @@ import { SignUpComponent } from './landing-page/sign-up/sign-up.component';
 import { AvatarPickerComponent } from './landing-page/avatar-picker/avatar-picker.component';
 import { ResetPasswordEmailComponent } from './landing-page/reset-password-email/reset-password-email.component';
 import { ChatWindowComponent } from './main/chat-window/chat-window.component';
+import { ResetPasswordComponent } from './landing-page/reset-password/reset-password.component';
 export const routes: Routes = [
   { path: 'playground', component: PlaygroundComponent },
   {
@@ -17,6 +18,7 @@ export const routes: Routes = [
       { path: 'signup', component: SignUpComponent },
       { path: 'avatar-picker', component: AvatarPickerComponent },
       { path: 'reset-password-email', component: ResetPasswordEmailComponent },
+      { path: 'reset-password', component: ResetPasswordComponent },
     ],
   },
   {

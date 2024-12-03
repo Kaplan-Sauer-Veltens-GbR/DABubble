@@ -46,10 +46,6 @@ export class AuthService {
   }
 
   ngOnInit(): void {}
-
-
-  
-
   signInWithGoogleRedirect() {
     return signInWithRedirect(this.auth, this.provider);
   }
