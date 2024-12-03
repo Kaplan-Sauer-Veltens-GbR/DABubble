@@ -45,6 +45,12 @@ export class InputValidationService {
     this.validationErrorSubject.next(currentErrors); 
   }
 
+  updateEmailValidation(emailExists: boolean) {
+    // Verhindert Redundanz und sorgt dafür, dass die Validierungslogik an einer Stelle bleibt
+    this.setValidationError('email', !emailExists);
+  }
+
+
  async onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;

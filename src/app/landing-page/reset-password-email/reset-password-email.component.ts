@@ -21,35 +21,35 @@ import { ValidationErrorDirective } from '../../directives/validation-error.dire
     InputFieldsComponent,
     IconLibaryComponent,
     RouterModule,
-    ValidationErrorDirective
-
+    ValidationErrorDirective,
   ],
   templateUrl: './reset-password-email.component.html',
   styleUrls: ['./reset-password-email.component.scss'],
 })
 export class ResetPasswordEmailComponent {
-  public inputCheck = inject(InputValidationService)
+  public inputCheck = inject(InputValidationService);
   private auth = inject(Auth);
-  async onSubmit() {
-  const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
-  if(emailExists) {
-    this.sendPasswordResetMail();
-    this.inputCheck.setValidationError('email', false)
-    return;
-  }else {
-    this.inputCheck.setValidationError('email', true)
-    
-  }
+  async handlePasswortResetRequest() {
+    try {
+      const doesEmailExists = await this.inputCheck.checkIfEmailExists(
+        this.inputCheck.email
+      );
+      this.inputCheck.updateEmailValidation(doesEmailExists);
+      if (doesEmailExists) {
+        this.sendPasswordResetMail();
+        return;
+      }
+    } catch (error) {
+      console.error('error during email validation or sending the mail', error);
+    }
   }
 
- async sendPasswordResetMail() {
-try {
- await sendPasswordResetEmail(this.auth, this.inputCheck.email)
- console.log('send it');
- 
-}catch(error) {
-console.error('error',error);
-
-}
+  async sendPasswordResetMail() {
+    try {
+      await sendPasswordResetEmail(this.auth, this.inputCheck.email);
+      console.log('send it');
+    } catch (error) {
+      console.error('error', error);
+    }
   }
 }
