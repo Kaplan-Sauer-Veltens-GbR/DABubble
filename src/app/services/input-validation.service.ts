@@ -152,6 +152,7 @@ export class InputValidationService {
    
   }
 
+  
   async checkIfEmailExists(email: string) {
     const userCollection = collection(this.firestore, 'users');
     const userQuery = query(userCollection, where('email', '==', email));
@@ -162,7 +163,7 @@ export class InputValidationService {
      return true;
   }
 
-  
+
   resetValidationResults() {
     this.emailIsValid = false;
     this.passwordIsValid = false;
