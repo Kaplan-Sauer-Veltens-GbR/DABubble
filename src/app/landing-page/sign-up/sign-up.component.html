@@ -33,7 +33,7 @@
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
-      <span  ValidationError="email">{{emailErrorMessage}}</span> 
+      <span  ValidationError="email">{{inputCheck.emailErrorMessage}}</span> 
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
         (blurEvent)="inputCheck.onInputLeavePassword('password',inputCheck.password)"

@@ -28,6 +28,7 @@ export class InputValidationService {
    nameIsValid:boolean = false;
    passedValidation:boolean = false;
   agreedToLegalNotice: boolean = false;
+  emailErrorMessage:string = 'Bitte nutzen sie eine Gültige Email.';
   private authService = inject(AuthService);
   private firestore = inject(Firestore);
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
@@ -130,6 +131,7 @@ export class InputValidationService {
   onInputLeaveEmail(field: string, value: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
+      this.emailErrorMessage = 'Bitte nutzen sie eine Gültige Email.';
       this.setValidationError(field as keyof ValidationError, true);
       this.emailIsValid = false;
     } else {
@@ -152,7 +154,7 @@ export class InputValidationService {
    
   }
 
-  
+
   async checkIfEmailExists(email: string) {
     const userCollection = collection(this.firestore, 'users');
     const userQuery = query(userCollection, where('email', '==', email));

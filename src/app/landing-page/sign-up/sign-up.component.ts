@@ -32,7 +32,7 @@ export class SignUpComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private cdRef = inject(ChangeDetectorRef)
-  emailErrorMessage:string = 'Bitte nutzen sie eine Gültige Email.';
+ 
   mouseOverPasswordTip:boolean = false;
   ngOnInit(): void {
   
@@ -49,7 +49,7 @@ export class SignUpComponent {
   async onSubmit() {
     const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
   if(emailExists) {
-    this.emailErrorMessage = 'Email ist bereits Regestiert.'
+    this.inputCheck.emailErrorMessage = 'Email ist bereits Regestiert.'
     this.inputCheck.setValidationError('email' as keyof ValidationError, true);
     return
   }else {

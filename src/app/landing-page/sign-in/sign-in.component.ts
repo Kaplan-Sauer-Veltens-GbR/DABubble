@@ -24,6 +24,7 @@ import { AuthService } from '../../services/auth.service';
 import { DbService } from '../../services/db.service';
 import { InputValidationService } from '../../services/input-validation.service';
 import { ValidationErrorDirective } from '../../directives/validation-error.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -38,7 +39,8 @@ import { ValidationErrorDirective } from '../../directives/validation-error.dire
     InputFieldsComponent,
     IconLibaryComponent,
     TranslocoModule,
-    ValidationErrorDirective
+    ValidationErrorDirective,
+    RouterLink
     
   ],
 })
