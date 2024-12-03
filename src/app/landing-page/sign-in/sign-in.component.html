@@ -25,9 +25,9 @@
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
       <span ValidationError="password">password falsch</span>
-      <a routerLink="/reset-password-email" class="forgot-password">{{
+      <a routerLink="/reset-password-email" class="forgot-password"><span>{{
         t("login-page.forgot-password")
-      }}</a>
+      }}</span></a>
 
       <div class="divider">
         <span>{{ t("wordlist.or").toUpperCase() }}</span>
