@@ -7,6 +7,7 @@ import { IconLibaryComponent } from '../../shared/components/icon-component/icon
 import { RouterModule } from '@angular/router';
 import { InputValidationService } from '../../services/input-validation.service';
 import { AuthService } from '../../services/auth.service';
+import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-reset-password-email',
@@ -25,8 +26,26 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResetPasswordEmailComponent {
   public inputCheck = inject(InputValidationService)
-  private authService = inject(AuthService)
+  private auth = inject(Auth);
   async onSubmit() {
   const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
+  if(emailExists) {
+    this.sendPasswordResetMail();
+    return;
+  }else {
+    console.log('fail');
+    
+  }
+  }
+
+ async sendPasswordResetMail() {
+try {
+ await sendPasswordResetEmail(this.auth, this.inputCheck.email)
+ console.log('send it');
+ 
+}catch(error) {
+console.error('error',error);
+
+}
   }
 }
