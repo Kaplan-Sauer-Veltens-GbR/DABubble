@@ -95,7 +95,7 @@ export class InputValidationService {
     }
   }
 
-  
+
   checkInputValidation() {
     const validationResults = [
       this.emailIsValid,
@@ -108,14 +108,13 @@ export class InputValidationService {
   return isValid;
   }
 
+
   toggleLegalNotice() {
     this.agreedToLegalNotice = !this.agreedToLegalNotice;
   }
 
 
   onInputLeaveName(field: string, value: string) {
-    console.log(value);
-    debugger
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
@@ -129,7 +128,6 @@ export class InputValidationService {
   }
 
   onInputLeaveEmail(field: string, value: string) {
-    debugger
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
@@ -162,8 +160,9 @@ export class InputValidationService {
       return false;
     }
      return true;
-     
   }
+
+  
   resetValidationResults() {
     this.emailIsValid = false;
     this.passwordIsValid = false;
