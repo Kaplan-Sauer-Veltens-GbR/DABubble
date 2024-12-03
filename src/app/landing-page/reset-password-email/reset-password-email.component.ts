@@ -6,6 +6,7 @@ import { InputFieldsComponent } from '../../shared/components/inputs/input-field
 import { IconLibaryComponent } from '../../shared/components/icon-component/icon-libary.component';
 import { RouterModule } from '@angular/router';
 import { InputValidationService } from '../../services/input-validation.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reset-password-email',
@@ -24,4 +25,8 @@ import { InputValidationService } from '../../services/input-validation.service'
 })
 export class ResetPasswordEmailComponent {
   public inputCheck = inject(InputValidationService)
+  private authService = inject(AuthService)
+  async onSubmit() {
+  const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
+  }
 }
