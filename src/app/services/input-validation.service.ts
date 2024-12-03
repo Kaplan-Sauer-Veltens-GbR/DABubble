@@ -9,6 +9,7 @@ import {
   where,
   query,
 } from '@angular/fire/firestore';
+import { loggedIn } from '@angular/fire/auth-guard';
 
 @Injectable({
   providedIn: 'root',
@@ -86,27 +87,23 @@ export class InputValidationService {
   }
 
   checkIsFormValid() {
-    console.log(this.passedValidation);
-    
+  this.checkInputValidation();
     if (this.passedValidation) {
-
       return true;
     } else {
       return false;
     }
   }
 
-  checkInputValidation() {
   
+  checkInputValidation() {
     const validationResults = [
       this.emailIsValid,
       this.passwordIsValid,
       this.nameIsValid,
       this.agreedToLegalNotice
     ];
-
   const isValid = validationResults.every(result => result === true);
-
   this.passedValidation = isValid;
   return isValid;
   }
@@ -115,9 +112,10 @@ export class InputValidationService {
     this.agreedToLegalNotice = !this.agreedToLegalNotice;
   }
 
+
   onInputLeaveName(field: string, value: string) {
     console.log(value);
-    
+    debugger
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
     if (!namePattern.test(value)) {
       this.setValidationError(field as keyof ValidationError, true);
@@ -125,6 +123,8 @@ export class InputValidationService {
     } else {
       this.setValidationError(field as keyof ValidationError, false);
       this.nameIsValid = true;
+      console.log(this.nameIsValid);
+      
     }
   }
 
@@ -138,7 +138,7 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, false);
       this.emailIsValid = true; // maybe auch beim schreiben direkt hinufügen damit man nicht immer die form verlassen mus für den check
     }
-    
+ 
   }
 
   onInputLeavePassword(field: string, value: string) {
@@ -151,6 +151,7 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, false);
       this.passwordIsValid = true;
     }
+   
   }
 
   async checkIfEmailExists(email: string) {
