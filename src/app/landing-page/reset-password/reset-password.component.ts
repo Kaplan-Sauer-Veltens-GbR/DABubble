@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { ButtonComponent } from "../../shared/components/inputs/button/button.component";
 import { InputFieldsComponent } from "../../shared/components/inputs/input-fields/input-fields.component";
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Auth, confirmPasswordReset } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
 import { InputValidationService } from '../../services/input-validation.service';
@@ -19,6 +19,7 @@ export class ResetPasswordComponent {
 
 private auth = inject(Auth)
 private route = inject(ActivatedRoute)
+private router = inject(Router)
 public inputCheck = inject(InputValidationService)
 
 submitNewPassword() {
@@ -29,12 +30,17 @@ submitNewPassword() {
   this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)
   if(isFormValid) {
     this.resetPassword(oobCode,this.inputCheck.password );
+    this.routeBack();
   }else {
    this.handleValidationErrors();
   }if(!oobCode) {
     console.log('placeholder your are not a valid user request');
     
   }
+  }
+
+  routeBack() {
+    this.router.navigate([''])
   }
 
 
