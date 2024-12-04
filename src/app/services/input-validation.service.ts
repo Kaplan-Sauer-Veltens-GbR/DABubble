@@ -36,6 +36,7 @@ export class InputValidationService {
     email: false,
     password: false,
     name: false,
+    confirmPassword:false
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
@@ -76,8 +77,16 @@ export class InputValidationService {
     } else {
       return false;
     }
-  
-    
+  }
+
+  checkPasswordStrength(password:string) {
+    const passwordIncludes =
+    /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(passwordIncludes.test(password)) {
+      return true
+    }else {
+      return false
+    }
   }
 
   onConfirmPasswordChange(confirmPassword:string) {
@@ -85,7 +94,7 @@ export class InputValidationService {
     const passwordMatch = this.password === confirmPassword;
     console.log(confirmPassword);
     
-    this.setValidationError('password',!passwordMatch);
+    this.setValidationError('confirmPassword',!passwordMatch);
     return passwordMatch;
   }
 

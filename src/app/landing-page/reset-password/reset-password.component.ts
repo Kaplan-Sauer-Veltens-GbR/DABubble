@@ -23,20 +23,36 @@ public inputCheck = inject(InputValidationService)
 
 submitNewPassword() {
   const oobCode = this.route.snapshot.queryParamMap.get('oobCode');
-  if(oobCode) {
-    this.resetPassword(oobCode,this.inputCheck.password )
+  const isFormValid = 
+  oobCode &&
+  this.inputCheck.checkPasswordStrength(this.inputCheck.password) &&
+  this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)
+  if(isFormValid) {
+    this.resetPassword(oobCode,this.inputCheck.password );
+  }else {
+   this.handleValidationErrors();
+  }if(!oobCode) {
+    console.log('placeholder your are not a valid user request');
+    
   }
   }
 
 
   async resetPassword(oobCode: string, newPassword:string) {
     try {
-      if(this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)) {
       await confirmPasswordReset(this.auth,oobCode,newPassword);
-      }
     }catch(error) {
       console.error('change of password went wrong' ,error);
-      
+    }
+  }
+
+  handleValidationErrors() {
+    if (!this.inputCheck.checkPasswordStrength(this.inputCheck.password)) {
+      this.inputCheck.setValidationError('password', true);
+    }
+  
+    if (!this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)) {
+      this.inputCheck.setValidationError('confirmPassword', true);
     }
   }
 }
