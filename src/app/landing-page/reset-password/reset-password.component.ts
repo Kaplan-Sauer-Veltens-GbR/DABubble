@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { ButtonComponent } from "../../shared/components/inputs/button/button.component";
 import { InputFieldsComponent } from "../../shared/components/inputs/input-fields/input-fields.component";
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Auth, confirmPasswordReset } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
+import { InputValidationService } from '../../services/input-validation.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,9 +17,14 @@ import { AuthService } from '../../services/auth.service';
 export class ResetPasswordComponent {
 
 private auth = inject(Auth)
+private route = inject(ActivatedRoute)
+public inputCheck = inject(InputValidationService)
 
 ngOnInit(): void {
-  
+  const oobCode = this.route.snapshot.queryParamMap.get('oobCode');
+  if(oobCode) {
+    this.resetPassword(oobCode,this.inputCheck.password )
+  }
   
 }
 
