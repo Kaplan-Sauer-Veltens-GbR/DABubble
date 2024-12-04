@@ -6,11 +6,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Auth, confirmPasswordReset } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
 import { InputValidationService } from '../../services/input-validation.service';
+import { ValidationErrorDirective } from '../../directives/validation-error.directive';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [IconLibaryComponent, ButtonComponent, InputFieldsComponent,RouterLink],
+  imports: [IconLibaryComponent, ButtonComponent, InputFieldsComponent,RouterLink,ValidationErrorDirective],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
@@ -30,7 +31,9 @@ submitNewPassword() {
 
   async resetPassword(oobCode: string, newPassword:string) {
     try {
+      if(this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)) {
       await confirmPasswordReset(this.auth,oobCode,newPassword);
+      }
     }catch(error) {
       console.error('change of password went wrong' ,error);
       

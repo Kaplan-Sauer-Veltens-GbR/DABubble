@@ -19,6 +19,7 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
+  confirmedPassword:string = '';
   notClearedEmail: string = '';
   notClearedPassword: string = '';
   notClearedName: string = '';
@@ -46,7 +47,6 @@ export class InputValidationService {
   }
 
   updateEmailValidation(emailExists: boolean) {
-    // Verhindert Redundanz und sorgt dafür, dass die Validierungslogik an einer Stelle bleibt
     this.setValidationError('email', !emailExists);
   }
 
@@ -78,6 +78,15 @@ export class InputValidationService {
     }
   
     
+  }
+
+  onConfirmPasswordChange(confirmPassword:string) {
+    this.confirmedPassword = confirmPassword
+    const passwordMatch = this.password === confirmPassword;
+    console.log(confirmPassword);
+    
+    this.setValidationError('password',!passwordMatch);
+    return passwordMatch;
   }
 
   onNameChange(newName: string) {
