@@ -68,6 +68,7 @@ export class InputValidationService {
     const passwordIncludes =
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     this.password = newPassword;
+    console.log(newPassword);
     this.notClearedPassword = newPassword;
     if (passwordIncludes.test(newPassword)) {
       this.setValidationError('password', false);
@@ -75,6 +76,8 @@ export class InputValidationService {
     } else {
       return false;
     }
+  
+    
   }
 
   onNameChange(newName: string) {

@@ -20,13 +20,13 @@ private auth = inject(Auth)
 private route = inject(ActivatedRoute)
 public inputCheck = inject(InputValidationService)
 
-ngOnInit(): void {
+submitNewPassword() {
   const oobCode = this.route.snapshot.queryParamMap.get('oobCode');
   if(oobCode) {
     this.resetPassword(oobCode,this.inputCheck.password )
   }
-  
-}
+  }
+
 
   async resetPassword(oobCode: string, newPassword:string) {
     try {
