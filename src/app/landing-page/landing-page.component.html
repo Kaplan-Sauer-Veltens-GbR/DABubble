@@ -2,7 +2,7 @@
 <div *ngIf="showAnimation" class="animation">
   <div class="animation-container">
     <div class="logo-wrapper">
-      <app-icon class="dabubble-logo-animation" iconName="dabubble-logo"></app-icon>
+      <app-icon class="dabubble-logo-animation" iconName="dabubble-logo" ></app-icon>
     </div>
     <span class="animation-text">DABubble</span>
   </div>
@@ -11,7 +11,7 @@
 
 <section *ngIf="!showAnimation">
   <div class="logo-signup-container">
-    <div class="logo-container">
+    <div class="logo-container" routerLink="/">
       <app-icon class="dabubble-logo" #iconSlot iconName="dabubble-logo"></app-icon>
       <span>DABubble</span>
     </div>

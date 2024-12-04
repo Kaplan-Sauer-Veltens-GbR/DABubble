@@ -6,13 +6,13 @@ import { AvatarPickerComponent } from './avatar-picker/avatar-picker.component';
 import { ResetPasswordEmailComponent } from './reset-password-email/reset-password-email.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { IconLibaryComponent } from '../shared/components/icon-component/icon-libary.component';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
-    CommonModule,IconLibaryComponent,RouterOutlet,RouterModule
+    CommonModule,IconLibaryComponent,RouterOutlet,RouterModule,RouterLink
   ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
