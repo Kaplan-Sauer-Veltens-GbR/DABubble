@@ -19,6 +19,7 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
+  confirmedPassword:string = '';
   notClearedEmail: string = '';
   notClearedPassword: string = '';
   notClearedName: string = '';
@@ -35,6 +36,7 @@ export class InputValidationService {
     email: false,
     password: false,
     name: false,
+    confirmPassword:false
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
@@ -44,6 +46,11 @@ export class InputValidationService {
     currentErrors[field] = status; 
     this.validationErrorSubject.next(currentErrors); 
   }
+
+  updateEmailValidation(emailExists: boolean) {
+    this.setValidationError('email', !emailExists);
+  }
+
 
  async onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -62,6 +69,7 @@ export class InputValidationService {
     const passwordIncludes =
       /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     this.password = newPassword;
+    console.log(newPassword);
     this.notClearedPassword = newPassword;
     if (passwordIncludes.test(newPassword)) {
       this.setValidationError('password', false);
@@ -69,6 +77,25 @@ export class InputValidationService {
     } else {
       return false;
     }
+  }
+
+  checkPasswordStrength(password:string) {
+    const passwordIncludes =
+    /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(passwordIncludes.test(password)) {
+      return true
+    }else {
+      return false
+    }
+  }
+
+  onConfirmPasswordChange(confirmPassword:string) {
+    this.confirmedPassword = confirmPassword
+    const passwordMatch = this.password === confirmPassword;
+    console.log(confirmPassword);
+    
+    this.setValidationError('confirmPassword',!passwordMatch);
+    return passwordMatch;
   }
 
   onNameChange(newName: string) {
