@@ -44,4 +44,8 @@
       <app-button (click)="authService.createUserWithEmailAndPassword(email,password,name,profilePicture)"  [filled]="true" label="Weiter"> <a>Weiter</a></app-button>
     </div>
   </div>
+  <app-popup-notification
+    *ngIf="showPopup"
+    [message]="popupMessage"
+  ></app-popup-notification>
 </div>

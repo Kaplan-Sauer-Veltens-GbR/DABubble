@@ -7,20 +7,18 @@ import { ResetPasswordEmailComponent } from './reset-password-email/reset-passwo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { IconLibaryComponent } from '../shared/components/icon-component/icon-libary.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { PopupNotificationComponent } from "../shared/components/popup-notification/popup-notification.component";
-
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
     CommonModule, IconLibaryComponent, RouterOutlet, RouterModule,
-    PopupNotificationComponent
 ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
   showAnimation = true;
+Email: any;
   ngOnInit() {
     setTimeout(() => {
       this.showAnimation = false;

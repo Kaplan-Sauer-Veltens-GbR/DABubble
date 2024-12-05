@@ -7,11 +7,12 @@ import { InputFieldsComponent } from '../../shared/components/inputs/input-field
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { InputValidationService } from '../../services/input-validation.service';
+import { PopupNotificationComponent } from "../../shared/components/popup-notification/popup-notification.component";
 
 @Component({
   selector: 'app-avatar-picker',
   standalone: true,
-  imports: [IconLibaryComponent,CommonModule,ButtonComponent,RouterModule],
+  imports: [IconLibaryComponent, CommonModule, ButtonComponent, RouterModule, PopupNotificationComponent],
   templateUrl: './avatar-picker.component.html',
   styleUrl: './avatar-picker.component.scss'
 })
@@ -29,6 +30,9 @@ avatarImages: string[] = [
   'assets/images/avatars/avatar4.png',
   'assets/images/avatars/avatar5.png'
 ];
+
+showPopup: boolean = false;
+popupMessage: string = '';
 
 setPhotoPath(path:string) {
   this.profilePicture = path;
