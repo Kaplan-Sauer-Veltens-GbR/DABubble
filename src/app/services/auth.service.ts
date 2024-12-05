@@ -102,7 +102,7 @@ export class AuthService {
     password: string,
     name: string,
     profilePircture: string
-  ): Promise<void> {
+  ): Promise<{ success: boolean; message: string }> {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -115,12 +115,15 @@ export class AuthService {
           photoURL: profilePircture,
         });
         console.log('user succefully created', userCredential.user);
+      
+
         this.routeWithId(userCredential.user.uid);
         this.dataBase.saveUserData(userCredential.user);
         console.log(userCredential.user);
+      
         
-      }
-    } catch (error) {}
+      }  return { success: true, message: 'Konto wurde erfolgreich erstellt!' };
+    } catch (error) { return { success: false, message: 'Fehler: Konto konnte nicht erstellt werden.' };}
   }
 
   async signIn(email: string, password: string): Promise<boolean> {
