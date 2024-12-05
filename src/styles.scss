@@ -4,6 +4,12 @@
 
 html {
         scroll-behavior: smooth;  
+        @-moz-document url-prefix() {
+          * {
+            scrollbar-width: thin; /* Breite der Scrollbar */
+            scrollbar-color: #797ef3 #ffffff; /* Farbe des Scrollbalkens und Hintergrunds */
+          }
+        }
 
 ::-webkit-scrollbar {
   width: 6px;
