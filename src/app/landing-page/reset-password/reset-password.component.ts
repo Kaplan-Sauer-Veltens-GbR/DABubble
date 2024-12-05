@@ -7,11 +7,13 @@ import { Auth, confirmPasswordReset } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
 import { InputValidationService } from '../../services/input-validation.service';
 import { ValidationErrorDirective } from '../../directives/validation-error.directive';
+import { PopupNotificationComponent } from '../../shared/components/popup-notification/popup-notification.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [IconLibaryComponent, ButtonComponent, InputFieldsComponent,RouterLink,ValidationErrorDirective],
+  imports: [IconLibaryComponent, ButtonComponent, InputFieldsComponent,RouterLink,ValidationErrorDirective,PopupNotificationComponent,CommonModule],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
@@ -21,6 +23,9 @@ private auth = inject(Auth)
 private route = inject(ActivatedRoute)
 private router = inject(Router)
 public inputCheck = inject(InputValidationService)
+showPopup: boolean = true; 
+  popupMessage: string = ''; 
+
 
 submitNewPassword() {
   const oobCode = this.route.snapshot.queryParamMap.get('oobCode');
@@ -29,8 +34,11 @@ submitNewPassword() {
   this.inputCheck.checkPasswordStrength(this.inputCheck.password) &&
   this.inputCheck.onConfirmPasswordChange(this.inputCheck.confirmedPassword)
   if(isFormValid) {
+    this.showPopUp();
     this.resetPassword(oobCode,this.inputCheck.password );
-    this.routeBack();
+    setTimeout(() => {
+      this.routeBack();
+    }, 1500);
   }else {
    this.handleValidationErrors();
   }if(!oobCode) {
@@ -61,4 +69,10 @@ submitNewPassword() {
       this.inputCheck.setValidationError('confirmPassword', true);
     }
   }
+  showPopUp() {
+    this.showPopup = true; 
+    this.popupMessage = 'E-Mail wurde erfolgreich gesendet!';
+    
+  }
 }
+

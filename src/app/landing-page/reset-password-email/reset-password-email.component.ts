@@ -45,7 +45,7 @@ export class ResetPasswordEmailComponent {
         this.sendPasswordResetMail();
         setTimeout(() => {
           this.router.navigate(['reset-password'])
-        }, 3000);
+        }, 1500);
         return;
       }
     } catch (error) {
@@ -58,7 +58,7 @@ export class ResetPasswordEmailComponent {
       await sendPasswordResetEmail(this.auth, this.inputCheck.email);
       console.log('send it');
       this.popupMessage = 'E-Mail wurde erfolgreich gesendet!';
- this.showPopup = true; 
+      this.showPopup = true; 
     } catch (error) {
       console.error('error', error);
     }
