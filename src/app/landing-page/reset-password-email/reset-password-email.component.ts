@@ -22,7 +22,8 @@ import { PopupNotificationComponent } from '../../shared/components/popup-notifi
     InputFieldsComponent,
     IconLibaryComponent,
     RouterModule,
-    PopupNotificationComponent
+    PopupNotificationComponent,
+    ValidationErrorDirective
 ],
   templateUrl: './reset-password-email.component.html',
   styleUrls: ['./reset-password-email.component.scss'],
@@ -30,31 +31,36 @@ import { PopupNotificationComponent } from '../../shared/components/popup-notifi
 export class ResetPasswordEmailComponent {
   public inputCheck = inject(InputValidationService);
   private auth = inject(Auth);
-
+  private router = inject(Router);
   showPopup: boolean = false; 
   popupMessage: string = ''; 
 
-  async onSubmit() {
-  const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
-  if(emailExists) {
-    this.sendPasswordResetMail();
-    return;
-  }else {
-    console.log('fail');
-    
-  }
+  async handlePasswortResetRequest() {
+    try {
+      const doesEmailExists = await this.inputCheck.checkIfEmailExists(
+        this.inputCheck.email
+      );
+      this.inputCheck.updateEmailValidation(doesEmailExists);
+      if (doesEmailExists) {
+        this.sendPasswordResetMail();
+        setTimeout(() => {
+          this.router.navigate(['reset-password'])
+        }, 3000);
+        return;
+      }
+    } catch (error) {
+      console.error('error during email validation or sending the mail', error);
+    }
   }
 
- async sendPasswordResetMail() {
-try {
- await sendPasswordResetEmail(this.auth, this.inputCheck.email)
- console.log('send it');
- this.popupMessage = 'E-Mail wurde erfolgreich gesendet!';
+  async sendPasswordResetMail() {
+    try {
+      await sendPasswordResetEmail(this.auth, this.inputCheck.email);
+      console.log('send it');
+      this.popupMessage = 'E-Mail wurde erfolgreich gesendet!';
  this.showPopup = true; 
- 
-}catch(error) {
-console.error('error',error);
-
-}
+    } catch (error) {
+      console.error('error', error);
+    }
   }
 }
