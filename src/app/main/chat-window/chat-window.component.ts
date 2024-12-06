@@ -9,15 +9,17 @@ import { ChannelEditPopupComponent } from '../../chat/pop-ups/channel-edit-popup
 import { AddPeopleComponent } from "../../shared/components/chat/add-people/add-people.component";
 import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-list/member-list.component";
 import { ActivatedRoute } from '@angular/router';
+import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 @Component({
   selector: 'chat-window',
   standalone: true,
-  imports: [CommonModule, IconLibaryComponent, AvatarBarComponent, ChatMessageComponent, TextMessageFieldComponent, ChannelEditPopupComponent, AddPeopleComponent, MemberListComponent],
+  imports: [CommonModule, IconLibaryComponent, AvatarBarComponent, ChatMessageComponent, TextMessageFieldComponent, ChannelEditPopupComponent, AddPeopleComponent, MemberListComponent,CreateChannelComponent],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss'
 })
 export class ChatWindowComponent {
   @ViewChild('chatScrollContainer')scrollContainer!:ElementRef
+  @ViewChild('popUps')popUp!:ElementRef
 
   public workspace = inject(WorkspaceService);
   private  route = inject(ActivatedRoute)
@@ -29,7 +31,7 @@ ngAfterViewInit(): void {
 
   @HostListener('document:click', ['$event'])
 handleClickOutside(event:MouseEvent) {
-  if(this.workspace.isClickOutside(event,this.elementRef.nativeElement)) {
+  if(this.workspace.isClickOutside(event,this.popUp.nativeElement)) {
     this.workspace.currentDialog = null;
   }
 }

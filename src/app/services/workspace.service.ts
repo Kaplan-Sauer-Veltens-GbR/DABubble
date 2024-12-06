@@ -31,6 +31,7 @@ export class WorkspaceService {
   }
 
   openDialog(dialog: 'channelEdit' | 'memberList' | 'addMember' | 'logOut'|'textEdit'|'createChannel'|'settings') {
+    
     if (this.currentDialog === dialog) {
       this.closeDialog();
     } else {

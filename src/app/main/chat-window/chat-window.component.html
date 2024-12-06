@@ -32,17 +32,22 @@
     </div>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {
-    <div class="pop-up">
+    <div #popUps class="pop-up">
     <channel-edit></channel-edit>
 </div>
   } @else if (workspace.currentDialog === 'addMember') {
-    <div class="pop-up addMember">
+    <div #popUps  class="pop-up addMember">
       <add-people-overlay></add-people-overlay>
   </div>
   }@else if (workspace.currentDialog === 'memberList') {
-    <div class="pop-up" >
+    <div #popUps  class="pop-up" >
       <app-member-list></app-member-list>
     </div>
+  }@else if (workspace.currentDialog === 'createChannel') {
+    <div #popUps class="pop-up">
+      <app-create-channel></app-create-channel>
+    </div>
   }
+  
 
 

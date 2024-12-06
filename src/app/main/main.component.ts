@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkspaceService } from '../services/workspace.service';
@@ -20,6 +20,11 @@ private router = inject(Router)
 private route = inject(ActivatedRoute)
 private authService = inject(AuthService)
 user: User | null = null;
+
+
+
+
+
 ngOnInit() {
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
