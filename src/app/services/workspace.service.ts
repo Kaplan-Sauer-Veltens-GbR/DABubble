@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, HostListener, inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorkspaceService {
+  // private elementRef = inject(ElementRef)
+  @HostListener('document:click',['$event'])
   isOpen: boolean = true;
   currentDialog:
     | 'channelEdit'
@@ -15,6 +17,13 @@ export class WorkspaceService {
     | null = null;
   isSelected: boolean = false;
   constructor() {}
+
+
+  isClickOutside(event: MouseEvent, element: HTMLElement): boolean {
+    return !element.contains(event.target as Node); }
+
+
+
 
   toggle() {
     this.isOpen = !this.isOpen;

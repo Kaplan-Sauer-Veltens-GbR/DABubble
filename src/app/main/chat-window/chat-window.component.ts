@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { CommonModule } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
@@ -18,12 +18,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChatWindowComponent {
   @ViewChild('chatScrollContainer')scrollContainer!:ElementRef
+
   public workspace = inject(WorkspaceService);
   private  route = inject(ActivatedRoute)
-
+  private elementRef = inject(ElementRef)
 ngAfterViewInit(): void {
   this.scrollToBottom();
   
+}
+
+  @HostListener('document:click', ['$event'])
+handleClickOutside(event:MouseEvent) {
+  if(this.workspace.isClickOutside(event,this.elementRef.nativeElement)) {
+    this.workspace.currentDialog = null;
+  }
 }
 
 
