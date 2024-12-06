@@ -1,5 +1,5 @@
 <section *transloco="let t; prefix:'add-people'" class="add-people-box box--floating" [ngStyle]="standalone ? {} : {'border-top-right-radius' : '0px'}">
-    <app-icon iconName="close" class="close-btn icon--hoverable" suffix="svg"></app-icon>
+    <app-icon [closePopup]="true" iconName="close" class="close-btn icon--hoverable" suffix="svg"></app-icon>
     <h3>{{t('headline')}}</h3>
 
     @if (standalone) {
