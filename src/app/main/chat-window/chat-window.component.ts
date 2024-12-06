@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { CommonModule } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
@@ -17,6 +17,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './chat-window.component.scss'
 })
 export class ChatWindowComponent {
+  @ViewChild('chatScrollContainer')scrollContainer!:ElementRef
   public workspace = inject(WorkspaceService);
   private  route = inject(ActivatedRoute)
+
+ngAfterViewInit(): void {
+  this.scrollToBottom();
+  
+}
+
+
+  scrollToBottom() {
+    const chatContainer = this.scrollContainer.nativeElement
+    chatContainer.scrollTop = chatContainer.scrollHeight
+  }
 }
