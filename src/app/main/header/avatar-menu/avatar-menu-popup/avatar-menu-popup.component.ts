@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { WorkspaceService } from '../../../../services/workspace.service';
 })
 export class AvatarMenuPopupComponent {
   public authService = inject(AuthService);
-  private workspace = inject(WorkspaceService);
-  private elementRef = inject(ElementRef);
+
   settings: SettingsService = inject(SettingsService);
+
 }
