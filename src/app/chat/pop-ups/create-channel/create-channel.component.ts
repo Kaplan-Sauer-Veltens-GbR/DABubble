@@ -10,7 +10,7 @@ import { WorkspaceService } from '../../../services/workspace.service';
 @Component({
   selector: 'app-create-channel',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, HeaderComponent, IconLibaryComponent, InputFieldsComponent,ButtonComponent],
+  imports: [CommonModule, TranslocoModule,  IconLibaryComponent, InputFieldsComponent,ButtonComponent],
   templateUrl: './create-channel.component.html',
   styleUrl: './create-channel.component.scss'
 })
