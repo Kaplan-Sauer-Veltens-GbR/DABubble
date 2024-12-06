@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, Input, Optional } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, inject, Input, Optional, Output, output } from '@angular/core';
 import { InputFieldsComponent } from '../inputs/input-fields/input-fields.component';
 import { IconName } from '../../../interfaces/icon-names.model';
+import { WorkspaceService } from '../../../services/workspace.service';
 
 @Component({
   selector: 'app-icon',
@@ -19,8 +20,10 @@ export class IconLibaryComponent {
   @Input() round: boolean = false;
   @Input() width: string = '';
   @Input() height: string = '';
+  @Output()popUpClose = new EventEmitter<void>();
+  @Input()closePopup:boolean = false;
   isInInputField: boolean = false;
-
+  private workspace = inject(WorkspaceService)
   constructor(@Optional() private inputField: InputFieldsComponent) {}
 
   get iconSrc(): string {
@@ -36,5 +39,10 @@ export class IconLibaryComponent {
     }
   }
 
+  onClick() {
+    if(this.closePopup) {
+      this.workspace.closeDialog();
+    }
+  }
  
 }
