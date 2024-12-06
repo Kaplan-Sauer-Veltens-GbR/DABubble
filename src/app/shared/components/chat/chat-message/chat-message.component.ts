@@ -13,15 +13,16 @@ import { TranslocoModule } from '@jsverse/transloco';
 })
 export class ChatMessageComponent {
   @Input() isOwner: boolean = true;
-
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
+
 
   onHover(state: boolean) {
     this.displayPopover = state;
   }
 
+  
   translateReplyAmount() {
     if (this.replyAmount == 1) {
       return 'chat.subthread.replies.single';
