@@ -26,10 +26,12 @@ export class IconLibaryComponent {
   private workspace = inject(WorkspaceService)
   constructor(@Optional() private inputField: InputFieldsComponent) {}
 
+  
   get iconSrc(): string {
     const pathModifier = this.suffix == 'png' ? 'png/' : '';
     return `${this.baseSrc}${pathModifier}${this.iconName}.${this.suffix}`;
   }
+
 
   ngOnInit(): void {
     if (this.inputField) {
@@ -38,6 +40,7 @@ export class IconLibaryComponent {
       this.isInInputField = false;
     }
   }
+
 
   onClick() {
     if(this.closePopup) {
