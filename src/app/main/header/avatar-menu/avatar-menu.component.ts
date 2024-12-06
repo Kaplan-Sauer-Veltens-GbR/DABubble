@@ -23,7 +23,7 @@ export class AvatarMenuComponent {
   @HostListener('document:click', ['$event'])
 handleClickOutside(event:MouseEvent) {
   if(this.workspace.isClickOutside(event,this.elementRef.nativeElement)) {
-    this.workspace.currentDialog = null;
+    this.settings.displaySettings = false;
   }
 }
 
