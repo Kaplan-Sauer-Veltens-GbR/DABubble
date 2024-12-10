@@ -31,7 +31,7 @@ export class DbService {
       lastLogin: new Date(),
       status: '',
     };
-    console.log(userData, 'hallo');
+    console.log(userData, 'saved');
     this.updateUser(userData, userRef);
   }
 

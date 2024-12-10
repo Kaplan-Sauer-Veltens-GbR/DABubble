@@ -155,11 +155,11 @@ export class AuthService {
     }
   }
 
-  isCurrentUser(uId: string) {
-    return this.getAuthState().pipe(
-      map((user) => (user ? user.uid === uId : false))
-    );
-  }
+  // isCurrentUser(uId: string) {
+  //   return this.getAuthState().pipe(
+  //     map((user) => (user ? user.uid === uId : false)) // maybe its not in use anymore
+  //   );
+  // }
 
   routeWithId(uId: string) {
     const currentUser = this.auth.currentUser;
