@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MockFirestore } from '../../testing/firestore.mock';
 import { AuthMock } from '../../testing/auth.mock';
 import { Firestore } from '@angular/fire/firestore';
+import { getTranslocoModule } from '../../modules/transloco-testing/transloco-testing.module';
 
 class MockRouter {
   navigate(commands: any[]) {}
@@ -16,7 +17,7 @@ describe('SignInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SignInComponent],
+      imports: [SignInComponent, getTranslocoModule()],
       providers: [
         { provide: AuthService, useClass: AuthMock },
         { provide: Router, useClass: MockRouter },

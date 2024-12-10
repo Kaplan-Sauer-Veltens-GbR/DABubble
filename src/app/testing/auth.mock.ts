@@ -1,14 +1,16 @@
 export class AuthMock {
+  private currentUser = { uid: '12345', email: 'test@example.com' };
+
   login(email: string, password: string): Promise<boolean> {
-    return Promise.resolve(true); // Simuliere einen erfolgreichen Login
+    return Promise.resolve(true);
   }
 
   logout(): Promise<void> {
-    return Promise.resolve(); // Simuliere einen erfolgreichen Logout
+    return Promise.resolve();
   }
 
   isAuthenticated(): boolean {
-    return true; // Simuliere, dass der Benutzer authentifiziert ist
+    return true;
   }
 
   getCurrentUser(): any {
@@ -16,7 +18,7 @@ export class AuthMock {
       id: '12345',
       email: 'test@example.com',
       name: 'Test User',
-    }; // Simuliere einen aktuellen Benutzer
+    };
   }
 
   register(email: string, password: string, name: string): Promise<any> {
@@ -24,6 +26,10 @@ export class AuthMock {
       id: '12345',
       email,
       name,
-    }); // Simuliere eine erfolgreiche Registrierung
+    });
+  }
+
+  onAuthStateChanged(callback: (user: any) => void): void {
+    callback(this.currentUser);
   }
 }
