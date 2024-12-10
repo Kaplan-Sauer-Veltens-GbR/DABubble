@@ -47,7 +47,6 @@ ngOnInit(): void {
 }
 
 async onSubmit() {
- 
   const result = await this.authService.createUserWithEmailAndPassword(
     this.email,
     this.password,
@@ -56,6 +55,7 @@ async onSubmit() {
   );
   this.popupMessage = result.message;
   this.showPopup = true;
+console.log(this.profilePicture);
 
 }
 }
