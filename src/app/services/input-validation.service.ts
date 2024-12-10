@@ -19,50 +19,48 @@ export class InputValidationService {
   email: string = '';
   password: string = '';
   name: string = '';
-  confirmedPassword:string = '';
+  confirmedPassword: string = '';
   notClearedEmail: string = '';
   notClearedPassword: string = '';
   notClearedName: string = '';
   profilePicture: string = '';
-   emailIsValid:boolean = false;
-  passwordIsValid:boolean = false;
-   nameIsValid:boolean = false;
-   passedValidation:boolean = false;
+  emailIsValid: boolean = false;
+  passwordIsValid: boolean = false;
+  nameIsValid: boolean = false;
+  passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
-  emailErrorMessage:string = 'Bitte nutzen sie eine Gültige Email.';
+  emailErrorMessage: string = 'Bitte nutzen sie eine Gültige Email.';
   private authService = inject(AuthService);
   private firestore = inject(Firestore);
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
     email: false,
     password: false,
     name: false,
-    confirmPassword:false
+    confirmPassword: false,
   });
 
   validationError$ = this.validationErrorSubject.asObservable();
 
   setValidationError(field: keyof ValidationError, status: boolean) {
     const currentErrors = this.validationErrorSubject.value;
-    currentErrors[field] = status; 
-    this.validationErrorSubject.next(currentErrors); 
+    currentErrors[field] = status;
+    this.validationErrorSubject.next(currentErrors);
   }
 
   updateEmailValidation(emailExists: boolean) {
     this.setValidationError('email', !emailExists);
   }
 
-
- async onEmailChange(newEmail: string) {
+  async onEmailChange(newEmail: string) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.email = newEmail;
     this.notClearedEmail = newEmail;
-    if (emailPattern.test(newEmail) ) {
+    if (emailPattern.test(newEmail)) {
       this.setValidationError('email', false);
       return true;
     } else {
       return false;
     }
-    
   }
 
   onPasswordChange(newPassword: string) {
@@ -79,22 +77,22 @@ export class InputValidationService {
     }
   }
 
-  checkPasswordStrength(password:string) {
+  checkPasswordStrength(password: string) {
     const passwordIncludes =
-    /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if(passwordIncludes.test(password)) {
-      return true
-    }else {
-      return false
+      /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (passwordIncludes.test(password)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
-  onConfirmPasswordChange(confirmPassword:string) {
-    this.confirmedPassword = confirmPassword
+  onConfirmPasswordChange(confirmPassword: string) {
+    this.confirmedPassword = confirmPassword;
     const passwordMatch = this.password === confirmPassword;
     console.log(confirmPassword);
-    
-    this.setValidationError('confirmPassword',!passwordMatch);
+
+    this.setValidationError('confirmPassword', !passwordMatch);
     return passwordMatch;
   }
 
@@ -115,7 +113,7 @@ export class InputValidationService {
   }
 
   checkIsFormValid() {
-  this.checkInputValidation();
+    this.checkInputValidation();
     if (this.passedValidation) {
       return true;
     } else {
@@ -123,24 +121,21 @@ export class InputValidationService {
     }
   }
 
-
   checkInputValidation() {
     const validationResults = [
       this.emailIsValid,
       this.passwordIsValid,
       this.nameIsValid,
-      this.agreedToLegalNotice
+      this.agreedToLegalNotice,
     ];
-  const isValid = validationResults.every(result => result === true);
-  this.passedValidation = isValid;
-  return isValid;
+    const isValid = validationResults.every((result) => result === true);
+    this.passedValidation = isValid;
+    return isValid;
   }
-
 
   toggleLegalNotice() {
     this.agreedToLegalNotice = !this.agreedToLegalNotice;
   }
-
 
   onInputLeaveName(field: string, value: string) {
     const namePattern = /^[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß '-]{2,}$/;
@@ -151,7 +146,6 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, false);
       this.nameIsValid = true;
       console.log(this.nameIsValid);
-      
     }
   }
 
@@ -165,7 +159,6 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, false);
       this.emailIsValid = true; // maybe auch beim schreiben direkt hinufügen damit man nicht immer die form verlassen mus für den check
     }
- 
   }
 
   onInputLeavePassword(field: string, value: string) {
@@ -178,20 +171,17 @@ export class InputValidationService {
       this.setValidationError(field as keyof ValidationError, false);
       this.passwordIsValid = true;
     }
-   
   }
-
 
   async checkIfEmailExists(email: string) {
     const userCollection = collection(this.firestore, 'users');
     const userQuery = query(userCollection, where('email', '==', email));
-     const userQuerySnapshot = await getDocs(userQuery);
-     if(userQuerySnapshot.empty) {
+    const userQuerySnapshot = await getDocs(userQuery);
+    if (userQuerySnapshot.empty) {
       return false;
     }
-     return true;
+    return true;
   }
-
 
   resetValidationResults() {
     this.emailIsValid = false;
@@ -200,5 +190,4 @@ export class InputValidationService {
     this.agreedToLegalNotice = false;
     this.passedValidation = false;
   }
-  
 }

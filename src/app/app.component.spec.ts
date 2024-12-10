@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { TranslocoTestingModule } from '@jsverse/transloco';
+// import { TranslocoTestingModule } from '@jsverse/transloco';
 import { getTranslocoModule } from './modules/transloco-testing/transloco-testing.module';
 
 describe('AppComponent', () => {
