@@ -8,6 +8,7 @@ import { AuthMock } from '../testing/auth.mock';
 import { Firestore } from '@angular/fire/firestore';
 import { MockFirestore } from '../testing/firestore.mock';
 import { getTranslocoModule } from '../modules/transloco-testing/transloco-testing.module';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -20,6 +21,7 @@ describe('MainComponent', () => {
         { provide: Auth, useClass: AuthMock },
         { provide: ActivatedRoute, useClass: MockActivatedRoute },
         { provide: Firestore, useClass: MockFirestore },
+        provideFirebaseApp(() => initializeApp({})),
       ],
     }).compileComponents();
 

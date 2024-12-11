@@ -2,10 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
-  constructor() { }
+  constructor() {}
 
   translocoService: TranslocoService = inject(TranslocoService);
   languageFeatureAllowed: boolean = true;
@@ -19,5 +19,9 @@ export class SettingsService {
 
   isActiveLanguage(language: 'de' | 'en'): boolean {
     return language === this.translocoService.getActiveLang();
+  }
+
+  get activeLanguage() {
+    return this.translocoService.getActiveLang();
   }
 }
