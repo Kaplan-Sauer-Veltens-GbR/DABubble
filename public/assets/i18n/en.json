@@ -59,18 +59,32 @@
     "address": "E-mail address",
     "send": "New E-mail to: {{recipient}}"
   },
-  "login-page": {
-    "headline": "Log In",
-    "description": "We recommend that you use the e-mail address that you use at work.",
-    "inputs": {
-      "email": "examplename@email.com",
-      "password": "Password"
+  "landing-page": {
+    "base": {
+      "new-to": "New at DABubble?",
+      "create-account": "Create account",
+      "imprint": "Imprint",
+      "privacy-notice": "Privacy notice"
     },
-    "forgot-password": "Forgot Password?",
-    "google-signin": "Sign in with Google",
-    "login": {
-      "regular": "Log in",
-      "guest": "Guest login"
+    "sign-in": {
+      "headline": "Sign in",
+      "description": "Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
+      "inputs": {
+        "email": {
+          "placeholder": "beispielname@email.com",
+          "error": "Überprüfen Sie die E-Mail"
+        },
+        "password": {
+          "placeholder": "Passwort",
+          "error": "Überprüfen Sie das Passwort"
+        }
+      },
+      "forgot-password": "Passwort vergessen?",
+      "google-signin": "Anmelden mit Google",
+      "login": {
+        "regular": "Anmelden",
+        "guest": "Gäste-Login"
+      }
     }
   },
   "profile": {

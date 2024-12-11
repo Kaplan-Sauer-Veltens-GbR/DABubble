@@ -1,33 +1,39 @@
 <div *transloco="let t" class="login-container">
   <div class="login-card">
-    <h1 class="login-title">{{ t("login-page.headline") }}</h1>
-    <p class="login-subtitle">{{ t("login-page.description") }}</p>
+    <h1 class="login-title">{{ t("landing-page.sign-in.headline") }}</h1>
+    <p class="login-subtitle">{{ t("landing-page.sign-in.description") }}</p>
 
     <form #signInForm="ngForm" (ngSubmit)="onSubmit()">
       <app-input-fields
         (valueChange)="inputCheck.onEmailChange($event)"
-        [placeholder]="t('login-page.inputs.email')"
+        [placeholder]="t('landing-page.sign-in.inputs.email.placeholder')"
+        autocomplete="username"
         type="email"
         [required]="true"
         icon="mail"
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-      <span ValidationError="email">Email existiert nicht</span>
+      <span ValidationError="email">{{
+        t("landing-page.sign-in.inputs.email.error")
+      }}</span>
       <app-input-fields
-      appFormValidation
+        appFormValidation
         (valueChange)="inputCheck.onPasswordChange($event)"
-        [placeholder]="t('login-page.inputs.password')"
+        [placeholder]="t('landing-page.sign-in.inputs.password.placeholder')"
+        autocomplete="current-password"
         type="password"
         [required]="true"
         icon="lock"
       >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
-      <span ValidationError="password">password falsch</span>
-      <a routerLink="/reset-password-email" class="forgot-password"><span>{{
-        t("login-page.forgot-password")
-      }}</span></a>
+      <span ValidationError="password">{{
+        t("landing-page.sign-in.inputs.password.error")
+      }}</span>
+      <a routerLink="/reset-password-email" class="forgot-password"
+        ><span>{{ t("landing-page.sign-in.forgot-password") }}</span></a
+      >
 
       <div class="divider">
         <span>{{ t("wordlist.or").toUpperCase() }}</span>
@@ -38,15 +44,15 @@
         class="signin-google-btn"
       >
         <app-icon #iconSlot iconName="google"></app-icon>
-        {{ t("login-page.google-signin") }}
+        {{ t("landing-page.sign-in.google-signin") }}
       </button>
 
       <div class="action-buttons">
         <app-button (click)="onSubmit()" [filled]="true">{{
-          t("login-page.login.regular")
+          t("landing-page.sign-in.login.regular")
         }}</app-button>
         <app-button (click)="auth.guestLogin()" [filled]="false">{{
-          t("login-page.login.guest")
+          t("landing-page.sign-in.login.guest")
         }}</app-button>
       </div>
     </form>

@@ -1,27 +1,33 @@
-
-<div *ngIf="showAnimation" class="animation">
+@if (showAnimation) {
+<div class="animation">
   <div class="animation-container">
     <div class="logo-wrapper">
-      <app-icon class="dabubble-logo-animation" iconName="dabubble-logo" ></app-icon>
+      <app-icon
+        class="dabubble-logo-animation"
+        iconName="dabubble-logo"
+      ></app-icon>
     </div>
     <span class="animation-text">DABubble</span>
   </div>
 </div>
-
-
-<section *ngIf="!showAnimation">
+} @else {
+<section *transloco="let t; prefix: 'landing-page.base'">
   <div class="logo-signup-container">
     <div class="logo-container" routerLink="/">
-      <app-icon class="dabubble-logo" #iconSlot iconName="dabubble-logo"></app-icon>
+      <app-icon
+        class="dabubble-logo"
+        #iconSlot
+        iconName="dabubble-logo"
+      ></app-icon>
       <span>DABubble</span>
     </div>
 
     <div>
       <div class="signUp-container">
-        <span>Neu bei DABubble?</span>
+        <span>{{ t("new-to") }}</span>
         <span class="hover-box">
-        <a class="links" routerLink="/signup">Konto erstellen</a>
-      </span>
+          <a class="links" routerLink="/signup">{{ t("create-account") }}</a>
+        </span>
       </div>
     </div>
   </div>
@@ -29,8 +35,14 @@
     <router-outlet></router-outlet>
   </div>
   <div class="privacy-container">
-    <span><a class="links" routerLink="/impressum">Impressum</a></span>
-    <span><a class="links" routerLink="/datenschutz">Datenschutz</a></span>
+    <span
+      ><a class="links" routerLink="/impressum">{{ t("imprint") }}</a></span
+    >
+    <span
+      ><a class="links" routerLink="/datenschutz">{{
+        t("privacy-notice")
+      }}</a></span
+    >
   </div>
 </section>
-
+}
