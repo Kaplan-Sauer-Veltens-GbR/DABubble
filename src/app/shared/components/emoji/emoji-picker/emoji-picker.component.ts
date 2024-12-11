@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
-import { TranslocoService } from '@jsverse/transloco';
 import { SettingsService } from '../../../../services/settings.service';
 
 @Component({

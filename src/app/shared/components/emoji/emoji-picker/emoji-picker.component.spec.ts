@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmojiPickerComponent } from './emoji-picker.component';
+import { getTranslocoModule } from '../../../../modules/transloco-testing/transloco-testing.module';
 
 describe('EmojiPickerComponent', () => {
   let component: EmojiPickerComponent;
@@ -8,9 +9,8 @@ describe('EmojiPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmojiPickerComponent]
-    })
-    .compileComponents();
+      imports: [EmojiPickerComponent, getTranslocoModule()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmojiPickerComponent);
     component = fixture.componentInstance;
