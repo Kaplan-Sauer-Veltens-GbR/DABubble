@@ -16,11 +16,6 @@ export class ValidationErrorDirective {
   @Input('ValidationError') field!: keyof ValidationError; 
 
 
-
-
-
- 
-
   constructor() {
     this.subscription = this.validationService.validationError$.subscribe(
       (errors) => {
