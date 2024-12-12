@@ -38,7 +38,7 @@ export class AvatarPickerComponent {
     'assets/images/avatars/avatar4.png',
     'assets/images/avatars/avatar5.png',
   ];
-
+  selectedFile: File | null = null;
   showPopup: boolean = false;
   popupMessage: string = '';
 
@@ -62,7 +62,23 @@ export class AvatarPickerComponent {
     console.log(this.profilePicture);
   }
 
-  uploadFile() {
-    
+  async uploadFile() {
+    if (this.selectedFile) {
+      try {
+        this.profilePicture = await this.storageService.uploadFile(this.selectedFile);
+        console.log('Profilbild-URL:', this.profilePicture);
+      } catch (error) {
+        console.error('Fehler beim Hochladen des Bildes:', error);
+      }
+    } else {
+      console.warn('Keine Datei ausgewählt.');
+    }
   }
+
+  onFileSelected(event:any):void {
+    if(event.target.files.length > 0) {
+     this.selectedFile = event.target.files[0];
+     this.uploadFile();
+    }
+     }
 }

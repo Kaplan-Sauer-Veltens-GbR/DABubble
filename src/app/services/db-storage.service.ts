@@ -9,8 +9,6 @@ import { onSnapshot } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class DbStorageService {
-
-  selectedFile: File | null = null;
 private app: FirebaseApp;
 public storage: FirebaseStorage;
 attachment:string = ''
@@ -23,40 +21,35 @@ attachment:string = ''
     this.storage = getStorage(this.app);
   }
     
-  onFileSelected(event:any):void {
- if(event.target.files.length > 0) {
-  this.selectedFile = event.target.files[0];
-  console.log(this.selectedFile);
-  this.uploadFile();
- }
-  }
 
-  uploadFile() {
-    if(!this.selectedFile) {
-      console.error('no file selected');
-      return;
+
+  uploadFile(file: File):Promise<string> {
+    return new Promise((resolve,reject) => {
+      const storageRef = ref(this.storage,`user-avatar/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef,file);
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it 
+          
+        },(error) => {
+          console.error('upload failed', error);
+          reject;
+        },async () =>  {
+          try {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+            this.attachment = downloadURL;
+            resolve(this.attachment);
+          }catch(error) {
+            reject(error)
+          }
+        }
+      )
+    }) 
+
     }
-    const storageRef = ref(this.storage,`user-avatar/${this.selectedFile.name}`)
-    const uploadTask = uploadBytesResumable(storageRef,this.selectedFile);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`upload is ${progress} done`);
-        
-      },
-      (error) => {
-        console.error('upload failed',error);
-        
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=> {
-          console.log('file at ' ,downloadURL);
-          this.attachment = downloadURL
-        })
-      } 
-    )
+    
   }
-}
 
 

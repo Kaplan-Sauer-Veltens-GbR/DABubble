@@ -1,5 +1,6 @@
 <div class="avatar-picker-container">
   <div class="avatar-picker-card">
+    <img [src]="storageService.attachment" alt="dfdf">
     <button class="back-button">
       <a routerLink="/signup">
       <app-icon iconName="back"></app-icon>
@@ -32,7 +33,7 @@
           accept="image/*"
           id="fileUpload"
           style="display: none"
-          (change)="storageService.onFileSelected($event)"
+          (change)="onFileSelected($event)"
         />
         <label for="fileUpload">
           <app-button [filled]="false" label="Datei hochladen">Dateien hochladen</app-button>
@@ -49,4 +50,5 @@
     *ngIf="showPopup"
     [message]="popupMessage"
   ></app-popup-notification>
+  
 </div>
