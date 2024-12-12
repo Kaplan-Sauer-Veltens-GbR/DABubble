@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { initializeApp } from '@angular/fire/app';
+import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { FirbaseStorageConfig } from '../interfaces/firbase-storage-config';
+import { FirebaseStorage, getStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,23 @@ firebaseConfig:FirbaseStorageConfig = {
     apiKey: '' ,
     authDomain:'' ,
     projectId: 'dabubble-530c4',
-    storageBucket: 'gs://dabubble-530c4.appspot.com',
+    storageBucket: 'dabubble-530c4.appspot.com',
     messagingSenderId: '',
     appId: '' ,
 
 }
-  private initializeApp = inject(initializeApp)
-  app = this.initializeApp(this.firebaseConfig)
-  constructor() { }
+private app: FirebaseApp;
+public storage: FirebaseStorage;
+  constructor() { 
+     if (!getApps().length) {
+      this.app = initializeApp(this.firebaseConfig);
+    } else {
+      this.app = getApps()[0]; 
+    }
+    this.storage = getStorage(this.app);
+  }
+    
+  }
 
 
-}
+
