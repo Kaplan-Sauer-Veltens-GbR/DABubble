@@ -30,7 +30,7 @@ export class AvatarPickerComponent {
   email: string = this.inputChecker.email;
   password: string = this.inputChecker.password;
   name: string = this.inputChecker.name;
-  profilePicture: string = this.inputChecker.profilePicture;
+  profilePicture: string = '';
   avatarImages: string[] = [
     'assets/images/avatars/avatar1.png',
     'assets/images/avatars/avatar2.png',
@@ -44,6 +44,8 @@ export class AvatarPickerComponent {
 
   setPhotoPath(path: string) {
     this.profilePicture = path;
+    console.log(this.profilePicture);
+    
   }
 
   ngOnInit(): void {}

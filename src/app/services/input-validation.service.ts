@@ -108,9 +108,9 @@ export class InputValidationService {
     }
   }
 
-  onProfileChange(newProfilePicture: string) {
-    this.profilePicture = newProfilePicture;
-  }
+  // onProfileChange(newProfilePicture: string) {
+  //   this.profilePicture = newProfilePicture;
+  // }
 
   checkIsFormValid() {
     this.checkInputValidation();
