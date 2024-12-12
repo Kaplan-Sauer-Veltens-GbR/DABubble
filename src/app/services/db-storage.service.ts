@@ -10,8 +10,8 @@ export class DbStorageService {
 firebaseConfig:FirbaseStorageConfig = {
     apiKey: '' ,
     authDomain:'' ,
-    projectId: '',
-    storageBucket: '',
+    projectId: 'dabubble-530c4',
+    storageBucket: 'gs://dabubble-530c4.appspot.com',
     messagingSenderId: '',
     appId: '' ,
 
