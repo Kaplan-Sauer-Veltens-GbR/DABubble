@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment.development';
 })
 export class DbStorageService {
 
-
+  selectedFile: File | null = null;
 private app: FirebaseApp;
 public storage: FirebaseStorage;
   constructor() { 
@@ -21,7 +21,13 @@ public storage: FirebaseStorage;
     this.storage = getStorage(this.app);
   }
     
-  }
+  onFileSelected(event:any):void {
+ if(event.target.files.length > 0) {
+  this.selectedFile = event.target.files[0];
 
+  
+ }
+  }
+}
 
 

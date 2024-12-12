@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { InputValidationService } from '../../services/input-validation.service';
 import { PopupNotificationComponent } from '../../shared/components/popup-notification/popup-notification.component';
+import { DbStorageService } from '../../services/db-storage.service';
 
 @Component({
   selector: 'app-avatar-picker',
@@ -25,6 +26,7 @@ import { PopupNotificationComponent } from '../../shared/components/popup-notifi
 export class AvatarPickerComponent {
   public authService = inject(AuthService);
   public inputChecker = inject(InputValidationService);
+  public storageService = inject(DbStorageService)
   email: string = this.inputChecker.email;
   password: string = this.inputChecker.password;
   name: string = this.inputChecker.name;

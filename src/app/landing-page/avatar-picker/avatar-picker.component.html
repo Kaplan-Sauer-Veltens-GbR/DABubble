@@ -32,6 +32,7 @@
           accept="image/*"
           id="fileUpload"
           style="display: none"
+          (change)="storageService.onFileSelected($event)"
         />
         <label for="fileUpload">
           <app-button [filled]="false" label="Datei hochladen">Dateien hochladen</app-button>
