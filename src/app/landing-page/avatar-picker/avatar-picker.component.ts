@@ -30,7 +30,8 @@ export class AvatarPickerComponent {
   email: string = this.inputChecker.email;
   password: string = this.inputChecker.password;
   name: string = this.inputChecker.name;
-  profilePicture: string = '';
+  profilePicture: string = 'assets/images/avatars/avatar-picker-unset.png';
+  previousImgPath: string |null = ''
   avatarImages: string[] = [
     'assets/images/avatars/avatar1.png',
     'assets/images/avatars/avatar2.png',
@@ -63,9 +64,12 @@ export class AvatarPickerComponent {
   }
 
   async uploadFile() {
+    debugger
+    this.storageService.checkPreviousImgPath(this.previousImgPath);
     if (this.selectedFile) {
       try {
         this.profilePicture = await this.storageService.uploadFile(this.selectedFile);
+        this.previousImgPath = this.profilePicture
         console.log('Profilbild-URL:', this.profilePicture);
       } catch (error) {
         console.error('Fehler beim Hochladen des Bildes:', error);

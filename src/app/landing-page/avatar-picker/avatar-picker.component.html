@@ -1,6 +1,5 @@
 <div class="avatar-picker-container">
   <div class="avatar-picker-card">
-    <img [src]="storageService.attachment" alt="dfdf">
     <button class="back-button">
       <a routerLink="/signup">
       <app-icon iconName="back"></app-icon>
@@ -10,7 +9,7 @@
 
     <div class="avatar-preview">
       <img
-        [src]="'assets/images/avatars/avatar-picker-unset.png'"
+        [src]="profilePicture"
         alt="User Avatar"
       />
       <span>Frederick Beck</span>

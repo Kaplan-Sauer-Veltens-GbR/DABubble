@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { FirbaseStorageConfig } from '../interfaces/firbase-storage-config';
-import { FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
 import { onSnapshot } from '@angular/fire/firestore';
 
@@ -22,8 +22,16 @@ attachment:string = ''
   }
     
 
+  async checkPreviousImgPath(previousImgPath:string | null) {
+  if(previousImgPath != null) {
+    const previousRef = ref(this.storage,previousImgPath)
+    await deleteObject(previousRef)
+    console.log(previousImgPath);
+  }
+  }
 
-  uploadFile(file: File):Promise<string> {
+
+  uploadFile(file: File,):Promise<string> {
     return new Promise((resolve,reject) => {
       const storageRef = ref(this.storage,`user-avatar/${file.name}`)
       const uploadTask = uploadBytesResumable(storageRef,file);
