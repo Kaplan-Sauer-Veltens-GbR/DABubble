@@ -72,7 +72,7 @@
       "inputs": {
         "email": {
           "placeholder": "beispielname@email.com",
-          "error": "Überprüfen Sie die E-Mail"
+          "error": "Überprüfen Sie die E-Mail Adresse"
         },
         "password": {
           "placeholder": "Passwort",

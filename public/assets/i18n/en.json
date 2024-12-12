@@ -68,22 +68,22 @@
     },
     "sign-in": {
       "headline": "Sign in",
-      "description": "Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
+      "description": "We recommend that you use the e-mail address that you use at work.",
       "inputs": {
         "email": {
-          "placeholder": "beispielname@email.com",
-          "error": "Überprüfen Sie die E-Mail"
+          "placeholder": "examplename@email.com",
+          "error": "Check that the e-mail address is correct"
         },
         "password": {
           "placeholder": "Passwort",
-          "error": "Überprüfen Sie das Passwort"
+          "error": "Check that the password is correct"
         }
       },
-      "forgot-password": "Passwort vergessen?",
-      "google-signin": "Anmelden mit Google",
+      "forgot-password": "Password forgotten?",
+      "google-signin": "Sign in with Google",
       "login": {
-        "regular": "Anmelden",
-        "guest": "Gäste-Login"
+        "regular": "Sign in",
+        "guest": "Guest log in"
       }
     }
   },

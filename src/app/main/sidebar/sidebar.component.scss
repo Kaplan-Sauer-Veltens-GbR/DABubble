@@ -1,6 +1,7 @@
 @use "../../shared/scss/abstracts/_index.scss" as *;
 @use "../../shared/scss/_hovers.scss";
 aside {
+  position: relative;
   padding: 32px 30px 32px 30px;
   max-width: calc(366px - 60px);
   // max-height: calc(940px - 64px);
@@ -13,6 +14,7 @@ aside {
   transition: margin-left 125ms ease-in-out;
   transform: translateX(0);
   overflow: auto;
+  clip-path: inset(0 round 30px);
 }
 
 header {
