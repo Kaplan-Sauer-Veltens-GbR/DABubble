@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
-import { FirbaseStorageConfig } from '../interfaces/firbase-storage-config';
 import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
 import { onSnapshot } from '@angular/fire/firestore';
@@ -55,9 +54,7 @@ attachment:string = ''
         }
       )
     }) 
-
     }
-    
   }
 
 
