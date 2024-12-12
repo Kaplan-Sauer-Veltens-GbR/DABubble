@@ -24,9 +24,15 @@ public storage: FirebaseStorage;
   onFileSelected(event:any):void {
  if(event.target.files.length > 0) {
   this.selectedFile = event.target.files[0];
-
-  
  }
+  }
+
+  uploadFile() {
+    if(!this.selectedFile) {
+      console.error('no file selected');
+      return;
+      
+    }
   }
 }
 
