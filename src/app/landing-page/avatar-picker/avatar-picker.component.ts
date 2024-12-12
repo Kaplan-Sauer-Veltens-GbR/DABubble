@@ -61,4 +61,8 @@ export class AvatarPickerComponent {
     this.showPopup = true;
     console.log(this.profilePicture);
   }
+
+  uploadFile() {
+    
+  }
 }
