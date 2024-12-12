@@ -29,7 +29,7 @@ export class InputValidationService {
   nameIsValid: boolean = false;
   passedValidation: boolean = false;
   agreedToLegalNotice: boolean = false;
-  emailErrorMessage: string = 'Bitte nutzen sie eine Gültige Email.';
+  emailErrorMessage: string = 'Bitte nutzen sie eine gültige E-Mail.';
   private authService = inject(AuthService);
   private firestore = inject(Firestore);
   private validationErrorSubject = new BehaviorSubject<ValidationError>({
