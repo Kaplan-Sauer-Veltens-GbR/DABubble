@@ -2,7 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
-import { onSnapshot } from '@angular/fire/firestore';
+import { UploadTask, UploadTaskSnapshot } from 'firebase/storage';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,20 +36,12 @@ attachment:string = ''
       const uploadTask = this.setUpUpload(file,path)
       uploadTask.on(
         'state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
-          
-        },(error) => {
-          console.error('upload failed', error);
-          reject;
-        },async () =>  {
+        this.handleUploadProgress,
+        (error) => this.handleUploadError(reject,error)
+        ,async () =>  {
           try {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-            this.attachment = downloadURL;
-            console.log(uploadTask.snapshot.ref);
-            
-            resolve(this.attachment);
+           const  downloadUrl = await this.handleUploadSuccess(uploadTask)
+           resolve(downloadUrl)
           }catch(error) {
             reject(error)
           }
@@ -57,13 +50,31 @@ attachment:string = ''
     }) 
     }
 
-    
+
     setUpUpload(file:File,path:string) {
       const storageRef = ref(this.storage,`${path}/${file.name}`)
       const uploadTask = uploadBytesResumable(storageRef,file);
       console.log('file information', storageRef);
       
       return uploadTask;
+    }
+
+    handleUploadProgress(snapshot:UploadTaskSnapshot):void {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
+        
+    }
+
+   async handleUploadSuccess(uploadTask: UploadTask):Promise<string> {
+      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+      this.attachment = downloadURL;
+      console.log(uploadTask.snapshot.ref);
+      return downloadURL;
+    }
+
+    handleUploadError(reject:(reason?:any) => void,error:any) {
+      console.error('upload failed', error);
+      reject;
     }
   }
 

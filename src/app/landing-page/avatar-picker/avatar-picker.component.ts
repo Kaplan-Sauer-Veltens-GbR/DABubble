@@ -44,6 +44,7 @@ export class AvatarPickerComponent {
   popupMessage: string = '';
 
   setPhotoPath(path: string) {
+    this.storageService.checkPreviousImgPath(this.previousImgPath)
     this.profilePicture = path;
     console.log(this.profilePicture);
     
@@ -62,7 +63,7 @@ export class AvatarPickerComponent {
     console.log(this.profilePicture);
   }
 
-  
+
   async uploadProfilePicture() {
     debugger
     this.storageService.checkPreviousImgPath(this.previousImgPath);
@@ -78,6 +79,7 @@ export class AvatarPickerComponent {
       console.warn('no files are selected');
     }
   }
+
 
   onFileSelected(event:any):void {
     if(event.target.files.length > 0) {
