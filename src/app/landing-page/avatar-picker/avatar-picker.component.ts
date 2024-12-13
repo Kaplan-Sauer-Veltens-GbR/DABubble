@@ -70,12 +70,12 @@ export class AvatarPickerComponent {
       try {
         this.profilePicture = await this.storageService.uploadFile(this.selectedFile,'user-avatar/');
         this.previousImgPath = this.profilePicture
-        console.log('Profilbild-URL:', this.profilePicture);
+        console.log('ProfilPircture-URL:', this.profilePicture);
       } catch (error) {
-        console.error('Fehler beim Hochladen des Bildes:', error);
+        console.error('something went wrong while uploading', error);
       }
     } else {
-      console.warn('Keine Datei ausgewählt.');
+      console.warn('no files are selected');
     }
   }
 
