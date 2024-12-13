@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "user.schema.json",
+  "title": "User-Information",
+  "description": "A user of DABubble",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "description": "The User Name, that is displayed public",
+      "type": "string"
+    },
+    "email": {
+      "description": "E-Mail that is used for Login",
+      "type": "string",
+      "format": "email"
+    },
+    "lastLogin": {
+      "description": "Timestamp when user logged in the last time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "photoURL": {
+      "description": "URL to user-avatar",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "Tracks online, idle or offline-state",
+      "type": "string",
+      "enum": ["online", "offline", "away"]
+    },
+    "uid": {
+      "description": "The unique identifier for a user",
+      "type": "string"
+    }
+  },
+  "required": ["uid", "displayName", "email"]
+}
