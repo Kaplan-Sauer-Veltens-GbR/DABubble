@@ -30,15 +30,14 @@ attachment:string = ''
   }
 
 
-  uploadFile(file: File,):Promise<string> {
+  uploadFile(file: File, path:string):Promise<string> {
     return new Promise((resolve,reject) => {
-      const storageRef = ref(this.storage,`user-avatar/${file.name}`)
-      const uploadTask = uploadBytesResumable(storageRef,file);
+      const uploadTask = this.setUpUpload(file,path)
       uploadTask.on(
         'state_changed',
         (snapshot) => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it 
+          console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
           
         },(error) => {
           console.error('upload failed', error);
@@ -57,6 +56,15 @@ attachment:string = ''
       )
     }) 
     }
+
+    
+    setUpUpload(file:File,path:string) {
+      const storageRef = ref(this.storage,`${path}/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef,file);
+      console.log('file information', storageRef);
+      
+      return uploadTask;
+    }
   }
 
-
+ 

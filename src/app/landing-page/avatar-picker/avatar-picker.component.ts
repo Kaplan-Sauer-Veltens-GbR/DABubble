@@ -63,12 +63,12 @@ export class AvatarPickerComponent {
     console.log(this.profilePicture);
   }
 
-  async uploadFile() {
+  async uploadProfilePicture() {
     debugger
     this.storageService.checkPreviousImgPath(this.previousImgPath);
     if (this.selectedFile) {
       try {
-        this.profilePicture = await this.storageService.uploadFile(this.selectedFile);
+        this.profilePicture = await this.storageService.uploadFile(this.selectedFile,'user-avatar/');
         this.previousImgPath = this.profilePicture
         console.log('Profilbild-URL:', this.profilePicture);
       } catch (error) {
@@ -82,7 +82,7 @@ export class AvatarPickerComponent {
   onFileSelected(event:any):void {
     if(event.target.files.length > 0) {
      this.selectedFile = event.target.files[0];
-     this.uploadFile();
+     this.uploadProfilePicture();
     }
      }
 }
