@@ -31,7 +31,7 @@ export class AvatarPickerComponent {
   password: string = this.inputChecker.password;
   name: string = this.inputChecker.name;
   profilePicture: string = 'assets/images/avatars/avatar-picker-unset.png';
-  previousImgPath: string |null = ''
+  previousImgPath: string |null = null;
   avatarImages: string[] = [
     'assets/images/avatars/avatar1.png',
     'assets/images/avatars/avatar2.png',

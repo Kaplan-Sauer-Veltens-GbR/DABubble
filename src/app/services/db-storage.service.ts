@@ -47,6 +47,8 @@ attachment:string = ''
           try {
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
             this.attachment = downloadURL;
+            console.log(uploadTask.snapshot.ref);
+            
             resolve(this.attachment);
           }catch(error) {
             reject(error)
