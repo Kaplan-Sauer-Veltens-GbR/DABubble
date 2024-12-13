@@ -62,6 +62,7 @@ export class AvatarPickerComponent {
     console.log(this.profilePicture);
   }
 
+  
   async uploadProfilePicture() {
     debugger
     this.storageService.checkPreviousImgPath(this.previousImgPath);
