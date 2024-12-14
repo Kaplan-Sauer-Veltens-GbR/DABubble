@@ -87,4 +87,11 @@ export class AvatarPickerComponent {
      this.uploadProfilePicture();
     }
      }
+
+     triggerFileInput(): void {
+      const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
+      if (fileInput) {
+        fileInput.click(); 
+      }
+    }
 }

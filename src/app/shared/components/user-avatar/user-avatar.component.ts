@@ -4,6 +4,7 @@ import { OnlineStatusService } from '../../../services/online-status.service';
 import { WordlistService } from '../../../services/wordlist.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { capitalize } from '../../../utils/string.utils';
+import { DbService } from '../../../services/db.service';
 
 @Component({
   selector: 'user-avatar',
@@ -16,7 +17,7 @@ export class UserAvatarComponent {
   onlineStatus: OnlineStatusService = inject(OnlineStatusService);
   wordlistService: WordlistService = inject(WordlistService);
   translocoService: TranslocoService = inject(TranslocoService);
-
+  public dbService = inject(DbService)
   @Input() hideUsername: boolean = false;
   @Input() strikeUsername: boolean = false;
   @Input() hideOnlineStatus: boolean = false;

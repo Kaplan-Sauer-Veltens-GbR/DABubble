@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Auth, idToken, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
+import { UserData } from '../interfaces/user-model';
 
 @Component({
   selector: 'app-main',
@@ -35,7 +36,7 @@ ngOnInit() {
       this.getUserIdToken(user).then(idToken => {
         if(idToken) {
           this.authService.routeWithId(idToken);
-          
+         this.getUserData(user.uid)
         }
       });
     } else {
@@ -57,5 +58,11 @@ async getUserIdToken(user:User) {
     
   }
 }
-
+ async  getUserData(uid:string) {
+   const userData  =  await this.dbService.getDocData('users',uid);
+   console.log(userData ,'Data');
+    if(userData) {
+      this.dbService.userInformation = userData as UserData;
+    }
+  }
 }

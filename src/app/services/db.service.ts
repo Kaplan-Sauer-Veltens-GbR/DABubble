@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
 export class DbService {
   private router = inject(Router);
   private firestore = inject(Firestore);
+  userInformation!:UserData ;
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {
@@ -46,7 +47,11 @@ export class DbService {
     const collectionRef =  collection(this.firestore,collectionName);
     const docRef = doc(collectionRef, uid)
     const docSnapshot =  await getDoc(docRef);
-    console.log(docSnapshot);
+    if(docSnapshot.exists()) {
+      return docSnapshot.data();
+    }else {
+      return null;
+    }
     
   }
 }

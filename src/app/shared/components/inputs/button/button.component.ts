@@ -15,13 +15,6 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
   @Input() icon: IconName = '';
   @Output() buttonClick = new EventEmitter<Event>();  
-
-  handleClick(event:Event) {
-    if (!this.disabled) {
-      this.buttonClick.emit(event);
-    } else {
-      event.preventDefault(); 
-    }
   
-  }
+
 }
