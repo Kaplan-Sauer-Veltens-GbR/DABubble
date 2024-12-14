@@ -4,7 +4,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkspaceService } from '../services/workspace.service';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Auth, User } from '@angular/fire/auth';
+import { Auth, idToken, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -30,7 +30,11 @@ ngOnInit() {
     if (user) {
       console.log('User logged in:', user);
       this.user = user;
-      this.authService.routeWithId(user.uid);
+      this.getUserIdToken(user).then(idToken => {
+        if(idToken) {
+          this.authService.routeWithId(idToken);
+        }
+      });
     } else {
       console.log('No user logged in');
       this.user = null;
@@ -38,6 +42,17 @@ ngOnInit() {
     }
   });
 
+}
+
+async getUserIdToken(user:User) {
+  if(user) {
+    const idToken = await user.getIdToken()
+    return idToken;
+  }else {
+    console.log('no user logged in');
+    return null;
+    
+  }
 }
 
 }

@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import {
+  collection,
   CollectionReference,
   doc,
   DocumentReference,
@@ -37,5 +38,10 @@ export class DbService {
 
   updateUser(userData: UserData, userRef: DocumentReference) {
     setDoc(userRef, userData, { merge: true });
+  }
+
+  getDocData(collectionName:string , uid:string) {
+    const collectionRef =  collection(this.firestore,collectionName);
+    
   }
 }
