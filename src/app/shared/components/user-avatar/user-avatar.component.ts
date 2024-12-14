@@ -5,6 +5,7 @@ import { WordlistService } from '../../../services/wordlist.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { capitalize } from '../../../utils/string.utils';
 import { DbService } from '../../../services/db.service';
+import { UserData } from '../../../interfaces/user-model';
 
 @Component({
   selector: 'user-avatar',
@@ -28,13 +29,17 @@ export class UserAvatarComponent {
     lastActivity: Date.now(),
     isOffline: true
   }
+  @Input() user!: UserData ;
+
+
 
   returnUsername():string {
+    debugger
     let suffix = '';
     if (this.owner) {
       suffix = ` (${capitalize(this.translocoService.translate('wordlist.you'))})`;
     } 
-    return this.exampleUser.name + suffix;
+      return this.user.displayName + suffix;    
   }
 
   returnAriaLabel(): string {
@@ -44,5 +49,6 @@ export class UserAvatarComponent {
       return this.exampleUser.name;
     }
   }
+
 
 }

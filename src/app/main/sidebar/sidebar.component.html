@@ -58,8 +58,8 @@
   [ngClass]="{ expanded: toggleChannel[1], collapsed: !toggleChannel[1] }"
 >
   <div class="drop-down-wrapper mb-25">
-    @for(placeholder of [1,2,3,4,5,6,7,8]; track placeholder) {
-    <user-avatar [size]="50"></user-avatar>
+    @for(user of userList  ; track user) {
+    <user-avatar [user]="user" [size]="50"></user-avatar>
     }
   </div>
 </div>

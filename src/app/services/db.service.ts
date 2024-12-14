@@ -8,6 +8,7 @@ import {
   DocumentReference,
   Firestore,
   getDoc,
+  onSnapshot,
   setDoc,
 } from '@angular/fire/firestore';
 import { UserData } from '../interfaces/user-model';
@@ -53,5 +54,21 @@ export class DbService {
       return null;
     }
     
+  }
+
+  subscribeToCollection(collectionName:string,callback:(docs:any) => void) {
+    const colRef = collection(this.firestore, collectionName);
+    onSnapshot(colRef,(querySnapshot)=> {
+      const docs: any[] = [];
+      for (let i = 0; i < 15; i++) {
+        const element = querySnapshot.docs[i];
+        docs.push(element.data())
+        
+        
+      }
+      console.log(docs);
+      
+      callback(docs)
+    })
   }
 }
