@@ -6,6 +6,7 @@ import { SettingsService } from '../../../services/settings.service';
 import { UserAvatarComponent } from '../../../shared/components/user-avatar/user-avatar.component';
 import { WorkspaceService } from '../../../services/workspace.service';
 import { DbService } from '../../../services/db.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'avatar-menu',
@@ -24,7 +25,7 @@ export class AvatarMenuComponent {
   public workspace = inject(WorkspaceService);
   private elementRef = inject(ElementRef);
   public dbService = inject (DbService);
-
+  public authService = inject(AuthService)
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     if (this.workspace.isClickOutside(event, this.elementRef.nativeElement)) {

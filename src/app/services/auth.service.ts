@@ -34,7 +34,7 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
-  
+  isGuest:boolean = false;
 
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
@@ -171,6 +171,7 @@ export class AuthService {
 
    async guestLogin() {
    const guestCredential = await signInAnonymously(this.auth);
+   debugger
    this.routeWithId(guestCredential.user.uid)
    }
 
