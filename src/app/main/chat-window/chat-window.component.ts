@@ -19,19 +19,19 @@ import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create
 })
 export class ChatWindowComponent {
   @ViewChild('chatScrollContainer')scrollContainer!:ElementRef
-  @ViewChild('popUps')popUp!:ElementRef
+  @ViewChild('popUps', { static: false }) popUp!: ElementRef;
 
   public workspace = inject(WorkspaceService);
   private  route = inject(ActivatedRoute)
   private elementRef = inject(ElementRef)
-ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
   this.scrollToBottom();
   
 }
 
   @HostListener('document:click', ['$event'])
 handleClickOutside(event:MouseEvent) {
-  if(this.workspace.isClickOutside(event,this.popUp.nativeElement)) {
+  if(this.popUp?.nativeElement && this.workspace.isClickOutside(event,this.popUp.nativeElement)) {
     this.workspace.currentDialog = null;
   }
 }
