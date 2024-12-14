@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Auth, idToken, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-main',
@@ -15,10 +16,11 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
-public workspace = inject(WorkspaceService)
-private router = inject(Router)
-private route = inject(ActivatedRoute)
-private authService = inject(AuthService)
+public workspace = inject(WorkspaceService);
+private router = inject(Router);
+private route = inject(ActivatedRoute);
+private authService = inject(AuthService);
+private dbService = inject(DbService);
 user: User | null = null;
 
 
@@ -33,6 +35,7 @@ ngOnInit() {
       this.getUserIdToken(user).then(idToken => {
         if(idToken) {
           this.authService.routeWithId(idToken);
+          
         }
       });
     } else {

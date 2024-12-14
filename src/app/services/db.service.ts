@@ -4,8 +4,10 @@ import {
   collection,
   CollectionReference,
   doc,
+  docSnapshots,
   DocumentReference,
   Firestore,
+  getDoc,
   setDoc,
 } from '@angular/fire/firestore';
 import { UserData } from '../interfaces/user-model';
@@ -40,8 +42,11 @@ export class DbService {
     setDoc(userRef, userData, { merge: true });
   }
 
-  getDocData(collectionName:string , uid:string) {
+  async getDocData(collectionName:string , uid:string) {
     const collectionRef =  collection(this.firestore,collectionName);
+    const docRef = doc(collectionRef, uid)
+    const docSnapshot =  await getDoc(docRef);
+    console.log(docSnapshot);
     
   }
 }
