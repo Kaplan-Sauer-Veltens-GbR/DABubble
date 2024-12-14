@@ -52,6 +52,7 @@ export class AvatarPickerComponent {
 
   ngOnInit(): void {}
   async onSubmit() {
+    
     const result = await this.authService.createUserWithEmailAndPassword(
       this.email,
       this.password,

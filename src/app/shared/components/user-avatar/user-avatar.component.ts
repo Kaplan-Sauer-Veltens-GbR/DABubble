@@ -35,7 +35,6 @@ export class UserAvatarComponent {
 
 
   returnUsername():string {
-    debugger
     let suffix = '';
     if (this.owner) {
       suffix = ` (${capitalize(this.translocoService.translate('wordlist.you'))})`;
