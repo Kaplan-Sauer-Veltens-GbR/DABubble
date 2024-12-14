@@ -6,9 +6,9 @@ aside {
   max-width: calc(366px - 60px);
   // max-height: calc(940px - 64px);
   width: calc(366px - 60px);
-  // height: calc(940px - 64px);
+  height: calc(940px - 64px);
   // max-height: fit-content;
-  height: 67%;
+  height: 71%;
   border-radius: 30px;
   background-color: white;
   transition: margin-left 125ms ease-in-out;
@@ -132,9 +132,9 @@ header {
 
 user-avatar {
   padding-left: 20px;
-  &:last-child {
-    margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required
-  }
+  // &:last-child {
+  //   // margin-bottom: 152px; // should be discussed how long should the user list be till it scrolls and which maring than is required
+  // }
 }
 .sidebar-closed {
   margin-left: -500px;
