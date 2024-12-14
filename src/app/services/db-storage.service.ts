@@ -60,11 +60,13 @@ attachment:string = ''
       return uploadTask;
     }
 
+  
     handleUploadProgress(snapshot:UploadTaskSnapshot):void {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
         
     }
+
 
    async handleUploadSuccess(uploadTask: UploadTask):Promise<string> {
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
@@ -73,6 +75,7 @@ attachment:string = ''
       return downloadURL;
     }
 
+    
     handleUploadError(reject:(reason?:any) => void,error:any) {
       console.error('upload failed', error);
       reject;
