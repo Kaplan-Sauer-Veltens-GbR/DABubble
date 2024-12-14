@@ -19,6 +19,7 @@ export class UserAvatarComponent {
   wordlistService: WordlistService = inject(WordlistService);
   translocoService: TranslocoService = inject(TranslocoService);
   public dbService = inject(DbService)
+  @Input() photoURL: string = '/assets/images/avatars/demo_avatar.png';
   @Input() hideUsername: boolean = false;
   @Input() strikeUsername: boolean = false;
   @Input() hideOnlineStatus: boolean = false;

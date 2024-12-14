@@ -59,7 +59,7 @@
 >
   <div class="drop-down-wrapper mb-25">
     @for(user of userList  ; track user) {
-    <user-avatar [user]="user" [size]="50"></user-avatar>
+    <user-avatar [photoURL]="user.photoURL ? user.photoURL : '/assets/images/avatars/demo_avatar.png'" [user]="user" [size]="50"></user-avatar>
     }
   </div>
 </div>

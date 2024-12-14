@@ -59,12 +59,10 @@ export class DbService {
   subscribeToCollection(collectionName:string,callback:(docs:any) => void) {
     const colRef = collection(this.firestore, collectionName);
     onSnapshot(colRef,(querySnapshot)=> {
-      const docs: any[] = [];
-      for (let i = 0; i < 15; i++) {
+      const docs: any[] = []; 
+      for (let i = 0; i < 15; i++) { // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this 
         const element = querySnapshot.docs[i];
         docs.push(element.data())
-        
-        
       }
       console.log(docs);
       
