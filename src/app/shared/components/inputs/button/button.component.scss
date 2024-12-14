@@ -1,8 +1,9 @@
-@use '../../../scss/abstracts/' as *;
+@use "../../../scss/abstracts/" as *;
 
 .button {
     @include dflex(center, $g: 10px);
-    
+    border: inherit;
+    width: 100%;
     border-radius: 25px;
     padding: 12px 25px;
     cursor: pointer;

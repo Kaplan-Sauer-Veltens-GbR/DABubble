@@ -8,8 +8,9 @@ import { Router, RouterModule } from '@angular/router';
 import { InputValidationService } from '../../services/input-validation.service';
 import { AuthService } from '../../services/auth.service';
 import { ValidationErrorDirective } from '../../directives/validation-error.directive';
-import { TooltipComponent } from "./tooltip/tooltip.component";
+import { TooltipComponent } from './tooltip/tooltip.component';
 import { ValidationError } from '../../interfaces/validation-error';
+import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -22,41 +23,43 @@ import { ValidationError } from '../../interfaces/validation-error';
     RouterModule,
     ReactiveFormsModule,
     ValidationErrorDirective,
-    TooltipComponent
-],
+    TooltipComponent,
+    TranslocoModule,
+  ],
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
   public inputCheck = inject(InputValidationService);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private cdRef = inject(ChangeDetectorRef)
- 
-  mouseOverPasswordTip:boolean = false;
-  ngOnInit(): void {
-  
-  }
+  private cdRef = inject(ChangeDetectorRef);
 
-  hoverOvertoolTip(field:string) {
+  mouseOverPasswordTip: boolean = false;
+  ngOnInit(): void {}
+
+  hoverOvertoolTip(field: string) {
     this.mouseOverPasswordTip = true;
   }
 
-  leaveToolTip(field:string) {
+  leaveToolTip(field: string) {
     this.mouseOverPasswordTip = false;
   }
 
   async onSubmit() {
-    const emailExists = await this.inputCheck.checkIfEmailExists(this.inputCheck.email)
-  if(emailExists) {
-    this.inputCheck.emailErrorMessage = 'Email ist bereits Regestiert.'
-    this.inputCheck.setValidationError('email' as keyof ValidationError, true);
-    return
-  }else {
-    this.inputCheck.resetValidationResults();
-    this.router.navigate(['avatar-picker']);
+    const emailExists = await this.inputCheck.checkIfEmailExists(
+      this.inputCheck.email
+    );
+    if (emailExists) {
+      this.inputCheck.emailErrorMessage = 'E-Mail ist bereits registiert.';
+      this.inputCheck.setValidationError(
+        'email' as keyof ValidationError,
+        true
+      );
+      return;
+    } else {
+      this.inputCheck.resetValidationResults();
+      this.router.navigate(['avatar-picker']);
+    }
   }
-    
-    
-  }
- }
+}

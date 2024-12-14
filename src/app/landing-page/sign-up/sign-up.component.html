@@ -1,42 +1,49 @@
-<div class="signup-container">
+<div
+  class="signup-container"
+  *transloco="let t; prefix: 'landing-page.sign-up'"
+>
   <div class="signup-card">
-    <button class="back-button" routerLink="/">
+    <button
+      type="button"
+      class="back-button"
+      [attr.aria-label]="t('buttons.back')"
+      routerLink="/"
+    >
       <app-icon iconName="back"></app-icon>
     </button>
     <div class="header-container">
-      <h1 class="signup-title">Konto erstellen</h1>
+      <h1 class="signup-title">{{ t("headline") }}</h1>
     </div>
-    <p class="signup-subtitle" >
-      Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
-      DABubble-Konto.
+    <p class="signup-subtitle">
+      {{ t("description") }}
     </p>
 
     <form (ngSubmit)="onSubmit()">
-      
       <app-input-fields
-        placeholder="Name und Nachname"
+        [placeholder]="t('name.placeholder')"
         type="text"
         [required]="true"
         (valueChange)="inputCheck.onNameChange($event)"
-        (blurEvent)="inputCheck.onInputLeaveName('name',inputCheck.name)"
-        
+        (blurEvent)="inputCheck.onInputLeaveName('name', inputCheck.name)"
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
-      <span ValidationError="name" >Bitte geben sie ihren vollständigen Namen an </span> 
+      <span ValidationError="name">{{ t("name.error") }} </span>
       <app-input-fields
-      (valueChange)="inputCheck.onEmailChange($event)"
-      (blurEvent)="inputCheck.onInputLeaveEmail('email',inputCheck.email)"
-        placeholder="beispielname@email.com"
+        (valueChange)="inputCheck.onEmailChange($event)"
+        (blurEvent)="inputCheck.onInputLeaveEmail('email', inputCheck.email)"
+        [placeholder]="t('email.placeholder')"
         type="text"
         [required]="true"
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
-      <span  ValidationError="email">{{inputCheck.emailErrorMessage}}</span> 
+      <span ValidationError="email">{{ inputCheck.emailErrorMessage }}</span>
       <app-input-fields
         (valueChange)="inputCheck.onPasswordChange($event)"
-        (blurEvent)="inputCheck.onInputLeavePassword('password',inputCheck.password)"
+        (blurEvent)="
+          inputCheck.onInputLeavePassword('password', inputCheck.password)
+        "
         placeholder="Passwort"
         type="password"
         [required]="true"
@@ -44,23 +51,37 @@
       >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
-      <span ValidationError="password" (mouseleave)="this.leaveToolTip('password')" (mouseenter)="this.hoverOvertoolTip('password')" >Bitte Nutzen sie ein sichereres passwort hovern sie über mich für mehr infos</span> 
+      <span
+        ValidationError="password"
+        (mouseleave)="this.leaveToolTip('password')"
+        (mouseenter)="this.hoverOvertoolTip('password')"
+        >{{ t("password.tooltip.base") }}</span
+      >
       @if(mouseOverPasswordTip){
-        <tooltip>
-        <span  #tooltip>Mindestens 8 Zeichen, ein Großbuchstabe, eine Zahl und ein Sonderzeichen</span>
+      <tooltip>
+        <span #tooltip>{{ t("password.tooltip.content") }}</span>
       </tooltip>
       }
       <label class="privacy-check">
-        <input (click)="inputCheck.toggleLegalNotice()" type="checkbox" required />
-        Ich stimme der <a href="#">Datenschutzerklärung </a> zu.
+        <input
+          (click)="inputCheck.toggleLegalNotice()"
+          type="checkbox"
+          required
+        />
+        {{ t("privacy-notice.p1") }}
+        <a href="#">{{ t("privacy-notice.p2") }}</a>
+        {{ t("privacy-notice.p3") }}
       </label>
 
       <div class="action-buttons">
-        <app-button (buttonClick)="onSubmit()" [disabled]="!inputCheck.checkIsFormValid()" [filled]="true" label="Weiter">
-          <a>Weiter</a>
+        <app-button
+          (buttonClick)="onSubmit()"
+          [disabled]="!inputCheck.checkIsFormValid()"
+          [filled]="true"
+        >
+          <a>{{ t("buttons.next") }}</a>
         </app-button>
       </div>
     </form>
   </div>
 </div>
-   
