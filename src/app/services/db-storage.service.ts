@@ -52,7 +52,8 @@ attachment:string = ''
 
 
     setUpUpload(file:File,path:string) {
-      const storageRef = ref(this.storage,`${path}/${file.name}`)
+     let fileName = file.name + new Date().toISOString();
+      const storageRef = ref(this.storage,`${path}/${fileName}`)
       const uploadTask = uploadBytesResumable(storageRef,file);
       console.log('file information', storageRef);
       
