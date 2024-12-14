@@ -17,4 +17,13 @@ export class ButtonComponent {
   @Output() buttonClick = new EventEmitter<Event>();  
   
 
+  handleClick(event:Event) {
+    
+    if (!this.disabled) {
+      this.buttonClick.emit(event);
+    } else {
+      event.preventDefault(); 
+    }
+  
+  }
 }

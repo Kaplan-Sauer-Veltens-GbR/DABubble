@@ -1,5 +1,6 @@
 <button
   type="button"
+  (click)="handleClick($event)"
   class="button"
   [ngClass]="{ '--filled': filled, '--disabled': disabled }"
 >
