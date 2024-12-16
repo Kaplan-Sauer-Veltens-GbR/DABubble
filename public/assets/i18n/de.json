@@ -91,18 +91,18 @@
       "description": "Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.",
       "name": {
         "placeholder": "Name und Nachname",
-        "error": "Bitte geben sie ihren vollständigen Namen an"
+        "error": "Bitte geben Sie Ihren vollständigen Namen an"
       },
       "email": {
         "placeholder": "beispielname@email.com",
         "error": "Bitte nutzen Sie eine gültige E-Mail."
       },
       "password": {
-        "placeholder": "Name und Nachname",
-        "error": "Bitte geben sie ihren vollständigen Namen an",
+        "placeholder": "Passwort",
+        "error": "Bitte geben Sie ein Passwort an",
         "tooltip": {
-          "base": "Bitte Nutzen sie ein sichereres Passwort. Hovern Sie über mich, für Details.",
-          "content": "Mindestens 8 Zeichen, ein Großbuchstabe, eine Zahl und ein Sonderzeichen"
+          "base": "Bitte Nutzen Sie ein sichereres Passwort. Hovern Sie hier, für Details.",
+          "content": "Mindestens 8 Zeichen, ein Großbuchstabe, eine Zahl und ein Sonderzeichen."
         }
       },
       "privacy-notice": {
