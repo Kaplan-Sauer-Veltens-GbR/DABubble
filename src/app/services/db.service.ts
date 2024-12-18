@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 export class DbService {
   private router = inject(Router);
   private firestore = inject(Firestore);
-  userInformation!:UserData ;
+  userInformation!: UserData;
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {
@@ -34,6 +34,7 @@ export class DbService {
       email: user.email,
       photoURL: user.photoURL,
       lastLogin: new Date(),
+      lastActivity: new Date(),
       status: '',
     };
     console.log(userData, 'saved');
@@ -44,29 +45,29 @@ export class DbService {
     setDoc(userRef, userData, { merge: true });
   }
 
-  async getDocData(collectionName:string , uid:string) {
-    const collectionRef =  collection(this.firestore,collectionName);
-    const docRef = doc(collectionRef, uid)
-    const docSnapshot =  await getDoc(docRef);
-    if(docSnapshot.exists()) {
+  async getDocData(collectionName: string, uid: string) {
+    const collectionRef = collection(this.firestore, collectionName);
+    const docRef = doc(collectionRef, uid);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
       return docSnapshot.data();
-    }else {
+    } else {
       return null;
     }
-    
   }
 
-  subscribeToCollection(collectionName:string,callback:(docs:any) => void) {
+  subscribeToCollection(collectionName: string, callback: (docs: any) => void) {
     const colRef = collection(this.firestore, collectionName);
-    onSnapshot(colRef,(querySnapshot)=> {
-      const docs: any[] = []; 
-      for (let i = 0; i < 10; i++) { // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this 
+    onSnapshot(colRef, (querySnapshot) => {
+      const docs: any[] = [];
+      for (let i = 0; i < 10; i++) {
+        // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this
         const element = querySnapshot.docs[i];
-        docs.push(element.data())
+        docs.push(element.data());
       }
       console.log(docs);
-      
-      callback(docs)
-    })
+
+      callback(docs);
+    });
   }
 }

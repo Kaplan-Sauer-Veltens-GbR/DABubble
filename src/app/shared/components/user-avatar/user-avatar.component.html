@@ -1,12 +1,34 @@
-<div *transloco="let t" class="user-information" role="status" [attr.aria-label]="returnAriaLabel()">
-    <div class="avatar">
-        <img [src]="photoURL" [ngStyle]="{'height': size+'px', 'width': size+'px'}" draggable="false" alt="">
-        @if (!hideOnlineStatus) {
-        <div class="online-status" [ngStyle]="{'width': (size/5)+'px', 'height':(size/5)+'px'}" [ngClass]="'is-'+onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.isOffline)"></div>
-        }
-    </div>
-    @if (!hideUsername) {
+<div
+  *transloco="let t"
+  class="user-information"
+  role="status"
+  [attr.aria-label]="returnAriaLabel()"
+>
+  <div class="avatar">
+    <img
+      [src]="photoURL"
+      [ngStyle]="{ height: size + 'px', width: size + 'px' }"
+      draggable="false"
+      alt=""
+    />
+    @if (!hideOnlineStatus) {
+    <div
+      class="online-status"
+      [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
+      [ngClass]="
+        'is-' +
+        onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.status)
+      "
+    ></div>
+    }
+  </div>
+  @if (!hideUsername) {
 
-    <span aria-hidden="true" [ngClass]="{'--striked': strikeUsername}" class="user-name">{{returnUsername()}}</span>
-}
+  <span
+    aria-hidden="true"
+    [ngClass]="{ '--striked': strikeUsername }"
+    class="user-name"
+    >{{ returnUsername() }}</span
+  >
+  }
 </div>

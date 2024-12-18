@@ -12,43 +12,53 @@ import { UserData } from '../../../interfaces/user-model';
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './user-avatar.component.html',
-  styleUrl: './user-avatar.component.scss'
+  styleUrl: './user-avatar.component.scss',
 })
 export class UserAvatarComponent {
   onlineStatus: OnlineStatusService = inject(OnlineStatusService);
   wordlistService: WordlistService = inject(WordlistService);
   translocoService: TranslocoService = inject(TranslocoService);
-  public dbService = inject(DbService)
+  public dbService = inject(DbService);
   @Input() photoURL: string = '/assets/images/avatars/demo_avatar.png';
   @Input() hideUsername: boolean = false;
   @Input() strikeUsername: boolean = false;
   @Input() hideOnlineStatus: boolean = false;
   @Input() owner: boolean = false;
   @Input() size: number = 50;
-  @Input() exampleUser: {name: string, lastActivity: number, isOffline: boolean} = {
-    name: 'Frederik Beck',
-    lastActivity: Date.now(),
-    isOffline: true
-  }
-  @Input() user!: UserData ;
+  @Input() userId: string = '';
+  @Input() exampleUser: UserData = {
+    uid: '',
+    displayName: 'Frederik Beck',
+    email: '',
+    photoURL: '',
+    lastLogin: new Date(),
+    lastActivity: new Date(),
+    status: '',
+  };
+  @Input() user!: UserData;
 
-
-
-  returnUsername():string {
+  returnUsername(): string {
     let suffix = '';
     if (this.owner) {
-      suffix = ` (${capitalize(this.translocoService.translate('wordlist.you'))})`;
-    } 
-      return this.user.displayName + suffix;    
+      suffix = ` (${capitalize(
+        this.translocoService.translate('wordlist.you')
+      )})`;
+    }
+    return this.user.displayName + suffix;
   }
 
-  returnAriaLabel(): string {
+  returnAriaLabel(): string | null {
     if (!this.hideOnlineStatus) {
-      return this.exampleUser.name + ': ' + this.onlineStatus.getStatus(this.exampleUser.lastActivity, this.exampleUser.isOffline);
+      return (
+        this.exampleUser.displayName +
+        ': ' +
+        this.onlineStatus.getStatus(
+          this.exampleUser.lastActivity,
+          this.exampleUser.status
+        )
+      );
     } else {
-      return this.exampleUser.name;
+      return this.exampleUser.displayName;
     }
   }
-
-
 }
