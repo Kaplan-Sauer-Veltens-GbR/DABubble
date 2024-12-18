@@ -40,6 +40,7 @@ export class DbService {
     this.updateUser(userData, userRef);
   }
 
+
   updateUser(userData: UserData, userRef: DocumentReference) {
     setDoc(userRef, userData, { merge: true });
   }
@@ -53,7 +54,6 @@ export class DbService {
     }else {
       return null;
     }
-    
   }
 
   subscribeToCollection(collectionName:string,callback:(docs:any) => void) {
@@ -65,8 +65,7 @@ export class DbService {
         docs.push(element.data())
       }
       console.log(docs);
-      
-      callback(docs)
+      callback(docs);
     })
   }
 }
