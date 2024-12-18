@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OnlineStatusService {
+  constructor() {}
 
-  constructor() { }
-
-  getStatus(timestamp: number, offline: boolean = false): 'online' | 'away' | 'offline' {
-    if (!offline) {
-      if (this.isActive(timestamp)) {
+  getStatus(
+    timestamp: Date,
+    status: string | null = 'offline'
+  ): 'online' | 'away' | 'offline' {
+    if (!status) {
+      if (this.isActive(timestamp.getDate())) {
         return 'online';
       } else {
         return 'away';
@@ -21,7 +23,8 @@ export class OnlineStatusService {
   private isActive(timestamp: number): boolean {
     const msPerMinute: number = 60000;
     const minutesBeforeAway: number = 5;
-    const timestampBeforeAway: number = timestamp + (msPerMinute * minutesBeforeAway);
+    const timestampBeforeAway: number =
+      timestamp + msPerMinute * minutesBeforeAway;
     return timestampBeforeAway > Date.now() ? true : false;
   }
 }

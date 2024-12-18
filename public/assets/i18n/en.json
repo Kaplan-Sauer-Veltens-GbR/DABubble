@@ -85,6 +85,35 @@
         "regular": "Sign in",
         "guest": "Guest log in"
       }
+    },
+    "sign-up": {
+      "headline": "Create account",
+      "description": "With your name and e-mail address to create your DABubble account.",
+      "name": {
+        "placeholder": "First and last name",
+        "error": "Please enter your full name"
+      },
+      "email": {
+        "placeholder": "examplename@email.com",
+        "error": "Please enter a valid email."
+      },
+      "password": {
+        "placeholder": "Password",
+        "error": "Please choose a password.",
+        "tooltip": {
+          "base": "Please use a more secure password. Hover here for details.",
+          "content": "At least 8 characters, one capital letter, one number and one special character."
+        }
+      },
+      "privacy-notice": {
+        "p1": "I agree to the",
+        "p2": "privacy policy.",
+        "p3": " "
+      },
+      "buttons": {
+        "next": "Next",
+        "back": "Return to Sign in"
+      }
     }
   },
   "profile": {

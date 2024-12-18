@@ -25,6 +25,7 @@
         [required]="true"
         (valueChange)="inputCheck.onNameChange($event)"
         (blurEvent)="inputCheck.onInputLeaveName('name', inputCheck.name)"
+        autocomplete="name"
       >
         <app-icon #iconSlot iconName="user"></app-icon>
       </app-input-fields>
@@ -35,6 +36,7 @@
         [placeholder]="t('email.placeholder')"
         type="text"
         [required]="true"
+        autocomplete="email"
       >
         <app-icon #iconSlot iconName="mailReg"></app-icon>
       </app-input-fields>
@@ -44,10 +46,10 @@
         (blurEvent)="
           inputCheck.onInputLeavePassword('password', inputCheck.password)
         "
-        placeholder="Passwort"
+        [placeholder]="t('password.placeholder')"
+        autocomplete="new-password"
         type="password"
         [required]="true"
-        
       >
         <app-icon #iconSlot iconName="password"></app-icon>
       </app-input-fields>
