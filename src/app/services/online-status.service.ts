@@ -8,9 +8,9 @@ export class OnlineStatusService {
 
   getStatus(
     timestamp: Date,
-    status: boolean | null
+    isOnline: boolean | null
   ): 'online' | 'away' | 'offline' {
-    if (status) {
+    if (isOnline) {
       if (this.isActive(timestamp.getTime())) {
         return 'online';
       } else {
@@ -21,7 +21,6 @@ export class OnlineStatusService {
   }
 
   private isActive(timestamp: number): boolean {
-    // debugger;
     const msPerMinute: number = 60000;
     const minutesBeforeAway: number = 5;
     const timestampBeforeAway: number =
