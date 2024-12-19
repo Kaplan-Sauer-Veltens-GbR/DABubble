@@ -1,10 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import {
   collection,
-  CollectionReference,
   doc,
-  docSnapshots,
   DocumentReference,
   Firestore,
   getDoc,
@@ -13,7 +10,6 @@ import {
 } from '@angular/fire/firestore';
 import { UserData } from '../interfaces/user-model';
 import { User } from '@angular/fire/auth';
-import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -35,7 +31,7 @@ export class DbService {
       photoURL: user.photoURL,
       lastLogin: new Date(),
       lastActivity: new Date(),
-      status: '',
+      isOnline: true,
     };
     console.log(userData, 'saved');
     this.updateUser(userData, userRef);

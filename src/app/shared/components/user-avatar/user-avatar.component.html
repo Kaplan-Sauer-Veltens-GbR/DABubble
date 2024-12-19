@@ -15,7 +15,7 @@
     <div
       class="online-status"
       [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
-      [ngClass]="'is-' + onlineStatus.getStatus(user.lastActivity, user.status)"
+      [ngClass]="isOnline"
     ></div>
     }
   </div>

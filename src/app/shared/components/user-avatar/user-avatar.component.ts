@@ -32,7 +32,7 @@ export class UserAvatarComponent {
     photoURL: '/assets/images/avatars/demo_avatar.png',
     lastLogin: new Date(),
     lastActivity: new Date(),
-    status: '',
+    isOnline: true,
   };
 
   returnUsername(): string {
@@ -50,10 +50,17 @@ export class UserAvatarComponent {
       return (
         this.user.displayName +
         ': ' +
-        this.onlineStatus.getStatus(this.user.lastActivity, this.user.status)
+        this.onlineStatus.getStatus(this.user.lastActivity, this.user.isOnline)
       );
     } else {
       return this.user.displayName;
     }
+  }
+
+  get isOnline() {
+    return (
+      'is-' +
+      this.onlineStatus.getStatus(this.user.lastActivity, this.user.isOnline)
+    );
   }
 }

@@ -45,7 +45,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -54,7 +54,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -63,7 +63,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -72,7 +72,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -81,7 +81,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -90,7 +90,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -99,7 +99,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -108,7 +108,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
     {
@@ -117,7 +117,7 @@ export class UserSelectorComponent {
       email: '',
       photoURL: '',
       lastLogin: new Date(),
-      status: '',
+      isOnline: true,
       lastActivity: new Date(),
     },
   ];
