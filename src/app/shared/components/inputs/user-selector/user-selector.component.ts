@@ -1,45 +1,128 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
-
-interface ExampleUser {
-  name: string;
-  timestamp?: number; // Optionales Feld, da es nur an bestimmten Stellen verwendet wird
-}
+import { IconLibaryComponent } from '../../icon-component/icon-libary.component';
+import { UserData } from '../../../../interfaces/user-model';
 
 @Component({
   selector: 'user-selector',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserAvatarComponent, TranslocoModule, IconLibaryComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    UserAvatarComponent,
+    TranslocoModule,
+    IconLibaryComponent,
+  ],
   templateUrl: './user-selector.component.html',
-  styleUrl: './user-selector.component.scss'
+  styleUrl: './user-selector.component.scss',
 })
-
 export class UserSelectorComponent {
   translocoService: TranslocoService = inject(TranslocoService);
 
-  @Output() emittedUsers: EventEmitter<ExampleUser[]> = new EventEmitter<ExampleUser[]>();
-  selectedUsers: ExampleUser[] = [];
+  @Output() emittedUsers: EventEmitter<UserData[]> = new EventEmitter<
+    UserData[]
+  >();
+  selectedUsers: UserData[] = [];
 
   @ViewChild('search') searchInput!: ElementRef;
   @ViewChild('suggestionBox') suggestionBox!: ElementRef;
 
   searchText: string = '';
-  allUsers: ExampleUser[] = [
-    { name: 'Elias Neumann' },
-    { name: 'Antonia Neumann' },
-    { name: 'Franziska Walther'},
-    { name: 'Simone Münster'},
-    { name: 'Timo Borcher'},
-    { name: 'Kerstin Zander'},
-    { name: 'Patricia Meyer'},
-    { name: 'Felix Hahn'},
-    { name: 'Hendrik Underberg'},
+  allUsers: UserData[] = [
+    {
+      uid: '',
+      displayName: 'Elias Neumann',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Antonia Neumann',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Franziska Walther',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Simone Münster',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Timo Borcher',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Kerstin Zander',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Patricia Meyer',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Felix Hahn',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
+    {
+      uid: '',
+      displayName: 'Hendrik Underberg',
+      email: '',
+      photoURL: '',
+      lastLogin: new Date(),
+      status: '',
+      lastActivity: new Date(),
+    },
   ];
-  filteredUsers: ExampleUser[] = this.allUsers;
+
+  filteredUsers: UserData[] = this.allUsers;
   selectedChip: number = -1;
   selectedSuggestion: number = -1;
 
@@ -49,14 +132,15 @@ export class UserSelectorComponent {
 
   getPlaceholder() {
     if (this.selectedUsers.length === 0) {
-      return this.translocoService.translate('add-people.user-selector.placeholder');
+      return this.translocoService.translate(
+        'add-people.user-selector.placeholder'
+      );
     }
     return '';
   }
 
-
   getTimestamp() {
-    return Date.now();
+    return new Date();
   }
 
   manageSuggestionSelection(event: KeyboardEvent) {
@@ -85,24 +169,30 @@ export class UserSelectorComponent {
     }
   }
 
-
   // CAVE: Change this to User ID later, since users can have the same name
   filterUsers() {
     this.filteredUsers = this.allUsers
-      .filter(user =>
-        user.name.toLowerCase().includes(this.searchText.toLowerCase().trim())
+      .filter(
+        (user) =>
+          user.displayName &&
+          user.displayName
+            .toLowerCase()
+            .includes(this.searchText.toLowerCase().trim())
       )
-      .filter(user => !this.selectedUsers.some(u => u.name === user.name));
-      if (this.shouldInitializeSuggestionSelection()) {
-        this.selectNextSuggestion();
-      }
-      this.resetChip() //
+      .filter(
+        (user) =>
+          !this.selectedUsers.some((u) => u.displayName === user.displayName)
+      );
+    if (this.shouldInitializeSuggestionSelection()) {
+      this.selectNextSuggestion();
+    }
+    this.resetChip(); //
   }
 
   // CAVE: Change this to User ID later, since users can have the same name
-  addUser(user: ExampleUser) {
-    if (!this.selectedUsers.some(u => u.name === user.name)) {
-      this.selectedUsers.push({ ...user, timestamp: this.getTimestamp() });
+  addUser(user: UserData) {
+    if (!this.selectedUsers.some((u) => u.displayName === user.displayName)) {
+      this.selectedUsers.push({ ...user, lastLogin: this.getTimestamp() });
       this.emitSelectedUsers();
     }
     this.searchText = '';
@@ -118,8 +208,8 @@ export class UserSelectorComponent {
     this.focusInput();
   }
 
-  unselectUser(user: ExampleUser) {
-    this.selectedUsers = this.selectedUsers.filter(u => u !== user);
+  unselectUser(user: UserData) {
+    this.selectedUsers = this.selectedUsers.filter((u) => u !== user);
     this.emitSelectedUsers();
   }
 
@@ -136,7 +226,8 @@ export class UserSelectorComponent {
   }
 
   scrollToSelectedSuggestion() {
-    const suggestionElements = this.suggestionBox.nativeElement.querySelectorAll('li');
+    const suggestionElements =
+      this.suggestionBox.nativeElement.querySelectorAll('li');
     const selectedElement = suggestionElements[this.selectedSuggestion];
     if (selectedElement) {
       selectedElement.scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -168,7 +259,7 @@ export class UserSelectorComponent {
   }
 
   selectNextChip() {
-    this.nextChipExists() ? this.selectedChip++ : (this.resetChip());
+    this.nextChipExists() ? this.selectedChip++ : this.resetChip();
   }
 
   resetChipAndSuggestionIndex() {
@@ -193,7 +284,12 @@ export class UserSelectorComponent {
   //Beginn Helper Functions
 
   isSelectionKey(event: KeyboardEvent): boolean {
-    return event.key === 'Tab' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter';
+    return (
+      event.key === 'Tab' ||
+      event.key === 'ArrowUp' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'Enter'
+    );
   }
 
   hasSuggestions(): boolean {
@@ -226,7 +322,7 @@ export class UserSelectorComponent {
 
   isTabbingFromChipToInput(event: KeyboardEvent): boolean {
     return event.key === 'Tab' && this.selectedChip !== -1;
-  } 
+  }
 
   isInitialChipSelection() {
     return this.selectedChip === -1;
@@ -237,7 +333,9 @@ export class UserSelectorComponent {
   }
 
   nextChipExists() {
-    return this.selectedChip !== -1 && this.selectedChip < this.selectedUsers.length - 1;
+    return (
+      this.selectedChip !== -1 &&
+      this.selectedChip < this.selectedUsers.length - 1
+    );
   }
-
 }

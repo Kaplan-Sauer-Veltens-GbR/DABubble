@@ -1,13 +1,22 @@
 <section class="avatar-menu">
-    <avatar-menu-popup class="popup-menu" [ngClass]="{'--open': settings.displaySettings}"></avatar-menu-popup>
-    <div class="inner-wrapper" (click)="toggleSettings()">
-       @if (dbService.userInformation) {
-            <span class="user-name">{{dbService.userInformation.displayName}}</span>
-        } @else {
-            <span class="user-name">Guest User</span>
-        }
-        <user-avatar [photoURL]="dbService.userInformation && dbService.userInformation.photoURL ? dbService.userInformation.photoURL : '/assets/images/avatars/demo_avatar.png'" [size]="70" [hideUsername]="true"></user-avatar>
-        <app-icon iconName="arrowDown" class="icon"></app-icon>
-        <app-icon iconName="arrowDownPurple" class="icon icon--hovered"></app-icon>
-    </div>
+  <avatar-menu-popup
+    class="popup-menu"
+    [ngClass]="{ '--open': settings.displaySettings }"
+  ></avatar-menu-popup>
+  <div class="inner-wrapper" (click)="toggleSettings()">
+    @if (dbService.userInformation) {
+    <span class="user-name">{{ dbService.userInformation.displayName }}</span>
+    } @else {
+    <span class="user-name">Guest User</span>
+    }
+    <!-- user-avatar had:
+         [photoURL]="
+          dbService.userInformation && dbService.userInformation.photoURL
+            ? dbService.userInformation.photoURL
+            : '/assets/images/avatars/demo_avatar.png'
+        " -->
+    <user-avatar [size]="70" [hideUsername]="true"></user-avatar>
+    <app-icon iconName="arrowDown" class="icon"></app-icon>
+    <app-icon iconName="arrowDownPurple" class="icon icon--hovered"></app-icon>
+  </div>
 </section>

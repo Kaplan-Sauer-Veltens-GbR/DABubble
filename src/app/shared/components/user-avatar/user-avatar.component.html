@@ -6,7 +6,7 @@
 >
   <div class="avatar">
     <img
-      [src]="photoURL"
+      [src]="user.photoURL"
       [ngStyle]="{ height: size + 'px', width: size + 'px' }"
       draggable="false"
       alt=""
@@ -15,10 +15,7 @@
     <div
       class="online-status"
       [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
-      [ngClass]="
-        'is-' +
-        onlineStatus.getStatus(exampleUser.lastActivity, exampleUser.status)
-      "
+      [ngClass]="'is-' + onlineStatus.getStatus(user.lastActivity, user.status)"
     ></div>
     }
   </div>

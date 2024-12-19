@@ -1,5 +1,8 @@
 <workspace-fab></workspace-fab>
-<aside *transloco="let t; prefix:'sidebar'" [ngClass]="{'sidebar-closed': !workspace.isOpen}">
+<aside
+  *transloco="let t; prefix: 'sidebar'"
+  [ngClass]="{ 'sidebar-closed': !workspace.isOpen }"
+>
   <header class="mb-25">
     <div class="dev-space">
       <img src="./assets/images/logo/workspace.png" alt="" />
@@ -17,10 +20,14 @@
         iconName="arrowDrop"
       ></app-icon>
       <app-icon iconName="workspaces"></app-icon>
-      <h3>{{t('sections.channels')}}</h3>
+      <h3>{{ t("sections.channels") }}</h3>
     </div>
     <div class="hover-circle">
-      <app-icon (click)="workspace.openDialog('createChannel')" class="icon--hover" iconName="add"></app-icon>
+      <app-icon
+        (click)="workspace.openDialog('createChannel')"
+        class="icon--hover"
+        iconName="add"
+      ></app-icon>
     </div>
   </div>
   <div
@@ -35,9 +42,13 @@
       </div>
       }
     </div>
-    <div role="button" [attr.aria-label]="t('buttons.add-channel')" class="add-channel icon--hover">
+    <div
+      role="button"
+      [attr.aria-label]="t('buttons.add-channel')"
+      class="add-channel icon--hover"
+    >
       <app-icon iconName="addCircle"></app-icon>
-      <span aria-hidden="true">{{t('buttons.add-channel')}}</span>
+      <span aria-hidden="true">{{ t("buttons.add-channel") }}</span>
     </div>
   </div>
   <div class="drop-down mb-30">
@@ -50,19 +61,23 @@
         iconName="arrowDrop"
       ></app-icon>
       <app-icon iconName="accCircle"></app-icon>
-      <h3>{{t('sections.directs')}}</h3>
+      <h3>{{ t("sections.directs") }}</h3>
     </div>
   </div>
   <div
-  class="drop-down-container mb-25"
-  [ngClass]="{ expanded: toggleChannel[1], collapsed: !toggleChannel[1] }"
->
-  <div class="drop-down-wrapper mb-25">
-    @for(user of userList  ; track user) {
-    <user-avatar [photoURL]="user.photoURL ? user.photoURL : '/assets/images/avatars/demo_avatar.png'" [user]="user" [size]="50"></user-avatar>
-    }
+    class="drop-down-container mb-25"
+    [ngClass]="{ expanded: toggleChannel[1], collapsed: !toggleChannel[1] }"
+  >
+    <div class="drop-down-wrapper mb-25">
+      @for(user of userList ; track user) {
+      <!-- user-avatar had:
+         [photoURL]="
+          dbService.userInformation && dbService.userInformation.photoURL
+            ? dbService.userInformation.photoURL
+            : '/assets/images/avatars/demo_avatar.png'
+        " -->
+      <user-avatar [user]="user" [size]="50"></user-avatar>
+      }
+    </div>
   </div>
-</div>
 </aside>
-
-

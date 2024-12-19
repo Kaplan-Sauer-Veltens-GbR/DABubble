@@ -10,7 +10,7 @@ export class OnlineStatusService {
     timestamp: Date,
     status: string | null = 'offline'
   ): 'online' | 'away' | 'offline' {
-    if (!status) {
+    if (status !== 'offline') {
       if (this.isActive(timestamp.getDate())) {
         return 'online';
       } else {
