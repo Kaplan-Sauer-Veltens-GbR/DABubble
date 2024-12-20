@@ -36,9 +36,12 @@ toggleChannel:boolean [] = [true,true];
 
 
  async routeToPrivateChat(uid:string) {
+    const members = [uid,this.dbService.userInformation.uid]
     const privateChatCol = collection(this.dbService.firestore,'privatmessage')
+    console.log(members);
+    
     const chatDoc = await addDoc(privateChatCol, {
-      
+      members:[]
     })
   }
 
