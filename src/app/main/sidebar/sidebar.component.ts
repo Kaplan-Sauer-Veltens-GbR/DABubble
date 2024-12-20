@@ -9,7 +9,7 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, arrayUnion, collection, query, where } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, getDocs, query, where } from '@angular/fire/firestore';
 
 
 @Component({
@@ -44,14 +44,39 @@ toggleChannel:boolean [] = [true,true];
     })
   }
 
-  checkIfPrivateChatExist() {
+  async checkIfPrivateChatExist(uid:string) {
     const chatRef = collection(this.dbService.firestore,'privatmessage')
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
+     try {
+     const privateChatSnapshot = await getDocs(privateChatQuery);
+    if(privateChatSnapshot.empty) {
+      return false;
+    }else {
+     for(const doc of privateChatSnapshot.docs) {
+      const chatData = doc.data();
+      const members = chatData['members'] as string[];  
+      if(members.includes(uid)) {
+        return true;
+      }
+     }
+    }
+     } catch (error) {
+      console.error("Fehler beim Abrufen des Chats:", error);
+      return false; 
+    }
+    return false;
   }
 
   
  async routeToPrivateChat(uid:string) {
-
+  if(await this.checkIfPrivateChatExist(uid) === false) {
+    this.createNewPrivateChat(uid);
+    console.log('non existed');
+    
+  }else {
+    console.log('existed');
+    
+  }
   }
 
 toggleList(index:number) {
