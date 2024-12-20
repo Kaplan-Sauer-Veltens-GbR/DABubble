@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 })
 export class DbService {
   private router = inject(Router);
-  private firestore = inject(Firestore);
+  public firestore = inject(Firestore);
   userInformation!: UserData;
   constructor() {}
 
@@ -75,10 +75,10 @@ export class DbService {
           docs.push(element.data());
         }
       }
-
-      console.log(docs);
-
+      console.log(docs)
       callback(docs);
     });
   }
+
+  
 };

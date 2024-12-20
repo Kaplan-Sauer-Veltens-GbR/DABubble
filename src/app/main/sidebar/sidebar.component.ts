@@ -9,6 +9,7 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
+import { addDoc, collection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,11 +32,15 @@ toggleChannel:boolean [] = [true,true];
       this.userList = docs
       console.log('userlist',this.userList);
     },10)
-    
-    
   }
 
 
+ async routeToPrivateChat(uid:string) {
+    const privateChatCol = collection(this.dbService.firestore,'privatmessage')
+    const chatDoc = await addDoc(privateChatCol, {
+      
+    })
+  }
 
 toggleList(index:number) {
 this.toggleChannel[index] = !this.toggleChannel[index]
