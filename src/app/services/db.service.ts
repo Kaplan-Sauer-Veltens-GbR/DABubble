@@ -71,4 +71,4 @@ export class DbService {
       callback(docs);
     });
   }
-}
+};
