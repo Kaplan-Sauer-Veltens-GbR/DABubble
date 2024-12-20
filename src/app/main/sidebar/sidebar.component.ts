@@ -9,7 +9,8 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, collection } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, query, where } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -34,15 +35,22 @@ toggleChannel:boolean [] = [true,true];
     },10)
   }
 
-
- async routeToPrivateChat(uid:string) {
+  async createNewPrivateChat(uid:string) {
     const members = [uid,this.dbService.userInformation.uid]
     const privateChatCol = collection(this.dbService.firestore,'privatmessage')
     console.log(members);
-    
     const chatDoc = await addDoc(privateChatCol, {
-      members:[]
+      members: arrayUnion(...members)
     })
+  }
+
+  checkIfPrivateChatExist() {
+    const chatRef = collection(this.dbService.firestore,'privatmessage')
+     const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
+  }
+
+ async routeToPrivateChat(uid:string) {
+
   }
 
 toggleList(index:number) {
