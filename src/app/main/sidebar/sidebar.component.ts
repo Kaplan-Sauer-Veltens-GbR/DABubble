@@ -24,12 +24,13 @@ export class SidebarComponent {
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
 
+// function for max load increase paired with a global variable , also viewchild track scroll distance and than load more 
 
   ngOnInit(): void {
-    this.dbService.subscribeToCollection('users',(docs)=> {
+    this.dbService.subscribeToCollection('users',(docs)=>  {
       this.userList = docs
       console.log('userlist',this.userList);
-    })
+    },10)
     
     
   }

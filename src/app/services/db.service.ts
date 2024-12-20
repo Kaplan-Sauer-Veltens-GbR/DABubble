@@ -57,7 +57,7 @@ export class DbService {
     }
   }
 
-  subscribeToCollection(collectionName: string, maxDocs:number = 10, reverse:boolean = false,  callback: (docs: any) => void) {
+  subscribeToCollection(collectionName: string,  callback: (docs: any) => void, maxDocs:number = 10, reverse:boolean = false, ) {
     const colRef = collection(this.firestore, collectionName);
     
     onSnapshot(colRef, (querySnapshot) => {
@@ -68,12 +68,14 @@ export class DbService {
           const element = querySnapshot.docs[index];
           docs.push(element.data());  
         }
+      }else {
+        for (let i = 0; i < loopLength; i++) {
+          // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this
+          const element = querySnapshot.docs[i];
+          docs.push(element.data());
+        }
       }
-      for (let i = 0; i < 10; i++) {
-        // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this
-        const element = querySnapshot.docs[i];
-        docs.push(element.data());
-      }
+
       console.log(docs);
 
       callback(docs);
