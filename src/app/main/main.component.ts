@@ -28,6 +28,7 @@ user: User | null = null;
 
 
 
+
 ngOnInit() {
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
@@ -35,6 +36,7 @@ ngOnInit() {
       this.user = user;
       this.getUserIdToken(user).then(idToken => {
         if(idToken) {
+          this.dbService.sessionToken = idToken;
           this.authService.routeWithId(idToken);
          this.getUserData(user.uid)
         }

@@ -23,6 +23,7 @@ export class DbService {
   private router = inject(Router);
   public firestore = inject(Firestore);
   userInformation!: UserData;
+  sessionToken! :string;
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {

@@ -10,6 +10,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
 import { addDoc, arrayUnion, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class SidebarComponent {
   userList: UserData[] = []
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
+  private router = inject(Router);
+  private activeRoute = inject(ActivatedRoute)
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
 
@@ -50,32 +53,34 @@ toggleChannel:boolean [] = [true,true];
      try {
      const privateChatSnapshot = await getDocs(privateChatQuery);
     if(privateChatSnapshot.empty) {
-      return false;
+      return {found:false,docId: null}
     }else {
      for(const doc of privateChatSnapshot.docs) {
       const chatData = doc.data();
       const members = chatData['members'] as string[];  
       if(members.includes(uid)) {
-        return true;
+        return {found:true,docId: doc.id}
       }
      }
     }
      } catch (error) {
       console.error("Fehler beim Abrufen des Chats:", error);
-      return false; 
+      return {found:false,docId: null}
     }
-    return false;
+    return {found:false,docId: null}
   }
 
   
  async routeToPrivateChat(uid:string) {
-  if(await this.checkIfPrivateChatExist(uid) === false) {
+  const result = await this.checkIfPrivateChatExist(uid);
+  if(result.found === false) {
     this.createNewPrivateChat(uid);
     console.log('non existed');
     
   }else {
     console.log('existed');
-    
+    this.router.navigate([`privatemessage`, result.docId], { relativeTo: this.activeRoute });
+
   }
   }
 
