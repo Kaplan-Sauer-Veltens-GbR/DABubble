@@ -63,6 +63,7 @@ async getUserIdToken(user:User) {
    console.log(userData ,'Data');
     if(userData) {
       this.dbService.userInformation = userData as UserData;
+      console.log(this.dbService.userInformation);
     }
   }
 }
