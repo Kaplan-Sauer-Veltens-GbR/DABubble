@@ -66,7 +66,7 @@ export class DbService {
       if(reverse) {
         for (let index = querySnapshot.docs.length -1; index >= querySnapshot.docs.length - loopLength; index++) {
           const element = querySnapshot.docs[index];
-          docs.push(element.data());
+          docs.push(element.data());  
         }
       }
       for (let i = 0; i < 10; i++) {
