@@ -49,6 +49,7 @@ toggleChannel:boolean [] = [true,true];
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
   }
 
+  
  async routeToPrivateChat(uid:string) {
 
   }
