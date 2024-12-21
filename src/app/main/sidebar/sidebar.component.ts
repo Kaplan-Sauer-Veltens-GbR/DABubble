@@ -42,16 +42,13 @@ toggleChannel:boolean [] = [true,true];
     const members = [uid,this.dbService.userInformation.uid]
     const privateChatCol = collection(this.dbService.firestore,'privatmessage')
     console.log(members);
-    
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
     })
-    console.log(chatDoc,'chatdoc');
-    
     return chatDoc.id;
   }
 
-  
+
   async checkIfPrivateChatExist(uid:string) {
     const chatRef = collection(this.dbService.firestore,'privatmessage')
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
