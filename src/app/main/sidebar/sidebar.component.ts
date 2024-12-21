@@ -51,6 +51,7 @@ toggleChannel:boolean [] = [true,true];
     return chatDoc.id;
   }
 
+  
   async checkIfPrivateChatExist(uid:string) {
     const chatRef = collection(this.dbService.firestore,'privatmessage')
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
