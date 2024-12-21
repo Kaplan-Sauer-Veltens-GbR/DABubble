@@ -32,10 +32,10 @@ toggleChannel:boolean [] = [true,true];
 // function for max load increase paired with a global variable , also viewchild track scroll distance and than load more 
 
   ngOnInit(): void {
-    this.dbService.subscribeToCollection('users',(docs)=>  {
+    this.dbService.subscribeToCollectionReactive('users',(docs)=>  {
       this.userList = docs
       console.log('userlist',this.userList);
-    },10) // value for how much users a displayed
+    },this.dbService.maxDocs$) // value for how much users a displayed
   }
 
   
@@ -102,9 +102,28 @@ toggleChannel:boolean [] = [true,true];
   }
   }
 
-  
+
 toggleList(index:number) {
 this.toggleChannel[index] = !this.toggleChannel[index]
 }
+
+private isAtBottom = false; // Flag, ob wir am Ende sind
+
+onUserListScroll(event: Event): void {
+  const target = event.target as HTMLElement; 
+  const scrollTop = target.scrollTop; 
+  const scrollHeight = target.scrollHeight;
+  const clientHeight = target.clientHeight; 
+  const atBottom = scrollTop + clientHeight >= scrollHeight;
+  if (atBottom && !this.isAtBottom) {
+    this.dbService.maxDocs$.next(this.dbService.maxDocs$.getValue() +1)    // later on  make it cleaner and also make a stop when userlist lenght is = or lower 
+    console.log('maxdocs',this.dbService.maxDocs$);
+
+    this.isAtBottom = true; 
+  } else if (!atBottom) {
+    this.isAtBottom = false; 
+  }
+}
+
 }
 

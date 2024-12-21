@@ -15,6 +15,7 @@ import { UserData } from '../interfaces/user-model';
 import { User } from '@angular/fire/auth';
 import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class DbService {
   public firestore = inject(Firestore);
   userInformation!: UserData;
   sessionToken! :string;
+  public maxDocs$ = new BehaviorSubject<number>(10);
   constructor() {}
 
   async saveUserData(user: User): Promise<void> {
@@ -58,25 +60,54 @@ export class DbService {
     }
   }
 
-  subscribeToCollection(collectionName: string,  callback: (docs: any) => void, maxDocs:number = 10, reverse:boolean = false, ) {
-    const colRef = collection(this.firestore, collectionName);
-    onSnapshot(colRef, (querySnapshot) => {
-      const docs: any[] = [];
-      const loopLength = Math.min(maxDocs,querySnapshot.docs.length);
-      if(reverse) {
-        for (let index = querySnapshot.docs.length -1; index >= querySnapshot.docs.length - loopLength; index++) {
-          const element = querySnapshot.docs[index];
-          docs.push(element.data());  
-        }
-      }else {
-        for (let i = 0; i < loopLength; i++) {
-          // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this
-          const element = querySnapshot.docs[i];
-          docs.push(element.data());
-        }
-      }
-      console.log(docs)
+
+//   subscribeToCollection(collectionName: string,  callback: (docs: any) => void, maxDocs:number = 10, reverse:boolean = false, ) {
+//     const colRef = collection(this.firestore, collectionName);
+//     onSnapshot(colRef, (querySnapshot) => {
+//       const docs: any[] = [];
+//       const loopLength = Math.min(this.maxDocs,querySnapshot.docs.length);
+//       if(reverse) {
+//         for (let index = querySnapshot.docs.length -1; index >= querySnapshot.docs.length - loopLength; index++) {
+//           const element = querySnapshot.docs[index];
+//           docs.push(element.data());  
+//         }
+//       }else {
+//         for (let i = 0; i < loopLength; i++) {
+//           // have to think about when reuse that we set a max which it can exceed and also a min load maybe 10 but i guess must be a param to give when we want to reuse this
+//           const element = querySnapshot.docs[i];
+//           docs.push(element.data());
+//         }
+//       }
+//       console.log(docs)
+//       callback(docs);
+//     });
+//   }
+// };
+
+subscribeToCollectionReactive(collectionName: string, callback: (docs: any) => void, maxDocs:BehaviorSubject<number>) {
+  this.maxDocs$
+    .pipe(
+      switchMap((maxDocs) => {
+        const colRef = collection(this.firestore, collectionName);
+        return new Observable((observer) => {
+          const unsubscribe = onSnapshot(colRef, (querySnapshot) => {
+            const docs: any[] = [];
+            const loopLength = Math.min(maxDocs, querySnapshot.docs.length);
+
+            for (let i = 0; i < loopLength; i++) {
+              docs.push(querySnapshot.docs[i].data());
+            }
+
+            observer.next(docs);
+          });
+
+          return () => unsubscribe();
+        });
+      })
+    )
+    .subscribe((docs) => {
       callback(docs);
     });
-  }
-};
+}
+
+}

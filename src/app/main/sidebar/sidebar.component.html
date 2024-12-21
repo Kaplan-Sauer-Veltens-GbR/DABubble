@@ -1,5 +1,5 @@
 <workspace-fab></workspace-fab>
-<aside *transloco="let t; prefix:'sidebar'" [ngClass]="{'sidebar-closed': !workspace.isOpen}">
+<aside (scroll)="onUserListScroll($event)" *transloco="let t; prefix:'sidebar'" [ngClass]="{'sidebar-closed': !workspace.isOpen}">
   <header class="mb-25">
     <div class="dev-space">
       <img src="./assets/images/logo/workspace.png" alt="" />
