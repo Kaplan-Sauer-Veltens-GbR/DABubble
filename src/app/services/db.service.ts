@@ -60,7 +60,6 @@ export class DbService {
 
   subscribeToCollection(collectionName: string,  callback: (docs: any) => void, maxDocs:number = 10, reverse:boolean = false, ) {
     const colRef = collection(this.firestore, collectionName);
-    
     onSnapshot(colRef, (querySnapshot) => {
       const docs: any[] = [];
       const loopLength = Math.min(maxDocs,querySnapshot.docs.length);
@@ -80,6 +79,4 @@ export class DbService {
       callback(docs);
     });
   }
-
-  
 };

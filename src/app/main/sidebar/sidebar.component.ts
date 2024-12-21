@@ -42,9 +42,13 @@ toggleChannel:boolean [] = [true,true];
     const members = [uid,this.dbService.userInformation.uid]
     const privateChatCol = collection(this.dbService.firestore,'privatmessage')
     console.log(members);
+    
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
     })
+    console.log(chatDoc,'chatdoc');
+    
+    return chatDoc.id;
   }
 
   async checkIfPrivateChatExist(uid:string) {
@@ -52,34 +56,40 @@ toggleChannel:boolean [] = [true,true];
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
      try {
      const privateChatSnapshot = await getDocs(privateChatQuery);
-    if(privateChatSnapshot.empty) {
-      return {found:false,docId: null}
-    }else {
+    // if(privateChatSnapshot.empty) {
+    //   debugger
+    //   const newChatId = await this.createNewPrivateChat(uid);
+    //   return {found:false,docId: newChatId}
+    // }else {
+    debugger
      for(const doc of privateChatSnapshot.docs) {
       const chatData = doc.data();
       const members = chatData['members'] as string[];  
-      if(members.includes(uid)) {
+      if(members.includes(uid) && members.includes(this.dbService.userInformation.uid)) {
         return {found:true,docId: doc.id}
       }
-     }
+    //  }
     }
      } catch (error) {
       console.error("Fehler beim Abrufen des Chats:", error);
       return {found:false,docId: null}
     }
-    return {found:false,docId: null}
+    const newChatId = await this.createNewPrivateChat(uid)
+        return {found:false, docId : newChatId}
   }
 
   
  async routeToPrivateChat(uid:string) {
   const result = await this.checkIfPrivateChatExist(uid);
   if(result.found === false) {
-    this.createNewPrivateChat(uid);
+    // this.createNewPrivateChat(uid);
+    this.router.navigate([`main/privatmessage/${result.docId}`]);
     console.log('non existed');
     
   }else {
     console.log('existed');
-    this.router.navigate([`privatemessage`, result.docId], { relativeTo: this.activeRoute });
+    console.log(this.router.url);
+    this.router.navigate([`main/privatmessage/${result.docId}`]);
 
   }
   }
