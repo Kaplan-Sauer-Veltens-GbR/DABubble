@@ -45,6 +45,7 @@ toggleChannel:boolean [] = [true,true];
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
     })
+    this.createSubCollectionMessages(chatDoc)
     return chatDoc.id;
   }
 
