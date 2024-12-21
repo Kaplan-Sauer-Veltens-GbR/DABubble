@@ -36,9 +36,10 @@ toggleChannel:boolean [] = [true,true];
     this.dbService.subscribeToCollection('users',(docs)=>  {
       this.userList = docs
       console.log('userlist',this.userList);
-    },10)
+    },10) // value for how much users a displayed
   }
 
+  
   async createNewPrivateChat(uid:string,collectionName:string) {
     const members = [uid,this.dbService.userInformation.uid]
     const privateChatCol = collection(this.dbService.firestore,collectionName)
@@ -61,6 +62,7 @@ toggleChannel:boolean [] = [true,true];
     return messagesCollectionRef.id;
   }
 
+
   async checkIfPrivateChatExist(uid:string) {
     const chatRef = collection(this.dbService.firestore,'privatmessage')
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
@@ -77,6 +79,7 @@ toggleChannel:boolean [] = [true,true];
     const newChatId = await this.createNewPrivateChat(uid,'privatmessage')
         return {found:false, docId : newChatId}
   }
+
 
  async iterateOverPrivateChat(privateChatSnapshot:QuerySnapshot<DocumentData>,uid:string) {
      for(const doc of privateChatSnapshot.docs) {
