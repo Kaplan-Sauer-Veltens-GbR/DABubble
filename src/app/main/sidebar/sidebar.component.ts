@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Input, Query } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { CommonModule } from '@angular/common';
 import { AvatarBarComponent } from '../../shared/components/chat/avatar-bar/avatar-bar.component';
@@ -9,8 +9,9 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, where } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, QuerySnapshot, where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router} from '@angular/router';
+import { DocumentData } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -52,11 +53,11 @@ toggleChannel:boolean [] = [true,true];
 
   async createSubCollectionMessages(collectionRef:DocumentReference) {
     const messagesCollectionRef = collection(collectionRef,'messages')
-    // await addDoc(messagesCollectionRef, {
-    //   sender: this.dbService.userInformation.uid,
-    //   message: 'Willkommen im Chat!',                       Only a mockup
-    //   timestamp: new Date(),
-    // });
+    await addDoc(messagesCollectionRef, {
+      sender: this.dbService.userInformation.uid,
+      message: 'Willkommen im Chat!',                      // Only a mockup
+      timestamp: new Date(),
+    });
     return messagesCollectionRef.id;
   }
 
@@ -65,13 +66,10 @@ toggleChannel:boolean [] = [true,true];
      const privateChatQuery = query(chatRef,where('members','array-contains',this.dbService.userInformation.uid))
      try {
      const privateChatSnapshot = await getDocs(privateChatQuery);
-     for(const doc of privateChatSnapshot.docs) {
-      const chatData = doc.data();
-      const members = chatData['members'] as string[];  
-      if(members.includes(uid) && members.includes(this.dbService.userInformation.uid)) {
-        return {found:true,docId: doc.id}
+      const existingChat = await this.iterateOverPrivateChat(privateChatSnapshot,uid)
+      if(existingChat) {
+        return existingChat;
       }
-    }
      } catch (error) {
       console.error("Fehler beim Abrufen des Chats:", error);
       return {found:false,docId: null}
@@ -80,7 +78,18 @@ toggleChannel:boolean [] = [true,true];
         return {found:false, docId : newChatId}
   }
 
-  
+ async iterateOverPrivateChat(privateChatSnapshot:QuerySnapshot<DocumentData>,uid:string) {
+     for(const doc of privateChatSnapshot.docs) {
+      const chatData = doc.data();
+      const members = chatData['members'] as string[];  
+      if(members.includes(uid) && members.includes(this.dbService.userInformation.uid)) {
+        return {found:true,docId: doc.id}
+      }
+    }
+    return null;
+  }
+
+
  async routeToPrivateChat(uid:string) {
   const result = await this.checkIfPrivateChatExist(uid);
   if(result.found === false) {
