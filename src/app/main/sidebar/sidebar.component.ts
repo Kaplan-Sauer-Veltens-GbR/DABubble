@@ -9,7 +9,7 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, arrayUnion, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router} from '@angular/router';
 
 
@@ -38,9 +38,9 @@ toggleChannel:boolean [] = [true,true];
     },10)
   }
 
-  async createNewPrivateChat(uid:string) {
+  async createNewPrivateChat(uid:string,collectionName:string) {
     const members = [uid,this.dbService.userInformation.uid]
-    const privateChatCol = collection(this.dbService.firestore,'privatmessage')
+    const privateChatCol = collection(this.dbService.firestore,collectionName)
     console.log(members);
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
@@ -48,6 +48,16 @@ toggleChannel:boolean [] = [true,true];
     return chatDoc.id;
   }
 
+
+  async createSubCollectionMessages(collectionRef:DocumentReference) {
+    const messagesCollectionRef = collection(collectionRef,'messages')
+    await addDoc(messagesCollectionRef, {
+      sender: this.dbService.userInformation.uid,
+      message: 'Willkommen im Chat!',
+      timestamp: new Date(),
+    });
+    return messagesCollectionRef.id;
+  }
 
   async checkIfPrivateChatExist(uid:string) {
     const chatRef = collection(this.dbService.firestore,'privatmessage')
@@ -65,7 +75,7 @@ toggleChannel:boolean [] = [true,true];
       console.error("Fehler beim Abrufen des Chats:", error);
       return {found:false,docId: null}
     }
-    const newChatId = await this.createNewPrivateChat(uid)
+    const newChatId = await this.createNewPrivateChat(uid,'privatmessage')
         return {found:false, docId : newChatId}
   }
 
