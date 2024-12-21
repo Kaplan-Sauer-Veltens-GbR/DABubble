@@ -26,7 +26,6 @@ export class SidebarComponent {
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
   private router = inject(Router);
-  private activeRoute = inject(ActivatedRoute)
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
 
