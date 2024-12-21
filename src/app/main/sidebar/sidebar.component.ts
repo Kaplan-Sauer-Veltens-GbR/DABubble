@@ -102,6 +102,7 @@ toggleChannel:boolean [] = [true,true];
   }
   }
 
+  
 toggleList(index:number) {
 this.toggleChannel[index] = !this.toggleChannel[index]
 }
