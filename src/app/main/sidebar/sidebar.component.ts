@@ -26,6 +26,7 @@ export class SidebarComponent {
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
   private router = inject(Router);
+  private isAtBottom = false; 
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
 
@@ -107,7 +108,8 @@ toggleList(index:number) {
 this.toggleChannel[index] = !this.toggleChannel[index]
 }
 
-private isAtBottom = false; // Flag, ob wir am Ende sind
+
+
 
 onUserListScroll(event: Event): void {
   const target = event.target as HTMLElement; 
@@ -118,7 +120,6 @@ onUserListScroll(event: Event): void {
   if (atBottom && !this.isAtBottom) {
     this.dbService.maxDocs$.next(this.dbService.maxDocs$.getValue() +1)    // later on  make it cleaner and also make a stop when userlist lenght is = or lower 
     console.log('maxdocs',this.dbService.maxDocs$);
-
     this.isAtBottom = true; 
   } else if (!atBottom) {
     this.isAtBottom = false; 
