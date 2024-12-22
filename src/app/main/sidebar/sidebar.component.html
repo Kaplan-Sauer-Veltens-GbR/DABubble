@@ -57,7 +57,7 @@
   class="drop-down-container mb-25"
   [ngClass]="{ expanded: toggleChannel[1], collapsed: !toggleChannel[1] }"
 >
-  <div class="drop-down-wrapper mb-25">
+  <div class="drop-down-wrapper">
     @for(user of userList;  track user;) {
     <user-avatar (click)="routeToPrivateChat(user.uid)" [photoURL]="user.photoURL ? user.photoURL : '/assets/images/avatars/demo_avatar.png'" [user]="user" [size]="50"></user-avatar>
     }
