@@ -109,8 +109,6 @@ this.toggleChannel[index] = !this.toggleChannel[index]
 }
 
 
-
-
 onUserListScroll(event: Event): void {
   const target = event.target as HTMLElement; 
   const scrollTop = target.scrollTop; 
