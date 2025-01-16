@@ -4,10 +4,8 @@ aside {
   position: relative;
   padding: 32px 30px 32px 30px;
   max-width: calc(366px - 60px);
-  // max-height: calc(940px - 64px);
   width: calc(366px - 60px);
-  height: calc(940px - 64px);
-  // max-height: fit-content;
+  max-height: calc(940px - 64px);
   height: 71%;
   border-radius: 30px;
   background-color: white;
