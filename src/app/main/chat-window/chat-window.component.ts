@@ -10,6 +10,8 @@ import { AddPeopleComponent } from "../../shared/components/chat/add-people/add-
 import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-list/member-list.component";
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
+import { DbService } from '../../services/db.service';
+import { collection } from '@angular/fire/firestore';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -22,8 +24,10 @@ export class ChatWindowComponent {
   @ViewChild('popUps', { static: false }) popUp!: ElementRef;
 
   public workspace = inject(WorkspaceService);
-  private  route = inject(ActivatedRoute)
-  private elementRef = inject(ElementRef)
+  private  route = inject(ActivatedRoute);
+  private elementRef = inject(ElementRef);
+  private dbService = inject(DbService);
+  chatID:string | null = null;
   ngAfterViewInit(): void {
   this.scrollToBottom();
   
@@ -40,5 +44,10 @@ handleClickOutside(event:MouseEvent) {
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement
     chatContainer.scrollTop = chatContainer.scrollHeight
+  }
+
+  sendMessageToDB() {
+    const privateMessages = collection(this.dbService.firestore,'privatemessage');
+    // const 
   }
 }

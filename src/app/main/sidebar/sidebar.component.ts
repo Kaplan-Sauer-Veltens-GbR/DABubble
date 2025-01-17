@@ -48,6 +48,7 @@ toggleChannel:boolean [] = [true,true];
       members: arrayUnion(...members)
     })
     this.createSubCollectionMessages(chatDoc)
+    
     return chatDoc.id;
   }
 
@@ -55,7 +56,7 @@ toggleChannel:boolean [] = [true,true];
   async createSubCollectionMessages(collectionRef:DocumentReference) {
     const messagesCollectionRef = collection(collectionRef,'messages')
     await addDoc(messagesCollectionRef, {
-      sender: this.dbService.userInformation.uid,
+      author: this.dbService.userInformation.uid,
       message: 'Willkommen im Chat!',                      // Only a mockup
       timestamp: new Date(),
     });
