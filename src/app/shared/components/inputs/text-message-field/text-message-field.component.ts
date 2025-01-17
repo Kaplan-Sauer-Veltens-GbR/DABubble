@@ -1,4 +1,4 @@
-import { Component, inject, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, output, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,7 @@ export class TextMessageFieldComponent {
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
+  @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   @ViewChild('myForm') myForm!: NgForm;
   
@@ -29,8 +30,8 @@ export class TextMessageFieldComponent {
   
   onSubmit(form: NgForm) {
     console.log('Formu send:', form.value.message);
-   
-    
+    form.value.message = this.message;
+    this.messageSend.emit(this.message);
     form.reset(); 
   }
 

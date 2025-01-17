@@ -11,7 +11,7 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { collection } from '@angular/fire/firestore';
+import { addDoc, collection } from '@angular/fire/firestore';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -28,6 +28,15 @@ export class ChatWindowComponent {
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
   chatID:string | null = null;
+
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.chatID = params.get('chatId');
+      console.log('ID:', this.chatID); // Ausgabe: tEvPRAz5N5s1tYqOjQK1
+    });
+  }
+
   ngAfterViewInit(): void {
   this.scrollToBottom();
   
@@ -46,8 +55,13 @@ handleClickOutside(event:MouseEvent) {
     chatContainer.scrollTop = chatContainer.scrollHeight
   }
 
-  sendMessageToDB() {
-    const privateMessages = collection(this.dbService.firestore,'privatemessage');
-    // const 
-  }
+  sendMessageToDB(textMessage: string) {
+    const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
+    
+    console.log(textMessage, 'message');
+    
+    addDoc(privateMessages, {
+      content: textMessage,
+      timestamp: new Date() 
+  })}
 }
