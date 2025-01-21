@@ -1,7 +1,7 @@
 export interface Messages {
-    attachments:string,
+    attachments?:string,
     author:string
     createdOn: Date,
     message:string,
-    reactions: Map<string, number>;
+    reactions?: Map<string, number>;
 }

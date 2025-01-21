@@ -20,7 +20,7 @@
       <div class="box--bordered day-box">Dienstag, 14 Januar</div>
       <div class="seperator"></div>
     </div>
-    @for(message of [1]; track message) {
+    @for(message of privateChats; track message.id) {
         <div>
     <chat-message></chat-message>
 </div>

@@ -42,6 +42,11 @@ export class ChatWindowComponent {
       this.chatID = params.get('chatId');
       console.log('ID:', this.chatID); 
     });
+    console.log(`Path: privatmessage/${this.chatID}/messages`);
+    this.loadPrivatChats();
+    
+    
+    
   }
 
   ngAfterViewInit(): void {
@@ -58,16 +63,20 @@ export class ChatWindowComponent {
 
 
   loadPrivatChats() {
-  const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`);
+    debugger
+  const privateChatsRef = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
   const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20));
   this.privateChatsSubscription = collectionData<Messages>(messageQuery, {idField: 'id'}).subscribe({
     next: (data:Messages[]) => {
       this.privateChats = data.reverse()
       this.lastVisibileMessage = data.length > 0 ? data[data.length - 1] : null;
+      this.messageLoading = true;
+      console.log(this.privateChats,'logged chats');
     }
   })
 
 }
+
 
 
   scrollToBottom() {
@@ -77,11 +86,12 @@ export class ChatWindowComponent {
 
   sendMessageToDB(textMessage: string) {
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
-    
+    const message: Messages = {
+      author:this.dbService.userInformation.uid,
+      createdOn: new Date(),
+      message:textMessage
+    }
     console.log(textMessage, 'message');
     
-    addDoc(privateMessages, {
-      content: textMessage,
-      timestamp: new Date() 
-  })}
+    addDoc(privateMessages,message)}
 }
