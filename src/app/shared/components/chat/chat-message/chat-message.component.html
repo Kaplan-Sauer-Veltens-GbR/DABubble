@@ -9,7 +9,7 @@
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">Noah Braun</span>
                 <span class="timestamp">14:25 Uhr</span>
             </div>
-            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">Welche Version ist aktuell von Angular?</div>
+            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">{{Message.message}}</div>
             <app-reaction-bar [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>
             <div class="msg__footer">
                 <span class="subthread-link" role="button" [attr.aria-label]="t(translateReplyAmount(), {'amount': replyAmount}) + t('chat.subthread.open')">

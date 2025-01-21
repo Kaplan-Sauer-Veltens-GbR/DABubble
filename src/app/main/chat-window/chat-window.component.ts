@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { CommonModule } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
@@ -30,6 +30,7 @@ export class ChatWindowComponent {
   private  route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
+  @Input() message!: Messages;
   privateChats: any [] = [];
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null=null;
@@ -37,13 +38,14 @@ export class ChatWindowComponent {
   chatID:string | null = null;
 
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.chatID = params.get('chatId');
       console.log('ID:', this.chatID); 
     });
     console.log(`Path: privatmessage/${this.chatID}/messages`);
-    this.loadPrivatChats();
+     this.loadPrivatChats();
+    console.log(this.privateChats,'empty?');
     
     
     

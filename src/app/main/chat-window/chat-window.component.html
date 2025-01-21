@@ -22,7 +22,7 @@
     </div>
     @for(message of privateChats; track message.id) {
         <div>
-    <chat-message></chat-message>
+    <chat-message [Message]="message"></chat-message>
 </div>
     } } }
     
