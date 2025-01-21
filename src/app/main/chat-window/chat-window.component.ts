@@ -53,6 +53,7 @@ handleClickOutside(event:MouseEvent) {
 loadPrivatChats() {
 const privateChats = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`)
 
+
 }
 
 
