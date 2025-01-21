@@ -11,9 +11,10 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { addDoc, collection, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
+import { Messages } from '../../interfaces/messages';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -59,7 +60,11 @@ export class ChatWindowComponent {
   loadPrivatChats() {
   const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`);
   const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20));
+  this.privateChatsSubscription = collectionData(messageQuery, {idField: 'id'}).subscribe({
+    next: (data:Messages) => {
 
+    }
+  })
 
 }
 
