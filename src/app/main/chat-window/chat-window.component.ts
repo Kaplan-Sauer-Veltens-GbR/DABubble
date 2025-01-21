@@ -49,16 +49,16 @@ export class ChatWindowComponent {
 }
 
   @HostListener('document:click', ['$event'])
-handleClickOutside(event:MouseEvent) {
+  handleClickOutside(event:MouseEvent) {
   if(this.popUp?.nativeElement && this.workspace.isClickOutside(event,this.popUp.nativeElement)) {
     this.workspace.currentDialog = null;
   }
 }
 
 
-loadPrivatChats() {
-const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`)
-const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20))
+  loadPrivatChats() {
+  const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`);
+  const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20));
 
 
 }
