@@ -94,11 +94,7 @@ export class ChatWindowComponent {
 
   sendMessageToDB(textMessage: string) {
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
-    const message: Messages = {
-      author:this.dbService.userInformation.uid,
-      createdOn: new Date(),
-      message:textMessage
-    }
+   const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
     
     addDoc(privateMessages,message)}

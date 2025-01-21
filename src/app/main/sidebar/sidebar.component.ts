@@ -55,11 +55,7 @@ toggleChannel:boolean [] = [true,true];
 
   async createSubCollectionMessages(collectionRef:DocumentReference) {
     const messagesCollectionRef = collection(collectionRef,'messages')
-    await addDoc(messagesCollectionRef, {
-      author: this.dbService.userInformation.uid,
-      message: 'Willkommen im Chat!',                      // Only a mockup
-      timestamp: new Date(),
-    });
+    await addDoc(messagesCollectionRef,this.dbService.setMessageInterface('Wilkommen'));
     return messagesCollectionRef.id;
   }
 

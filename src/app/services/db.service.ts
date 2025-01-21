@@ -16,6 +16,7 @@ import { User } from '@angular/fire/auth';
 import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Messages } from '../interfaces/messages';
 
 @Injectable({
   providedIn: 'root',
@@ -110,7 +111,14 @@ subscribeToCollectionReactive(collectionName: string, callback: (docs: any) => v
     });
 }
 
-
+setMessageInterface(textMessage:string) {
+  const message: Messages = {
+    author:this.userInformation.uid,
+    createdOn: new Date(),
+    message:textMessage
+  }
+  return message;
+}
 
 
 }
