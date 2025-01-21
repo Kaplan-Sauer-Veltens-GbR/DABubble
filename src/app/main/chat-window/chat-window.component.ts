@@ -32,7 +32,7 @@ export class ChatWindowComponent {
   private dbService = inject(DbService);
   privateChats: any [] = [];
   privateChatsSubscription!: Subscription;
-  lastVisibileMessage! : QueryDocumentSnapshot<DocumentData> | null
+  lastVisibileMessage: Messages | null=null;
   messageLoading: boolean = false; 
   chatID:string | null = null;
 
@@ -60,9 +60,10 @@ export class ChatWindowComponent {
   loadPrivatChats() {
   const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`);
   const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20));
-  this.privateChatsSubscription = collectionData(messageQuery, {idField: 'id'}).subscribe({
-    next: (data:Messages) => {
-
+  this.privateChatsSubscription = collectionData<Messages>(messageQuery, {idField: 'id'}).subscribe({
+    next: (data:Messages[]) => {
+      this.privateChats = data.reverse()
+      this.lastVisibileMessage = data.length > 0 ? data[data.length - 1] : null;
     }
   })
 
