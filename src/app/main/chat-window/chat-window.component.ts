@@ -11,7 +11,7 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { addDoc, collection } from '@angular/fire/firestore';
+import { addDoc, collection, limit, orderBy, query } from '@angular/fire/firestore';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -51,8 +51,8 @@ handleClickOutside(event:MouseEvent) {
 
 
 loadPrivatChats() {
-const privateChats = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`)
-
+const privateChatsRef = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`)
+const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20))
 
 }
 
