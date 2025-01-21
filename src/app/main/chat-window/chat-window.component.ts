@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
 import { CommonModule } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
@@ -67,13 +67,19 @@ export class ChatWindowComponent {
   loadPrivatChats() {
     debugger
   const privateChatsRef = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
-  const messageQuery = query(privateChatsRef, orderBy('timestamp','desc'),limit(20));
+  const messageQuery = query(privateChatsRef, orderBy('createdOn','desc'),limit(20));
   this.privateChatsSubscription = collectionData<Messages>(messageQuery, {idField: 'id'}).subscribe({
     next: (data:Messages[]) => {
       this.privateChats = data.reverse()
       this.lastVisibileMessage = data.length > 0 ? data[data.length - 1] : null;
       this.messageLoading = true;
       console.log(this.privateChats,'logged chats');
+     
+      
+    },
+    error: (err:any) => {
+      console.error('error beim laden',err);
+      
     }
   })
 
