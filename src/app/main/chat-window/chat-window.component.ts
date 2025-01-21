@@ -33,7 +33,7 @@ export class ChatWindowComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.chatID = params.get('chatId');
-      console.log('ID:', this.chatID); // Ausgabe: tEvPRAz5N5s1tYqOjQK1
+      console.log('ID:', this.chatID); 
     });
   }
 
@@ -47,6 +47,12 @@ handleClickOutside(event:MouseEvent) {
   if(this.popUp?.nativeElement && this.workspace.isClickOutside(event,this.popUp.nativeElement)) {
     this.workspace.currentDialog = null;
   }
+}
+
+
+loadPrivatChats() {
+const privateChats = collection(this.dbService.firestore, `privatemessage/${this.chatID}/messages`)
+
 }
 
 
