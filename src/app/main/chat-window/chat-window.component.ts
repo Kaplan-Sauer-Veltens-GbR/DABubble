@@ -30,7 +30,7 @@ export class ChatWindowComponent {
   private  route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
-  public datePipe = inject(DatePipe)
+
   @Input() message!: Messages;
   privateChats: any [] = [];
   privateChatsSubscription!: Subscription;
@@ -87,8 +87,21 @@ export class ChatWindowComponent {
 }
 
 
-convertTime(timestamp:Date) {
-  const today = this.datePipe.transform(timestamp,'EEEE,dd MMMM');
+convertTime(timestamp: any): string {
+  const date = this.getDateFromTimestamp(timestamp);
+  const language = localStorage.getItem('language') || 'en'; 
+  return this.formatDate(date, language);
+}
+
+
+private getDateFromTimestamp(timestamp: any): Date {
+  return timestamp instanceof Date ? timestamp : timestamp.toDate();
+}
+
+
+private formatDate(date: Date, language: string): string {
+  const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' };
+  return date.toLocaleDateString(language === 'en' ? 'en-EN' : 'de-DE', options);
 }
 
 

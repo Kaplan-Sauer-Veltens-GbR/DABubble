@@ -17,7 +17,7 @@
     @for(time of privateChats ; track time.createdOn ) {
     <div class="day-line">
       <div class="seperator"></div>
-      <div class="box--bordered day-box">{{time.createdOn}}</div>
+      <div class="box--bordered day-box">{{convertTime(time.createdOn)}}</div>
       <div class="seperator"></div>
     </div>
   
