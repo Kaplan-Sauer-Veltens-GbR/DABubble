@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
 import { ChatMessageComponent } from '../../shared/components/chat/chat-message/chat-message.component';
 import { TextMessageFieldComponent } from "../../shared/components/inputs/text-message-field/text-message-field.component";
@@ -30,6 +30,7 @@ export class ChatWindowComponent {
   private  route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
+  public datePipe = inject(DatePipe)
   @Input() message!: Messages;
   privateChats: any [] = [];
   privateChatsSubscription!: Subscription;
@@ -85,6 +86,10 @@ export class ChatWindowComponent {
 
 }
 
+
+convertTime(timestamp:Date) {
+  const today = this.datePipe.transform(timestamp,'EEEE,dd MMMM');
+}
 
 
   scrollToBottom() {
