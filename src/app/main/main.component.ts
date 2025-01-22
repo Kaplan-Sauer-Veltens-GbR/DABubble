@@ -23,7 +23,7 @@ private route = inject(ActivatedRoute);
 private authService = inject(AuthService);
 private dbService = inject(DbService);
 user: User | null = null;
-
+hasSessionToken: boolean = false; 
 
 
 
@@ -37,8 +37,9 @@ ngOnInit() {
       this.getUserIdToken(user).then(idToken => {
         if(idToken) {
           this.dbService.sessionToken = idToken;
-          this.authService.routeWithId(idToken);
+          // this.authService.routeWithId(idToken);
          this.getUserData(user.uid)
+         this.hasSessionToken = true;
         }
       });
     } else {
@@ -49,6 +50,8 @@ ngOnInit() {
   });
 
 }
+
+
 
 async getUserIdToken(user:User) {
   if(user) {

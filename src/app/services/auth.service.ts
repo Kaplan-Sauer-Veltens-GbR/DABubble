@@ -15,6 +15,8 @@ import {
   AuthErrorCodes,
   updateProfile,
   signInAnonymously,
+  setPersistence,
+  browserLocalPersistence 
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -139,6 +141,7 @@ export class AuthService {
     }
   }
 
+  
 
   handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
