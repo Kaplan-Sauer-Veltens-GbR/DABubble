@@ -23,34 +23,36 @@ private route = inject(ActivatedRoute);
 private authService = inject(AuthService);
 private dbService = inject(DbService);
 user: User | null = null;
-hasSessionToken: boolean = false; 
+isAuthChecked = false;
 
 
 
 
 
 ngOnInit() {
+  debugger
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
       console.log('User logged in:', user);
       this.user = user;
-      this.getUserIdToken(user).then(idToken => {
-        if(idToken) {
-          this.dbService.sessionToken = idToken;
-          // this.authService.routeWithId(idToken);
-         this.getUserData(user.uid)
-         this.hasSessionToken = true;
-        }
-      });
+      this.handleUserLogin(user);
     } else {
       console.log('No user logged in');
       this.user = null;
       this.router.navigate(['']);
     }
   });
-
 }
 
+handleUserLogin(user:User) {
+  this.getUserIdToken(user).then(idToken => {
+    if(idToken) {
+      this.dbService.sessionToken = idToken;
+      this.authService.routeWithId(idToken);
+     this.getUserData(user.uid)
+    } 
+  });
+}
 
 
 async getUserIdToken(user:User) {
