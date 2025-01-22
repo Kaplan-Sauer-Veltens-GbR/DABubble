@@ -28,7 +28,7 @@ export class SidebarComponent {
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
   private router = inject(Router);
-  private authService = inject(AuthService)
+  public authService = inject(AuthService)
   private isAtBottom = false; 
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
@@ -47,6 +47,8 @@ toggleChannel:boolean [] = [true,true];
         return 0
       })
       console.log('userlist',this.userList);
+      
+      
     },this.dbService.maxDocs$) // value for how much users a displayed
   }
 
