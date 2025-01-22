@@ -188,4 +188,25 @@ section {
   .privacy-container {
     display: none;
   }
+
+  .mobile-version-signUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .desktop-version-signUp{
+    display: none;
+  }
+
+  .logo-signup-container{
+    justify-content: center;
+  }
+
+  }
+
+  @media (min-width:701px){
+    .mobile-version-signUp{
+      display: none;
+    }
   }
