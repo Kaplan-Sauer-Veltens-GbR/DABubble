@@ -38,7 +38,14 @@ toggleChannel:boolean [] = [true,true];
   ngOnInit(): void {
     const loggedInUserUID = this.authService.getCurrentUser()?.uid
     this.dbService.subscribeToCollectionReactive('users',(docs: UserData[])=>  {
-      this.userList = docs.filter(user => user.uid !== loggedInUserUID)
+      this.userList = docs.sort((a,b) => {
+        if(a.uid === loggedInUserUID) {
+          return -1;
+        }if(b.uid === loggedInUserUID) {
+          return 1;
+        }
+        return 0
+      })
       console.log('userlist',this.userList);
     },this.dbService.maxDocs$) // value for how much users a displayed
   }
