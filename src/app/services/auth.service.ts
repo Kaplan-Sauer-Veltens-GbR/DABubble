@@ -156,6 +156,10 @@ export class AuthService {
     }
   }
 
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
+  }
+
   // isCurrentUser(uId: string) {
   //   return this.getAuthState().pipe(
   //     map((user) => (user ? user.uid === uId : false)) // maybe its not in use anymore

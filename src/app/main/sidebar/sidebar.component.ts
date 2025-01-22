@@ -12,6 +12,8 @@ import { UserData } from '../../interfaces/user-model';
 import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, QuerySnapshot, where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router} from '@angular/router';
 import { DocumentData } from '@angular/fire/compat/firestore';
+import { Auth, User, user } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class SidebarComponent {
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
   private router = inject(Router);
+  private authService = inject(AuthService)
   private isAtBottom = false; 
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
@@ -33,8 +36,9 @@ toggleChannel:boolean [] = [true,true];
 // function for max load increase paired with a global variable , also viewchild track scroll distance and than load more 
 
   ngOnInit(): void {
-    this.dbService.subscribeToCollectionReactive('users',(docs)=>  {
-      this.userList = docs
+    const loggedInUserUID = this.authService.getCurrentUser()?.uid
+    this.dbService.subscribeToCollectionReactive('users',(docs: UserData[])=>  {
+      this.userList = docs.filter(user => user.uid !== loggedInUserUID)
       console.log('userlist',this.userList);
     },this.dbService.maxDocs$) // value for how much users a displayed
   }
