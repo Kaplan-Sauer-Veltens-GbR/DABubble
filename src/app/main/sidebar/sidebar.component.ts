@@ -9,7 +9,7 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, QuerySnapshot, where } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, doc, DocumentReference, getDocs, query, QuerySnapshot, setDoc, where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router} from '@angular/router';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Auth, User, user } from '@angular/fire/auth';
@@ -60,14 +60,17 @@ toggleChannel:boolean [] = [true,true];
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
     })
-    this.createSubCollectionMessages(chatDoc)
+    this.createSubCollectionMessages(chatDoc, uid)
     
     return chatDoc.id;
   }
 
 
-  async createSubCollectionMessages(collectionRef:DocumentReference) {
-    const messagesCollectionRef = collection(collectionRef,'messages')
+  async createSubCollectionMessages(collectionRef:DocumentReference,uid:string) {
+    debugger
+    
+    
+    const messagesCollectionRef = collection(collectionRef,'messages') 
     await addDoc(messagesCollectionRef,this.dbService.setMessageInterface('Wilkommen'));
     return messagesCollectionRef.id;
   }
