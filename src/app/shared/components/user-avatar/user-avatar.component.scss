@@ -34,3 +34,11 @@
         text-decoration: line-through;
     }
 }
+
+.hoverListEffect {
+    &:hover {
+        background-color: #ECEEFE;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+}
