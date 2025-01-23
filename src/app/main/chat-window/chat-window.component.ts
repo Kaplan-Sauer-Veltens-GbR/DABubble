@@ -33,6 +33,7 @@ export class ChatWindowComponent {
 
   @Input() message!: Messages;
   privateChats: any [] = [];
+  groupedPrivateChats: any[] = []
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null=null;
   messageLoading: boolean = false; 
@@ -73,8 +74,10 @@ export class ChatWindowComponent {
     next: (data:Messages[]) => {
       this.privateChats = data.reverse()
       this.lastVisibileMessage = data.length > 0 ? data[data.length - 1] : null;
+      this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
       this.messageLoading = true;
       console.log(this.privateChats,'logged chats');
+     console.log(this.groupedPrivateChats,'grouped');
      
       
     },
@@ -95,9 +98,14 @@ convertTime(timestamp: any): string {
 
 
 private getDateFromTimestamp(timestamp: any): Date {
-  return timestamp instanceof Date ? timestamp : timestamp.toDate();
+  if (timestamp instanceof Date) {
+    return timestamp;
+  }
+  if (typeof timestamp === 'string') {
+    return new Date(timestamp); 
+  }
+  return timestamp.toDate();
 }
-
 
 private formatDate(date: Date, language: string): string {
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -111,7 +119,6 @@ private formatDate(date: Date, language: string): string {
   }
 
   sendMessageToDB(textMessage: string) {
-   
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
     const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
@@ -119,7 +126,22 @@ private formatDate(date: Date, language: string): string {
     addDoc(privateMessages,message)
   }
 
-
+  groupMessagesByDate(messages: Messages[]) {
+    debugger
+    const grouped = messages.reduce((acc, message) => {
+      const dateKey = new Date(this.convertTime(message.createdOn)).toISOString().split('T')[0];
+      if (!acc[dateKey]) {
+        acc[dateKey] = [];
+      }
+      acc[dateKey].push(message);
+      return acc
+    }, {} as Record<string, Messages[]>);
+    return Object.keys(grouped).map(date => ({
+      date,
+      messages: grouped[date],
+    }));
+  }
+  
 }
 
 
