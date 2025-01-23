@@ -116,7 +116,7 @@ private formatDate(date: Date, language: string): string {
     }
     
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
-   const message = this.dbService.setMessageInterface(textMessage)
+    const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
     
     addDoc(privateMessages,message)}
