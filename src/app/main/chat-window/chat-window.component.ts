@@ -33,7 +33,7 @@ export class ChatWindowComponent {
 
   @Input() message!: Messages;
   privateChats: any [] = [];
-  groupedPrivateChats: any[] = []
+  groupedPrivateChats: any[]  = [];
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null=null;
   messageLoading: boolean = false; 
@@ -126,22 +126,36 @@ private formatDate(date: Date, language: string): string {
     addDoc(privateMessages,message)
   }
 
-  groupMessagesByDate(messages: Messages[]) {
-    debugger
-    const grouped = messages.reduce((acc, message) => {
-      const dateKey = new Date(this.convertTime(message.createdOn)).toISOString().split('T')[0];
-      if (!acc[dateKey]) {
-        acc[dateKey] = [];
-      }
-      acc[dateKey].push(message);
-      return acc
-    }, {} as Record<string, Messages[]>);
-    return Object.keys(grouped).map(date => ({
-      date,
-      messages: grouped[date],
-    }));
-  }
+  groupMessagesByDate(privateChats: Messages[]): { date: string, messages: Messages[] }[] {
+    const groupedChats: { date: string, messages: Messages[] }[] = [];
+  debugger
+    privateChats.forEach(message => {   /// current problem is that the days are wrong and we are always a day before
+      const messageDate = new Date(this.convertTime(message.createdOn));
+      messageDate.setHours(0, 0, 0, 0);
+
+    
+      const dateString: string = messageDate.toLocaleDateString('de-DE', {
+        weekday: 'long',  // Wochentag ausgeschrieben
+        day: '2-digit',   // Tag mit führender Null
+        month: 'long',    // Monat ausgeschrieben
+        year: 'numeric'   // Jahr
+      });
+   console.log(dateString);
+      // Suchen, ob es bereits einen Eintradg für das Datum gibt
+      let dateGroup = groupedChats.find(group => group.date === dateString);
+     
   
-}
+      // Falls keine Gruppe für das Datum existiert, erstelle eine neue
+      if (!dateGroup) {
+        dateGroup = { date: dateString, messages: [] };
+        groupedChats.push(dateGroup);
+      }
+      dateGroup.messages.push(message);
+    });
+  
+    return groupedChats;
+  }}
+  
+
 
 

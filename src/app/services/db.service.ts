@@ -122,17 +122,6 @@ setMessageInterface(textMessage:string) {
   return message;
 }
 
-async createDayStamps(uid: string) { // first version of daystamps to categorize the messages per day have to give the array to the for loop in html also if else check if the current day is the same when yes message into the current day when not create today and put message in there
-  const today = new Date().toISOString().split("T")[0];
 
-  // Verweis auf die Sub-Collection "dayStamps" unter "privatmessage/{uid}"
-  const dayStampsCollectionRef = collection(this.firestore, `privatmessage/${uid}/dayStamps`);
-
-  // Neues Dokument in der Sub-Collection erstellen
-  const dayDocRef = doc(dayStampsCollectionRef); // Generiert eine neue ID
-  await setDoc(dayDocRef, { createdAt: today });
-
-  console.log(`Sub-Collection 'dayStamps' unter 'privatmessage/${uid}' erstellt.`);
-}
 
 }
