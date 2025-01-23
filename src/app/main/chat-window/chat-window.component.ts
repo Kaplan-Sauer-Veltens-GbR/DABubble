@@ -11,7 +11,7 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { addDoc, collection, collectionData, doc, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, getDoc, limit, orderBy, query, QueryDocumentSnapshot, setDoc } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
@@ -122,10 +122,14 @@ private formatDate(date: Date, language: string): string {
     addDoc(privateMessages,message)
   }
 
-    checkDateForMessage() {
+   async checkDateForMessage() {
       if(this.chatID) {
         const today = new Date().toISOString().split("T")[0];
-        const dayDocRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}/timestamps/${today}`)
+        const dayDocRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}/timestamps/${today}`);
+        const dayDocSnapshot = await getDoc(dayDocRef);
+        if(!dayDocSnapshot.exists()) {
+          await setDoc(dayDocRef, {createdAt : new Date()})
+        }
       }
     }
 }
