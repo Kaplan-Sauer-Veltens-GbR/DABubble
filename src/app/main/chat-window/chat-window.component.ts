@@ -11,7 +11,7 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { addDoc, collection, collectionData, doc, getDoc, limit, orderBy, query, QueryDocumentSnapshot, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, DocumentReference, getDoc, limit, orderBy, query, QueryDocumentSnapshot, setDoc } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
@@ -110,25 +110,24 @@ private formatDate(date: Date, language: string): string {
     chatContainer.scrollTop = chatContainer.scrollHeight
   }
 
-  sendMessageToDB(textMessage: string) {
-    if(this.chatID) {
-      
-    }
-    
-    const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
+  async sendMessageToDB(textMessage: string) {
+    const today = new Date().toISOString().split("T")[0];
+    const dayDocRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}/timestamps/${today}`);
+     await this.checkDateForMessage(dayDocRef);
+    const privateMessages = collection(dayDocRef, "messages");
     const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
     
-    addDoc(privateMessages,message)
+    await addDoc(privateMessages,message)
   }
 
-   async checkDateForMessage() {
+   async checkDateForMessage(dayRef:DocumentReference) {
       if(this.chatID) {
-        const today = new Date().toISOString().split("T")[0];
-        const dayDocRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}/timestamps/${today}`);
-        const dayDocSnapshot = await getDoc(dayDocRef);
+        
+      
+        const dayDocSnapshot = await getDoc(dayRef);
         if(!dayDocSnapshot.exists()) {
-          await setDoc(dayDocRef, {createdAt : new Date()})
+          await setDoc(dayRef, {createdAt : new Date()})
         }
       }
     }
