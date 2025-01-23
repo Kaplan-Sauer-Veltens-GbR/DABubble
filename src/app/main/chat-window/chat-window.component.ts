@@ -112,12 +112,19 @@ private formatDate(date: Date, language: string): string {
 
   sendMessageToDB(textMessage: string) {
     if(this.chatID) {
-      this.dbService.createDayStamps(this.chatID)
+      
     }
     
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
     const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
     
-    addDoc(privateMessages,message)}
+    addDoc(privateMessages,message)
+  }
+
+    checkDateForMessage() {
+  
+    }
 }
+
+
