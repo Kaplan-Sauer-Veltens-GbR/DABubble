@@ -78,9 +78,11 @@ export class ChatWindowComponent {
     console.log(this.privateChats, 'empty?');
   }
 
+  
   ngAfterViewInit(): void {
     this.scrollToBottom();
   }
+
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
@@ -91,6 +93,7 @@ export class ChatWindowComponent {
       this.workspace.currentDialog = null;
     }
   }
+
 
   loadPrivatChats() {
     debugger;
@@ -121,11 +124,13 @@ export class ChatWindowComponent {
     });
   }
 
+
   convertTime(timestamp: any): string {
     const date = this.getDateFromTimestamp(timestamp);
     const language = localStorage.getItem('language') || 'en';
     return this.formatDate(date, language);
   }
+
 
   private getDateFromTimestamp(timestamp: any): Date {
     if (timestamp instanceof Date) {
@@ -136,6 +141,7 @@ export class ChatWindowComponent {
     }
     return timestamp.toDate();
   }
+
 
   private formatDate(date: Date, language: string): string {
     const options: Intl.DateTimeFormatOptions = {
@@ -149,10 +155,12 @@ export class ChatWindowComponent {
     );
   }
 
+
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement;
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }
+
 
   sendMessageToDB(textMessage: string) {
     const privateMessages = collection(
@@ -164,6 +172,7 @@ export class ChatWindowComponent {
 
     addDoc(privateMessages, message);
   }
+
 
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
     const groupedChats: { date: string; messages: Messages[] }[] = [];
