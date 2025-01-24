@@ -78,7 +78,7 @@ export class ChatWindowComponent {
     console.log(this.privateChats, 'empty?');
   }
 
-  
+
   ngAfterViewInit(): void {
     this.scrollToBottom();
   }
@@ -198,6 +198,6 @@ export class ChatWindowComponent {
       dateGroup.messages.push(message);
     });
 
-    return groupedChats;
+    return groupedChats; 
   }
 }
