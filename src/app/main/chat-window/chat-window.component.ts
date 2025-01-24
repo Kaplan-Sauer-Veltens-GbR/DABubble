@@ -133,10 +133,10 @@ private formatDate(date: Date, language: string): string {
       const messageDate = new Date(this.convertTime(message.createdOn));
       messageDate.setHours(0, 0, 0, 0);
       const dateString: string = messageDate.toLocaleDateString('de-DE', {
-        weekday: 'long',  // Wochentag ausgeschrieben
-        day: '2-digit',   // Tag mit führender Null
-        month: 'long',    // Monat ausgeschrieben
-        year: 'numeric'   // Jahr
+        weekday: 'long',
+        day: '2-digit',   
+        month: 'long',    
+        year: 'numeric'   
       });
    console.log(dateString);
       // Suchen, ob es bereits einen Eintradg für das Datum gibt
