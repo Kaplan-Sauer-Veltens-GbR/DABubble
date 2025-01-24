@@ -21,7 +21,7 @@
       <div class="seperator"></div>
     </div>
   
-    @for(message of group.messages; track message) {
+    @for(message of group.messages; track message.id) {
         <div>
     <chat-message [Message]="message"></chat-message>
 </div>

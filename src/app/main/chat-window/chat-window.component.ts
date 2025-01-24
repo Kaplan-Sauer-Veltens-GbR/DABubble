@@ -70,6 +70,7 @@ export class ChatWindowComponent {
   chatID: string | null = null;
   messageLimit$ = new BehaviorSubject<number>(10);
   isFetchingScrollbar :boolean = false;
+  totalMessageDocs!:number
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
@@ -98,7 +99,7 @@ export class ChatWindowComponent {
 
 
   loadPrivatChats(): void {
-
+  
     this.messageLimit$
       .pipe(
         switchMap((limitValue) => {
@@ -123,10 +124,15 @@ export class ChatWindowComponent {
           this.messageLoading = true;
           console.log(this.privateChats, 'logged chats');
           console.log(this.groupedPrivateChats, 'grouped');
+          console.log(this.totalMessageDocs);
+          
         },
         error: (err: any) => {
           console.error('Fehler beim Laden', err);
         },
+        complete: () => {
+          this.isFetchingScrollbar = false;
+        }
       });
   
   }
@@ -183,7 +189,6 @@ export class ChatWindowComponent {
 
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
     const groupedChats: { date: string; messages: Messages[] }[] = [];
-    debugger;
     privateChats.forEach((message) => {
       const messageDate = new Date(this.convertTime(message.createdOn));
       messageDate.setHours(0, 0, 0, 0);
@@ -214,7 +219,7 @@ export class ChatWindowComponent {
     const scrollTop = target.scrollTop;
     const atTop = scrollTop === 0;
   
-    if (atTop && !this.isAtTop) {
+    if (atTop && !this.isAtTop && this.messageLimit$.value <= this.privateChats.length) {
       this.messageLimit$.next(this.messageLimit$.value + 5); // Erhöhe das Limit dynamisch
       this.isAtTop = true;
     } else if (!atTop) {
