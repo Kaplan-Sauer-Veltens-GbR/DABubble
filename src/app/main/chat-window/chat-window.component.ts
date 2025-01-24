@@ -129,11 +129,9 @@ private formatDate(date: Date, language: string): string {
   groupMessagesByDate(privateChats: Messages[]): { date: string, messages: Messages[] }[] {
     const groupedChats: { date: string, messages: Messages[] }[] = [];
   debugger
-    privateChats.forEach(message => {   /// current problem is that the days are wrong and we are always a day before
+    privateChats.forEach(message => { 
       const messageDate = new Date(this.convertTime(message.createdOn));
       messageDate.setHours(0, 0, 0, 0);
-
-    
       const dateString: string = messageDate.toLocaleDateString('de-DE', {
         weekday: 'long',  // Wochentag ausgeschrieben
         day: '2-digit',   // Tag mit führender Null
