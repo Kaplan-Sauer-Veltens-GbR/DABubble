@@ -13,7 +13,7 @@
     </div>
   </header>
  
-  <main #chatScrollContainer class="chat">
+  <main (scroll)="chatLoadOlderMessages($event)" #chatScrollContainer class="chat">
     @for(group of groupedPrivateChats ; track group.date ) {
     <div class="day-line">
       <div class="seperator"></div>

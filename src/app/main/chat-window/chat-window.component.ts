@@ -31,7 +31,7 @@ import {
   QueryDocumentSnapshot,
   setDoc,
 } from '@angular/fire/firestore';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
 @Component({
@@ -61,13 +61,15 @@ export class ChatWindowComponent {
   private dbService = inject(DbService);
 
   @Input() message!: Messages;
+  private isAtTop= false; 
   privateChats: any[] = [];
   groupedPrivateChats: any[] = [];
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null = null;
   messageLoading: boolean = false;
   chatID: string | null = null;
-
+  messageLimit$ = new BehaviorSubject<number>(10);
+  isFetchingScrollbar :boolean = false;
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
@@ -95,33 +97,38 @@ export class ChatWindowComponent {
   }
 
 
-  loadPrivatChats() {
-    debugger;
-    const privateChatsRef = collection(
-      this.dbService.firestore,
-      `privatmessage/${this.chatID}/messages`
-    );
-    const messageQuery = query(
-      privateChatsRef,
-      orderBy('createdOn', 'desc'),
-      limit(20)
-    );
-    this.privateChatsSubscription = collectionData<Messages>(messageQuery, {
-      idField: 'id',
-    }).subscribe({
-      next: (data: Messages[]) => {
-        this.privateChats = data.reverse();
-        this.lastVisibileMessage =
-          data.length > 0 ? data[data.length - 1] : null;
-        this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
-        this.messageLoading = true;
-        console.log(this.privateChats, 'logged chats');
-        console.log(this.groupedPrivateChats, 'grouped');
-      },
-      error: (err: any) => {
-        console.error('error beim laden', err);
-      },
-    });
+  loadPrivatChats(): void {
+
+    this.messageLimit$
+      .pipe(
+        switchMap((limitValue) => {
+          const privateChatsRef = collection(
+            this.dbService.firestore,
+            `privatmessage/${this.chatID}/messages`
+          );
+          const messageQuery = query(
+            privateChatsRef,
+            orderBy('createdOn', 'desc'),
+            limit(limitValue) // limit wird hier als Funktion aufgerufen
+          );
+          return collectionData<Messages>(messageQuery, { idField: 'id' });
+        })
+      )
+      .subscribe({
+        next: (data: Messages[]) => {
+          this.privateChats = data.reverse();
+          this.lastVisibileMessage =
+            data.length > 0 ? data[data.length - 1] : null;
+          this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
+          this.messageLoading = true;
+          console.log(this.privateChats, 'logged chats');
+          console.log(this.groupedPrivateChats, 'grouped');
+        },
+        error: (err: any) => {
+          console.error('Fehler beim Laden', err);
+        },
+      });
+  
   }
 
 
@@ -199,5 +206,19 @@ export class ChatWindowComponent {
     });
 
     return groupedChats; 
+  }
+
+  
+  chatLoadOlderMessages(event: Event): void {
+    const target = event.target as HTMLElement;
+    const scrollTop = target.scrollTop;
+    const atTop = scrollTop === 0;
+  
+    if (atTop && !this.isAtTop) {
+      this.messageLimit$.next(this.messageLimit$.value + 5); // Erhöhe das Limit dynamisch
+      this.isAtTop = true;
+    } else if (!atTop) {
+      this.isAtTop = false;
+    }
   }
 }
