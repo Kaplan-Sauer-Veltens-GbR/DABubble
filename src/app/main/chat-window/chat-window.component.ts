@@ -99,7 +99,6 @@ export class ChatWindowComponent {
 
 
   loadPrivatChats(): void {
-  
     this.messageLimit$
       .pipe(
         switchMap((limitValue) => {
@@ -122,19 +121,11 @@ export class ChatWindowComponent {
             data.length > 0 ? data[data.length - 1] : null;
           this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
           this.messageLoading = true;
-          console.log(this.privateChats, 'logged chats');
-          console.log(this.groupedPrivateChats, 'grouped');
-          console.log(this.totalMessageDocs);
-          
         },
         error: (err: any) => {
           console.error('Fehler beim Laden', err);
         },
-        complete: () => {
-          this.isFetchingScrollbar = false;
-        }
       });
-  
   }
 
 
