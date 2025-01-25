@@ -31,7 +31,7 @@ import {
   QueryDocumentSnapshot,
   setDoc,
 } from '@angular/fire/firestore';
-import { BehaviorSubject, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
 @Component({
@@ -98,34 +98,36 @@ export class ChatWindowComponent {
   }
 
 
+  fetchPrivateChats(): Observable<Messages[]> {
+    return this.messageLimit$.pipe(
+      switchMap((limitValue) => {
+        const privateChatsRef = collection(
+          this.dbService.firestore,
+          `privatmessage/${this.chatID}/messages`
+        );
+        const messageQuery = query(
+          privateChatsRef,
+          orderBy('createdOn', 'desc'),
+          limit(limitValue)
+        );
+        return collectionData<Messages>(messageQuery, { idField: 'id' });
+      })
+    );
+  }
+
   loadPrivatChats(): void {
-    this.messageLimit$
-      .pipe(
-        switchMap((limitValue) => {
-          const privateChatsRef = collection(
-            this.dbService.firestore,
-            `privatmessage/${this.chatID}/messages`
-          );
-          const messageQuery = query(
-            privateChatsRef,
-            orderBy('createdOn', 'desc'),
-            limit(limitValue) // limit wird hier als Funktion aufgerufen
-          );
-          return collectionData<Messages>(messageQuery, { idField: 'id' });
-        })
-      )
-      .subscribe({
-        next: (data: Messages[]) => {
-          this.privateChats = data.reverse();
-          this.lastVisibileMessage =
-            data.length > 0 ? data[data.length - 1] : null;
-          this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
-          this.messageLoading = true;
-        },
-        error: (err: any) => {
-          console.error('Fehler beim Laden', err);
-        },
-      });
+    this.fetchPrivateChats().subscribe({
+      next: (data: Messages[]) => {
+        this.privateChats = data.reverse();
+        this.lastVisibileMessage =
+          data.length > 0 ? data[data.length - 1] : null;
+        this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
+        this.messageLoading = true;
+      },
+      error: (err: any) => {
+        console.error('Fehler beim Laden', err);
+      },
+    });
   }
 
 
