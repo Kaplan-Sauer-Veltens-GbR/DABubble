@@ -85,8 +85,15 @@ export class ChatWindowComponent {
   ngAfterViewInit(): void {
     this.scrollToBottom();
   }
-
-
+/**
+ * Closes the popup if the click event occurs outside of the popup element.
+ * 
+ * This method listens for a click event on the document and checks if the click 
+ * happened outside of the popup. If true, it closes the popup by setting the 
+ * `currentDialog` to `null`.
+ * 
+ * @param {MouseEvent} event - The click event triggered by the user.
+ */
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     if (
