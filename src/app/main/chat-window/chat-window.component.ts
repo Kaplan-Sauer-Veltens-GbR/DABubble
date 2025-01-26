@@ -78,6 +78,14 @@ export class ChatWindowComponent {
   }
 
 
+  /**
+ * Subscribes to the URL route parameters to check if the URL contains a chat ID.
+ * It listens for changes in the URL and updates the `chatID` variable accordingly.
+ * Once the `chatID` is set, it loads the correct chat messages.
+ * 
+ * The `chatID` is extracted from the URL parameter `chatId`.
+ * Finally, it calls `loadPrivatChats()` to load the chat messages.
+ */
   SubtoChatRoute() {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
