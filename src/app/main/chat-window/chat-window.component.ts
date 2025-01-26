@@ -25,11 +25,13 @@ import {
   collectionData,
   doc,
   getDoc,
+  getDocs,
   limit,
   orderBy,
   query,
   QueryDocumentSnapshot,
   setDoc,
+  where,
 } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
@@ -275,8 +277,9 @@ export class ChatWindowComponent {
         groupedChats.push(dateGroup);
       }
       dateGroup.messages.push(message);
+      this.filterDBForUserName(message);
     });
-    console.log(groupedChats,'grouped');
+    console.log(privateChats,'grouped');
     
     return groupedChats; 
   }
@@ -292,6 +295,19 @@ export class ChatWindowComponent {
       this.isAtTop = true;
     } else if (!atTop) {
       this.isAtTop = false;
+    }
+  }
+
+  async filterDBForUserName(message:Messages){
+    const userRef = collection(this.dbService.firestore,'users');
+    const userQuery = query(userRef,where('uid', '==', message.author));
+    try {
+     const userQuerySnapshot = await getDocs(userQuery)
+     if(!userQuerySnapshot.empty) {
+      const  userDoc = userQuerySnapshot.docs[0];
+     }
+    } catch{
+
     }
   }
 }
