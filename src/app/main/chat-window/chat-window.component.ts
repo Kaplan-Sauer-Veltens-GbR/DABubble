@@ -115,6 +115,14 @@ export class ChatWindowComponent {
     );
   }
 
+  
+  /**
+   * Loads private chats from the database and processes the messages.
+   * 
+   * The messages are stored in reversed order.
+   * The last visible message is saved in a variable.
+   * Messages are grouped by their date.
+   */
   loadPrivatChats(): void {
     this.fetchPrivateChats().subscribe({
       next: (data: Messages[]) => {
