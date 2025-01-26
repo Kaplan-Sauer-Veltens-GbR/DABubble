@@ -59,7 +59,7 @@ export class ChatWindowComponent {
   public workspace = inject(WorkspaceService);
   private route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
-  private dbService = inject(DbService);
+  public dbService = inject(DbService);
   public authService = inject(AuthService)
   @Input() message!: Messages;
   private isAtTop= false; 
@@ -276,7 +276,8 @@ export class ChatWindowComponent {
       }
       dateGroup.messages.push(message);
     });
-
+    console.log(groupedChats,'grouped');
+    
     return groupedChats; 
   }
 

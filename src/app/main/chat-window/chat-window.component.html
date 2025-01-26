@@ -23,7 +23,7 @@
   
     @for(message of group.messages; track message.id) {
         <div>
-    <chat-message [isOwner]="message.author === authService.getCurrentUser()?.uid" [Message]="message"></chat-message>
+    <chat-message [userName]="" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
 </div>
     } } 
     

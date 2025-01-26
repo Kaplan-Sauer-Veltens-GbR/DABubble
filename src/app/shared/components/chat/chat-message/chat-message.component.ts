@@ -14,7 +14,8 @@ import { Messages } from '../../../../interfaces/messages';
 })
 export class ChatMessageComponent {
   @Input() isOwner: boolean = true;
-  @Input() Message!:Messages;
+  @Input() userMessage!:Messages;
+  @Input() userName!:string
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
