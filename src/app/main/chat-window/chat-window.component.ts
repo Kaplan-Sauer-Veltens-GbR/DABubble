@@ -172,6 +172,7 @@ export class ChatWindowComponent {
     });
   }
 
+  
 /**
  * Converts a timestamp into a formatted date string based on the user's language preference.
  * 
