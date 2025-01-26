@@ -30,7 +30,7 @@ isAuthChecked = false;
 
 
 ngOnInit() {
-  debugger
+  // debugger
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
       console.log('User logged in:', user);
@@ -50,7 +50,7 @@ handleUserLogin(user:User) {
       this.dbService.sessionToken = idToken;
       this.authService.routeWithId(idToken);
      this.getUserData(user.uid)
-    } 
+    }
   });
 }
 
@@ -62,7 +62,7 @@ async getUserIdToken(user:User) {
   }else {
     console.log('no user logged in');
     return null;
-    
+
   }
 }
  async  getUserData(uid:string) {

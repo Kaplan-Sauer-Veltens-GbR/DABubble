@@ -36,26 +36,26 @@ export class ChatWindowComponent {
   groupedPrivateChats: any[]  = [];
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null=null;
-  messageLoading: boolean = false; 
+  messageLoading: boolean = false;
   chatID:string | null = null;
 
 
    ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.chatID = params.get('chatId');
-      console.log('ID:', this.chatID); 
+      console.log('ID:', this.chatID);
     });
     console.log(`Path: privatmessage/${this.chatID}/messages`);
      this.loadPrivatChats();
     console.log(this.privateChats,'empty?');
-    
-    
-    
+
+
+
   }
 
   ngAfterViewInit(): void {
   this.scrollToBottom();
-  
+
 }
 
   @HostListener('document:click', ['$event'])
@@ -67,7 +67,7 @@ export class ChatWindowComponent {
 
 
   loadPrivatChats() {
-    debugger
+    // debugger
   const privateChatsRef = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
   const messageQuery = query(privateChatsRef, orderBy('createdOn','desc'),limit(20));
   this.privateChatsSubscription = collectionData<Messages>(messageQuery, {idField: 'id'}).subscribe({
@@ -78,12 +78,12 @@ export class ChatWindowComponent {
       this.messageLoading = true;
       console.log(this.privateChats,'logged chats');
      console.log(this.groupedPrivateChats,'grouped');
-     
-      
+
+
     },
     error: (err:any) => {
       console.error('error beim laden',err);
-      
+
     }
   })
 
@@ -92,7 +92,7 @@ export class ChatWindowComponent {
 
 convertTime(timestamp: any): string {
   const date = this.getDateFromTimestamp(timestamp);
-  const language = localStorage.getItem('language') || 'en'; 
+  const language = localStorage.getItem('language') || 'en';
   return this.formatDate(date, language);
 }
 
@@ -102,7 +102,7 @@ private getDateFromTimestamp(timestamp: any): Date {
     return timestamp;
   }
   if (typeof timestamp === 'string') {
-    return new Date(timestamp); 
+    return new Date(timestamp);
   }
   return timestamp.toDate();
 }
@@ -122,18 +122,18 @@ private formatDate(date: Date, language: string): string {
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
     const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
-    
+
     addDoc(privateMessages,message)
   }
 
   groupMessagesByDate(privateChats: Messages[]): { date: string, messages: Messages[] }[] {
     const groupedChats: { date: string, messages: Messages[] }[] = [];
-  debugger
+  // debugger
     privateChats.forEach(message => {   /// current problem is that the days are wrong and we are always a day before
       const messageDate = new Date(this.convertTime(message.createdOn));
       messageDate.setHours(0, 0, 0, 0);
 
-    
+
       const dateString: string = messageDate.toLocaleDateString('de-DE', {
         weekday: 'long',  // Wochentag ausgeschrieben
         day: '2-digit',   // Tag mit führender Null
@@ -143,8 +143,8 @@ private formatDate(date: Date, language: string): string {
    console.log(dateString);
       // Suchen, ob es bereits einen Eintradg für das Datum gibt
       let dateGroup = groupedChats.find(group => group.date === dateString);
-     
-  
+
+
       // Falls keine Gruppe für das Datum existiert, erstelle eine neue
       if (!dateGroup) {
         dateGroup = { date: dateString, messages: [] };
@@ -152,10 +152,10 @@ private formatDate(date: Date, language: string): string {
       }
       dateGroup.messages.push(message);
     });
-  
+
     return groupedChats;
   }}
-  
+
 
 
 

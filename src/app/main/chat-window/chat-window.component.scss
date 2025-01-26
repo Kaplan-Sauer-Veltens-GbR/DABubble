@@ -93,7 +93,7 @@ section {
 .pop-up {
   @include pop-up(absolute, 100%, 872px, 616px, clamp(40%, 2vh, 50%), 50%, 0, -50%, -50%);
   &.addMember {
-    right: 5%;
+    right: 0%;
     top: 20%;
     left: unset;
     transform: translate(0, 0);

@@ -12,7 +12,7 @@
       </div>
     </div>
   </header>
- 
+
   <main #chatScrollContainer class="chat">
     @for(group of groupedPrivateChats ; track group.date ) {
     <div class="day-line">
@@ -20,13 +20,13 @@
       <div class="box--bordered day-box">{{this.convertTime(group.date)}}</div>
       <div class="seperator"></div>
     </div>
-  
+
     @for(message of group.messages; track message) {
         <div>
     <chat-message [Message]="message"></chat-message>
 </div>
-    } } 
-    
+    } }
+
   </main>
   <div class="text-field">
     <app-text-message-field (messageSend)="sendMessageToDB($event)"></app-text-message-field>
@@ -49,6 +49,6 @@
       <app-create-channel></app-create-channel>
     </div>
   }
-  
+
 
 
