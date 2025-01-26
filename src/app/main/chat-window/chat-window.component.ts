@@ -71,7 +71,14 @@ export class ChatWindowComponent {
   messageLimit$ = new BehaviorSubject<number>(10);
   isFetchingScrollbar :boolean = false;
   totalMessageDocs!:number
+
+
   ngOnInit(): void {
+  this.SubtoChatRoute();
+  }
+
+
+  SubtoChatRoute() {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
       console.log('ID:', this.chatID);
@@ -82,9 +89,12 @@ export class ChatWindowComponent {
   }
 
 
+
   ngAfterViewInit(): void {
     this.scrollToBottom();
   }
+
+
 /**
  * Closes the popup if the click event occurs outside of the popup element.
  * 
