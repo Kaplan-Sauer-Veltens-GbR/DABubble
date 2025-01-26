@@ -7,7 +7,7 @@
         <article class="msg" [ngClass]="{'msg-ownership': isOwner}">
             <div class="msg__header" [ngClass]="{'msg-ownership': isOwner}">
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">{{userName}}</span>
-                <span class="timestamp">14:25 Uhr</span>
+                <span class="timestamp">{{messageSendTime}}</span>
             </div>
             <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">{{userMessage.message}}</div>
             <app-reaction-bar [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>
@@ -15,7 +15,7 @@
                 <span class="subthread-link" role="button" [attr.aria-label]="t(translateReplyAmount(), {'amount': replyAmount}) + t('chat.subthread.open')">
                     {{t(translateReplyAmount(), {'amount': replyAmount})}}
                 </span>
-                <span class="timestamp">Letzte Antwort 14:56 Uhr</span>
+                <span class="timestamp">Letzte Antwort 14:00</span>
             </div>
         </article>
     </div>

@@ -39,6 +39,7 @@ import { Messages } from '../../interfaces/messages';
 import { AuthService } from '../../services/auth.service';
 import { user } from '@angular/fire/auth';
 import { UserData } from '../../interfaces/user-model';
+import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -227,7 +228,7 @@ export class ChatWindowComponent {
  * @param {string} language - The language code for formatting. Accepts `'en'` for English or `'de'` for German.
  * @returns {string} The formatted date string in the specified language.
  */
-  private formatDate(date: Date, language: string): string {
+  public formatDate(date: Date, language: string): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       day: 'numeric',
@@ -327,5 +328,18 @@ export class ChatWindowComponent {
       this.messageAuthors[message.author] = userName;
       
     }
+  }
+
+  dateToTime(firebaseTimestamp:FireTimestampModel) {
+  const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
+  const date = new Date(milliseconds); 
+
+  const options: Intl.DateTimeFormatOptions = {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+};
+  const timeString = date.toLocaleTimeString('de-DE', options);
+  return timeString
   }
 }
