@@ -172,7 +172,17 @@ export class ChatWindowComponent {
     });
   }
 
-
+/**
+ * Converts a timestamp into a formatted date string based on the user's language preference.
+ * 
+ *  The timestamp is processed using the `getDateFromTimestamp` function.
+ *  The method checks the local storage for a saved language preference. If no language is set, 
+ *  it defaults to English (`'en'`).
+ *  The formatted date is then returned using the `formatDate` function based on the selected language.
+ * 
+ * @param {any} timestamp - The timestamp to be converted into a date string.
+ * @returns {string} The formatted date string based on the user's language.
+ */
   convertTime(timestamp: any): string {
     const date = this.getDateFromTimestamp(timestamp);
     const language = localStorage.getItem('language') || 'en';
