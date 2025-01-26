@@ -21,7 +21,7 @@
       <div class="seperator"></div>
     </div>
   
-    @for(message of group.messages; track message.id) {
+    @for(message of group.messages; track message.messageUID) {
         <div>
     <chat-message  [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
 </div>

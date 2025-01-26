@@ -15,7 +15,7 @@ import { Messages } from '../../../../interfaces/messages';
 export class ChatMessageComponent {
   @Input() isOwner: boolean = true;
   @Input() userMessage!:Messages;
-  @Input() userName!:string
+  @Input() userName!:string | null
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
@@ -33,4 +33,6 @@ export class ChatMessageComponent {
       return 'chat.subthread.replies.multiple';
     }
   }
+
+  
 }

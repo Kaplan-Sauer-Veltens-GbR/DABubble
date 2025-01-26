@@ -37,6 +37,8 @@ import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
 import { AuthService } from '../../services/auth.service';
+import { user } from '@angular/fire/auth';
+import { UserData } from '../../interfaces/user-model';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -73,9 +75,8 @@ export class ChatWindowComponent {
   chatID: string | null = null;
   messageLimit$ = new BehaviorSubject<number>(10);
   isFetchingScrollbar :boolean = false;
-  totalMessageDocs!:number
-
-
+  totalMessageDocs!:number;
+  messageAuthor!:string | null;
   ngOnInit(): void {
   this.SubtoChatRoute();
   }
@@ -147,7 +148,7 @@ export class ChatWindowComponent {
           orderBy('createdOn', 'desc'),
           limit(limitValue)
         );
-        return collectionData<Messages>(messageQuery, { idField: 'id' });
+        return collectionData<Messages>(messageQuery, { idField: 'messageUID' });
       })
     );
   }
@@ -277,9 +278,13 @@ export class ChatWindowComponent {
         groupedChats.push(dateGroup);
       }
       dateGroup.messages.push(message);
-      this.filterDBForUserName(message);
+      this.filterDBForUserName(message).then(userName => {
+        this.messageAuthor = userName;
+        console.log(userName,'userNamme');
+        
+      });
     });
-    console.log(privateChats,'grouped');
+    console.log(groupedChats,'grouped');
     
     return groupedChats; 
   }
@@ -303,11 +308,18 @@ export class ChatWindowComponent {
     const userQuery = query(userRef,where('uid', '==', message.author));
     try {
      const userQuerySnapshot = await getDocs(userQuery)
-     if(!userQuerySnapshot.empty) {
-      const  userDoc = userQuerySnapshot.docs[0];
-     }
-    } catch{
-
+     if (userQuerySnapshot.empty) {
+      console.log(`No user found for UID: ${message.author}`);
+      return null;
+    }
+      const userDoc = userQuerySnapshot.docs[0];
+      const userData = userDoc.data() as UserData;
+      // console.log(userData,'userdata');
+      return userData.displayName;
+      
+    } catch (error){
+      console.error('error fetching user',error);
+      return null
     }
   }
 }
