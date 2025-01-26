@@ -212,6 +212,16 @@ export class ChatWindowComponent {
   }
 
 
+/**
+ * Formats a given date object into a localized string based on the specified language.
+ * 
+ * In German (`de-DE`), the format includes the weekday, day (numeric), and month (as a string).
+ * In English (`en-EN`), the format includes the weekday, month (as a string), and day (numeric).
+ * 
+ * @param {Date} date - The date to be formatted. Must be a valid `Date` object.
+ * @param {string} language - The language code for formatting. Accepts `'en'` for English or `'de'` for German.
+ * @returns {string} The formatted date string in the specified language.
+ */
   private formatDate(date: Date, language: string): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
