@@ -98,6 +98,15 @@ export class ChatWindowComponent {
   }
 
 
+/**
+ * Fetches the private chats collection and returns it as an Observable.
+ * 
+ * - The number of documents fetched is determined by `limitValue`, which is dynamically set.
+ * - The messages are ordered by the `createdOn` timestamp in descending order.
+ * - The returned Observable emits an array of `Messages` objects, each including an `id` field.
+ * 
+ * @returns {Observable<Messages[]>} An Observable that emits the fetched private chat messages.
+ */
   fetchPrivateChats(): Observable<Messages[]> {
     return this.messageLimit$.pipe(
       switchMap((limitValue) => {
@@ -115,7 +124,7 @@ export class ChatWindowComponent {
     );
   }
 
-  
+
   /**
    * Loads private chats from the database and processes the messages.
    * 
