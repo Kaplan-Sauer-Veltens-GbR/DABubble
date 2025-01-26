@@ -76,7 +76,7 @@ export class ChatWindowComponent {
   messageLimit$ = new BehaviorSubject<number>(10);
   isFetchingScrollbar :boolean = false;
   totalMessageDocs!:number;
-  messageAuthor!:string | null;
+  messageAuthors: { [key: string]: string | null } = {};
   ngOnInit(): void {
   this.SubtoChatRoute();
   }
@@ -169,6 +169,7 @@ export class ChatWindowComponent {
           data.length > 0 ? data[data.length - 1] : null;
         this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
         this.messageLoading = true;
+        this.loadUserNames(this.privateChats);
       },
       error: (err: any) => {
         console.error('Fehler beim Laden', err);
@@ -278,11 +279,6 @@ export class ChatWindowComponent {
         groupedChats.push(dateGroup);
       }
       dateGroup.messages.push(message);
-      this.filterDBForUserName(message).then(userName => {
-        this.messageAuthor = userName;
-        console.log(userName,'userNamme');
-        
-      });
     });
     console.log(groupedChats,'grouped');
     
@@ -303,13 +299,13 @@ export class ChatWindowComponent {
     }
   }
 
-  async filterDBForUserName(message:Messages){
+  async filterDBForUserName(message:string){
     const userRef = collection(this.dbService.firestore,'users');
-    const userQuery = query(userRef,where('uid', '==', message.author));
+    const userQuery = query(userRef,where('uid', '==', message));
     try {
      const userQuerySnapshot = await getDocs(userQuery)
      if (userQuerySnapshot.empty) {
-      console.log(`No user found for UID: ${message.author}`);
+      console.log(`No user found for UID: ${message}`);
       return null;
     }
       const userDoc = userQuerySnapshot.docs[0];
@@ -320,6 +316,15 @@ export class ChatWindowComponent {
     } catch (error){
       console.error('error fetching user',error);
       return null
+    }
+  }
+
+  async loadUserNames(messages: Messages[]): Promise<void> {
+    for (const message of messages) {
+      const userName = await this.filterDBForUserName(message.author);
+      console.log(userName,'messages');
+      
+      this.messageAuthors[message.author] = userName;
     }
   }
 }
