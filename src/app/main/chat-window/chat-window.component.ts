@@ -172,7 +172,7 @@ export class ChatWindowComponent {
     });
   }
 
-  
+
 /**
  * Converts a timestamp into a formatted date string based on the user's language preference.
  * 
@@ -191,6 +191,16 @@ export class ChatWindowComponent {
   }
 
 
+ /**
+ * Converts a timestamp into a valid `Date` object.
+ * 
+ * If the `timestamp` is already an instance of `Date`, it is returned directly.
+ * If the `timestamp` is a string, it creates and returns a new `Date` object based on the string.
+ * Otherwise, it assumes the `timestamp` is an object with a `toDate` method and calls it to return a `Date`.
+ * 
+ * @param {any} timestamp - The input timestamp to be converted. Can be a `Date`, a string, or an object with a `toDate` method.
+ * @returns {Date} A valid `Date` object derived from the input timestamp.
+ */
   private getDateFromTimestamp(timestamp: any): Date {
     if (timestamp instanceof Date) {
       return timestamp;
