@@ -36,6 +36,7 @@ export class UserAvatarComponent {
     status: '',
   };
   @Input() user!: UserData;
+  @Input() userListHover: boolean = false;
 
   returnUsername(): string {
     let suffix = '';

@@ -15,6 +15,8 @@ import {
   AuthErrorCodes,
   updateProfile,
   signInAnonymously,
+  setPersistence,
+  browserLocalPersistence 
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -35,7 +37,7 @@ export class AuthService {
   private dataBase = inject(DbService);
   private router = inject(Router);
   isGuest:boolean = false;
-
+ 
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
 
@@ -58,7 +60,7 @@ export class AuthService {
     }
   }
 
-  getAuthState(): Observable<User | null> {
+   getAuthState(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
 
@@ -139,6 +141,7 @@ export class AuthService {
     }
   }
 
+  
 
   handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
@@ -151,6 +154,10 @@ export class AuthService {
     } else {
       console.error('unkown error:', error);
     }
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
   }
 
   // isCurrentUser(uId: string) {

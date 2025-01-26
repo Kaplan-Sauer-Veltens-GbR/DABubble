@@ -23,32 +23,37 @@ private route = inject(ActivatedRoute);
 private authService = inject(AuthService);
 private dbService = inject(DbService);
 user: User | null = null;
-
+isAuthChecked = false;
 
 
 
 
 
 ngOnInit() {
+  debugger
   this.authService.getAuthState().subscribe((user) => {
     if (user) {
       console.log('User logged in:', user);
       this.user = user;
-      this.getUserIdToken(user).then(idToken => {
-        if(idToken) {
-          this.dbService.sessionToken = idToken;
-          this.authService.routeWithId(idToken);
-         this.getUserData(user.uid)
-        }
-      });
+      this.handleUserLogin(user);
     } else {
       console.log('No user logged in');
       this.user = null;
-      this.router.navigate(['']);
+      this.router.navigate(['']);   // working on it later , problem to solve is that the init on reload returns a null user and than it loads a second time with the user data
     }
   });
-
 }
+
+handleUserLogin(user:User) {
+  this.getUserIdToken(user).then(idToken => {
+    if(idToken) {
+      this.dbService.sessionToken = idToken;
+      this.authService.routeWithId(idToken);
+     this.getUserData(user.uid)
+    } 
+  });
+}
+
 
 async getUserIdToken(user:User) {
   if(user) {

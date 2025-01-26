@@ -9,9 +9,11 @@ import { CreateChannelComponent } from "../../chat/pop-ups/create-channel/create
 import { TranslocoModule } from '@jsverse/transloco';
 import { DbService } from '../../services/db.service';
 import { UserData } from '../../interfaces/user-model';
-import { addDoc, arrayUnion, collection, DocumentReference, getDocs, query, QuerySnapshot, where } from '@angular/fire/firestore';
+import { addDoc, arrayUnion, collection, doc, DocumentReference, getDocs, query, QuerySnapshot, setDoc, where } from '@angular/fire/firestore';
 import { ActivatedRoute, Router} from '@angular/router';
 import { DocumentData } from '@angular/fire/compat/firestore';
+import { Auth, User, user } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class SidebarComponent {
   public workspace = inject(WorkspaceService)
   public dbService = inject(DbService)
   private router = inject(Router);
+  public authService = inject(AuthService)
   private isAtBottom = false; 
 @Input() selected:boolean = false;
 toggleChannel:boolean [] = [true,true];
@@ -33,9 +36,19 @@ toggleChannel:boolean [] = [true,true];
 // function for max load increase paired with a global variable , also viewchild track scroll distance and than load more 
 
   ngOnInit(): void {
-    this.dbService.subscribeToCollectionReactive('users',(docs)=>  {
-      this.userList = docs
+    const loggedInUserUID = this.authService.getCurrentUser()?.uid
+    this.dbService.subscribeToCollectionReactive('users',(docs: UserData[])=>  {
+      this.userList = docs.sort((a,b) => {
+        if(a.uid === loggedInUserUID) {
+          return -1;
+        }if(b.uid === loggedInUserUID) {
+          return 1;
+        }
+        return 0
+      })
       console.log('userlist',this.userList);
+      
+      
     },this.dbService.maxDocs$) // value for how much users a displayed
   }
 
@@ -47,19 +60,18 @@ toggleChannel:boolean [] = [true,true];
     const chatDoc = await addDoc(privateChatCol, {
       members: arrayUnion(...members)
     })
-    this.createSubCollectionMessages(chatDoc)
+    this.createSubCollectionMessages(chatDoc, uid)
     
     return chatDoc.id;
   }
 
 
-  async createSubCollectionMessages(collectionRef:DocumentReference) {
-    const messagesCollectionRef = collection(collectionRef,'messages')
-    await addDoc(messagesCollectionRef, {
-      author: this.dbService.userInformation.uid,
-      message: 'Willkommen im Chat!',                      // Only a mockup
-      timestamp: new Date(),
-    });
+  async createSubCollectionMessages(collectionRef:DocumentReference,uid:string) {
+    debugger
+    
+    
+    const messagesCollectionRef = collection(collectionRef,'messages') 
+    await addDoc(messagesCollectionRef,this.dbService.setMessageInterface('Wilkommen'));
     return messagesCollectionRef.id;
   }
 

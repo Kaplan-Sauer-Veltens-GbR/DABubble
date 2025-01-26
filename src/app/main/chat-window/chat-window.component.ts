@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../shared/components/icon-component/icon-libary.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarBarComponent } from "../../shared/components/chat/avatar-bar/avatar-bar.component";
 import { ChatMessageComponent } from '../../shared/components/chat/chat-message/chat-message.component';
 import { TextMessageFieldComponent } from "../../shared/components/inputs/text-message-field/text-message-field.component";
@@ -11,7 +11,7 @@ import { MemberListComponent } from "../../chat/pop-ups/ch-member-list/member-li
 import { ActivatedRoute } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
-import { addDoc, collection, collectionData, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, getDoc, limit, orderBy, query, QueryDocumentSnapshot, setDoc } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
@@ -30,8 +30,10 @@ export class ChatWindowComponent {
   private  route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
+
   @Input() message!: Messages;
   privateChats: any [] = [];
+  groupedPrivateChats: any[]  = [];
   privateChatsSubscription!: Subscription;
   lastVisibileMessage: Messages | null=null;
   messageLoading: boolean = false; 
@@ -72,8 +74,10 @@ export class ChatWindowComponent {
     next: (data:Messages[]) => {
       this.privateChats = data.reverse()
       this.lastVisibileMessage = data.length > 0 ? data[data.length - 1] : null;
+      this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
       this.messageLoading = true;
       console.log(this.privateChats,'logged chats');
+     console.log(this.groupedPrivateChats,'grouped');
      
       
     },
@@ -86,6 +90,28 @@ export class ChatWindowComponent {
 }
 
 
+convertTime(timestamp: any): string {
+  const date = this.getDateFromTimestamp(timestamp);
+  const language = localStorage.getItem('language') || 'en'; 
+  return this.formatDate(date, language);
+}
+
+
+private getDateFromTimestamp(timestamp: any): Date {
+  if (timestamp instanceof Date) {
+    return timestamp;
+  }
+  if (typeof timestamp === 'string') {
+    return new Date(timestamp); 
+  }
+  return timestamp.toDate();
+}
+
+private formatDate(date: Date, language: string): string {
+  const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long' };
+  return date.toLocaleDateString(language === 'en' ? 'en-EN' : 'de-DE', options);
+}
+
 
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement
@@ -94,12 +120,42 @@ export class ChatWindowComponent {
 
   sendMessageToDB(textMessage: string) {
     const privateMessages = collection(this.dbService.firestore, `privatmessage/${this.chatID}/messages`);
-    const message: Messages = {
-      author:this.dbService.userInformation.uid,
-      createdOn: new Date(),
-      message:textMessage
-    }
+    const message = this.dbService.setMessageInterface(textMessage)
     console.log(textMessage, 'message');
     
-    addDoc(privateMessages,message)}
-}
+    addDoc(privateMessages,message)
+  }
+
+  groupMessagesByDate(privateChats: Messages[]): { date: string, messages: Messages[] }[] {
+    const groupedChats: { date: string, messages: Messages[] }[] = [];
+  debugger
+    privateChats.forEach(message => {   /// current problem is that the days are wrong and we are always a day before
+      const messageDate = new Date(this.convertTime(message.createdOn));
+      messageDate.setHours(0, 0, 0, 0);
+
+    
+      const dateString: string = messageDate.toLocaleDateString('de-DE', {
+        weekday: 'long',  // Wochentag ausgeschrieben
+        day: '2-digit',   // Tag mit führender Null
+        month: 'long',    // Monat ausgeschrieben
+        year: 'numeric'   // Jahr
+      });
+   console.log(dateString);
+      // Suchen, ob es bereits einen Eintradg für das Datum gibt
+      let dateGroup = groupedChats.find(group => group.date === dateString);
+     
+  
+      // Falls keine Gruppe für das Datum existiert, erstelle eine neue
+      if (!dateGroup) {
+        dateGroup = { date: dateString, messages: [] };
+        groupedChats.push(dateGroup);
+      }
+      dateGroup.messages.push(message);
+    });
+  
+    return groupedChats;
+  }}
+  
+
+
+

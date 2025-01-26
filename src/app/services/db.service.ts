@@ -16,6 +16,7 @@ import { User } from '@angular/fire/auth';
 import { Reference } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Messages } from '../interfaces/messages';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +61,8 @@ export class DbService {
     }
   }
 
+  
+  
 
 //   subscribeToCollection(collectionName: string,  callback: (docs: any) => void, maxDocs:number = 10, reverse:boolean = false, ) {
 //     const colRef = collection(this.firestore, collectionName);
@@ -110,6 +113,14 @@ subscribeToCollectionReactive(collectionName: string, callback: (docs: any) => v
     });
 }
 
+setMessageInterface(textMessage:string) {
+  const message: Messages = {
+    author:this.userInformation.uid,
+    createdOn: new Date(),
+    message:textMessage
+  }
+  return message;
+}
 
 
 

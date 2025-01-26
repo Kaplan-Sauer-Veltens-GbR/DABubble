@@ -14,17 +14,18 @@
   </header>
  
   <main #chatScrollContainer class="chat">
-    @for(dbObject of [1]; track dbObject) { @for(time of [1,2,3]; track time ) {
+    @for(group of groupedPrivateChats ; track group.date ) {
     <div class="day-line">
       <div class="seperator"></div>
-      <div class="box--bordered day-box">Dienstag, 14 Januar</div>
+      <div class="box--bordered day-box">{{this.convertTime(group.date)}}</div>
       <div class="seperator"></div>
     </div>
-    @for(message of privateChats; track message.id) {
+  
+    @for(message of group.messages; track message) {
         <div>
     <chat-message [Message]="message"></chat-message>
 </div>
-    } } }
+    } } 
     
   </main>
   <div class="text-field">
