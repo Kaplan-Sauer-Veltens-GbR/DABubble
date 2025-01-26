@@ -34,6 +34,7 @@ import {
 import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -59,7 +60,7 @@ export class ChatWindowComponent {
   private route = inject(ActivatedRoute);
   private elementRef = inject(ElementRef);
   private dbService = inject(DbService);
-
+  public authService = inject(AuthService)
   @Input() message!: Messages;
   private isAtTop= false; 
   privateChats: any[] = [];
