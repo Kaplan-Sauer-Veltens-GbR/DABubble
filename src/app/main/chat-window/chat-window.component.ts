@@ -325,6 +325,7 @@ export class ChatWindowComponent {
       console.log(userName,'messages');
       
       this.messageAuthors[message.author] = userName;
+      
     }
   }
 }
