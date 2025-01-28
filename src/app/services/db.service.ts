@@ -40,7 +40,7 @@ export class DbService {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL + '?sz=150',
       lastLogin: new Date(),
       lastActivity: new Date(),
       status: '',
