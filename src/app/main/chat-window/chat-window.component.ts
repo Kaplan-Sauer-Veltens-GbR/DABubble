@@ -37,7 +37,7 @@ import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
 import { AuthService } from '../../services/auth.service';
-import { user } from '@angular/fire/auth';
+import { User, user } from '@angular/fire/auth';
 import { UserData } from '../../interfaces/user-model';
 import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 @Component({
@@ -77,14 +77,14 @@ export class ChatWindowComponent {
   messageLoading: boolean = false;
   chatID: string | null = null;
   messageLimit$ = new BehaviorSubject<number>(10);
-  isFetchingScrollbar :boolean = false;
   totalMessageDocs!:number;
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
-
+  otherChatUser!: UserData;
 
   ngOnInit(): void {
   this.SubtoChatRoute();
+  this.getChatMembers();
   }
 
 
@@ -280,6 +280,7 @@ export class ChatWindowComponent {
 
      await addDoc(privateMessages, message);
      this.scrollToBottom();
+   this.getChatMembers();
   }
 
 
@@ -366,4 +367,23 @@ export class ChatWindowComponent {
   const timeString = date.toLocaleTimeString('de-DE', options);
   return timeString
   }
+async getChatMembers() {
+  const loggedUser = this.authService.getCurrentUser()?.uid
+  const chatRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}`)
+  const chatSnapshot = await getDoc(chatRef);
+ if(chatSnapshot.exists()) {
+ const chatData =  chatSnapshot.data();
+ const members = chatData['members']
+ const filteredMembers = members.filter((uid: string) => uid !== loggedUser);
+ const memberUid = filteredMembers[0]
+  
+  this.otherChatUser = await this.dbService.getDocData('users',memberUid) as UserData
+
+
+ }
+  
+ 
+    
+
+}
 }

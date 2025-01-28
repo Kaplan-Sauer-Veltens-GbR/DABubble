@@ -1,10 +1,19 @@
 <section>
   <header>
+    @if(this.checkIfPrivateChatsInUrl()) {
+
+    
     <div class="field--hover" (click)="workspace.openDialog('channelEdit')"[ngClass]="{'selected': workspace.currentDialog === 'channelEdit'}" >
       <app-icon iconName="tag"></app-icon>
       <h2>Entwicklerteam</h2>
       <app-icon iconName="arrowDown"></app-icon>
     </div>
+  }@else if(this.otherChatUser) {
+    <div class="field--hover" >
+      <h2>{{this.otherChatUser.displayName}}</h2>
+     
+    </div>
+  }
     @if(this.checkIfPrivateChatsInUrl()) {
     <div>
       <app-avatar-bar (click)="workspace.openDialog('memberList')"></app-avatar-bar>
