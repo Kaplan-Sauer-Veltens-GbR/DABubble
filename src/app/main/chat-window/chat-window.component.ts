@@ -66,6 +66,7 @@ export class ChatWindowComponent {
   private elementRef = inject(ElementRef);
   public dbService = inject(DbService);
   public authService = inject(AuthService)
+  private cdRef = inject(ChangeDetectorRef)
   @Input() message!: Messages;
   private isAtTop= false; 
   privateChats: any[] = [];
@@ -77,7 +78,10 @@ export class ChatWindowComponent {
   messageLimit$ = new BehaviorSubject<number>(10);
   isFetchingScrollbar :boolean = false;
   totalMessageDocs!:number;
+  firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
+
+
   ngOnInit(): void {
   this.SubtoChatRoute();
   }
@@ -91,22 +95,20 @@ export class ChatWindowComponent {
  * The `chatID` is extracted from the URL parameter `chatId`.
  * Finally, it calls `loadPrivatChats()` to load the chat messages.
  */
-  SubtoChatRoute() {
+ SubtoChatRoute() {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
       console.log('ID:', this.chatID);
     });
     console.log(`Path: privatmessage/${this.chatID}/messages`);
     this.loadPrivatChats();
+    
     console.log(this.privateChats, 'empty?');
   }
 
 
 
-  ngAfterViewInit(): void {
-    this.scrollToBottom();
-  }
-
+ 
 
 /**
  * Closes the popup if the click event occurs outside of the popup element.
@@ -163,19 +165,29 @@ export class ChatWindowComponent {
    * Messages are grouped by their date.
    */
   loadPrivatChats(): void {
+   
     this.fetchPrivateChats().subscribe({
+      
       next: (data: Messages[]) => {
+       
         this.privateChats = data.reverse();
         this.lastVisibileMessage =
           data.length > 0 ? data[data.length - 1] : null;
         this.groupedPrivateChats = this.groupMessagesByDate(this.privateChats);
         this.messageLoading = true;
         this.loadUserNames(this.privateChats);
+        if(this.firstMessageInit) {
+          this.cdRef.detectChanges();
+        this.scrollToBottom()
+        this.firstMessageInit = false;
+        }
+        
       },
       error: (err: any) => {
         console.error('Fehler beim Laden', err);
       },
     });
+   
   }
 
 
