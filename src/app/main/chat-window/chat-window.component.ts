@@ -16,7 +16,7 @@ import { WorkspaceService } from '../../services/workspace.service';
 import { ChannelEditPopupComponent } from '../../chat/pop-ups/channel-edit-popup/channel-edit-popup.component';
 import { AddPeopleComponent } from '../../shared/components/chat/add-people/add-people.component';
 import { MemberListComponent } from '../../chat/pop-ups/ch-member-list/member-list/member-list.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateChannelComponent } from '../../chat/pop-ups/create-channel/create-channel.component';
 import { DbService } from '../../services/db.service';
 import {
@@ -63,6 +63,7 @@ export class ChatWindowComponent {
 
   public workspace = inject(WorkspaceService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router)
   private elementRef = inject(ElementRef);
   public dbService = inject(DbService);
   public authService = inject(AuthService)
@@ -154,6 +155,14 @@ export class ChatWindowComponent {
         return collectionData<Messages>(messageQuery, { idField: 'messageUID' });
       })
     );
+  }
+
+  checkIfPrivateChatsInUrl() {
+    const url = this.router.url
+   if(url.includes('privatemessage')) {
+    return true;
+   }
+   return false
   }
 
 

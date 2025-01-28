@@ -5,12 +5,14 @@
       <h2>Entwicklerteam</h2>
       <app-icon iconName="arrowDown"></app-icon>
     </div>
+    @if(this.checkIfPrivateChatsInUrl()) {
     <div>
       <app-avatar-bar (click)="workspace.openDialog('memberList')"></app-avatar-bar>
       <div class="bg-circle">
         <app-icon (click)="workspace.openDialog('addMember')" class="icon--hover scale" iconName="personAdd"></app-icon>
       </div>
     </div>
+  }
   </header>
  
   <main (scroll)="chatLoadOlderMessages($event)" #chatScrollContainer class="chat">
