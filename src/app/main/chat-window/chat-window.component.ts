@@ -243,11 +243,13 @@ export class ChatWindowComponent {
 
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement;
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-  }
+    chatContainer.scrollTo({
+      top: chatContainer.scrollHeight,
+      behavior: 'smooth' 
+    });  }
 
 
-  sendMessageToDB(textMessage: string) {
+ async sendMessageToDB(textMessage: string) {
     const privateMessages = collection(
       this.dbService.firestore,
       `privatmessage/${this.chatID}/messages`
@@ -255,7 +257,8 @@ export class ChatWindowComponent {
     const message = this.dbService.setMessageInterface(textMessage);
     console.log(textMessage, 'message');
 
-    addDoc(privateMessages, message);
+     await addDoc(privateMessages, message);
+     this.scrollToBottom();
   }
 
 
