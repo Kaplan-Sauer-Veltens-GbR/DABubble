@@ -25,14 +25,12 @@ export class UserAvatarComponent {
   @Input() owner: boolean = false;
   @Input() size: number = 50;
   @Input() userId: string = '';
+  @Input() photoURL!: string;
   @Input() user: UserData = {
     uid: '',
     displayName: 'Frederik Beck',
     email: '',
-    photoURL:
-      this.dbService.userInformation && this.dbService.userInformation.photoURL
-        ? this.dbService.userInformation.photoURL
-        : '/assets/images/avatars/demo_avatar.png',
+    photoURL: '',
     lastLogin: new Date(),
     lastActivity: new Date(),
     isOnline: true,
