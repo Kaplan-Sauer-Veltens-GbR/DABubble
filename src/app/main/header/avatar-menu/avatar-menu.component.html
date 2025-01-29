@@ -15,7 +15,7 @@
             ? dbService.userInformation.photoURL
             : '/assets/images/avatars/demo_avatar.png'
         " -->
-    <user-avatar  [size]="70" [hideUsername]="true"></user-avatar>
+    <user-avatar [photoURL]="dbService.userInformation && dbService.userInformation.photoURL!" [size]="70" [hideUsername]="true"></user-avatar>
     <app-icon iconName="arrowDown" class="icon"></app-icon>
     <app-icon iconName="arrowDownPurple" class="icon icon--hovered"></app-icon>
   </div>
