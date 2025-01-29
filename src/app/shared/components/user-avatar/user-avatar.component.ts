@@ -29,7 +29,10 @@ export class UserAvatarComponent {
     uid: '',
     displayName: 'Frederik Beck',
     email: '',
-    photoURL: '/assets/images/avatars/demo_avatar.png',
+    photoURL:
+      this.dbService.userInformation && this.dbService.userInformation.photoURL
+        ? this.dbService.userInformation.photoURL
+        : '/assets/images/avatars/demo_avatar.png',
     lastLogin: new Date(),
     lastActivity: new Date(),
     isOnline: true,
