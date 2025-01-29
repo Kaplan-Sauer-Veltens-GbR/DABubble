@@ -21,6 +21,8 @@ import { Messages } from '../interfaces/messages';
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class DbService {
   private router = inject(Router);
   public firestore = inject(Firestore);
@@ -29,6 +31,8 @@ export class DbService {
   public maxDocs$ = new BehaviorSubject<number>(10);
   constructor() {}
 
+ 
+
   async saveUserData(user: User): Promise<void> {
     if (!user) return;
     const userRef = doc(this.firestore, `users/${user.uid}`);
@@ -36,7 +40,7 @@ export class DbService {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL + '?sz=150',
       lastLogin: new Date(),
       lastActivity: new Date(),
       status: '',
