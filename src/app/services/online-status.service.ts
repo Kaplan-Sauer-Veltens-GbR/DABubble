@@ -7,11 +7,12 @@ export class OnlineStatusService {
   constructor() {}
 
   getStatus(
-    timestamp: Date,
+    timestamp: Date | string | number,
     isOnline: boolean | null
   ): 'online' | 'away' | 'offline' {
+    const dateTimeStamp = new Date(timestamp)
     if (isOnline) {
-      if (this.isActive(timestamp.getTime())) {
+      if (this.isActive(dateTimeStamp.getTime())) {
         return 'online';
       } else {
         return 'away';
