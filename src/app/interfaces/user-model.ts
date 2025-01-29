@@ -6,4 +6,5 @@ export interface UserData {
   lastLogin: Date;
   isOnline: boolean;
   lastActivity: Date;
+//   isYou?: boolean;
 }

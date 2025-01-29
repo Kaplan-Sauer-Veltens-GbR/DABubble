@@ -34,6 +34,7 @@ export class UserAvatarComponent {
     lastActivity: new Date(),
     isOnline: true,
   };
+  @Input() userListHover: boolean = false;
 
   returnUsername(): string {
     let suffix = '';

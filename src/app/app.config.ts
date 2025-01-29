@@ -28,6 +28,7 @@ export const appConfig: ApplicationConfig = {
           prodMode: !isDevMode(),
           fallbackLang: 'de',
         },
+        
         loader: TranslocoHttpLoader
-      })]
+      }),]
 };

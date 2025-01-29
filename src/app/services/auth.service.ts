@@ -15,6 +15,8 @@ import {
   AuthErrorCodes,
   updateProfile,
   signInAnonymously,
+  setPersistence,
+  browserLocalPersistence,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -153,6 +155,10 @@ export class AuthService {
     } else {
       console.error('unkown error:', error);
     }
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
   }
 
   // isCurrentUser(uId: string) {

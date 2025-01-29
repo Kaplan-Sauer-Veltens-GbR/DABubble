@@ -28,7 +28,13 @@ export const routes: Routes = [
       {
         path: 'user/:uid',
         component: ChatWindowComponent,
+        
       },
+      {
+        path: 'privatmessage/:chatId',
+        component: ChatWindowComponent
+      }
+      
     ],
   },
 ];

@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ReactionPopoverComponent } from "./reaction-popover/reaction-popover.component";
 import { ReactionBarComponent } from "./reaction-bar/reaction-bar.component";
 import { TranslocoModule } from '@jsverse/transloco';
+import { Messages } from '../../../../interfaces/messages';
 
 @Component({
   selector: 'chat-message',
@@ -13,6 +14,9 @@ import { TranslocoModule } from '@jsverse/transloco';
 })
 export class ChatMessageComponent {
   @Input() isOwner: boolean = true;
+  @Input() userMessage!:Messages;
+  @Input() userName!: string | null
+  @Input() messageSendTime!:string;
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
@@ -30,4 +34,6 @@ export class ChatMessageComponent {
       return 'chat.subthread.replies.multiple';
     }
   }
+
+  
 }

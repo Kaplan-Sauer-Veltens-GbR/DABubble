@@ -1,34 +1,47 @@
 <section>
   <header>
+    @if(this.checkIfPrivateChatsInUrl()) {
+
+    
     <div class="field--hover" (click)="workspace.openDialog('channelEdit')"[ngClass]="{'selected': workspace.currentDialog === 'channelEdit'}" >
       <app-icon iconName="tag"></app-icon>
       <h2>Entwicklerteam</h2>
       <app-icon iconName="arrowDown"></app-icon>
     </div>
+  }@else if(this.otherChatUser) {
+    <div class="field--hover" >
+      <img style="height: 50px; width: 50px; " class="name-img-size" [src]="this.otherChatUser.photoURL">
+      <h2>{{this.otherChatUser.displayName}}</h2>
+     
+    </div>
+  }
+    @if(this.checkIfPrivateChatsInUrl()) {
     <div>
       <app-avatar-bar (click)="workspace.openDialog('memberList')"></app-avatar-bar>
       <div class="bg-circle">
         <app-icon (click)="workspace.openDialog('addMember')" class="icon--hover scale" iconName="personAdd"></app-icon>
       </div>
     </div>
+  }
   </header>
  
-  <main #chatScrollContainer class="chat">
-    @for(dbObject of [1]; track dbObject) { @for(time of [1,2,3]; track time ) {
+  <main (scroll)="chatLoadOlderMessages($event)" #chatScrollContainer class="chat">
+    @for(group of groupedPrivateChats ; track group.date ) {
     <div class="day-line">
       <div class="seperator"></div>
-      <div class="box--bordered day-box">Dienstag, 14 Januar</div>
+      <div class="box--bordered day-box">{{this.convertTime(group.date)}}</div>
       <div class="seperator"></div>
     </div>
-    @for(message of [1]; track message) {
+  
+    @for(message of group.messages; track message.messageUID) {
         <div>
-    <chat-message></chat-message>
+    <chat-message [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
 </div>
-    } } }
+    } } 
     
   </main>
   <div class="text-field">
-    <app-text-message-field></app-text-message-field>
+    <app-text-message-field (messageSend)="sendMessageToDB($event)"></app-text-message-field>
     </div>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {

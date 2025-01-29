@@ -36,7 +36,7 @@ export class UserSelectorComponent {
 
   @ViewChild('search') searchInput!: ElementRef;
   @ViewChild('suggestionBox') suggestionBox!: ElementRef;
-
+  myDateString: Date = new Date();
   searchText: string = '';
   allUsers: UserData[] = [
     {

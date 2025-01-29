@@ -3,6 +3,7 @@
   class="user-information"
   role="status"
   [attr.aria-label]="returnAriaLabel()"
+  [ngClass]="{'hoverListEffect':userListHover}"
 >
   <div class="avatar">
     <img
@@ -10,6 +11,7 @@
       [ngStyle]="{ height: size + 'px', width: size + 'px' }"
       draggable="false"
       alt=""
+      crossorigin="anonymous"
     />
     @if (!hideOnlineStatus) {
     <div
