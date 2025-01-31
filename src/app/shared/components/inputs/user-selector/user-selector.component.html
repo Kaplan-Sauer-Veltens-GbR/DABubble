@@ -1,24 +1,55 @@
-<ng-container *transloco="let t; prefix:'add-people.user-selector'">
-    <div class="input-container" (click)="focusInput()">
-        @for (user of selectedUsers; let i = $index; track $index) {
-        <div class="chip" [ngClass]="{'chip--marked':selectedChip == i}">
-            <!-- <user-avatar [strikeUsername]="i == selectedChip" [size]="34" aria-hidden="true" [hideOnlineStatus]="true" [exampleUser]="{name: user.name, lastActivity: user.timestamp!, isOffline: true}"></user-avatar> -->
-            <span role="button" [attr.aria-label]="t('delete-user', {'user': user.name})" class="--remove" (click)="unselectUser(user)">
-                <app-icon iconName="close" class="delete-user-icon"></app-icon>
-            </span>
-        </div>
-        }
-
-        <input #search type="text" [(ngModel)]="searchText" [ngClass]="{'marked-chip--exists':selectedChip != -1}" (input)="filterUsers()" (keydown)="searchFieldKeyboardInput($event)" tabindex="0" [placeholder]="getPlaceholder()" class="input-field">
+<ng-container *transloco="let t; prefix: 'add-people.user-selector'">
+  <div class="input-container" (click)="focusInput()">
+    @for (user of selectedUsers; let i = $index; track $index) {
+    <div class="chip" [ngClass]="{ 'chip--marked': selectedChip == i }">
+      <user-avatar
+        [strikeUsername]="i == selectedChip"
+        [size]="34"
+        aria-hidden="true"
+        [hideOnlineStatus]="true"
+        [user]="user"
+      ></user-avatar>
+      <span
+        role="button"
+        [attr.aria-label]="t('delete-user', { user: user.displayName })"
+        class="--remove"
+        (click)="unselectUser(user)"
+      >
+        <app-icon iconName="close" class="delete-user-icon"></app-icon>
+      </span>
     </div>
-
-    @if (hasSuggestions()) {
-    <ul class="suggestions" #suggestionBox>
-        @for (user of filteredUsers; let i = $index; track $index) {
-        <li [ngClass]="{'--selected': selectedSuggestion == i}" role="button" [attr.aria-label]="t('add-user', {'user': user.name})" (keydown.enter)="addUser(user)" (click)="addUser(user)">
-            <!-- <user-avatar [hideOnlineStatus]="true" [size]="30" [exampleUser]="{'name': user.name, 'lastActivity': 0, 'isOffline': false}"></user-avatar> -->
-        </li>
-        }
-    </ul>
     }
+
+    <input
+      #search
+      type="text"
+      [(ngModel)]="searchText"
+      [ngClass]="{ 'marked-chip--exists': selectedChip != -1 }"
+      (input)="filterUsers()"
+      (keydown)="searchFieldKeyboardInput($event)"
+      tabindex="0"
+      [placeholder]="getPlaceholder()"
+      class="input-field"
+    />
+  </div>
+
+  @if (hasSuggestions()) {
+  <ul class="suggestions" #suggestionBox>
+    @for (user of filteredUsers; let i = $index; track $index) {
+    <li
+      [ngClass]="{ '--selected': selectedSuggestion == i }"
+      role="button"
+      [attr.aria-label]="t('add-user', { user: user.displayName })"
+      (keydown.enter)="addUser(user)"
+      (click)="addUser(user)"
+    >
+      <user-avatar
+        [hideOnlineStatus]="true"
+        [size]="30"
+        [user]="user"
+      ></user-avatar>
+    </li>
+    }
+  </ul>
+  }
 </ng-container>

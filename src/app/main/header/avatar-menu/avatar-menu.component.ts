@@ -24,8 +24,8 @@ export class AvatarMenuComponent {
   settings: SettingsService = inject(SettingsService);
   public workspace = inject(WorkspaceService);
   private elementRef = inject(ElementRef);
-  public dbService = inject (DbService);
-  public authService = inject(AuthService)
+  public dbService = inject(DbService);
+  public authService = inject(AuthService);
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     if (this.workspace.isClickOutside(event, this.elementRef.nativeElement)) {

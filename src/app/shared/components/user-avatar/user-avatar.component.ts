@@ -19,23 +19,22 @@ export class UserAvatarComponent {
   wordlistService: WordlistService = inject(WordlistService);
   translocoService: TranslocoService = inject(TranslocoService);
   public dbService = inject(DbService);
-  @Input() photoURL: string = '/assets/images/avatars/demo_avatar.png';
   @Input() hideUsername: boolean = false;
   @Input() strikeUsername: boolean = false;
   @Input() hideOnlineStatus: boolean = false;
   @Input() owner: boolean = false;
   @Input() size: number = 50;
   @Input() userId: string = '';
-  @Input() exampleUser: UserData = {
+  @Input() photoURL!: string;
+  @Input() user: UserData = {
     uid: '',
     displayName: 'Frederik Beck',
     email: '',
     photoURL: '',
     lastLogin: new Date(),
     lastActivity: new Date(),
-    status: '',
+    isOnline: true,
   };
-  @Input() user!: UserData;
   @Input() userListHover: boolean = false;
 
   returnUsername(): string {
@@ -51,15 +50,19 @@ export class UserAvatarComponent {
   returnAriaLabel(): string | null {
     if (!this.hideOnlineStatus) {
       return (
-        this.exampleUser.displayName +
+        this.user.displayName +
         ': ' +
-        this.onlineStatus.getStatus(
-          this.exampleUser.lastActivity,
-          this.exampleUser.status
-        )
+        this.onlineStatus.getStatus(this.user.lastActivity, this.user.isOnline)
       );
     } else {
-      return this.exampleUser.displayName;
+      return this.user.displayName;
     }
+  }
+
+  get isOnline() {
+    return (
+      'is-' +
+      this.onlineStatus.getStatus(this.user.lastActivity, this.user.isOnline)
+    );
   }
 }

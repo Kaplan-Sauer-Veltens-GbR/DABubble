@@ -4,7 +4,7 @@ export interface UserData {
   email: string | null;
   photoURL?: string | null;
   lastLogin: Date;
-  status: string;
+  isOnline: boolean;
   lastActivity: Date;
 //   isYou?: boolean;
 }

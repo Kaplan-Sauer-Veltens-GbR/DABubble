@@ -16,7 +16,7 @@ import {
   updateProfile,
   signInAnonymously,
   setPersistence,
-  browserLocalPersistence 
+  browserLocalPersistence,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Observer } from '@angular/fire/messaging';
@@ -36,8 +36,8 @@ export class AuthService {
   private firestore = inject(Firestore);
   private dataBase = inject(DbService);
   private router = inject(Router);
-  isGuest:boolean = false;
- 
+  isGuest: boolean = false;
+
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
 
@@ -60,7 +60,7 @@ export class AuthService {
     }
   }
 
-   getAuthState(): Observable<User | null> {
+  getAuthState(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
 
@@ -116,10 +116,14 @@ export class AuthService {
         this.routeWithId(userCredential.user.uid);
         this.dataBase.saveUserData(userCredential.user);
         console.log(userCredential.user);
-      
-        
-      }  return { success: true, message: 'Konto wurde erfolgreich erstellt!' };
-    } catch (error) { return { success: false, message: 'Fehler: Konto konnte nicht erstellt werden.' };}
+      }
+      return { success: true, message: 'Konto wurde erfolgreich erstellt!' };
+    } catch (error) {
+      return {
+        success: false,
+        message: 'Fehler: Konto konnte nicht erstellt werden.',
+      };
+    }
   }
 
   async signIn(email: string, password: string): Promise<boolean> {
@@ -129,25 +133,22 @@ export class AuthService {
         email,
         password
       );
-      this.dataBase.saveUserData(userCredential.user)
+      this.dataBase.saveUserData(userCredential.user);
       console.log(userCredential.user);
-      
+
       const uID = userCredential.user.uid;
       this.routeWithId(uID);
-      return true
+      return true;
     } catch (error: any) {
       this.handleFirbaseError(error);
-     return false
+      return false;
     }
   }
-
-  
 
   handleFirbaseError(error: FirebaseError) {
     if (error instanceof FirebaseError) {
       if (error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('wrong password / or email:', error.message);
-        
       } else if (error.code !== AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         console.error('input is not a valid email pattern / or password wrong');
       }
@@ -176,12 +177,8 @@ export class AuthService {
     }
   }
 
-   async guestLogin() {
-   const guestCredential = await signInAnonymously(this.auth);
-   debugger
-   this.routeWithId(guestCredential.user.uid)
-   }
-
-  
+  async guestLogin() {
+    const guestCredential = await signInAnonymously(this.auth);
+    this.routeWithId(guestCredential.user.uid);
+  }
 }
- 
