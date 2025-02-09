@@ -112,7 +112,11 @@ subscribeToCollectionReactive(collectionName: string, callback: (docs: any) => v
       callback(docs);
     });
 }
-
+/**
+ * Sets the text message to the Message interface, creating a new timestamp and setting the author.
+ * @param textMessage The value from the text field
+ * @returns The message as a Messages type
+ */
 setMessageInterface(textMessage:string) {
   const message: Messages = {
     author:this.userInformation.uid,
