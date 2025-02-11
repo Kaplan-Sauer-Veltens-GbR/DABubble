@@ -7,9 +7,10 @@ section {
   // padding: 20px;
   background-color: white;
   box-sizing: border-box;
+  max-height: 808px;
   // max-height: 940px;
   // height: 100%;
-  height: 77%;
+  // height: 77%;
 
   header {
     @include dflex(space-between);
@@ -34,8 +35,10 @@ section {
 
 .chat {
   overflow-y: auto;
-  max-height: 815px;
-  height: 70%;
+  // max-height: 815px;
+  max-height: 575px;
+  min-height: 555px;
+  // height: 70%;
 }
 
 .bg-circle {
