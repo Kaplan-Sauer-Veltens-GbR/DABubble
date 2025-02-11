@@ -41,6 +41,8 @@ import { User, user } from '@angular/fire/auth';
 import { UserData } from '../../interfaces/user-model';
 import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 import { UserSelectorComponent } from "../../shared/components/inputs/user-selector/user-selector.component";
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker/emoji-picker.component";
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -54,7 +56,7 @@ import { UserSelectorComponent } from "../../shared/components/inputs/user-selec
     AddPeopleComponent,
     MemberListComponent,
     CreateChannelComponent,
-    
+    EmojiPickerComponent
 ],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
@@ -89,7 +91,15 @@ export class ChatWindowComponent {
   this.getChatMembers();
   }
 
+  @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
+  
 
+  
+
+  addEmojiToMessage(emoji: string) {
+    // Rufe die Methode der Textarea-Komponente auf, um das Emoji hinzuzufügen
+    this.textMessageField.addEmoji(emoji);
+  }
   /**
  * Subscribes to the URL route parameters to check if the URL contains a chat ID.
  * It listens for changes in the URL and updates the `chatID` variable accordingly.

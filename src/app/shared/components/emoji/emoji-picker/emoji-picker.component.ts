@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { SettingsService } from '../../../../services/settings.service';
 
@@ -34,6 +34,8 @@ export class EmojiPickerComponent {
 
   i18n: object = {};
 
+
+ @Output() emojiSelected = new EventEmitter<string>()
   settings: SettingsService = inject(SettingsService);
 
   ngOnInit() {
@@ -45,5 +47,10 @@ export class EmojiPickerComponent {
     if (lang === 'de') {
       this.i18n = this.translations[lang];
     }
+  }
+
+  addEmoji(event: any) {
+    this.emojiSelected.emit(event.emoji.native); // Emoji wird an Parent gesendet
+   
   }
 }

@@ -38,7 +38,7 @@
     <chat-message [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
 </div>
     } } 
-    
+    <emoji-picker (emojiSelected)="addEmojiToMessage($event)"></emoji-picker>
   </main>
   <div class="text-field">
     <app-text-message-field (messageSend)="sendMessageToDB($event)"></app-text-message-field>

@@ -28,14 +28,19 @@ export class TextMessageFieldComponent {
     }
   }
   
+ 
+
   onSubmit(form: NgForm) {
     console.log('Formu send:', form.value.message);
-    form.value.message = this.message;
+    // form.value.message = this.message;
     this.messageSend.emit(this.message);
     form.reset(); 
+    this.message = '';
   }
 
-
+  addEmoji(emoji: string) {
+    this.message += emoji;  // Emoji zur Nachricht hinzufügen
+  }
  
 }
   
