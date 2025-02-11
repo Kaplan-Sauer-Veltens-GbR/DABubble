@@ -40,6 +40,7 @@ import { AuthService } from '../../services/auth.service';
 import { User, user } from '@angular/fire/auth';
 import { UserData } from '../../interfaces/user-model';
 import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
+import { UserSelectorComponent } from "../../shared/components/inputs/user-selector/user-selector.component";
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -53,7 +54,8 @@ import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
     AddPeopleComponent,
     MemberListComponent,
     CreateChannelComponent,
-  ],
+    
+],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
 })
@@ -276,7 +278,7 @@ export class ChatWindowComponent {
       `privatmessage/${this.chatID}/messages`
     );
     const message = this.dbService.setMessageInterface(textMessage);
-    console.log(textMessage, 'message');
+    console.log(textMessage, 'message123',message);
 
      await addDoc(privateMessages, message);
      this.scrollToBottom();
@@ -367,6 +369,8 @@ export class ChatWindowComponent {
   const timeString = date.toLocaleTimeString('de-DE', options);
   return timeString
   }
+
+
 async getChatMembers() {
   const loggedUser = this.authService.getCurrentUser()?.uid
   const chatRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}`)
