@@ -308,7 +308,14 @@ export class ChatWindowComponent {
     this.getChatMembers();
     }
 
-
+/**
+ * Groups chat messages by date, based on their creation timestamp.
+ * The messages are categorized into daily time slots, ordered by the correct date.
+ * The date display is formatted according to the chosen language (e.g., 'de-DE').
+ * 
+ * @param privateChats Array of chat messages to be grouped by date.
+ * @returns An array of objects where each object contains a 'date' and a list of 'messages' for that date.
+ */
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
     const groupedChats: { date: string; messages: Messages[] }[] = [];
     privateChats.forEach((message) => {
