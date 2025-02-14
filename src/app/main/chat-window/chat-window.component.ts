@@ -191,11 +191,8 @@ export class ChatWindowComponent {
    * Messages are grouped by their date.
    */
   loadPrivatChats(): void {
-   
     this.fetchPrivateChats().subscribe({
-      
       next: (data: Messages[]) => {
-       
         this.privateChats = data.reverse();
         this.lastVisibileMessage =
           data.length > 0 ? data[data.length - 1] : null;
@@ -207,13 +204,11 @@ export class ChatWindowComponent {
         this.scrollToBottom()
         this.firstMessageInit = false;
         }
-        
       },
       error: (err: any) => {
         console.error('Fehler beim Laden', err);
       },
     });
-   
   }
 
 
@@ -278,7 +273,11 @@ export class ChatWindowComponent {
     );
   }
 
-
+/**
+ * Scrolls to the bottom of the chat container when:
+ * 1. New messages are added.
+ * 2. The component is first initialized and there is a long chat history.
+ */
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement;
     chatContainer.scrollTo({
