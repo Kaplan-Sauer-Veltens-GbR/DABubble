@@ -425,7 +425,13 @@ export class ChatWindowComponent {
   return timeString
   }
 
-
+/**
+ * Retrieves both members of a private chat to ensure that only the correct users are part of the chat.
+ * The function checks the current user's UID and filters out the logged-in user, 
+ * then fetches the data of the other chat member to verify the participants.
+ * 
+ * @returns {Promise<void>} Ensures that only the correct users are allowed in the private chat.
+ */
 async getChatMembers() {
   const loggedUser = this.authService.getCurrentUser()?.uid
   const chatRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}`)
