@@ -33,7 +33,7 @@ export class EmojiPickerComponent {
   };
 
   i18n: object = {};
-
+  @Input() isShown:boolean= false;
 
  @Output() emojiSelected = new EventEmitter<string>()
   settings: SettingsService = inject(SettingsService);
