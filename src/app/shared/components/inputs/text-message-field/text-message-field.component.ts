@@ -18,6 +18,7 @@ export class TextMessageFieldComponent {
   @Input() required: boolean = false;
   @Input() toggleEmojiPicker!:boolean;
   @Output() istoggleChange = new EventEmitter<boolean>();
+ 
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   @ViewChild('myForm') myForm!: NgForm;
@@ -30,6 +31,13 @@ export class TextMessageFieldComponent {
     }
   }
   
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click(); 
+    }
+  }
 
   emojiPickerToggle() {
     console.log('clicked');

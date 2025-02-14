@@ -394,11 +394,7 @@ async getChatMembers() {
   
   this.otherChatUser = await this.dbService.getDocData('users',memberUid) as UserData
 
-
  }
-  
- 
-    
-
 }
+
 }
