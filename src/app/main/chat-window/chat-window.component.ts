@@ -85,6 +85,7 @@ export class ChatWindowComponent {
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
   otherChatUser!: UserData;
+  toggleEmojiPicker:boolean = false;
 
   ngOnInit(): void {
   this.SubtoChatRoute();

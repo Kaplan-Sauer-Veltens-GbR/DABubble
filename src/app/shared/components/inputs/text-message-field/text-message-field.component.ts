@@ -16,6 +16,8 @@ export class TextMessageFieldComponent {
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
+  @Input() toggleEmojiPicker!:boolean;
+  @Output() istoggleCHange = new EventEmitter<boolean>();
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   @ViewChild('myForm') myForm!: NgForm;
@@ -28,6 +30,11 @@ export class TextMessageFieldComponent {
     }
   }
   
+
+  emojiPickerToggle() {
+    this.toggleEmojiPicker = !this.toggleEmojiPicker;
+    this.istoggleCHange.emit(this.toggleEmojiPicker);
+  }
  
 
   onSubmit(form: NgForm) {
