@@ -361,6 +361,16 @@ export class ChatWindowComponent {
     }
   }
 
+ /**
+ * Filters the database to find the user associated with the provided UID (message),
+ * validates the user, and returns the user's display name as the author of the message.
+ * 
+ * If no user is found for the provided UID, logs an error and returns `null`.
+ * In case of any error during the database query, logs the error and also returns `null`.
+ * 
+ * @param message The UID of the user to look for in the database.
+ * @returns The display name of the user if found, or `null` if no user is found or an error occurs.
+ */
   async filterDBForUserName(message:string){
     const userRef = collection(this.dbService.firestore,'users');
     const userQuery = query(userRef,where('uid', '==', message));
