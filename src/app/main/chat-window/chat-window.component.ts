@@ -170,6 +170,10 @@ export class ChatWindowComponent {
     );
   }
 
+  /**
+ * Checks if the current URL contains the 'privatemessage'
+ * Returns true if condition are met, otherwise false.
+ */
   checkIfPrivateChatsInUrl() {
     const url = this.router.url
    if(url.includes('privatemessage')) {
