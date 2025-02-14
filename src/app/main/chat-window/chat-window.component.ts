@@ -390,7 +390,13 @@ export class ChatWindowComponent {
       return null
     }
   }
-
+/**
+ * Iterates over an array of messages, retrieves the username for each message's author
+ * using the `filterDBForUserName` function, and then sets the correct author name
+ * for each message in the `messageAuthors` map.
+ * 
+ * @param messages An array of message objects to process, where each message has an 'author' field.
+ */
   async loadUserNames(messages: Messages[]): Promise<void> {
     for (const message of messages) {
       const userName = await this.filterDBForUserName(message.author);
