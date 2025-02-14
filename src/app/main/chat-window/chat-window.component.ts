@@ -286,18 +286,27 @@ export class ChatWindowComponent {
     });  }
 
 
- async sendMessageToDB(textMessage: string) {
-    const privateMessages = collection(
-      this.dbService.firestore,
-      `privatmessage/${this.chatID}/messages`
-    );
-    const message = this.dbService.setMessageInterface(textMessage);
-    console.log(textMessage, 'message123',message);
+  /**
+ * Validates the given textMessage and adds it to the private chats collection.
+ * The textMessage is mapped to the appropriate message type based on the Message interface.
+ * The message is uploaded to the database in the correct structure.
+ * If needed, the chat view is scrolled to the bottom after the message is sent.
+ * The chat members are checked to ensure they are included.
+ * 
+ * @param textMessage The message written by a user.
+ */
+  async sendMessageToDB(textMessage: string) {
+      const privateMessages = collection(
+        this.dbService.firestore,
+        `privatmessage/${this.chatID}/messages`
+      );
+      const message = this.dbService.setMessageInterface(textMessage);
+      console.log(textMessage, 'message123',message);
 
-     await addDoc(privateMessages, message);
-     this.scrollToBottom();
-   this.getChatMembers();
-  }
+      await addDoc(privateMessages, message);
+      this.scrollToBottom();
+    this.getChatMembers();
+    }
 
 
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
