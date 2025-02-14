@@ -341,7 +341,13 @@ export class ChatWindowComponent {
     return groupedChats; 
   }
 
-  
+  /**
+ * Loads older messages when the user reaches the top of the current chat window,
+ * and there are more messages available in the array than currently displayed.
+ * Automatically increases the message limit to load additional messages.
+ * 
+ * @param event The scroll event triggered when the user scrolls within the chat window.
+ */
   chatLoadOlderMessages(event: Event): void {
     const target = event.target as HTMLElement;
     const scrollTop = target.scrollTop;
