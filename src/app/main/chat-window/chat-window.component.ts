@@ -330,7 +330,6 @@ export class ChatWindowComponent {
       console.log(dateString);
       // Suchen, ob es bereits einen Eintradg für das Datum gibt
       let dateGroup = groupedChats.find((group) => group.date === dateString);
-
       // Falls keine Gruppe für das Datum existiert, erstelle eine neue
       if (!dateGroup) {
         dateGroup = { date: dateString, messages: [] };
@@ -339,7 +338,6 @@ export class ChatWindowComponent {
       dateGroup.messages.push(message);
     });
     console.log(groupedChats,'grouped');
-    
     return groupedChats; 
   }
 
