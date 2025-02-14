@@ -406,7 +406,12 @@ export class ChatWindowComponent {
       
     }
   }
-
+/**
+ * Converts a Firebase Timestamp to a valid JavaScript timestamp, then formats and returns the time
+ * in hours and minutes (24-hour format), along with the day of the week.
+ * @param firebaseTimestamp The Firebase timestamp object containing 'seconds' and 'nanoseconds' fields.
+ * @returns A string representing the time in hours and minutes (e.g., "14:30").
+ */
   dateToTime(firebaseTimestamp:FireTimestampModel) {
   const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
   const date = new Date(milliseconds); 
