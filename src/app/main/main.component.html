@@ -1,12 +1,15 @@
 <div class="main-container">
-    <app-header></app-header>
-    <main>
-    <app-sidebar></app-sidebar>
-    <div class="app-container">
-    <router-outlet></router-outlet>
+  <app-header></app-header>
+  <main>
+
+    <app-sidebar
+      *ngIf="!isSmallScreen || (isSmallScreen && !showChatWindow)"
+      (contactSelected)="openChat()">
+    </app-sidebar>
+    <div class="app-container" *ngIf="!isSmallScreen || (isSmallScreen && showChatWindow)">
+      <router-outlet></router-outlet>
+      <button class="back-button" *ngIf="isSmallScreen && showChatWindow" (click)="closeChat()">Back</button>
     </div>
-    </main>
-    </div>
-    @if(workspace.currentDialog != null) {
-        <div class="overlay"></div>
-    }
+  </main>
+</div>
+<div *ngIf="workspace.currentDialog != null" class="overlay"></div>

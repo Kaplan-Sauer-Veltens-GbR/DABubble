@@ -1,10 +1,10 @@
-import { Component, ElementRef, inject } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkspaceService } from '../services/workspace.service';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Auth, idToken, User } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 import { UserData } from '../interfaces/user-model';
@@ -14,9 +14,9 @@ import { UserData } from '../interfaces/user-model';
   standalone: true,
   imports: [HeaderComponent, SidebarComponent, RouterOutlet, CommonModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
+  styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
   public workspace = inject(WorkspaceService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -25,7 +25,13 @@ export class MainComponent {
   user: User | null = null;
   isAuthChecked = false;
 
-  ngOnInit() {
+
+  isSmallScreen: boolean = window.innerWidth <= 1024;
+
+  showChatWindow: boolean = false;
+
+  ngOnInit(): void {
+
     this.authService.getAuthState().subscribe((user) => {
       if (user) {
         console.log('User logged in:', user);
@@ -34,9 +40,45 @@ export class MainComponent {
       } else {
         console.log('No user logged in');
         this.user = null;
-        this.router.navigate(['']); // working on it later , problem to solve is that the init on reload returns a null user and than it loads a second time with the user data
+        this.router.navigate(['']);
       }
     });
+
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showChatWindow = event.url.includes('privatmessage');
+      }
+    });
+
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize(): void {
+    this.isSmallScreen = window.innerWidth <= 1024;
+
+    if (!this.isSmallScreen) {
+      this.showChatWindow = false;
+    }
+  }
+
+
+  openChat(): void {
+    if (this.isSmallScreen) {
+      this.showChatWindow = true;
+    }
+  }
+
+
+  closeChat(): void {
+    if (this.isSmallScreen) {
+      this.showChatWindow = false;
+    }
   }
 
   handleUserLogin(user: User) {
@@ -58,6 +100,7 @@ export class MainComponent {
       return null;
     }
   }
+
   async getUserData(uid: string) {
     const userData = await this.dbService.getDocData('users', uid);
     console.log(userData, 'Data');
