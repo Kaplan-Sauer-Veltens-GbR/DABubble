@@ -36,9 +36,7 @@
     @for(message of group.messages; track message.messageUID) {
         <div>
     <chat-message [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
-    @if(message.attachment != '') {
-      <img src="../../../../assets/images/avatars/avatar1.png">
-    }
+   
 </div>
     } } 
     @if (this.toggleEmojiPicker) {

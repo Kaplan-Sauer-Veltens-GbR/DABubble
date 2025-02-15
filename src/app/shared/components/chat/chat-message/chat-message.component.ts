@@ -17,6 +17,7 @@ export class ChatMessageComponent {
   @Input() userMessage!:Messages;
   @Input() userName!: string | null
   @Input() messageSendTime!:string;
+  @Input() messageAttachmebt!: string;
   displayPopover: boolean = false;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
