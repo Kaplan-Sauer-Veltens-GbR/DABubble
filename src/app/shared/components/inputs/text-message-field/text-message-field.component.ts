@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DbService } from '../../../../services/db.service';
 import { collection } from '@angular/fire/firestore';
+import { DbStorageService } from '../../../../services/db-storage.service';
 
 @Component({
   selector: 'app-text-message-field',
@@ -13,6 +14,7 @@ import { collection } from '@angular/fire/firestore';
   styleUrl: './text-message-field.component.scss'
 })
 export class TextMessageFieldComponent {
+  private dbStorage = inject(DbStorageService)
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
@@ -21,6 +23,7 @@ export class TextMessageFieldComponent {
  
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
+  selectedFile: File | null = null;
   @ViewChild('myForm') myForm!: NgForm;
   
   private dbService = inject(DbService)
@@ -32,11 +35,15 @@ export class TextMessageFieldComponent {
   }
   
 
-  triggerFileInput(): void {
+
+
+  triggerFileInput(): void {  
     const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
     if (fileInput) {
       fileInput.click(); 
+      
     }
+    
   }
 
   emojiPickerToggle() {
@@ -51,6 +58,9 @@ export class TextMessageFieldComponent {
     console.log('Formu send:', form.value.message);
     // form.value.message = this.message;
     this.messageSend.emit(this.message);
+    if(this.dbStorage.selectedFile) {
+      this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
+    }
     form.reset(); 
     this.message = '';
   }

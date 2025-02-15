@@ -71,6 +71,7 @@
   accept="image/*"
   id="fileUpload"
   style="display: none"
+  (change)="this.dbStorage.onFileSelected($event)"
 />
 
 

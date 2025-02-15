@@ -13,6 +13,7 @@ import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Messages } from '../interfaces/messages';
+import { DbStorageService } from './db-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ import { Messages } from '../interfaces/messages';
 export class DbService {
   private router = inject(Router);
   public firestore = inject(Firestore);
+  private dbStorage = inject(DbStorageService)
   userInformation!: UserData;
   sessionToken! :string;
   public maxDocs$ = new BehaviorSubject<number>(10);
@@ -122,7 +124,7 @@ setMessageInterface(textMessage:string) {
     author:this.userInformation.uid,
     createdOn: new Date(),
     message:textMessage,
-    attachments: '../../../assets/images/avatars/avatar1.png'
+    ...(this.dbStorage.imgDownloadUrl ? { attachments: this.dbStorage.imgDownloadUrl } : {})
   }
   return message;
 }
