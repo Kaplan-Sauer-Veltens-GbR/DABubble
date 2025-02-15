@@ -27,11 +27,9 @@ export class MainComponent implements OnInit {
 
 
   isSmallScreen: boolean = window.innerWidth <= 1024;
-
   showChatWindow: boolean = false;
 
   ngOnInit(): void {
-
     this.authService.getAuthState().subscribe((user) => {
       if (user) {
         console.log('User logged in:', user);
@@ -61,8 +59,8 @@ export class MainComponent implements OnInit {
 
   private checkScreenSize(): void {
     this.isSmallScreen = window.innerWidth <= 1024;
-
     if (!this.isSmallScreen) {
+
       this.showChatWindow = false;
     }
   }
@@ -80,6 +78,7 @@ export class MainComponent implements OnInit {
       this.showChatWindow = false;
     }
   }
+
 
   handleUserLogin(user: User) {
     this.getUserIdToken(user).then((idToken) => {
