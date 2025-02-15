@@ -9,7 +9,11 @@
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">{{userName}}</span>
                 <span class="timestamp">{{messageSendTime}}</span>
             </div>
-            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">{{userMessage.message}}</div>
+            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">
+                @if(messageAttachment) {
+                    <img [src]="messageAttachment">
+                }
+                {{userMessage.message}}</div>
             <app-reaction-bar [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>
             <div class="msg__footer">
                 <span class="subthread-link" role="button" [attr.aria-label]="t(translateReplyAmount(), {'amount': replyAmount}) + t('chat.subthread.open')">

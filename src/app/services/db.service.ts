@@ -122,7 +122,7 @@ setMessageInterface(textMessage:string) {
     author:this.userInformation.uid,
     createdOn: new Date(),
     message:textMessage,
-    attachments: '../../../public/assets/images/avatars/avatar1.png'
+    attachments: '../../../assets/images/avatars/avatar1.png'
   }
   return message;
 }
