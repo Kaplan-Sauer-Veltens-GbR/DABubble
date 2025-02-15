@@ -16,6 +16,9 @@ export class TextMessageFieldComponent {
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
+  @Input() toggleEmojiPicker!:boolean;
+  @Output() istoggleChange = new EventEmitter<boolean>();
+ 
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   @ViewChild('myForm') myForm!: NgForm;
@@ -28,14 +31,33 @@ export class TextMessageFieldComponent {
     }
   }
   
-  onSubmit(form: NgForm) {
-    console.log('Formu send:', form.value.message);
-    form.value.message = this.message;
-    this.messageSend.emit(this.message);
-    form.reset(); 
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click(); 
+    }
   }
 
+  emojiPickerToggle() {
+    console.log('clicked');
+    
+    this.toggleEmojiPicker = !this.toggleEmojiPicker;
+    this.istoggleChange.emit(this.toggleEmojiPicker);
+  }
+ 
 
+  onSubmit(form: NgForm) {
+    console.log('Formu send:', form.value.message);
+    // form.value.message = this.message;
+    this.messageSend.emit(this.message);
+    form.reset(); 
+    this.message = '';
+  }
+
+  addEmoji(emoji: string) {
+    this.message += emoji;  // Emoji zur Nachricht hinzufügen
+  }
  
 }
   

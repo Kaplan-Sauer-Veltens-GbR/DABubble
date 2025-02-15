@@ -38,10 +38,13 @@
     <chat-message [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
 </div>
     } }
+    @if (this.toggleEmojiPicker) {
+      <emoji-picker [isShown]="this.toggleEmojiPicker" (emojiSelected)="addEmojiToMessage($event)"></emoji-picker>
+    }
 
   </main>
   <div class="text-field">
-    <app-text-message-field (messageSend)="sendMessageToDB($event)"></app-text-message-field>
+    <app-text-message-field  (istoggleChange)="toggleEmojiPicker = $event" [toggleEmojiPicker]="toggleEmojiPicker" (messageSend)="sendMessageToDB($event)"></app-text-message-field>
     </div>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {
@@ -61,3 +64,15 @@
       <app-create-channel></app-create-channel>
     </div>
   }
+
+  <input
+  type="file"
+  accept="image/*"
+  id="fileUpload"
+  style="display: none"
+/>
+
+
+
+
+

@@ -17,11 +17,11 @@
     </div>
     <div class="icon-line">
       <div class="icon-bg-hover">
-        <app-icon iconName="addGrey"></app-icon>
+        <app-icon (click)="triggerFileInput()" iconName="addGrey"></app-icon>
       </div>
       <div class="seperator"></div>
       <div class="icon-bg-hover">
-        <app-icon iconName="emojiGrey"></app-icon>
+        <app-icon (click)="emojiPickerToggle()" iconName="emojiGrey"></app-icon>
       </div>
       <div class="icon-bg-hover">
         <app-icon iconName="emailTagGrey"></app-icon>

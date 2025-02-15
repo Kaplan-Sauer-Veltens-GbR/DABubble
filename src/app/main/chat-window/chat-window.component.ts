@@ -41,6 +41,8 @@ import { User, user } from '@angular/fire/auth';
 import { UserData } from '../../interfaces/user-model';
 import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 import { UserSelectorComponent } from "../../shared/components/inputs/user-selector/user-selector.component";
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker/emoji-picker.component";
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -54,7 +56,7 @@ import { UserSelectorComponent } from "../../shared/components/inputs/user-selec
     AddPeopleComponent,
     MemberListComponent,
     CreateChannelComponent,
-    
+    EmojiPickerComponent
 ],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
@@ -83,13 +85,22 @@ export class ChatWindowComponent {
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
   otherChatUser!: UserData;
+  toggleEmojiPicker:boolean = false;
 
   ngOnInit(): void {
   this.SubtoChatRoute();
   this.getChatMembers();
   }
 
+  @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
 
+
+
+
+  addEmojiToMessage(emoji: string) {
+    // Rufe die Methode der Textarea-Komponente auf, um das Emoji hinzuzufügen
+    this.textMessageField.addEmoji(emoji);
+  }
   /**
  * Subscribes to the URL route parameters to check if the URL contains a chat ID.
  * It listens for changes in the URL and updates the `chatID` variable accordingly.
@@ -159,6 +170,10 @@ export class ChatWindowComponent {
     );
   }
 
+  /**
+ * Checks if the current URL contains the 'privatemessage'
+ * Returns true if condition are met, otherwise false.
+ */
   checkIfPrivateChatsInUrl() {
     const url = this.router.url
    if(url.includes('privatemessage')) {
@@ -176,11 +191,8 @@ export class ChatWindowComponent {
    * Messages are grouped by their date.
    */
   loadPrivatChats(): void {
-
     this.fetchPrivateChats().subscribe({
-
       next: (data: Messages[]) => {
-
         this.privateChats = data.reverse();
         this.lastVisibileMessage =
           data.length > 0 ? data[data.length - 1] : null;
@@ -192,13 +204,11 @@ export class ChatWindowComponent {
         this.scrollToBottom()
         this.firstMessageInit = false;
         }
-
       },
       error: (err: any) => {
         console.error('Fehler beim Laden', err);
       },
     });
-
   }
 
 
@@ -263,7 +273,11 @@ export class ChatWindowComponent {
     );
   }
 
-
+/**
+ * Scrolls to the bottom of the chat container when:
+ * 1. New messages are added.
+ * 2. The component is first initialized and there is a long chat history.
+ */
   scrollToBottom() {
     const chatContainer = this.scrollContainer.nativeElement;
     chatContainer.scrollTo({
@@ -272,20 +286,36 @@ export class ChatWindowComponent {
     });  }
 
 
- async sendMessageToDB(textMessage: string) {
-    const privateMessages = collection(
-      this.dbService.firestore,
-      `privatmessage/${this.chatID}/messages`
-    );
-    const message = this.dbService.setMessageInterface(textMessage);
-    console.log(textMessage, 'message123',message);
+  /**
+ * Validates the given textMessage and adds it to the private chats collection.
+ * The textMessage is mapped to the appropriate message type based on the Message interface.
+ * The message is uploaded to the database in the correct structure.
+ * If needed, the chat view is scrolled to the bottom after the message is sent.
+ * The chat members are checked to ensure they are included.
+ *
+ * @param textMessage The message written by a user.
+ */
+  async sendMessageToDB(textMessage: string) {
+      const privateMessages = collection(
+        this.dbService.firestore,
+        `privatmessage/${this.chatID}/messages`
+      );
+      const message = this.dbService.setMessageInterface(textMessage);
+      console.log(textMessage, 'message123',message);
 
-     await addDoc(privateMessages, message);
-     this.scrollToBottom();
-   this.getChatMembers();
-  }
+      await addDoc(privateMessages, message);
+      this.scrollToBottom();
+    this.getChatMembers();
+    }
 
-
+/**
+ * Groups chat messages by date, based on their creation timestamp.
+ * The messages are categorized into daily time slots, ordered by the correct date.
+ * The date display is formatted according to the chosen language (e.g., 'de-DE').
+ *
+ * @param privateChats Array of chat messages to be grouped by date.
+ * @returns An array of objects where each object contains a 'date' and a list of 'messages' for that date.
+ */
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
     const groupedChats: { date: string; messages: Messages[] }[] = [];
     privateChats.forEach((message) => {
@@ -300,7 +330,6 @@ export class ChatWindowComponent {
       console.log(dateString);
       // Suchen, ob es bereits einen Eintradg für das Datum gibt
       let dateGroup = groupedChats.find((group) => group.date === dateString);
-
       // Falls keine Gruppe für das Datum existiert, erstelle eine neue
       if (!dateGroup) {
         dateGroup = { date: dateString, messages: [] };
@@ -309,11 +338,16 @@ export class ChatWindowComponent {
       dateGroup.messages.push(message);
     });
     console.log(groupedChats,'grouped');
-
     return groupedChats;
   }
 
-
+  /**
+ * Loads older messages when the user reaches the top of the current chat window,
+ * and there are more messages available in the array than currently displayed.
+ * Automatically increases the message limit to load additional messages.
+ *
+ * @param event The scroll event triggered when the user scrolls within the chat window.
+ */
   chatLoadOlderMessages(event: Event): void {
     const target = event.target as HTMLElement;
     const scrollTop = target.scrollTop;
@@ -327,6 +361,16 @@ export class ChatWindowComponent {
     }
   }
 
+ /**
+ * Filters the database to find the user associated with the provided UID (message),
+ * validates the user, and returns the user's display name as the author of the message.
+ *
+ * If no user is found for the provided UID, logs an error and returns `null`.
+ * In case of any error during the database query, logs the error and also returns `null`.
+ *
+ * @param message The UID of the user to look for in the database.
+ * @returns The display name of the user if found, or `null` if no user is found or an error occurs.
+ */
   async filterDBForUserName(message:string){
     const userRef = collection(this.dbService.firestore,'users');
     const userQuery = query(userRef,where('uid', '==', message));
@@ -346,7 +390,13 @@ export class ChatWindowComponent {
       return null
     }
   }
-
+/**
+ * Iterates over an array of messages, retrieves the username for each message's author
+ * using the `filterDBForUserName` function, and then sets the correct author name
+ * for each message in the `messageAuthors` map.
+ *
+ * @param messages An array of message objects to process, where each message has an 'author' field.
+ */
   async loadUserNames(messages: Messages[]): Promise<void> {
     for (const message of messages) {
       const userName = await this.filterDBForUserName(message.author);
@@ -356,7 +406,12 @@ export class ChatWindowComponent {
 
     }
   }
-
+/**
+ * Converts a Firebase Timestamp to a valid JavaScript timestamp, then formats and returns the time
+ * in hours and minutes (24-hour format), along with the day of the week.
+ * @param firebaseTimestamp The Firebase timestamp object containing 'seconds' and 'nanoseconds' fields.
+ * @returns A string representing the time in hours and minutes (e.g., "14:30").
+ */
   dateToTime(firebaseTimestamp:FireTimestampModel) {
   const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
   const date = new Date(milliseconds);
@@ -370,7 +425,13 @@ export class ChatWindowComponent {
   return timeString
   }
 
-
+/**
+ * Retrieves both members of a private chat to ensure that only the correct users are part of the chat.
+ * The function checks the current user's UID and filters out the logged-in user,
+ * then fetches the data of the other chat member to verify the participants.
+ *
+ * @returns {Promise<void>} Ensures that only the correct users are allowed in the private chat.
+ */
 async getChatMembers() {
   const loggedUser = this.authService.getCurrentUser()?.uid
   const chatRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}`)
@@ -383,11 +444,7 @@ async getChatMembers() {
 
   this.otherChatUser = await this.dbService.getDocData('users',memberUid) as UserData
 
-
  }
-
-
-
-
 }
+
 }
