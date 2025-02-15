@@ -121,7 +121,8 @@ setMessageInterface(textMessage:string) {
   const message: Messages = {
     author:this.userInformation.uid,
     createdOn: new Date(),
-    message:textMessage
+    message:textMessage,
+    attachments: '../../../public/assets/images/avatars/avatar1.png'
   }
   return message;
 }
