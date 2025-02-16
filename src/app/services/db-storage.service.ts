@@ -11,6 +11,8 @@ import { UploadTask, UploadTaskSnapshot } from 'firebase/storage';
 export class DbStorageService {
 private app: FirebaseApp;
 public storage: FirebaseStorage;
+selectedFile: File | null = null;
+imgDownloadUrl!:string;
 attachment:string = ''
   constructor() { 
      if (!getApps().length) {
@@ -31,6 +33,19 @@ attachment:string = ''
   }
 
 
+  async deleteImage(imagePath: string) {
+    const storage = getStorage();
+    const imageRef = ref(storage, imagePath);
+  
+    try {
+      await deleteObject(imageRef);
+      console.log('Bild erfolgreich gelöscht');
+    } catch (error) {
+      console.error('Fehler beim Löschen des Bildes:', error);
+    }
+  }
+
+
   uploadFile(file: File, path:string):Promise<string> {
     return new Promise((resolve,reject) => {
       const uploadTask = this.setUpUpload(file,path)
@@ -41,6 +56,9 @@ attachment:string = ''
         ,async () =>  {
           try {
            const  downloadUrl = await this.handleUploadSuccess(uploadTask)
+           this.imgDownloadUrl = downloadUrl
+           console.log(downloadUrl);
+           
            resolve(downloadUrl)
           }catch(error) {
             reject(error)
@@ -49,6 +67,9 @@ attachment:string = ''
       )
     }) 
     }
+
+
+   
 
 
     setUpUpload(file:File,path:string) {
@@ -80,6 +101,14 @@ attachment:string = ''
       console.error('upload failed', error);
       reject;
     }
+
+
+    onFileSelected(event:any):void {
+      if(event.target.files.length > 0) {
+       this.selectedFile = event.target.files[0];
+      //  this.uploadProfilePicture();
+      }
+       }
   }
 
  

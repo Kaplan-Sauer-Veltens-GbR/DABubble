@@ -43,6 +43,7 @@ import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 import { UserSelectorComponent } from "../../shared/components/inputs/user-selector/user-selector.component";
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker/emoji-picker.component";
+import { DbStorageService } from '../../services/db-storage.service';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -72,6 +73,7 @@ export class ChatWindowComponent {
   public dbService = inject(DbService);
   public authService = inject(AuthService)
   private cdRef = inject(ChangeDetectorRef)
+  public dbStorage = inject(DbStorageService)
   @Input() message!: Messages;
   private isAtTop= false; 
   privateChats: any[] = [];
@@ -447,4 +449,11 @@ async getChatMembers() {
  }
 }
 
-}
+deleteImagePathIfExists(attachments: string | undefined) {
+  if (attachments) {
+    // Hier kannst du den Bildpfad löschen
+    this.dbStorage.deleteImage(attachments);
+    console.log('Bildpfad nach dem Absenden gelöscht');
+  }
+
+}}
