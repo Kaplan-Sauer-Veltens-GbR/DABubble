@@ -457,3 +457,4 @@ deleteImagePathIfExists(attachments: string | undefined) {
   }
 
 }}
+//shorten later some functions
