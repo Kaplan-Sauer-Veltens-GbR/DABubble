@@ -65,6 +65,8 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
            const  downloadUrl = await this.handleUploadSuccess(uploadTask)
            this.imgDownloadUrl = downloadUrl
            this.uploadProgressSubject.next(0);
+           this.isUploadingSubject.next(false);
+          this.selectedFile = null;
            console.log(downloadUrl);
            
            resolve(downloadUrl)
@@ -101,7 +103,6 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
    async handleUploadSuccess(uploadTask: UploadTask):Promise<string> {
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
       this.attachment = downloadURL;
-      this.isUploadingSubject.next(false);
       console.log(uploadTask.snapshot.ref);
       return downloadURL;
     }

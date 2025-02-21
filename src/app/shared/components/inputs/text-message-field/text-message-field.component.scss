@@ -44,6 +44,11 @@ textarea {
   }
 }
 
+.disabled-btn {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .icon-line {
   @include dflex(center, center, 10px);
   &:hover :not(.seperator) {

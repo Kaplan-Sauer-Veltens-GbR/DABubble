@@ -13,7 +13,7 @@
 </form>
 
   <div class="icon-container">
-    <button [disabled]="this.isUploading" (click)="submitForm(myForm, $event)" class="send">
+    <button [ngClass]="{'disabled-btn': this.isUploading,'send':!this.isUploading}" (click)="submitForm(myForm, $event)">
       <app-icon iconName="sendBlue"></app-icon>
     </button>
     <div class="icon-line">
