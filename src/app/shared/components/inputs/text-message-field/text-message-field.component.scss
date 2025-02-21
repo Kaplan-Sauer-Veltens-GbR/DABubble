@@ -35,7 +35,7 @@ textarea {
 
   .send {
     &:hover {
-      filter: $colorTransformPurple2;
+      // filter: $colorTransformPurple2;
 
       ~ .icon-line app-icon {
         filter: brightness(0) saturate(100%) !important;
@@ -86,7 +86,6 @@ textarea {
 }
 
 #loading-bar {
-  width: 25%;
   background-color: aqua;
   height: 6px;
   border-radius: 8px;

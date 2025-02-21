@@ -3,6 +3,7 @@ import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
 import { UploadTask, UploadTaskSnapshot } from 'firebase/storage';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -14,7 +15,10 @@ public storage: FirebaseStorage;
 selectedFile: File | null = null;
 imgDownloadUrl!:string;
 attachment:string = ''
-isUploading:boolean = false;
+private isUploadingSubject = new BehaviorSubject<boolean>(false)
+public isUploading$ = this.isUploadingSubject.asObservable();
+private uploadProgressSubject = new BehaviorSubject<number>(0);
+public uploadProgress$ = this.uploadProgressSubject.asObservable();
 
   constructor() { 
      if (!getApps().length) {
@@ -50,16 +54,17 @@ isUploading:boolean = false;
 
   uploadFile(file: File, path:string):Promise<string> {
     return new Promise((resolve,reject) => {
-      this.isUploading = true;
+      this.isUploadingSubject.next(true)
       const uploadTask = this.setUpUpload(file,path)
       uploadTask.on(
         'state_changed',
-        this.handleUploadProgress,
+        (snapshot) => this.handleUploadProgress(snapshot),
         (error) => this.handleUploadError(reject,error)
         ,async () =>  {
           try {
            const  downloadUrl = await this.handleUploadSuccess(uploadTask)
            this.imgDownloadUrl = downloadUrl
+           this.uploadProgressSubject.next(0);
            console.log(downloadUrl);
            
            resolve(downloadUrl)
@@ -87,7 +92,8 @@ isUploading:boolean = false;
   
     handleUploadProgress(snapshot:UploadTaskSnapshot):void {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
+        console.log(`Upload is ${progress}% done`);
+        this.uploadProgressSubject.next(progress);
         
     }
 
@@ -95,7 +101,7 @@ isUploading:boolean = false;
    async handleUploadSuccess(uploadTask: UploadTask):Promise<string> {
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
       this.attachment = downloadURL;
-      this.isUploading = false;
+      this.isUploadingSubject.next(false);
       console.log(uploadTask.snapshot.ref);
       return downloadURL;
     }
@@ -110,7 +116,8 @@ isUploading:boolean = false;
     onFileSelected(event:any):void {
       if(event.target.files.length > 0) {
        this.selectedFile = event.target.files[0];
-      //  this.uploadProfilePicture();
+       
+      this.uploadFile(this.selectedFile!,'chatMessageImg/')
       }
        }
   }

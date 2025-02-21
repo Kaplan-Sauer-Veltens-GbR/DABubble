@@ -13,7 +13,7 @@
 </form>
 
   <div class="icon-container">
-    <button [disabled]="this.dbStorage.isUploading" (click)="submitForm(myForm, $event)" class="send">
+    <button [disabled]="this.isUploading" (click)="submitForm(myForm, $event)" class="send">
       <app-icon iconName="sendBlue"></app-icon>
     </button>
     <div class="icon-line">
@@ -30,6 +30,9 @@
     </div>
   </div>
 </div>
-<div id="loading-bar-container">
-  <div id="loading-bar"></div>
-</div>
+@if(this.isUploading) {
+  <div id="loading-bar-container">
+    <div [style.width.%]="uploadProgress" id="loading-bar"></div>
+  </div>
+}
+

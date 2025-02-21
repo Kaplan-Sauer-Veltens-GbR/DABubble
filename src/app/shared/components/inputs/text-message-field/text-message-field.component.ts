@@ -24,11 +24,25 @@ export class TextMessageFieldComponent {
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   selectedFile: File | null = null;
+  uploadProgress!:number;
+  isUploading!:boolean;
   @ViewChild('myForm') myForm!: NgForm;
   
   private dbService = inject(DbService)
+
+constructor() {
+this.dbStorage.isUploading$.subscribe(status => {
+this.isUploading = status
+})
+
+  this.dbStorage.uploadProgress$.subscribe(progress => {
+    this.uploadProgress = progress;
+  });
+
+}
+
   submitForm(form: NgForm ,event:Event) {
-    if (this.dbStorage.isUploading) {
+    if (this.isUploading) {
       console.log('Upload läuft, Enter-Taste blockiert.');
       event.preventDefault(); // Verhindert den Standard-Submit
       event.stopPropagation(); // Stoppt die Event-Ausbreitung
@@ -46,6 +60,7 @@ export class TextMessageFieldComponent {
   triggerFileInput(): void {  
     const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
     if (fileInput) {
+      fileInput.value = ''
       fileInput.click(); 
       
     }
@@ -63,11 +78,10 @@ export class TextMessageFieldComponent {
   async onSubmit(form: NgForm) {
    
     console.log('Formu send:', form.value.message);
-    // form.value.message = this.message;
- 
-    if(this.dbStorage.selectedFile ) {
-     this.dbStorage.imgDownloadUrl = await  this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
-    }
+    form.value.message = this.message;
+    // if(this.dbStorage.selectedFile ) {
+    //  this.dbStorage.imgDownloadUrl = await  this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
+    // }
     this.messageSend.emit(this.message);
     form.reset(); 
     this.dbStorage.imgDownloadUrl = '';
