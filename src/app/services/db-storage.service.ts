@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { ChangeDetectorRef, inject, Injectable, NgZone } from '@angular/core';
 import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
@@ -30,7 +30,8 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
     this.storage = getStorage(this.app);
   }
     
-
+  
+  
   async checkPreviousImgPath(previousImgPath:string | null) {
   if(previousImgPath != null) {
     const previousRef = ref(this.storage,previousImgPath)
@@ -69,7 +70,7 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
            this.isUploadingSubject.next(false);
           this.selectedFile = null;
            console.log(downloadUrl);
-           
+         
            resolve(downloadUrl)
           }catch(error) {
             reject(error)

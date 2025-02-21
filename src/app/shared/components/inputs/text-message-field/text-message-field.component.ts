@@ -44,8 +44,8 @@ this.isUploading = status
   submitForm(form: NgForm ,event:Event) {
     if (this.isUploading) {
       console.log('Upload läuft, Enter-Taste blockiert.');
-      event.preventDefault(); // Verhindert den Standard-Submit
-      event.stopPropagation(); // Stoppt die Event-Ausbreitung
+      event.preventDefault();
+      event.stopPropagation();
     }
     else if(this.myForm.valid) {
       event.preventDefault()
