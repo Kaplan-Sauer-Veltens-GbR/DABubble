@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, inject, Input, NgZone, Output, output, ViewChild } from '@angular/core';
 import { IconLibaryComponent } from "../../icon-component/icon-libary.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,9 @@ import { DbStorageService } from '../../../../services/db-storage.service';
   styleUrl: './text-message-field.component.scss'
 })
 export class TextMessageFieldComponent {
-  public dbStorage = inject(DbStorageService)
+  public dbStorage = inject(DbStorageService);
+  private cdr = inject(ChangeDetectorRef);
+  private zone = inject(NgZone);
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
@@ -23,6 +25,7 @@ export class TextMessageFieldComponent {
  
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
+  imgSend:boolean = true;
   selectedFile: File | null = null;
   uploadProgress!:number;
   isUploading!:boolean;
@@ -32,11 +35,17 @@ export class TextMessageFieldComponent {
 
 constructor() {
 this.dbStorage.isUploading$.subscribe(status => {
-this.isUploading = status
+  this.zone.run(() => {
+    this.isUploading = status;
+    this.cdr.markForCheck();
+  });
 })
 
   this.dbStorage.uploadProgress$.subscribe(progress => {
-    this.uploadProgress = progress;
+    this.zone.run(() => {
+      this.uploadProgress = progress;
+      this.cdr.markForCheck();
+    });
   });
 
 }
@@ -44,7 +53,7 @@ this.isUploading = status
   submitForm(form: NgForm ,event:Event) {
     if (this.isUploading) {
       console.log('Upload läuft, Enter-Taste blockiert.');
-      event.preventDefault();
+      event.preventDefault();    
       event.stopPropagation();
     }
     else if(this.myForm.valid) {
@@ -62,6 +71,7 @@ this.isUploading = status
     if (fileInput) {
       fileInput.value = ''
       fileInput.click(); 
+      this.imgSend = false;
       
     }
     
@@ -83,6 +93,7 @@ this.isUploading = status
     //  this.dbStorage.imgDownloadUrl = await  this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
     // }
     this.messageSend.emit(this.message);
+    this.imgSend = true;
     form.reset(); 
     this.dbStorage.imgDownloadUrl = '';
     this.message = '';
