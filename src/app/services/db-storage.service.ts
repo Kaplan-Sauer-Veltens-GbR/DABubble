@@ -14,6 +14,8 @@ public storage: FirebaseStorage;
 selectedFile: File | null = null;
 imgDownloadUrl!:string;
 attachment:string = ''
+isUploading:boolean = false;
+
   constructor() { 
      if (!getApps().length) {
       this.app = initializeApp(environment.firebaseConfig);
@@ -48,6 +50,7 @@ attachment:string = ''
 
   uploadFile(file: File, path:string):Promise<string> {
     return new Promise((resolve,reject) => {
+      this.isUploading = true;
       const uploadTask = this.setUpUpload(file,path)
       uploadTask.on(
         'state_changed',
@@ -92,6 +95,7 @@ attachment:string = ''
    async handleUploadSuccess(uploadTask: UploadTask):Promise<string> {
       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
       this.attachment = downloadURL;
+      this.isUploading = false;
       console.log(uploadTask.snapshot.ref);
       return downloadURL;
     }

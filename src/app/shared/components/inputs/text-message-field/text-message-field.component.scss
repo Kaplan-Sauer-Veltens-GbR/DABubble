@@ -28,6 +28,11 @@ textarea {
     cursor: pointer;
   }
 
+  button {
+    border: none;
+    background-color: white;
+  }
+
   .send {
     &:hover {
       filter: $colorTransformPurple2;

@@ -12,9 +12,9 @@
 </form>
 
   <div class="icon-container">
-    <div (click)="submitForm(myForm, $event)" class="send">
+    <button [disabled]="this.dbStorage.isUploading" (click)="submitForm(myForm, $event)" class="send">
       <app-icon iconName="sendBlue"></app-icon>
-    </div>
+    </button>
     <div class="icon-line">
       <div class="icon-bg-hover">
         <app-icon  (click)="triggerFileInput()" iconName="addGrey"></app-icon>

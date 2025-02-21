@@ -14,7 +14,7 @@ import { DbStorageService } from '../../../../services/db-storage.service';
   styleUrl: './text-message-field.component.scss'
 })
 export class TextMessageFieldComponent {
-  private dbStorage = inject(DbStorageService)
+  public dbStorage = inject(DbStorageService)
   @Input() placeholder:string = 'Enter';
   @Input() pattern:string = '';
   @Input() required: boolean = false;
@@ -28,7 +28,12 @@ export class TextMessageFieldComponent {
   
   private dbService = inject(DbService)
   submitForm(form: NgForm ,event:Event) {
-    if (this.myForm.valid) {
+    if (this.dbStorage.isUploading) {
+      console.log('Upload läuft, Enter-Taste blockiert.');
+      event.preventDefault(); // Verhindert den Standard-Submit
+      event.stopPropagation(); // Stoppt die Event-Ausbreitung
+    }
+    else if(this.myForm.valid) {
       event.preventDefault()
       this.onSubmit(form);
     }
@@ -36,6 +41,7 @@ export class TextMessageFieldComponent {
   
 
 
+  
 
   triggerFileInput(): void {  
     const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
@@ -54,14 +60,17 @@ export class TextMessageFieldComponent {
   }
  
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
+   
     console.log('Formu send:', form.value.message);
     // form.value.message = this.message;
-    this.messageSend.emit(this.message);
-    if(this.dbStorage.selectedFile) {
-      this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
+ 
+    if(this.dbStorage.selectedFile ) {
+     this.dbStorage.imgDownloadUrl = await  this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
     }
+    this.messageSend.emit(this.message);
     form.reset(); 
+    this.dbStorage.imgDownloadUrl = '';
     this.message = '';
   }
 
