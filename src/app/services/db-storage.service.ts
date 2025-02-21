@@ -1,8 +1,9 @@
-import { inject, Injectable } from '@angular/core';
+import { ChangeDetectorRef, inject, Injectable, NgZone } from '@angular/core';
 import { FirebaseApp, getApps, initializeApp } from '@angular/fire/app';
 import { deleteObject, FirebaseStorage, getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { environment } from '../../environments/environment.development';
 import { UploadTask, UploadTaskSnapshot } from 'firebase/storage';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -14,6 +15,12 @@ public storage: FirebaseStorage;
 selectedFile: File | null = null;
 imgDownloadUrl!:string;
 attachment:string = ''
+lastEmittedProgress:number = 0;
+private isUploadingSubject = new BehaviorSubject<boolean>(false)
+public isUploading$ = this.isUploadingSubject.asObservable();
+private uploadProgressSubject = new BehaviorSubject<number>(0);
+public uploadProgress$ = this.uploadProgressSubject.asObservable();
+
   constructor() { 
      if (!getApps().length) {
       this.app = initializeApp(environment.firebaseConfig);
@@ -23,7 +30,8 @@ attachment:string = ''
     this.storage = getStorage(this.app);
   }
     
-
+  
+  
   async checkPreviousImgPath(previousImgPath:string | null) {
   if(previousImgPath != null) {
     const previousRef = ref(this.storage,previousImgPath)
@@ -48,17 +56,21 @@ attachment:string = ''
 
   uploadFile(file: File, path:string):Promise<string> {
     return new Promise((resolve,reject) => {
+      this.isUploadingSubject.next(true)
       const uploadTask = this.setUpUpload(file,path)
       uploadTask.on(
         'state_changed',
-        this.handleUploadProgress,
+        (snapshot) => this.handleUploadProgress(snapshot),
         (error) => this.handleUploadError(reject,error)
         ,async () =>  {
           try {
            const  downloadUrl = await this.handleUploadSuccess(uploadTask)
            this.imgDownloadUrl = downloadUrl
+           this.uploadProgressSubject.next(0);
+           this.isUploadingSubject.next(false);
+          this.selectedFile = null;
            console.log(downloadUrl);
-           
+         
            resolve(downloadUrl)
           }catch(error) {
             reject(error)
@@ -83,8 +95,14 @@ attachment:string = ''
 
   
     handleUploadProgress(snapshot:UploadTaskSnapshot):void {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`); // if we want to add a loading screen or somehting else we can delete it otherwise
+      const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+      // Nur alle 10 % ein Update senden
+      if (progress >= this.lastEmittedProgress + 10 || progress === 100) {
+          console.log(`Upload is ${progress}% done`);
+          this.uploadProgressSubject.next(progress);
+          this.lastEmittedProgress = progress;
+      }
         
     }
 
@@ -106,7 +124,8 @@ attachment:string = ''
     onFileSelected(event:any):void {
       if(event.target.files.length > 0) {
        this.selectedFile = event.target.files[0];
-      //  this.uploadProfilePicture();
+       
+      this.uploadFile(this.selectedFile!,'chatMessageImg/')
       }
        }
   }

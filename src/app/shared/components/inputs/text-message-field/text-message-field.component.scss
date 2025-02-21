@@ -28,15 +28,25 @@ textarea {
     cursor: pointer;
   }
 
+  button {
+    border: none;
+    background-color: white;
+  }
+
   .send {
     &:hover {
-      filter: $colorTransformPurple2;
+      // filter: $colorTransformPurple2;
 
       ~ .icon-line app-icon {
         filter: brightness(0) saturate(100%) !important;
       }
     }
   }
+}
+
+.disabled-btn {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .icon-line {
@@ -70,4 +80,19 @@ textarea {
   width: 1px;
   height: 40px;
   background-color: $colorLines;
+}
+
+#loading-bar-container {
+  width: 100%;
+  height: 6px;
+  margin-top: 12px;
+  
+ 
+}
+
+#loading-bar {
+  background-color: #797ef3;
+  height: 6px;
+  border-radius: 8px;
+  transition: width 0.5s ease;
 }

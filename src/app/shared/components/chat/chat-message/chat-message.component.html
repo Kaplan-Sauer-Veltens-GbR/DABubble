@@ -11,7 +11,7 @@
             </div>
             <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">
                 @if(messageAttachment) {
-                    <img [src]="messageAttachment">
+                    <img style="height: auto ; width: 150px;;" [src]="messageAttachment">
                 }
                 {{userMessage.message}}</div>
             <app-reaction-bar [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>

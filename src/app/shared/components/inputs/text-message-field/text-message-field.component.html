@@ -9,12 +9,13 @@
     [(ngModel)]="message"
     (keydown.enter)="submitForm(myForm, $event)"
   ></textarea>
+ 
 </form>
 
   <div class="icon-container">
-    <div (click)="submitForm(myForm, $event)" class="send">
+    <button [ngClass]="{'disabled-btn': this.isUploading,'send':!this.isUploading}" (click)="submitForm(myForm, $event)">
       <app-icon iconName="sendBlue"></app-icon>
-    </div>
+    </button>
     <div class="icon-line">
       <div class="icon-bg-hover">
         <app-icon  (click)="triggerFileInput()" iconName="addGrey"></app-icon>
@@ -29,3 +30,9 @@
     </div>
   </div>
 </div>
+@if(this.isUploading) {
+  <div id="loading-bar-container">
+    <div [ngStyle]="{'width': this.uploadProgress + '%'}" id="loading-bar"></div>
+  </div>
+}
+
