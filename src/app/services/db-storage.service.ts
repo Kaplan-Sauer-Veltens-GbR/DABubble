@@ -15,6 +15,7 @@ public storage: FirebaseStorage;
 selectedFile: File | null = null;
 imgDownloadUrl!:string;
 attachment:string = ''
+lastEmittedProgress:number = 0;
 private isUploadingSubject = new BehaviorSubject<boolean>(false)
 public isUploading$ = this.isUploadingSubject.asObservable();
 private uploadProgressSubject = new BehaviorSubject<number>(0);
@@ -93,9 +94,14 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
 
   
     handleUploadProgress(snapshot:UploadTaskSnapshot):void {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`);
-        this.uploadProgressSubject.next(progress);
+      const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+      // Nur alle 10 % ein Update senden
+      if (progress >= this.lastEmittedProgress + 10 || progress === 100) {
+          console.log(`Upload is ${progress}% done`);
+          this.uploadProgressSubject.next(progress);
+          this.lastEmittedProgress = progress;
+      }
         
     }
 

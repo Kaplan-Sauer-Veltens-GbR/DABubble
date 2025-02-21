@@ -32,7 +32,7 @@
 </div>
 @if(this.isUploading) {
   <div id="loading-bar-container">
-    <div [style.width.%]="uploadProgress" id="loading-bar"></div>
+    <div [ngStyle]="{'width': this.uploadProgress + '%'}" id="loading-bar"></div>
   </div>
 }
 
