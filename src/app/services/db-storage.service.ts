@@ -16,6 +16,7 @@ selectedFile: File | null = null;
 imgDownloadUrl!:string;
 attachment:string = ''
 lastEmittedProgress:number = 0;
+showImgPreview:boolean = false;
 private isUploadingSubject = new BehaviorSubject<boolean>(false)
 public isUploading$ = this.isUploadingSubject.asObservable();
 private uploadProgressSubject = new BehaviorSubject<number>(0);
@@ -69,6 +70,7 @@ public uploadProgress$ = this.uploadProgressSubject.asObservable();
            this.uploadProgressSubject.next(0);
            this.isUploadingSubject.next(false);
           this.selectedFile = null;
+          this.showImgPreview = true;
            console.log(downloadUrl);
          
            resolve(downloadUrl)

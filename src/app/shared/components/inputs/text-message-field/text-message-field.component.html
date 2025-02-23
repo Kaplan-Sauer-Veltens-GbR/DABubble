@@ -1,9 +1,9 @@
 <div class="message-container">
-  @if(this.showImgPreview) {
+  @if(this.dbStorage.showImgPreview) {
     <div class="img-showcase-container"><img class="img-showcase" [src]="this.dbStorage.imgDownloadUrl" alt=""></div>
   }
  
-  <form [ngStyle]="{ 'margin-left.px': this.showImgPreview ? 50 : 0 }" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" action="" id="submit-message" >
+  <form [ngStyle]="{ 'margin-left.px': this.dbStorage.showImgPreview ? 50 : 0 }" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" action="" id="submit-message" >
   <textarea
     [placeholder]="placeholder"
     [attr.pattern]="pattern ? pattern : null"

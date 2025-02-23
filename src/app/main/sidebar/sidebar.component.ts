@@ -136,6 +136,8 @@ export class SidebarComponent {
     const result = await this.checkIfPrivateChatExist(uid);
     if (result.found === false) {
       this.router.navigate([`main/privatmessage/${result.docId}`]);
+      console.log();
+      
     } else {
       console.log(this.router.url);
       this.router.navigate([`main/privatmessage/${result.docId}`]);
