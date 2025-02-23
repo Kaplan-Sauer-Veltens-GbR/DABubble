@@ -29,6 +29,7 @@ export class TextMessageFieldComponent {
   selectedFile: File | null = null;
   uploadProgress!:number;
   isUploading!:boolean;
+  showImgPreview:boolean = false;
   @ViewChild('myForm') myForm!: NgForm;
   
   private dbService = inject(DbService)
@@ -36,6 +37,7 @@ export class TextMessageFieldComponent {
 constructor() {
 this.dbStorage.isUploading$.subscribe(status => {
   this.zone.run(() => {
+    this.showImgPreview = true;
     this.isUploading = status;
     this.cdr.markForCheck();
   });
@@ -94,6 +96,7 @@ this.dbStorage.isUploading$.subscribe(status => {
     // }
     this.messageSend.emit(this.message);
     this.imgSend = true;
+    this.showImgPreview = false;
     form.reset(); 
     this.dbStorage.imgDownloadUrl = '';
     this.message = '';
