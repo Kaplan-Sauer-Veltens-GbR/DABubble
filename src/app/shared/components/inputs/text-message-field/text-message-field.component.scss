@@ -20,6 +20,7 @@ textarea {
   border-radius: 20px;
   border: solid 1px $colorLines;
   padding: 20px;
+  position: relative;
 }
 
 .icon-container {
@@ -95,4 +96,17 @@ textarea {
   height: 6px;
   border-radius: 8px;
   transition: width 0.5s ease;
+}
+
+.img-showcase {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  opacity: 0.4;
+  width: 50px;
+  height: 50px;
+}
+
+.img-showcase-container {
+  padding: 20px;
 }
