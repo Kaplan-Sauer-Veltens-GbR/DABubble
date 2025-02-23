@@ -22,7 +22,6 @@ export class TextMessageFieldComponent {
   @Input() required: boolean = false;
   @Input() toggleEmojiPicker!:boolean;
   @Output() istoggleChange = new EventEmitter<boolean>();
- 
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   imgSend:boolean = true;
@@ -30,7 +29,6 @@ export class TextMessageFieldComponent {
   uploadProgress!:number;
   isUploading!:boolean;
   @ViewChild('myForm') myForm!: NgForm;
-  
   private dbService = inject(DbService)
 
 constructor() {
@@ -79,7 +77,7 @@ this.dbStorage.isUploading$.subscribe(status => {
     
   }
 
-  
+
   emojiPickerToggle() {
     console.log('clicked');
     
@@ -102,7 +100,10 @@ this.dbStorage.isUploading$.subscribe(status => {
     this.dbStorage.imgDownloadUrl = '';
     this.message = '';
   }
-
+/**
+ * Adds the selected emoji to the current message and displays it in the textarea.
+ * @param emoji Unicode string of the emoji to be added.
+ */
   addEmoji(emoji: string) {
     this.message += emoji;  // Emoji zur Nachricht hinzufügen
   }
