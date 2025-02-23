@@ -1,6 +1,9 @@
 <div class="message-container">
-
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" action="" id="submit-message" >
+  @if(this.showImgPreview) {
+    <div class="img-showcase-container"><img class="img-showcase" [src]="this.dbStorage.imgDownloadUrl" alt=""></div>
+  }
+ 
+  <form [ngStyle]="{ 'margin-left.px': this.showImgPreview ? 50 : 0 }" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" action="" id="submit-message" >
   <textarea
     [placeholder]="placeholder"
     [attr.pattern]="pattern ? pattern : null"
@@ -18,7 +21,7 @@
     </button>
     <div class="icon-line">
       <div class="icon-bg-hover">
-        <app-icon  (click)="triggerFileInput()" iconName="addGrey"></app-icon>
+        <app-icon [ngClass]="{'disabled-btn':!this.imgSend}"  (click)="triggerFileInput()" iconName="addGrey"></app-icon>
       </div>
       <div class="seperator"></div>
       <div class="icon-bg-hover">
