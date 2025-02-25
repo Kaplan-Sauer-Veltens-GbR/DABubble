@@ -55,7 +55,6 @@ this.dbStorage.isUploading$.subscribe(status => {
 
   submitForm(form: NgForm ,event:Event) {
     if (this.isUploading) {
-      console.log('Upload läuft, Enter-Taste blockiert.');
       event.preventDefault();    
       event.stopPropagation();
     }
