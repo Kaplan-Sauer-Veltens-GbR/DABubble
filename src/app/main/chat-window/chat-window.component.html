@@ -40,7 +40,7 @@
 </div>
     } } 
     @if (this.toggleEmojiPicker) {
-      <emoji-picker [isShown]="this.toggleEmojiPicker" (emojiSelected)="addEmojiToMessage($event)"></emoji-picker>
+      <emoji-picker #emojiPicker [isShown]="this.toggleEmojiPicker" (emojiSelected)="addEmojiToMessage($event)"></emoji-picker>
     }
     
   </main>

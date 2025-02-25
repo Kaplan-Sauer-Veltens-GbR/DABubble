@@ -97,11 +97,9 @@ export class ChatWindowComponent {
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
   
 
-  
-
   addEmojiToMessage(emoji: string) {
-    // Rufe die Methode der Textarea-Komponente auf, um das Emoji hinzuzufügen
     this.textMessageField.addEmoji(emoji);
+    this.toggleEmojiPicker = false;
   }
   /**
  * Subscribes to the URL route parameters to check if the URL contains a chat ID.
@@ -121,9 +119,6 @@ export class ChatWindowComponent {
     
     console.log(this.privateChats, 'empty?');
   }
-
-
-
  
 
 /**
@@ -137,10 +132,7 @@ export class ChatWindowComponent {
  */
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
-    if (
-      this.popUp?.nativeElement &&
-      this.workspace.isClickOutside(event, this.popUp.nativeElement)
-    ) {
+    if (this.popUp?.nativeElement && this.workspace.isClickOutside(event, this.popUp.nativeElement) ) {
       this.workspace.currentDialog = null;
     }
   }
