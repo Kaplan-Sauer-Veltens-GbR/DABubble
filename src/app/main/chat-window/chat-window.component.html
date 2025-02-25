@@ -35,20 +35,20 @@
   
     @for(message of group.messages; track message.messageUID) {
         <div>
-    <chat-message (isPickerActiveChange)="emojiPickerChange($event)" [toggleEmojiPicker]="toggleReactionEmojiPicker" [messageAttachment]="message.attachments" [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
+    <chat-message   [messageAttachment]="message.attachments" [messageSendTime]="dateToTime(message.createdOn)" [userName]="messageAuthors[message.author]" [isOwner]="message.author === authService.getCurrentUser()?.uid" [userMessage]="message"></chat-message>
    
 </div>
     } } 
-    @if (this.emojiPickerService.toggleEmojiPicker) {
-      <emoji-picker  #emojiPicker [isShown]="this.emojiPickerService.toggleEmojiPicker" ></emoji-picker>
+    @if (this.emojiPickerService.toggleTextFieldEmojiPicker) {
+      <emoji-picker  #emojiPicker [isShown]="this.emojiPickerService.toggleTextFieldEmojiPicker" ></emoji-picker>
     }
-    @else if(toggleReactionEmojiPicker && !this.emojiPickerService.toggleEmojiPicker) {
-      <emoji-picker #emojiPicker [isShown]="this.emojiPickerService.toggleEmojiPicker" ></emoji-picker>
+    @else if(this.emojiPickerService.toggleReactionEmojiPicker) {
+      <emoji-picker #emojiPicker [isShown]="this.emojiPickerService.toggleReactionEmojiPicker" ></emoji-picker>
     }
     
   </main>
   <div class="text-field">
-    <app-text-message-field   [toggleEmojiPicker]="this.emojiPickerService.toggleEmojiPicker" (messageSend)="sendMessageToDB($event)"></app-text-message-field>
+    <app-text-message-field   [toggleEmojiPicker]="this.emojiPickerService.toggleTextFieldEmojiPicker" (messageSend)="sendMessageToDB($event)"></app-text-message-field>
     </div>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {

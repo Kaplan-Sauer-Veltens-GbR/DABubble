@@ -50,8 +50,20 @@ export class EmojiPickerComponent {
     }
   }
 
-  addEmoji(event: any) {
-    this.emojiPickerService.addEmojiToMessage(event.emoji.native);
-   
+  handleEmojiSelect(event: any) {
+    if (this.shouldAddToMessage(event)) {
+      this.emojiPickerService.addEmojiToMessage(event.emoji.native);
+    } else {
+      this.emojiPickerService.addReactionEmoji(event.emoji.native);
+    }
   }
-}
+
+  shouldAddToMessage(event: any): boolean {
+   if(this.emojiPickerService.toggleTextFieldEmojiPicker) {
+    return true;
+   }else {
+    return false; 
+   }
+    
+
+}}

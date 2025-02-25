@@ -89,7 +89,7 @@ export class ChatWindowComponent {
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
   otherChatUser!: UserData
-  toggleReactionEmojiPicker:boolean = false;
+  
   
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
 
@@ -112,9 +112,9 @@ export class ChatWindowComponent {
   
   }
 
-  emojiPickerChange(newState:boolean) {
-    this.toggleReactionEmojiPicker = newState;
-  }
+  // emojiPickerChange(newState:boolean) {
+  //   this.toggleReactionEmojiPicker = newState;
+  // }
 
 
   /**

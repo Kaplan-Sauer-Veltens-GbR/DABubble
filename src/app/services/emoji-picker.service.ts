@@ -3,25 +3,45 @@ import { TextMessageFieldComponent } from '../shared/components/inputs/text-mess
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmojiPickerService {
-  toggleEmojiPicker:boolean = false;
-  private textMessageField!: TextMessageFieldComponent
+  toggleTextFieldEmojiPicker: boolean = false;
+  toggleReactionEmojiPicker: boolean = false;
+  private textMessageField!: TextMessageFieldComponent;
   private emojiSelectedSubject = new Subject<string>();
   emojiSelected$ = this.emojiSelectedSubject.asObservable();
 
-  constructor() { }
-
-  
+  constructor() {}
 
   addEmojiToMessage(emoji: string) {
-      this.emojiSelectedSubject.next(emoji);
-     
+    this.emojiSelectedSubject.next(emoji);
+  }
+
+  addReactionEmoji(emoji: string) {}
+
+  openTextFieldEmojiPicker() {
+    debugger
+    if (this.toggleTextFieldEmojiPicker || this.toggleReactionEmojiPicker) {
+      this.closeAllPickers();
+    }else {
+      this.toggleTextFieldEmojiPicker = true;
+    }
    
   }
 
-  addEmojiToReaction(emoji:string) {
+  openReactionEmojiPicker() {
+    debugger
+    if (this.toggleTextFieldEmojiPicker || this.toggleReactionEmojiPicker) {
+      this.closeAllPickers();
+    }else {
+      this.toggleReactionEmojiPicker = true;
+    }
     
+  }
+
+  closeAllPickers() {
+    this.toggleTextFieldEmojiPicker = false;
+    this.toggleReactionEmojiPicker = false;
   }
 }

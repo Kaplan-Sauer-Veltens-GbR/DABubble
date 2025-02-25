@@ -82,7 +82,7 @@ this.dbStorage.isUploading$.subscribe(status => {
 
   emojiPickerToggle() {
     console.log('clicked');
-    this.emojiPickerService.toggleEmojiPicker = !this.emojiPickerService.toggleEmojiPicker;
+    this.emojiPickerService.openTextFieldEmojiPicker()
 ;
   }
  
@@ -107,7 +107,7 @@ this.dbStorage.isUploading$.subscribe(status => {
  */
   addEmoji(emoji: string) {
     this.message += emoji;  // Emoji zur Nachricht hinzufügen
-   this.emojiPickerService.toggleEmojiPicker = false;
+   this.emojiPickerService.toggleTextFieldEmojiPicker = false;
   }
  
 }
