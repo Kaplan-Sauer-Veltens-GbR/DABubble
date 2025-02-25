@@ -1,6 +1,6 @@
 @use "../../shared/scss/abstracts/" as *;
 
-$isDesktopDevice: 720px;
+$isDesktopDevice: 768px;
 
 header {
     margin-bottom: 20px;
@@ -41,4 +41,19 @@ header {
         margin-top: min(32px, 8vh - 2rem);
         @include hideWhenDesktop($isDesktopDevice);
     }
+}
+
+@media(max-width:768px) {
+  .searchbar{
+    background-color: white;
+    padding: 30px;
+  }
+
+  header {
+    margin-bottom: 0;
+    padding: 20px 0 0 0 ;
+  }
+  .wrapper {
+    padding: 0 20px 0 20px;
+  }
 }

@@ -145,7 +145,7 @@ user-avatar {
   @include pop-up(absolute, 100%, 872px, 616px, clamp(45%, 2vh, 50%), 50%, 0, -50%, -50%);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   aside {
     width: 100%;
     max-width: 100%;
@@ -156,5 +156,12 @@ user-avatar {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .dev-space, app-icon {
+    display: none;
+  }
+  .drop-down {
+    width: 50%;
   }
 }
