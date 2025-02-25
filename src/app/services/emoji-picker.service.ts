@@ -21,7 +21,6 @@ export class EmojiPickerService {
   addReactionEmoji(emoji: string) {}
 
   openTextFieldEmojiPicker() {
-    debugger
     if (this.toggleTextFieldEmojiPicker || this.toggleReactionEmojiPicker) {
       this.closeAllPickers();
     }else {
@@ -31,7 +30,6 @@ export class EmojiPickerService {
   }
 
   openReactionEmojiPicker() {
-    debugger
     if (this.toggleTextFieldEmojiPicker || this.toggleReactionEmojiPicker) {
       this.closeAllPickers();
     }else {
