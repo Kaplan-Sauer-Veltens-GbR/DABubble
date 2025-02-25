@@ -28,13 +28,16 @@ export class TextMessageFieldComponent {
   selectedFile: File | null = null;
   uploadProgress!:number;
   isUploading!:boolean;
+  showImgPreview = false;
   @ViewChild('myForm') myForm!: NgForm;
   private dbService = inject(DbService)
 
 constructor() {
 this.dbStorage.isUploading$.subscribe(status => {
   this.zone.run(() => {
-    
+    if(status) {
+      this.showImgPreview = true;
+    }
     this.isUploading = status;
     if(this.isUploading) {
       this.dbStorage.showImgPreview = true;
@@ -55,7 +58,6 @@ this.dbStorage.isUploading$.subscribe(status => {
 
   submitForm(form: NgForm ,event:Event) {
     if (this.isUploading) {
-      console.log('Upload läuft, Enter-Taste blockiert.');
       event.preventDefault();    
       event.stopPropagation();
     }
