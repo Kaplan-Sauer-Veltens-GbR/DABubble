@@ -22,7 +22,6 @@ export class TextMessageFieldComponent {
   @Input() required: boolean = false;
   @Input() toggleEmojiPicker!:boolean;
   @Output() istoggleChange = new EventEmitter<boolean>();
- 
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   imgSend:boolean = true;
