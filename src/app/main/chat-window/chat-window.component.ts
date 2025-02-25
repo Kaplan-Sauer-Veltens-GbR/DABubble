@@ -88,19 +88,24 @@ export class ChatWindowComponent {
   messageAuthors: { [key: string]: string | null } = {};
   otherChatUser!: UserData;
   toggleEmojiPicker:boolean = false;
+  toggleReactionEmojiPicker:boolean = false;
 
   ngOnInit(): void {
   this.SubtoChatRoute();
   this.getChatMembers();
   }
 
-  
+  emojiPickerChange(newState:boolean) {
+    this.toggleReactionEmojiPicker = newState;
+  }
 
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
   
 
   addEmojiToMessage(emoji: string) {
     this.textMessageField.addEmoji(emoji);
+    console.log(emoji.toString);
+    
     this.toggleEmojiPicker = false;
   }
   /**

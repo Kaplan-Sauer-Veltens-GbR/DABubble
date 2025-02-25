@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SingleReactionIconComponent } from './single-reaction-icon/single-reaction-icon.component';
 import { IconLibaryComponent } from "../../../icon-component/icon-libary.component";
 
@@ -12,8 +12,16 @@ import { IconLibaryComponent } from "../../../icon-component/icon-libary.compone
 })
 export class ReactionBarComponent {
   @Input() isOwner: boolean = false;
-
+  @Input() toggleEmojiPicker:boolean = false;
+  @Output() isPickerActive:EventEmitter<boolean> = new EventEmitter();
   exampleMsg = {
     reactions: [{'raisingHands': 2}, {'whiteHeavyCheckmark': 3}]
   }
+  
+  chooseRecationEmoji() {
+    console.log(this.toggleEmojiPicker);
+  this.toggleEmojiPicker = !this.toggleEmojiPicker;
+  this.isPickerActive.emit(this.toggleEmojiPicker);
+  }
 }
+

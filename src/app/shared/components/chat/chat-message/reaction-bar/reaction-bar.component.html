@@ -3,6 +3,6 @@
         <app-single-reaction-icon [reactionDetails]="reaction"></app-single-reaction-icon>
     }
     <div class="icon-base icon--hoverable icon--hoverfilter icon-background--white">
-        <app-icon iconName="addReaction"></app-icon>
+        <app-icon (click)="chooseRecationEmoji()" iconName="addReaction"></app-icon>
     </div>
 </div>
