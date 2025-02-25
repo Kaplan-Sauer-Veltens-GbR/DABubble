@@ -33,7 +33,7 @@ import {
   setDoc,
   where,
 } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, switchMap, timeout } from 'rxjs';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { Messages } from '../../interfaces/messages';
 import { AuthService } from '../../services/auth.service';
@@ -82,7 +82,7 @@ export class ChatWindowComponent {
   lastVisibileMessage: Messages | null = null;
   messageLoading: boolean = false;
   chatID: string | null = null;
-  messageLimit$ = new BehaviorSubject<number>(10);
+  messageLimit$ = new BehaviorSubject<number>(8);
   totalMessageDocs!:number;
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
@@ -93,6 +93,8 @@ export class ChatWindowComponent {
   this.SubtoChatRoute();
   this.getChatMembers();
   }
+
+  
 
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
   
@@ -195,7 +197,7 @@ export class ChatWindowComponent {
         this.loadUserNames(this.privateChats);
         if(this.firstMessageInit) {
           this.cdRef.detectChanges();
-        this.scrollToBottom()
+        this.scrollToBottom(300)
         this.firstMessageInit = false;
         }
       },
@@ -272,13 +274,18 @@ export class ChatWindowComponent {
  * 1. New messages are added.
  * 2. The component is first initialized and there is a long chat history.
  */
-  scrollToBottom() {
-    const chatContainer = this.scrollContainer.nativeElement;
-    chatContainer.scrollTo({
-      top: chatContainer.scrollHeight,
-      behavior: 'smooth' 
-    });  }
+scrollToBottom(timeout:number) {
 
+  const chatContainer = this.scrollContainer.nativeElement;
+
+  // Warte auf das Ende des DOM-Renderings und erhöhe den scrollHeight um einen festen Wert
+  setTimeout(() => {
+    chatContainer.scrollTo({
+      top: chatContainer.scrollHeight + 100, // Puffer von 100px hinzufügen
+      behavior: 'smooth',
+    });
+  }, timeout);
+}
 
   /**
  * Validates the given textMessage and adds it to the private chats collection.
@@ -298,7 +305,7 @@ export class ChatWindowComponent {
       console.log(textMessage, 'message123',message);
 
       await addDoc(privateMessages, message);
-      this.scrollToBottom();
+      this.scrollToBottom(0);
     this.getChatMembers();
     }
 
