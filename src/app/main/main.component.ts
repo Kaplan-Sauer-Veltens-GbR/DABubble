@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   isAuthChecked = false;
 
 
-  isSmallScreen: boolean = window.innerWidth <= 760;
+  isSmallScreen: boolean = window.innerWidth <= 768;
   showChatWindow: boolean = false;
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
   }
 
   private checkScreenSize(): void {
-    this.isSmallScreen = window.innerWidth <= 760;
+    this.isSmallScreen = window.innerWidth <= 768;
     if (!this.isSmallScreen) {
 
       this.showChatWindow = false;
