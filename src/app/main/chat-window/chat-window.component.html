@@ -39,15 +39,16 @@
    
 </div>
     } } 
-    @if (this.emojiPickerService.toggleEmojiPicker && !this.toggleReactionEmojiPicker) {
-      <emoji-picker #emojiPicker [isShown]="this.emojiPickerService.toggleEmojiPicker" (emojiSelected)="emojiPickerService.addEmojiToMessage($event)"></emoji-picker>
-    }@else if(toggleReactionEmojiPicker && !this.emojiPickerService.toggleEmojiPicker) {
+    @if (this.emojiPickerService.toggleEmojiPicker) {
+      <emoji-picker  #emojiPicker [isShown]="this.emojiPickerService.toggleEmojiPicker" ></emoji-picker>
+    }
+    @else if(toggleReactionEmojiPicker && !this.emojiPickerService.toggleEmojiPicker) {
       <emoji-picker #emojiPicker [isShown]="this.emojiPickerService.toggleEmojiPicker" ></emoji-picker>
     }
     
   </main>
   <div class="text-field">
-    <app-text-message-field  (istoggleChange)="emojiPickerChange($event)" [toggleEmojiPicker]="this.emojiPickerService.toggleEmojiPicker" (messageSend)="sendMessageToDB($event)"></app-text-message-field>
+    <app-text-message-field   [toggleEmojiPicker]="this.emojiPickerService.toggleEmojiPicker" (messageSend)="sendMessageToDB($event)"></app-text-message-field>
     </div>
 </section>
 @if(workspace.currentDialog === 'channelEdit') {

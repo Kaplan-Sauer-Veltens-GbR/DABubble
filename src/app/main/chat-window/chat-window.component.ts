@@ -90,8 +90,7 @@ export class ChatWindowComponent {
   messageAuthors: { [key: string]: string | null } = {};
   otherChatUser!: UserData
   toggleReactionEmojiPicker:boolean = false;
-
-
+  
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
 
   ngAfterViewInit(): void {
@@ -99,6 +98,8 @@ export class ChatWindowComponent {
       console.log('eltern-component',emoji);
       if(this.textMessageField) {
         this.textMessageField.addEmoji(emoji)
+       
+        
       }
       
     })
@@ -467,6 +468,5 @@ deleteImagePathIfExists(attachments: string | undefined) {
     this.dbStorage.deleteImage(attachments);
     console.log('Bildpfad nach dem Absenden gelöscht');
   }
-
 }}
 //shorten later some functions

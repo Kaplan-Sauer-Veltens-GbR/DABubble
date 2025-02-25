@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DbService } from '../../../../services/db.service';
 import { collection } from '@angular/fire/firestore';
 import { DbStorageService } from '../../../../services/db-storage.service';
+import { EmojiPickerService } from '../../../../services/emoji-picker.service';
 
 @Component({
   selector: 'app-text-message-field',
@@ -21,7 +22,6 @@ export class TextMessageFieldComponent {
   @Input() pattern:string = '';
   @Input() required: boolean = false;
   @Input() toggleEmojiPicker!:boolean;
-  @Output() istoggleChange = new EventEmitter<boolean>();
   @Output() messageSend = new EventEmitter<string>();
   message: string = '';
   imgSend:boolean = true;
@@ -31,7 +31,7 @@ export class TextMessageFieldComponent {
   showImgPreview = false;
   @ViewChild('myForm') myForm!: NgForm;
   private dbService = inject(DbService)
-
+  private emojiPickerService = inject(EmojiPickerService)
 constructor() {
 this.dbStorage.isUploading$.subscribe(status => {
   this.zone.run(() => {
@@ -82,9 +82,8 @@ this.dbStorage.isUploading$.subscribe(status => {
 
   emojiPickerToggle() {
     console.log('clicked');
-    
-    this.toggleEmojiPicker = !this.toggleEmojiPicker;
-    this.istoggleChange.emit(this.toggleEmojiPicker);
+    this.emojiPickerService.toggleEmojiPicker = !this.emojiPickerService.toggleEmojiPicker;
+;
   }
  
 
@@ -108,6 +107,7 @@ this.dbStorage.isUploading$.subscribe(status => {
  */
   addEmoji(emoji: string) {
     this.message += emoji;  // Emoji zur Nachricht hinzufügen
+   this.emojiPickerService.toggleEmojiPicker = false;
   }
  
 }

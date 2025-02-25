@@ -17,10 +17,11 @@ export class EmojiPickerService {
 
   addEmojiToMessage(emoji: string) {
       this.emojiSelectedSubject.next(emoji);
-      this.toggleEmojiPicker = false;
-      console.log(emoji);
+     
    
   }
 
-  
+  addEmojiToReaction(emoji:string) {
+    
+  }
 }
