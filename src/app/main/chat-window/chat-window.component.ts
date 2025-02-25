@@ -44,6 +44,7 @@ import { UserSelectorComponent } from "../../shared/components/inputs/user-selec
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker/emoji-picker.component";
 import { DbStorageService } from '../../services/db-storage.service';
+import { EmojiPickerService } from '../../services/emoji-picker.service';
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -71,9 +72,10 @@ export class ChatWindowComponent {
   private router = inject(Router)
   private elementRef = inject(ElementRef);
   public dbService = inject(DbService);
-  public authService = inject(AuthService)
-  private cdRef = inject(ChangeDetectorRef)
-  public dbStorage = inject(DbStorageService)
+  public authService = inject(AuthService);
+  private cdRef = inject(ChangeDetectorRef);
+  public dbStorage = inject(DbStorageService);
+  public emojiPickerService = inject(EmojiPickerService);
   @Input() message!: Messages;
   private isAtTop= false; 
   privateChats: any[] = [];
@@ -86,28 +88,34 @@ export class ChatWindowComponent {
   totalMessageDocs!:number;
   firstMessageInit:boolean = true;
   messageAuthors: { [key: string]: string | null } = {};
-  otherChatUser!: UserData;
-  toggleEmojiPicker:boolean = false;
+  otherChatUser!: UserData
   toggleReactionEmojiPicker:boolean = false;
+
+
+  @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
+
+  ngAfterViewInit(): void {
+    this.emojiPickerService.emojiSelected$.subscribe((emoji:string)=> {
+      console.log('eltern-component',emoji);
+      if(this.textMessageField) {
+        this.textMessageField.addEmoji(emoji)
+      }
+      
+    })
+   
+  }
 
   ngOnInit(): void {
   this.SubtoChatRoute();
   this.getChatMembers();
+  
   }
 
   emojiPickerChange(newState:boolean) {
     this.toggleReactionEmojiPicker = newState;
   }
 
-  @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
-  
 
-  addEmojiToMessage(emoji: string) {
-    this.textMessageField.addEmoji(emoji);
-    console.log(emoji.toString);
-    
-    this.toggleEmojiPicker = false;
-  }
   /**
  * Subscribes to the URL route parameters to check if the URL contains a chat ID.
  * It listens for changes in the URL and updates the `chatID` variable accordingly.
