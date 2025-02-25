@@ -36,7 +36,9 @@ export class TextMessageFieldComponent {
 constructor() {
 this.dbStorage.isUploading$.subscribe(status => {
   this.zone.run(() => {
-    this.showImgPreview = true;
+    if(status) {
+      this.showImgPreview = true;
+    }
     this.isUploading = status;
     this.cdr.markForCheck();
   });
