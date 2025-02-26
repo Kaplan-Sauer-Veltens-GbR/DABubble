@@ -24,20 +24,14 @@ export class ReactionBarComponent {
     reactions: [{'raisingHands': 2}, {'whiteHeavyCheckmark': 3}]
   }
 
-  
-  
+
+
   chooseRecationEmoji() {
     console.log(this.toggleEmojiPicker);
  this.emojiPickerService.openReactionEmojiPicker();
   this.dbService.selectMessage(this.userMessage.messageUID);
 
  console.log(this.userMessage,'usermessage');
-
- 
- 
   }
-
- 
-
 }
 
