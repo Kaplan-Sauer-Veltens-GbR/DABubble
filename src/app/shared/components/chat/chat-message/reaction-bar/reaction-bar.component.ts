@@ -23,6 +23,8 @@ export class ReactionBarComponent {
   exampleMsg = {
     reactions: [{'raisingHands': 2}, {'whiteHeavyCheckmark': 3}]
   }
+
+  
   
   chooseRecationEmoji() {
     console.log(this.toggleEmojiPicker);
