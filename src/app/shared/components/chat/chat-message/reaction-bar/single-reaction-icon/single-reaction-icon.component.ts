@@ -6,7 +6,7 @@ import { IconName } from '../../../../../../interfaces/icon-names.model';
 @Component({
   selector: 'app-single-reaction-icon',
   standalone: true,
-  imports: [ReactionDetailsComponent, IconLibaryComponent],
+  imports: [ReactionDetailsComponent, ],
   templateUrl: './single-reaction-icon.component.html',
   styleUrl: './single-reaction-icon.component.scss'
 })
