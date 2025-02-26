@@ -2,6 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { SettingsService } from '../../../../services/settings.service';
 import { EmojiPickerService } from '../../../../services/emoji-picker.service';
+import { Messages } from '../../../../interfaces/messages';
 
 @Component({
   selector: 'emoji-picker',
@@ -35,12 +36,15 @@ export class EmojiPickerComponent {
 
   i18n: object = {};
   @Input() isShown:boolean= false;
+  @Input() userMessage!:Messages;
   private emojiPickerService = inject(EmojiPickerService)
  @Output() emojiSelected = new EventEmitter<string>()
   settings: SettingsService = inject(SettingsService);
 
   ngOnInit() {
     this.updateI18n();
+    console.log(this.userMessage,'usermessage');
+    
   }
 
   private updateI18n() {
@@ -55,6 +59,8 @@ export class EmojiPickerComponent {
       this.emojiPickerService.addEmojiToMessage(event.emoji.native);
     } else {
       this.emojiPickerService.addReactionEmoji(event.emoji.native);
+      console.log(event.emoji.native);
+      
     }
   }
 

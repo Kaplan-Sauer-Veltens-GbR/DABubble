@@ -33,6 +33,7 @@ export class ChatMessageComponent {
     this.displayPopover = state;
   }
 
+ 
   
   translateReplyAmount() {
     if (this.replyAmount == 1) {

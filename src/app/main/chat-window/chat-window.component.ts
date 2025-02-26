@@ -95,7 +95,6 @@ export class ChatWindowComponent {
 
   ngAfterViewInit(): void {
     this.emojiPickerService.emojiSelected$.subscribe((emoji:string)=> {
-      console.log('eltern-component',emoji);
       if(this.textMessageField) {
         this.textMessageField.addEmoji(emoji)
        
@@ -129,6 +128,7 @@ export class ChatWindowComponent {
     this.route.paramMap.subscribe((params) => {
       this.chatID = params.get('chatId');
       console.log('ID:', this.chatID);
+      this.dbService.getChatID(this.chatID)
     });
     console.log(`Path: privatmessage/${this.chatID}/messages`);
     this.loadPrivatChats();

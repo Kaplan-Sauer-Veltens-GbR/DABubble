@@ -40,7 +40,7 @@
 </div>
     } } 
     @if (this.emojiPickerService.toggleTextFieldEmojiPicker) {
-      <emoji-picker  #emojiPicker [isShown]="this.emojiPickerService.toggleTextFieldEmojiPicker" ></emoji-picker>
+      <emoji-picker   #emojiPicker [isShown]="this.emojiPickerService.toggleTextFieldEmojiPicker" ></emoji-picker>
     }
     @else if(this.emojiPickerService.toggleReactionEmojiPicker) {
       <emoji-picker #emojiPicker [isShown]="this.emojiPickerService.toggleReactionEmojiPicker" ></emoji-picker>
