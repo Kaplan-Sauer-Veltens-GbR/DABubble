@@ -33,13 +33,11 @@ export class ReactionBarComponent {
   }
 
   private convertReactionsToArray(reactions: Map<string, number> | { [key: string]: number }) {
-    // Wenn es eine Map ist, konvertiere sie in ein Array
     if (reactions instanceof Map) {
       return Array.from(reactions.entries()).map(([emoji, count]) => {
         return { [emoji]: count };
       });
     } else {
-      // Wenn es ein Objekt ist, bearbeite es direkt
       return Object.entries(reactions).map(([emoji, count]) => {
         return { [emoji]: count };
       });
