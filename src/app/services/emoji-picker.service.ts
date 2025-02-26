@@ -18,7 +18,9 @@ export class EmojiPickerService {
     this.emojiSelectedSubject.next(emoji);
   }
 
-  addReactionEmoji(emoji: string) {}
+  addReactionEmoji(emoji: string) {
+    
+  }
 
   openTextFieldEmojiPicker() {
     if (this.toggleTextFieldEmojiPicker || this.toggleReactionEmojiPicker) {

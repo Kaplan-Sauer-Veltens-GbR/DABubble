@@ -119,11 +119,12 @@ subscribeToCollectionReactive(collectionName: string, callback: (docs: any) => v
  * @param textMessage The value from the text field
  * @returns The message as a Messages type
  */
-setMessageInterface(textMessage:string) {
+setMessageInterface(textMessage:string,messageRef:string) {
   const message: Messages = {
     author:this.userInformation.uid,
     createdOn: new Date(),
     message:textMessage,
+    messageUID: messageRef,
     ...(this.dbStorage.imgDownloadUrl ? { attachments: this.dbStorage.imgDownloadUrl } : {})
   }
   return message;

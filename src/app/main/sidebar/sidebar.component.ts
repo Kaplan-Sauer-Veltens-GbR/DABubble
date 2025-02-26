@@ -85,10 +85,10 @@ export class SidebarComponent {
     debugger;
 
     const messagesCollectionRef = collection(collectionRef, 'messages');
-    await addDoc(
-      messagesCollectionRef,
-      this.dbService.setMessageInterface('Wilkommen')
-    );
+    // await addDoc(
+    //   messagesCollectionRef,
+    //   this.dbService.setMessageInterface('Wilkommen',uid)
+    // );
     return messagesCollectionRef.id;
   }
 

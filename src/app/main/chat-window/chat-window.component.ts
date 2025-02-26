@@ -214,6 +214,8 @@ export class ChatWindowComponent {
         this.scrollToBottom(300)
         this.firstMessageInit = false;
         }
+        console.log(this.groupedPrivateChats, 'chats 2');
+        
       },
       error: (err: any) => {
         console.error('Fehler beim Laden', err);
@@ -315,10 +317,11 @@ scrollToBottom(timeout:number) {
         this.dbService.firestore,
         `privatmessage/${this.chatID}/messages`
       );
-      const message = this.dbService.setMessageInterface(textMessage);
+      const messageUID = doc(privateMessages).id
+      const message = this.dbService.setMessageInterface(textMessage,messageUID);
       console.log(textMessage, 'message123',message);
-
-      await addDoc(privateMessages, message);
+      const messageRef = doc(privateMessages,messageUID)
+      await setDoc(messageRef, message);
       this.scrollToBottom(0);
     this.getChatMembers();
     }

@@ -3,5 +3,6 @@ export interface Messages {
     author:string
     createdOn: Date,
     message:string,
+    messageUID:string,
     reactions?: Map<string, number>;
 }
