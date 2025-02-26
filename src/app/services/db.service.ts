@@ -130,6 +130,9 @@ setMessageInterface(textMessage:string,messageRef:string) {
   return message;
 }
 
-
+selectMessage(message:Messages) {
+  const selectedMessageID = message;
+  return selectedMessageID;
+}
 
 }

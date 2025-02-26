@@ -313,17 +313,14 @@ scrollToBottom(timeout:number) {
  * @param textMessage The message written by a user.
  */
   async sendMessageToDB(textMessage: string) {
-      const privateMessages = collection(
-        this.dbService.firestore,
-        `privatmessage/${this.chatID}/messages`
-      );
+      const privateMessages = collection(this.dbService.firestore,`privatmessage/${this.chatID}/messages`);
       const messageUID = doc(privateMessages).id
       const message = this.dbService.setMessageInterface(textMessage,messageUID);
       console.log(textMessage, 'message123',message);
       const messageRef = doc(privateMessages,messageUID)
       await setDoc(messageRef, message);
       this.scrollToBottom(0);
-    this.getChatMembers();
+      this.getChatMembers();
     }
 
 /**
