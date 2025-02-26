@@ -21,25 +21,21 @@ export class EmojiPickerService {
   }
 
   async addReactionEmoji(emoji: string) {
-    if(!this.dbService.userMessageID) {
-      console.warn('errors no message id found');
+    if (!this.dbService.userMessageID) {
+      console.warn('Error: No message ID found');
       return;
     }
-    
     const messageRef = doc(
       this.dbService.firestore,
       `privatmessage/${this.dbService.chatID}/messages/${this.dbService.userMessageID}`
     );
     try {
       await updateDoc(messageRef, {
-        reactions: {
-          [emoji]: increment(1),
-        },
+        [`reactions.${emoji}`]: increment(1),
       });
-  } catch(error) {
-console.log(error);
-
-  }
+    } catch (error) {
+      console.error('failed to place an emoji', error);
+    }
   }
 
   openTextFieldEmojiPicker() {
