@@ -1,5 +1,5 @@
 <div *transloco="let t; prefix: 'reaction-details'" class="reaction-details">
-    <app-icon [iconName]="reaction"></app-icon>
+   <span>{{reaction}}</span>
     <p class="user-list">{{firstReaction()}}@if (exampleUsers.length > 1){{{otherReactions()}}}</p>
     @if (exampleUsers.length == 1) {
         <span>{{t(reactionGrammar(true))}}</span>

@@ -47,7 +47,6 @@ export class ReactionBarComponent {
     console.log(this.toggleEmojiPicker);
  this.emojiPickerService.openReactionEmojiPicker();
   this.dbService.selectMessage(this.userMessage.messageUID);
-
  console.log(this.reactionArray,'usermessage');
   }
 }

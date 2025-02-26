@@ -1,7 +1,7 @@
 <div class="reaction-icon">
     <app-reaction-details aria-hidden="true" class="reaction-details" [reaction]="key"></app-reaction-details>
     <ng-container>
-        <app-icon [iconName]="key"></app-icon>
+        <span>{{ key }}</span>
         <span>{{reactionDetails[key]}}</span>
     </ng-container>
 </div>

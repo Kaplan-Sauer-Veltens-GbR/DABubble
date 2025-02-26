@@ -16,6 +16,9 @@ export class SingleReactionIconComponent {
   key!: IconName;
 
   ngOnInit() {
+    
     this.key = Object.keys(this.reactionDetails).toString() as IconName;
+    console.log(this.key);
+    
   }
 }
