@@ -5,30 +5,30 @@
   [attr.aria-label]="returnAriaLabel()"
   [ngClass]="{'hoverListEffect':userListHover}"
 >
-  <div class="avatar">
+  <div class="avatar" [ngStyle]="{ width: size + 'px', height: size + 'px' }">
     <img
-      [src]="photoURL"
-      [ngStyle]="{ height: size + 'px', width: size + 'px' }"
+      [ngSrc]="photoURL"
+      fill
       draggable="false"
       alt=""
       crossorigin="anonymous"
       loading="lazy"
     />
     @if (!hideOnlineStatus) {
-    <div
-      class="online-status"
-      [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
-      [ngClass]="isOnline"
-    ></div>
+      <div
+        class="online-status"
+        [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
+        [ngClass]="isOnline"
+      ></div>
     }
   </div>
   @if (!hideUsername) {
 
-  <span
-    aria-hidden="true"
-    [ngClass]="{ '--striked': strikeUsername }"
-    class="user-name"
+    <span
+      aria-hidden="true"
+      [ngClass]="{ '--striked': strikeUsername }"
+      class="user-name"
     >{{ returnUsername() }}</span
-  >
+    >
   }
 </div>

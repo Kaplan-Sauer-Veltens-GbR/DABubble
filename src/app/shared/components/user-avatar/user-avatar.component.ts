@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { OnlineStatusService } from '../../../services/online-status.service';
 import { WordlistService } from '../../../services/wordlist.service';
@@ -10,7 +10,7 @@ import { UserData } from '../../../interfaces/user-model';
 @Component({
   selector: 'user-avatar',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [CommonModule, TranslocoModule, NgOptimizedImage],
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.scss',
 })
