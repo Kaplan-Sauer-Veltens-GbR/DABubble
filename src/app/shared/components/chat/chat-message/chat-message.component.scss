@@ -80,6 +80,7 @@
                 border-bottom-right-radius: 30px;
                 font-weight: 400;
                 font-size: 18px;
+                max-width: 550px;
 
                 &.msg-ownership {
                     background-color: $colorPurple2;
@@ -104,3 +105,12 @@
         }
     }
 }
+
+.img-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    }
+    
+

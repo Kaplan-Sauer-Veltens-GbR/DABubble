@@ -9,9 +9,9 @@
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">{{userName}}</span>
                 <span class="timestamp">{{messageSendTime}}</span>
             </div>
-            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner}">
+            <div class="msg__body" [ngClass]="{'msg-ownership': isOwner, 'img-display':messageAttachment}">
                 @if(messageAttachment) {
-                    <img loading="lazy" style="height: auto ; width: 150px;;" [src]="messageAttachment">
+                    <img loading="lazy" style="height: 325px ; width: 500px;" [src]="messageAttachment">
                 }
                 {{userMessage.message}}</div>
             <app-reaction-bar [userMessage]="userMessage" (isPickerActive)="onEmojiPickerChange($event)" [toggleEmojiPicker]="toggleEmojiPicker" [isOwner]="isOwner" style="width: 100%"></app-reaction-bar>
