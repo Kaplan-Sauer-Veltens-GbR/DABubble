@@ -33,27 +33,29 @@ export class TextMessageFieldComponent {
   private dbService = inject(DbService)
   private emojiPickerService = inject(EmojiPickerService)
 constructor() {
-this.dbStorage.isUploading$.subscribe(status => {
-  this.zone.run(() => {
-    if(status) {
-      this.showImgPreview = true;
-    }
-    this.isUploading = status;
-    if(this.isUploading) {
-      this.dbStorage.showImgPreview = true;
-    }
-   
-    this.cdr.markForCheck();
-  });
-})
-
+this.subscribeImgStatus()
   this.dbStorage.uploadProgress$.subscribe(progress => {
     this.zone.run(() => {
       this.uploadProgress = progress;
       this.cdr.markForCheck();
     });
   });
+}
 
+subscribeImgStatus() {
+  this.dbStorage.isUploading$.subscribe(status => {
+    this.zone.run(() => {
+      if(status) {
+        this.showImgPreview = true;
+      }
+      this.isUploading = status;
+      if(this.isUploading) {
+        this.dbStorage.showImgPreview = true;
+      }
+     
+      this.cdr.markForCheck();
+    });
+  })
 }
 
   submitForm(form: NgForm ,event:Event) {
