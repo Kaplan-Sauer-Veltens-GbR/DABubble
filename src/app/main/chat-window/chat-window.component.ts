@@ -274,6 +274,7 @@ export class ChatWindowComponent {
  * @returns {string} The formatted date string in the specified language.
  */
   public formatDate(date: Date, language: string): string {
+
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       day: 'numeric',
