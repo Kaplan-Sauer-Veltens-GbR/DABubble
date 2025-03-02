@@ -67,7 +67,10 @@ this.dbStorage.isUploading$.subscribe(status => {
     }
   }
   
-
+/**
+ * Triggers the file input click event, resets its value, 
+ * and updates relevant variables.
+ */
   triggerFileInput(): void {  
     const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
     if (fileInput) {
@@ -79,7 +82,9 @@ this.dbStorage.isUploading$.subscribe(status => {
     
   }
 
-
+/**
+ * Toggles the emoji picker field via the service.
+ */
   emojiPickerToggle() {
     console.log('clicked');
     this.emojiPickerService.openTextFieldEmojiPicker()
