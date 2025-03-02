@@ -86,14 +86,15 @@ this.dbStorage.isUploading$.subscribe(status => {
 ;
   }
  
-
+/**
+ * Submits the form and emits the message.
+ * Sets relevant variables to ensure the correct message state is emitted, 
+ * then resets the form and clears the corresponding variables.
+ * 
+ * @param form - The submitted form
+ */
   async onSubmit(form: NgForm) {
-   
-    console.log('Formu send:', form.value.message);
     form.value.message = this.message;
-    // if(this.dbStorage.selectedFile ) {
-    //  this.dbStorage.imgDownloadUrl = await  this.dbStorage.uploadFile(this.dbStorage.selectedFile,'chatMessageImg/')
-    // }
     this.messageSend.emit(this.message);
     this.imgSend = true;
     this.dbStorage.showImgPreview = false;
@@ -101,6 +102,7 @@ this.dbStorage.isUploading$.subscribe(status => {
     this.dbStorage.imgDownloadUrl = '';
     this.message = '';
   }
+
 /**
  * Adds the selected emoji to the current message and displays it in the textarea.
  * @param emoji Unicode string of the emoji to be added.
