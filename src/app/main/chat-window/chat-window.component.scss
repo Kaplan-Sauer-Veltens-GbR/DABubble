@@ -7,7 +7,7 @@ section {
   // padding: 20px;
   background-color: white;
   box-sizing: border-box;
-  max-height: 808px;
+  // max-height: 808px;
   // max-height: 940px;
   // height: 100%;
   // height: 77%;
@@ -37,7 +37,7 @@ section {
   overflow-y: auto;
   // max-height: 815px;
   max-height: 575px;
-  min-height: 315px;
+  min-height: 515px;
   height: 70%;
 }
 
@@ -103,7 +103,7 @@ section {
   }
 }
 
-@media(max-width:920px) {
+@media(max-width:$mobileVersion) {
   section{
     border-radius: 0;
   }

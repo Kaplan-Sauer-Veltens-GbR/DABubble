@@ -145,7 +145,7 @@ user-avatar {
   @include pop-up(absolute, 100%, 872px, 616px, clamp(45%, 2vh, 50%), 50%, 0, -50%, -50%);
 }
 
-@media (max-width: 920px) {
+@media (max-width: $mobileVersion) {
   aside {
     clip-path: none;
     width: 100%;

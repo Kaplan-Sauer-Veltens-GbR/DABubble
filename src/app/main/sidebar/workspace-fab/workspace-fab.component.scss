@@ -48,7 +48,7 @@
     }
 }
 
-@media (max-width: 920px) {
+@media (max-width: $mobileVersion) {
   .workspace-fab {
     display: none;
   }

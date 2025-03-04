@@ -101,7 +101,7 @@ form {
   top: 33% !important;
 }
 
-@media (max-width: 550px) {
+@media (max-width: $mobileVersionS) {
   .action-buttons {
     flex-direction: column;
     align-items: center;

@@ -1,6 +1,6 @@
 @use "../../shared/scss/abstracts/" as *;
 
-$isDesktopDevice: 768px;
+$isDesktopDevice: 920px;
 
 header {
     margin-bottom: 20px;
@@ -43,7 +43,7 @@ header {
     }
 }
 
-@media(max-width:920px) {
+@media(max-width:$mobileVersion) {
   .searchbar{
     background-color: white;
     padding: 30px;
