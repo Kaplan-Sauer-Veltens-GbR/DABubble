@@ -37,7 +37,7 @@ section {
   overflow-y: auto;
   // max-height: 815px;
   max-height: 575px;
-  min-height: 515px;
+  min-height: 315px;
   height: 70%;
 }
 
@@ -100,5 +100,11 @@ section {
     top: 20%;
     left: unset;
     transform: translate(0, 0);
+  }
+}
+
+@media(max-width:920px) {
+  section{
+    border-radius: 0;
   }
 }
