@@ -7,7 +7,7 @@
   @extend .box--floating;
   @include dflex(center, center, 0, column);
   overflow: hidden;
-  @include forcedSize(600px, null !important);
+  max-width: 600px;
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -99,4 +99,23 @@ form {
 
 ::ng-deep .icon-placement {
   top: 33% !important;
+}
+
+@media (max-width: 550px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+
+    app-button {
+      width: 60%;
+    }
+  }
+
+  .signup-title {
+    font-size: 32px;
+  }
+
+  .signup-subtitle {
+    font-size: 14px;
+  }
 }
