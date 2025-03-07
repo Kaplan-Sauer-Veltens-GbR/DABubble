@@ -257,7 +257,7 @@ export class ChatWindowComponent {
  * @returns {Date} A valid `Date` object derived from the input timestamp.
  */
  private getDateFromTimestamp(timestamp: any): Date {
-  console.log('Timestamp before conversion:', timestamp);
+  // console.log('Timestamp before conversion:', timestamp);
   if (timestamp instanceof Date) {
       return timestamp; 
   }
