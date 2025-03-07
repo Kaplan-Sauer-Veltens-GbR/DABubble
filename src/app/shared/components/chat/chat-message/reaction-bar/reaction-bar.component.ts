@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { SingleReactionIconComponent } from './single-reaction-icon/single-reaction-icon.component';
 import { IconLibaryComponent } from "../../../icon-component/icon-libary.component";
 import { EmojiPickerService } from '../../../../../services/emoji-picker.service';
@@ -32,6 +32,12 @@ export class ReactionBarComponent {
     
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userMessage'] && this.userMessage) {
+      const reactions = this.userMessage.reactions ?? new Map<string, number>();
+      this.reactionArray = this.convertReactionsToArray(reactions);  // Array wird hier immer neu befüllt
+    }
+  }
   private convertReactionsToArray(reactions: Map<string, number> | { [key: string]: number }) {
     if (reactions instanceof Map) {
       return Array.from(reactions.entries()).map(([emoji, count]) => {
