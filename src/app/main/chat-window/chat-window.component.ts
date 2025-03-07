@@ -280,8 +280,6 @@ export class ChatWindowComponent {
  * @returns {string} The formatted date string in the specified language.
  */
   public formatDate(date: Date, language: string): string {
-
-
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       day: 'numeric',
@@ -340,7 +338,6 @@ scrollToBottom(timeout:number) {
  * @returns An array of objects where each object contains a 'date' and a list of 'messages' for that date.
  */
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
-    debugger
     const groupedChats: { date: string; messages: Messages[] }[] = [];
     privateChats.forEach((message) => {
       const messageDate = new Date(this.convertTime(message.createdOn));
