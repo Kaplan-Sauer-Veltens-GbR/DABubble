@@ -35,7 +35,7 @@ export class ReactionBarComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userMessage'] && this.userMessage) {
       const reactions = this.userMessage.reactions ?? new Map<string, number>();
-      this.reactionArray = this.convertReactionsToArray(reactions);  // Array wird hier immer neu befüllt
+      this.reactionArray = this.convertReactionsToArray(reactions); 
     }
   }
   private convertReactionsToArray(reactions: Map<string, number> | { [key: string]: number }) {
