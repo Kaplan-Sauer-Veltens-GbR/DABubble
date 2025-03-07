@@ -236,7 +236,11 @@ export class ChatWindowComponent {
  * @returns {string} The formatted date string based on the user's language.
  */
   convertTime(timestamp: any): string {
+    // console.log(timestamp,'timestamp');
+    
     const date = this.getDateFromTimestamp(timestamp);
+    // console.log(date,'dates');
+    
     const language = localStorage.getItem('language') || 'en';
     return this.formatDate(date, language);
   }
@@ -252,15 +256,17 @@ export class ChatWindowComponent {
  * @param {any} timestamp - The input timestamp to be converted. Can be a `Date`, a string, or an object with a `toDate` method.
  * @returns {Date} A valid `Date` object derived from the input timestamp.
  */
-  private getDateFromTimestamp(timestamp: any): Date {
-    if (timestamp instanceof Date) {
-      return timestamp;
-    }
-    if (typeof timestamp === 'string') {
-      return new Date(timestamp);
-    }
-    return timestamp.toDate();
+ private getDateFromTimestamp(timestamp: any): Date {
+  console.log('Timestamp before conversion:', timestamp);
+  if (timestamp instanceof Date) {
+      return timestamp; 
   }
+  if (timestamp && timestamp.seconds) {
+      const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+      return new Date(milliseconds);
+  }
+  return new Date();
+}
 
 
 /**
@@ -274,6 +280,7 @@ export class ChatWindowComponent {
  * @returns {string} The formatted date string in the specified language.
  */
   public formatDate(date: Date, language: string): string {
+
 
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
@@ -333,6 +340,7 @@ scrollToBottom(timeout:number) {
  * @returns An array of objects where each object contains a 'date' and a list of 'messages' for that date.
  */
   groupMessagesByDate(privateChats: Messages[]): { date: string; messages: Messages[] }[] {
+    debugger
     const groupedChats: { date: string; messages: Messages[] }[] = [];
     privateChats.forEach((message) => {
       const messageDate = new Date(this.convertTime(message.createdOn));
@@ -343,7 +351,7 @@ scrollToBottom(timeout:number) {
         month: 'long',
         year: 'numeric',
       });
-      console.log(dateString);
+
       // Suchen, ob es bereits einen Eintradg für das Datum gibt
       let dateGroup = groupedChats.find((group) => group.date === dateString);
       // Falls keine Gruppe für das Datum existiert, erstelle eine neue
