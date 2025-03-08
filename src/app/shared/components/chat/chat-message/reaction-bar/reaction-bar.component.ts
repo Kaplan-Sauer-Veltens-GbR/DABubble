@@ -21,9 +21,7 @@ export class ReactionBarComponent {
   @Output() isPickerActive:EventEmitter<boolean> = new EventEmitter();
   private dbService = inject(DbService)
   emojiPickerService = inject(EmojiPickerService);
-  // exampleMsg = {
-  //   reactions: [{'raisingHands': 2}, {'whiteHeavyCheckmark': 3}]
-  // }
+  
 
   ngOnInit(): void {
     const reactions = this.userMessage.reactions ?? new Map<string, number>();
