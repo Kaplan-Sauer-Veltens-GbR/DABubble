@@ -57,7 +57,7 @@ export class ReactionBarComponent {
   
 
   }
-  incrementEmoji(index: number, reaction: any) {
+  incrementEmoji( reaction: any) {
     console.log(reaction);
   
     const emojiKeys = Object.keys(reaction);
