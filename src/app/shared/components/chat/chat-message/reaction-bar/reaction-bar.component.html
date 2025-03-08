@@ -1,6 +1,6 @@
 <div class="reaction-bar" [ngClass]="{'msg-ownership': isOwner}">
     @for (reaction of reactionArray; track $index) {
-        <app-single-reaction-icon (click)="incrementEmoji($index,reaction)" [reactionDetails]="reaction"></app-single-reaction-icon>
+        <app-single-reaction-icon (click)="incrementEmoji(reaction)" [reactionDetails]="reaction"></app-single-reaction-icon>
         
     }
     <div class="icon-base icon--hoverable icon--hoverfilter icon-background--white">
