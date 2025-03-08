@@ -27,7 +27,7 @@ export class ReactionBarComponent {
     const reactions = this.userMessage.reactions ?? new Map<string, number>();
     const reactionsArray = this.convertReactionsToArray(reactions);
      this.reactionArray = reactionsArray
-    console.log(this.reactionArray);
+  
     
   }
 
@@ -35,6 +35,7 @@ export class ReactionBarComponent {
     if (changes['userMessage'] && this.userMessage) {
       const reactions = this.userMessage.reactions ?? new Map<string, number>();
       this.reactionArray = this.convertReactionsToArray(reactions); 
+      console.log(this.reactionArray);
     }
   }
   private convertReactionsToArray(reactions: Map<string, number> | { [key: string]: number }) {
@@ -52,13 +53,19 @@ export class ReactionBarComponent {
     console.log(this.toggleEmojiPicker);
  this.emojiPickerService.openReactionEmojiPicker();
   this.dbService.selectMessage(this.userMessage.messageUID);
-
-  }
-
-  incrementEmoji(index:number, reaction:any) {
-console.log(reaction);
+  console.log(this.dbService.userMessageID);
   
 
   }
-}
+  incrementEmoji(index: number, reaction: any) {
+    console.log(reaction);
+  
+    const emojiKeys = Object.keys(reaction);
+    console.log(emojiKeys,'wichtig');
 
+    const emoji = emojiKeys[0];
+    console.log('Selected emoji:', emoji);
+    this.dbService.selectMessage(this.userMessage.messageUID);
+    this.emojiPickerService.addReactionEmoji(emoji);
+  }
+}

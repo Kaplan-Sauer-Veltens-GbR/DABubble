@@ -25,6 +25,7 @@ export class EmojiPickerService {
       console.warn('Error: No message ID found');
       return;
     }
+  console.log(emoji,'emoji');
   
     const messageRef = doc(
       this.dbService.firestore,
@@ -43,6 +44,10 @@ export class EmojiPickerService {
           // User already reacted
           reactions[emoji].users = userList.filter((id: string) => id !== this.dbService.userInformation.uid);
           reactions[emoji].count = Math.max(0, reactions[emoji].count - 1);
+          if (reactions[emoji].count === 0) {
+            delete reactions[emoji];
+          }
+      
         } else {
           // User reacted add  new
           reactions[emoji].users.push(this.dbService.userInformation.uid);
@@ -52,10 +57,7 @@ export class EmojiPickerService {
         // Emoji not existing add it
         reactions[emoji] = { count: 1, users: [this.dbService.userInformation.uid] };
       }
-      if (reactions[emoji].count === 0) {
-        delete reactions[emoji];
-      }
-  
+     
       await updateDoc(messageRef, { reactions });
   
     } catch (error) {
