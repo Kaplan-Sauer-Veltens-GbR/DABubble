@@ -27,6 +27,7 @@ export class ReactionBarComponent {
     const reactions = this.userMessage.reactions ?? new Map<string, number>();
     const reactionsArray = this.convertReactionsToArray(reactions);
      this.reactionArray = reactionsArray
+    console.log(this.reactionArray);
     
   }
 
@@ -51,7 +52,13 @@ export class ReactionBarComponent {
     console.log(this.toggleEmojiPicker);
  this.emojiPickerService.openReactionEmojiPicker();
   this.dbService.selectMessage(this.userMessage.messageUID);
- 
+
+  }
+
+  incrementEmoji(index:number, reaction:any) {
+console.log(reaction);
+  
+
   }
 }
 

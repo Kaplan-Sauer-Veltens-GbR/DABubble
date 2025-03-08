@@ -2,7 +2,7 @@ import { inject, Injectable, ViewChild } from '@angular/core';
 import { TextMessageFieldComponent } from '../shared/components/inputs/text-message-field/text-message-field.component';
 import { Subject } from 'rxjs';
 import { DbService } from './db.service';
-import { doc, increment, updateDoc } from '@angular/fire/firestore';
+import { doc, getDoc, increment, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -25,16 +25,41 @@ export class EmojiPickerService {
       console.warn('Error: No message ID found');
       return;
     }
+  
     const messageRef = doc(
       this.dbService.firestore,
       `privatmessage/${this.dbService.chatID}/messages/${this.dbService.userMessageID}`
     );
+  
     try {
-      await updateDoc(messageRef, {
-        [`reactions.${emoji}`]: increment(1),
-      });
+      const messageSnap = await getDoc(messageRef);
+      const reactions = messageSnap.data()?.['reactions'] || {};
+  
+      // if emoji already exist
+      if (reactions[emoji]) {
+        const userList = reactions[emoji].users || [];
+  
+        if (userList.includes(this.dbService.userInformation.uid)) {
+          // User already reacted
+          reactions[emoji].users = userList.filter((id: string) => id !== this.dbService.userInformation.uid);
+          reactions[emoji].count = Math.max(0, reactions[emoji].count - 1);
+        } else {
+          // User reacted add  new
+          reactions[emoji].users.push(this.dbService.userInformation.uid);
+          reactions[emoji].count++;
+        }
+      } else {
+        // Emoji not existing add it
+        reactions[emoji] = { count: 1, users: [this.dbService.userInformation.uid] };
+      }
+      if (reactions[emoji].count === 0) {
+        delete reactions[emoji];
+      }
+  
+      await updateDoc(messageRef, { reactions });
+  
     } catch (error) {
-      console.error('failed to place an emoji', error);
+      console.error('Failed to update emoji reaction', error);
     }
   }
 
