@@ -1,4 +1,5 @@
 @use "../shared/scss/abstracts/_index.scss" as *;
+@use "../shared/scss/abstracts/variables" as *;
 
 .main-container {
   display: flex;
@@ -30,7 +31,7 @@ main {
 }
 
 
-@media (max-width: 920px) {
+@media (max-width: $mobileVersion) {
   main {
     flex-direction: column;
   }

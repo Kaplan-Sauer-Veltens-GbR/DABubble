@@ -1,6 +1,7 @@
 @use "../../shared/scss/abstracts/" as *;
+@use "../../shared/scss/abstracts/variables" as *;
 
-$isDesktopDevice: 920px;
+
 
 header {
     margin-bottom: 20px;
@@ -21,7 +22,7 @@ header {
             justify-content: flex-end;
             align-items: center;
             flex: 1;
-            @media (orientation: landscape) and (min-width: $isDesktopDevice) and (pointer: fine) {
+            @media (orientation: landscape) and (min-width: $mobileVersion) and (pointer: fine) {
                 justify-content: space-between;
                 gap: 40px;
             }
@@ -34,13 +35,20 @@ header {
     @include dflex(center, center);
     flex: 1;
     &.searchbar--desktop {
-        @include hideWhenMobile($isDesktopDevice);
+        @include hideWhenMobile($mobileVersion);
     }
 
     &.searchbar--mobile {
         margin-top: min(32px, 8vh - 2rem);
-        @include hideWhenDesktop($isDesktopDevice);
+        @include hideWhenDesktop($mobileVersion);
     }
+}
+
+.logoText{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+
 }
 
 @media(max-width:$mobileVersion) {
@@ -56,4 +64,8 @@ header {
   .wrapper {
     padding: 0 20px 0 20px;
   }
+}
+
+@media(max-width:$mobileVersion) {
+
 }

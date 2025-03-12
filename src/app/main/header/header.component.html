@@ -1,8 +1,10 @@
 <header>
     <div class="wrapper">
-        <div class="logo">
-            <img src="/assets/images/logo/logo_dabubble.webp" aria-hidden="true" alt="" draggable="false">
-        </div>
+      <div class="logo">
+        <img *ngIf="!showChatWindow" class="daBubbleLogo" src="/assets/images/logo/logo_dabubble.webp" aria-hidden="true" alt="" draggable="false">
+        <img *ngIf="isSmallScreen && showChatWindow" (click)="closeChat()" class="devspaceLogo" src="/assets/images/logo/workspace.png" alt="">
+        <span *ngIf="isSmallScreen && showChatWindow" class="logoText">Devspace</span>
+      </div>
         <div class="toolbar">
             <channel-searchbar class="searchbar searchbar--desktop"></channel-searchbar>
             <avatar-menu></avatar-menu>
