@@ -39,7 +39,14 @@ section {
   max-height: 575px;
   min-height: 555px;
   // height: 70%;
+  
 }
+.chat:has(.before-message) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 
 .bg-circle {
   background-color: $colorBG;
@@ -102,3 +109,4 @@ section {
     transform: translate(0, 0);
   }
 }
+
