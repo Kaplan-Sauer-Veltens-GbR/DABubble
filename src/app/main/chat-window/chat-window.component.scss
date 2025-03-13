@@ -112,6 +112,17 @@ section {
   }
 }
 
+.before-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 60px;
+  >span {
+    font-size: 20px;
+    color: #686868;
+  }
+}
+
 .before-message {
   @include dflex(flex-start, end, 20px, row );
   >span {
