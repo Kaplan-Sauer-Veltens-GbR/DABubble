@@ -39,7 +39,9 @@
   
 </div>
     } }  @empty {
-      <div>Schreibe die erste nachricht </div>
+      <div class="before-message">
+        <div><img style="height: 100px; width: 100px; border-radius: 100px;" [src]="this.otherChatUser.photoURL" alt=""></div>
+        {{ '@'+ this.otherChatUser.displayName}}</div>
     }
     @if (this.emojiPickerService.toggleTextFieldEmojiPicker) {
       <emoji-picker   #emojiPicker [isShown]="this.emojiPickerService.toggleTextFieldEmojiPicker" ></emoji-picker>
