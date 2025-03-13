@@ -43,8 +43,10 @@ section {
 }
 .chat:has(.before-message) {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
+  gap: 25px;
+  margin-left: 45px;
 }
 
 
@@ -110,3 +112,12 @@ section {
   }
 }
 
+.before-message {
+  @include dflex(flex-start, end, 20px, row );
+  >span {
+    font-size: 24px;
+    font-weight: 700;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+}
