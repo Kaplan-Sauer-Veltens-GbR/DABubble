@@ -104,10 +104,12 @@ export class ChatWindowComponent {
     })
    
   }
+  
 
   ngOnInit(): void {
   this.SubtoChatRoute();
   this.getChatMembers();
+  console.log(this.otherChatUser);
   
   }
 
@@ -297,16 +299,16 @@ export class ChatWindowComponent {
  * 2. The component is first initialized and there is a long chat history.
  */
 scrollToBottom(timeout:number) {
-
+  if(this.scrollContainer) {
   const chatContainer = this.scrollContainer.nativeElement;
-
   // Warte auf das Ende des DOM-Renderings und erhöhe den scrollHeight um einen festen Wert
   setTimeout(() => {
     chatContainer.scrollTo({
-      top: chatContainer.scrollHeight + 100, // Puffer von 100px hinzufügen
+      top: chatContainer.scrollHeight + 100, 
       behavior: 'smooth',
     });
   }, timeout);
+}
 }
 
   /**
@@ -455,6 +457,9 @@ scrollToBottom(timeout:number) {
  */
 async getChatMembers() {
   const loggedUser = this.authService.getCurrentUser()?.uid
+  if(!loggedUser) {
+    return;
+  }
   const chatRef = doc(this.dbService.firestore, `privatmessage/${this.chatID}`)
   const chatSnapshot = await getDoc(chatRef);
  if(chatSnapshot.exists()) {
@@ -466,6 +471,7 @@ async getChatMembers() {
   this.otherChatUser = await this.dbService.getDocData('users',memberUid) as UserData
 
  }
+ 
 }
 
 deleteImagePathIfExists(attachments: string | undefined) {

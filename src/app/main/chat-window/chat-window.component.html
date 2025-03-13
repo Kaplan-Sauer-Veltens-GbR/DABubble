@@ -39,6 +39,7 @@
   
 </div>
     } }  @empty {
+      @if(otherChatUser) {
       <div class="before-message-wrapper">
       <div class="before-message">
         <div><img style="height: 100px; width: 100px; border-radius: 100px;" [src]="this.otherChatUser.photoURL" alt="">
@@ -46,6 +47,7 @@
         <span>{{this.otherChatUser.displayName}}</span></div>
         <span> Diese Unterhaltung findet nur zwischen <span style="color: #535AF1;">{{'@' + this.otherChatUser.displayName}}</span> und dir statt.</span>
       </div>
+    }
     }
     @if (this.emojiPickerService.toggleTextFieldEmojiPicker) {
       <emoji-picker   #emojiPicker [isShown]="this.emojiPickerService.toggleTextFieldEmojiPicker" ></emoji-picker>
