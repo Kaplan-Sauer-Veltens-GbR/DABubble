@@ -12,6 +12,7 @@ section {
   // height: 100%;
   // height: 77%;
 
+
   header {
     @include dflex(space-between);
     padding: 30px 45px 0 45px;
@@ -107,4 +108,25 @@ section {
   section{
     border-radius: 0;
   }
+  header {
+    padding: 0 45px 0 45px !important;
+  }
+}
+
+@media(max-height:$mobileVersion) {
+  .chat {
+    max-height: 60%;
+    min-height: 0px;
+
+  }
+  section {
+    height: 100%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+
+
 }

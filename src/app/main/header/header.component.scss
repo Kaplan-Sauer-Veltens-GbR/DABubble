@@ -54,7 +54,7 @@ header {
 @media(max-width:$mobileVersion) {
   .searchbar{
     background-color: white;
-    padding: 30px;
+    padding: 10px;
   }
 
   header {
@@ -66,6 +66,3 @@ header {
   }
 }
 
-@media(max-width:$mobileVersion) {
-
-}
