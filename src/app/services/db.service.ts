@@ -141,4 +141,9 @@ getChatID(chatID:string | null) {
 this.chatID = chatID
 }
 
+deleteMessage(userMessageRef:Messages) { // later rewirt it and to give the path as param
+  console.log(userMessageRef);
+  
+}
+
 }
