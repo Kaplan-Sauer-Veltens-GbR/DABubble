@@ -109,7 +109,8 @@ section {
     border-radius: 0;
   }
   header {
-    padding: 0 45px 0 45px !important;
+    padding: 12px 45px 12px 45px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -121,6 +122,7 @@ section {
   }
   section {
     height: 100%;
+    margin-top: 12px;
   }
 
   h2 {

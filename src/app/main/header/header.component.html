@@ -10,5 +10,5 @@
             <avatar-menu></avatar-menu>
         </div>
     </div>
-    <channel-searchbar class="searchbar searchbar--mobile"></channel-searchbar>
+    <channel-searchbar *ngIf="!showChatWindow" class="searchbar searchbar--mobile"></channel-searchbar>
 </header>
