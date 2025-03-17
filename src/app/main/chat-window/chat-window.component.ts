@@ -435,18 +435,7 @@ scrollToBottom(timeout:number) {
  * @param firebaseTimestamp The Firebase timestamp object containing 'seconds' and 'nanoseconds' fields.
  * @returns A string representing the time in hours and minutes (e.g., "14:30").
  */
-  dateToTime(firebaseTimestamp:FireTimestampModel) {
-  const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
-  const date = new Date(milliseconds); 
 
-  const options: Intl.DateTimeFormatOptions = {
-  hour: '2-digit',
-  minute: '2-digit',
-  hour12: false,
-};
-  const timeString = date.toLocaleTimeString('de-DE', options);
-  return timeString
-  }
 
 /**
  * Retrieves both members of a private chat to ensure that only the correct users are part of the chat.

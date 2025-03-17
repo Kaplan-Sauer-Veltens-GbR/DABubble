@@ -13,7 +13,7 @@
    
 </div>
 @if(this.editMode) {
-    <div class="edit-field">
+    <div #editField class="edit-field">
         <span (click)="editing()">Edit</span>
         <span (click)="this.dbService.deleteMessage(userMessage)">Delete</span>
 </div>

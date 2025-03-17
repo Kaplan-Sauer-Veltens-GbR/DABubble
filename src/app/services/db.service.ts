@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Messages } from '../interfaces/messages';
 import { DbStorageService } from './db-storage.service';
+import { FireTimestampModel } from '../interfaces/fire-stamp-model';
 
 @Injectable({
   providedIn: 'root',
@@ -159,4 +160,17 @@ async deleteMessage(userMessageRef:Messages) { // later rewirte it and to give t
   
 }
 
+
+dateToTime(firebaseTimestamp:FireTimestampModel) {
+  const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
+  const date = new Date(milliseconds); 
+
+  const options: Intl.DateTimeFormatOptions = {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+};
+  const timeString = date.toLocaleTimeString('de-DE', options);
+  return timeString
+  }
 }
