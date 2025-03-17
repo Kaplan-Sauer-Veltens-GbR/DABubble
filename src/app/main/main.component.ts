@@ -109,4 +109,9 @@ export class MainComponent implements OnInit {
       console.log(this.dbService.userInformation);
     }
   }
+
+  openEmptyChat(): void {
+    // Navigiere zur neuen Route für ein leeres Chatfenster:
+    this.router.navigate(['main', 'privatmessage', 'new']);
+  }
 }

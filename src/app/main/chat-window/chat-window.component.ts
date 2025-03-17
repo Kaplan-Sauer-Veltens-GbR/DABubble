@@ -90,6 +90,18 @@ export class ChatWindowComponent {
   ngOnInit(): void {
   this.SubtoChatRoute();
   this.getChatMembers();
+
+  this.route.paramMap.subscribe(params => {
+    this.chatID = params.get('chatId');
+    if (this.chatID === 'new') {
+      // Setze den leeren Zustand – z. B. leere Arrays oder zeige eine entsprechende Nachricht
+      this.privateChats = [];
+      // Optional: setze eine Variable, die den leeren Zustand signalisiert:
+      // this.isEmptyChat = true;
+    } else {
+      this.loadPrivatChats();
+    }
+  });
   }
 
   @ViewChild(TextMessageFieldComponent) textMessageField!: TextMessageFieldComponent;
@@ -446,5 +458,7 @@ async getChatMembers() {
 
  }
 }
+
+
 
 }

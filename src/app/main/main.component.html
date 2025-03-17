@@ -12,7 +12,7 @@
       <router-outlet></router-outlet>
     </div>
   </main>
-  <app-icon *ngIf="!showChatWindow"
+  <app-icon *ngIf="!showChatWindow" (click)="openEmptyChat()"
   class="sendPmLogo"
   #iconSlot
   iconName="send-pm"
