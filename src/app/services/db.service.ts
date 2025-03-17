@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import {
   collection,
+  deleteDoc,
   doc,
   DocumentReference,
   Firestore,
@@ -58,7 +59,10 @@ export class DbService {
     const collectionRef = collection(this.firestore, collectionName);
     const docRef = doc(collectionRef, uid);
     const docSnapshot = await getDoc(docRef);
+    
     if (docSnapshot.exists()) {
+      console.log(docSnapshot.data);
+      
       return docSnapshot.data();
     } else {
       return null;
@@ -141,8 +145,17 @@ getChatID(chatID:string | null) {
 this.chatID = chatID
 }
 
-deleteMessage(userMessageRef:Messages) { // later rewirt it and to give the path as param
-  console.log(userMessageRef);
+async deleteMessage(userMessageRef:Messages) { // later rewirte it and to give the path as param
+  debugger
+  try {
+    const messagePath = `privatmessage/${this.chatID}/messages/${userMessageRef.messageUID}`;
+    const messageDocRef = doc(this.firestore,messagePath);
+    await deleteDoc(messageDocRef);
+  }catch {
+    console.log('didnt found');
+    
+  }
+  
   
 }
 
