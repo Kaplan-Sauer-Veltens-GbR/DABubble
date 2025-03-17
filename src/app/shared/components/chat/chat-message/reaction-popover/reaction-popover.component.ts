@@ -13,6 +13,13 @@ import { IconName } from '../../../../../interfaces/icon-names.model';
 export class ReactionPopoverComponent {
   @Input() isOwner: boolean = false;
   @Input() isDisplayed: boolean = false;
+  editMode:boolean = false;
 
   public regularIcons: IconName[] = ['whiteHeavyCheckmark', 'raisingHands', 'addReaction', 'comment']
+
+
+openEditField() {
+this.editMode = !this.editMode;
 }
+}
+

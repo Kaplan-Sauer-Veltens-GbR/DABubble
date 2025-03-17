@@ -1,3 +1,4 @@
+
 <div class="reaction-popover" [ngClass]="{'msg-ownership': isOwner, '--hovered': isDisplayed}">
     @for (icon of regularIcons; track $index) {
     <div class="icon--hoverable">
@@ -6,7 +7,14 @@
     }
     @if (isOwner) {
     <div class="icon--hoverable">
-        <app-icon iconName="moreVert"></app-icon>
+        <app-icon (click)="openEditField()" iconName="moreVert"></app-icon>
     </div>
     }
+   
 </div>
+@if(this.editMode) {
+    <div class="edit-field">
+        <span (click)="">Edit</span>
+        <span (click)="">Delete</span>
+</div>
+}
