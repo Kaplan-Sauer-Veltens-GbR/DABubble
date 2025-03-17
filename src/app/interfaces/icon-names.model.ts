@@ -62,4 +62,5 @@ export type IconName =
 'user' |
 'password' |
 'mailReg' |
-'dabubble-logo'
+'dabubble-logo' |
+'send-pm'

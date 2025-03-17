@@ -12,5 +12,10 @@
       <router-outlet></router-outlet>
     </div>
   </main>
+  <app-icon
+  class="sendPmLogo"
+  #iconSlot
+  iconName="send-pm"
+></app-icon>
 </div>
 <div *ngIf="workspace.currentDialog != null" class="overlay"></div>

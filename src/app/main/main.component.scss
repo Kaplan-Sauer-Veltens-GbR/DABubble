@@ -30,12 +30,11 @@ main {
   z-index: 50;
 }
 
-
 @media (max-width: $mobileVersion) {
   main {
     flex-direction: column;
   }
-  .main-container{
+  .main-container {
     padding: 0;
   }
   app-sidebar {
@@ -54,14 +53,28 @@ main {
     padding: 8px 12px;
     font-size: 16px;
     border: none;
-    background-color: #444DF2;
+    background-color: #444df2;
     color: white;
     border-radius: 4px;
   }
 }
 
-@media(max-width:$mobileVersion) {
+::ng-deep .sendPmLogo {
+  display: none;
+  position: absolute;
+  bottom: 55px;
+  right: 55px;
+  img {
+    height: 60px;
+  }
+}
+
+@media (max-width: $mobileVersion) {
   .main-container {
     height: 99% !important;
+  }
+
+  ::ng-deep .sendPmLogo {
+    display: block;
   }
 }

@@ -8,11 +8,12 @@ import { Auth, User } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import { DbService } from '../services/db.service';
 import { UserData } from '../interfaces/user-model';
+import { IconLibaryComponent } from "../shared/components/icon-component/icon-libary.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, RouterOutlet, CommonModule],
+  imports: [HeaderComponent, SidebarComponent, RouterOutlet, CommonModule, IconLibaryComponent],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
