@@ -15,6 +15,6 @@
 @if(this.editMode) {
     <div #editField class="edit-field">
         <span (click)="editing()">Edit</span>
-        <span (click)="this.dbService.deleteMessage(userMessage)">Delete</span>
+        <span (click)="this.dbService.deleteMessage('privatmessage/' + dbService.chatID + '/messages/' + userMessage.messageUID)">Delete</span>
 </div>
 }

@@ -146,10 +146,10 @@ getChatID(chatID:string | null) {
 this.chatID = chatID
 }
 
-async deleteMessage(userMessageRef:Messages) { // later rewirte it and to give the path as param
+async deleteMessage(path:string) { // later rewirte it and to give the path as param
   debugger
   try {
-    const messagePath = `privatmessage/${this.chatID}/messages/${userMessageRef.messageUID}`;
+    const messagePath = path;
     const messageDocRef = doc(this.firestore,messagePath);
     await deleteDoc(messageDocRef);
   }catch {
