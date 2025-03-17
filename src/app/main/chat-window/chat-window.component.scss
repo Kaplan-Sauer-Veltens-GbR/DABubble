@@ -132,3 +132,12 @@ section {
     margin-bottom: 10px;
   }
 }
+
+.name-hover {
+  color: $colorPurple3;
+  &:hover {
+    color: $colorPurple1;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
