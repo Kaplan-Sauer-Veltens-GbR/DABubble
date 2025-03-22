@@ -4,11 +4,12 @@ import { ReactionPopoverComponent } from "./reaction-popover/reaction-popover.co
 import { ReactionBarComponent } from "./reaction-bar/reaction-bar.component";
 import { TranslocoModule } from '@jsverse/transloco';
 import { Messages } from '../../../../interfaces/messages';
+import { ButtonComponent } from "../../inputs/button/button.component";
 
 @Component({
   selector: 'chat-message',
   standalone: true,
-  imports: [CommonModule, ReactionPopoverComponent, ReactionBarComponent, TranslocoModule],
+  imports: [CommonModule, ReactionPopoverComponent, ReactionBarComponent, TranslocoModule, ButtonComponent],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss'
 })
@@ -21,6 +22,7 @@ export class ChatMessageComponent {
   @Input() toggleEmojiPicker:boolean = false;
   @Output()isPickerActiveChange:EventEmitter<boolean> = new EventEmitter;
   displayPopover: boolean = false;
+  messageEditMode:boolean = true ;
   avatarPath: string = '/assets/images/avatars/demo_avatar.png';
   replyAmount: number = 2;
 

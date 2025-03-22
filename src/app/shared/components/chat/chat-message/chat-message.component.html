@@ -5,6 +5,10 @@
             <img [src]="avatarPath" alt="avatar">
         </div>
         <article class="msg" [ngClass]="{'msg-ownership': isOwner}">
+            @if(!messageEditMode) {
+               
+               
+            
             <div class="msg__header" [ngClass]="{'msg-ownership': isOwner}">
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">{{userName}}</span>
                 <span class="timestamp">{{messageSendTime}}</span>
@@ -21,6 +25,9 @@
                 </span>
                 <span class="timestamp">Letzte Antwort 14:00</span>
             </div>
+            }
+            <app-button [filled]="true">Save</app-button>
+            <app-button [filled]="false">Cancel</app-button>
         </article>
     </div>
 </div>
