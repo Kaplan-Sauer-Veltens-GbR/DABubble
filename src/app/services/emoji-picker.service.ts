@@ -54,7 +54,11 @@ export class EmojiPickerService {
           reactions[emoji].count++;
         }
       } else {
-        // Emoji not existing add it
+        if(Object.keys(reactions).length >=6) {
+          console.warn('too much');
+          
+          return
+        }
         reactions[emoji] = { count: 1, users: [this.dbService.userInformation.uid] };
       }
      
