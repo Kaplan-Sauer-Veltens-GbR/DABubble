@@ -145,7 +145,11 @@ selectMessage(message:string) {
 getChatID(chatID:string | null) {
 this.chatID = chatID
 }
-
+/**
+ * Deletes a chat message based on its unique path.
+ *
+ * @param path The unique path pointing to the specific message.
+ */
 async deleteMessage(path:string) { // later rewirte it and to give the path as param
   debugger
   try {
