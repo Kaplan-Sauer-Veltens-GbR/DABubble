@@ -14,6 +14,7 @@ import { NgIf } from '@angular/common';
 export class HeaderComponent {
   @Input() isSmallScreen: boolean = false;
   @Input() showChatWindow: boolean = false;
+  @Input() isEmptyChat: boolean = false;
 
   @Output() closeChatEvent = new EventEmitter<void>();
 

@@ -111,7 +111,6 @@ export class MainComponent implements OnInit {
   }
 
   openEmptyChat(): void {
-    // Navigiere zur neuen Route für ein leeres Chatfenster:
     this.router.navigate(['main', 'privatmessage', 'new']);
   }
 }

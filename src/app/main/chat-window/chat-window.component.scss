@@ -104,6 +104,15 @@ section {
   }
 }
 
+.emptyChat{
+  @include dflex($a:flex-start !important,$d: column !important);
+  width: 90%;
+
+  >div {
+    width: 100%;
+  }
+}
+
 @media(max-width:$mobileVersion) {
   section{
     border-radius: 0;

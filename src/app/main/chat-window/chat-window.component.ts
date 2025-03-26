@@ -43,6 +43,9 @@ import {FireTimestampModel } from '../../interfaces/fire-stamp-model';
 import { UserSelectorComponent } from "../../shared/components/inputs/user-selector/user-selector.component";
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker/emoji-picker.component";
+import { ChannelSearchbarComponent } from '../header/channel-searchbar/channel-searchbar.component';
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'chat-window',
   standalone: true,
@@ -56,7 +59,10 @@ import { EmojiPickerComponent } from "../../shared/components/emoji/emoji-picker
     AddPeopleComponent,
     MemberListComponent,
     CreateChannelComponent,
-    EmojiPickerComponent
+    EmojiPickerComponent,
+    NgIf,
+    ChannelSearchbarComponent
+
 ],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
@@ -94,10 +100,7 @@ export class ChatWindowComponent {
   this.route.paramMap.subscribe(params => {
     this.chatID = params.get('chatId');
     if (this.chatID === 'new') {
-      // Setze den leeren Zustand – z. B. leere Arrays oder zeige eine entsprechende Nachricht
       this.privateChats = [];
-      // Optional: setze eine Variable, die den leeren Zustand signalisiert:
-      // this.isEmptyChat = true;
     } else {
       this.loadPrivatChats();
     }
