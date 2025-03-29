@@ -1,14 +1,11 @@
-<div class="wrapper" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
+<div class="wrapper" [ngClass]="{'wrapper': messageEditMode}" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
     <app-reaction-popover [userMessage]="userMessage" [isOwner]="isOwner" [isDisplayed]="displayPopover"></app-reaction-popover>
     <div *transloco="let t;" class="message-container" [ngClass]="{'msg-ownership': isOwner}">
         <div class="avatar">
             <img [src]="avatarPath" alt="avatar">
         </div>
+         @if(!messageEditMode) {
         <article class="msg" [ngClass]="{'msg-ownership': isOwner}">
-            @if(!messageEditMode) {
-               
-               
-            
             <div class="msg__header" [ngClass]="{'msg-ownership': isOwner}">
                 <span class="user-name" role="button" [attr.aria-label]="t('profile.open', {'name': 'Noah Braun'})">{{userName}}</span>
                 <span class="timestamp">{{messageSendTime}}</span>
@@ -25,9 +22,16 @@
                 </span>
                 <span class="timestamp">Letzte Antwort 14:00</span>
             </div>
-            }
-            <app-button [filled]="true">Save</app-button>
-            <app-button [filled]="false">Cancel</app-button>
+            
+
         </article>
+         }
+         <div class="edit-mode-wrapper">
+            <form action="">
+            <textarea name="" id=""></textarea>
+        </form>
+        <app-button [filled]="true">Save</app-button>
+        <app-button [filled]="false">Cancel</app-button>
+    </div>
     </div>
 </div>
