@@ -7,8 +7,8 @@
 >
   <div class="avatar" [ngStyle]="{ width: size() + 'px', height: size() + 'px' }">
     <img
-      [ngSrc]="getPhotoURL()"
-      fill
+      [attr.src]="getPhotoURL()"
+      [ngStyle]="{ width: size() + 'px', height: size() + 'px' }"
       draggable="false"
       alt=""
       crossorigin="anonymous"
