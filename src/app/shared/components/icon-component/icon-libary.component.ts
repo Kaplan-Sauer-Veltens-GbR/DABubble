@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, EventEmitter, inject, Input, Optional, Output, output } from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, inject, input, Input, Optional, Output} from '@angular/core';
 import { InputFieldsComponent } from '../inputs/input-fields/input-fields.component';
 import { IconName } from '../../../interfaces/icon-names.model';
 import { WorkspaceService } from '../../../services/workspace.service';
+import {AriaRole} from "../../../interfaces/role.model";
 
 @Component({
   selector: 'app-icon',
@@ -14,6 +15,7 @@ import { WorkspaceService } from '../../../services/workspace.service';
 export class IconLibaryComponent {
   private baseSrc: string = './assets/icons/icon-libary/';
   @Input() iconName: IconName = '';
+  iconRole = input<AriaRole>()
   @Input() iconAlt: string = '';
   @Input() iconClass: string = '';
   @Input() suffix: string = 'svg';
@@ -26,7 +28,7 @@ export class IconLibaryComponent {
   private workspace = inject(WorkspaceService)
   constructor(@Optional() private inputField: InputFieldsComponent) {}
 
-  
+
   get iconSrc(): string {
     const pathModifier = this.suffix == 'png' ? 'png/' : '';
     return `${this.baseSrc}${pathModifier}${this.iconName}.${this.suffix}`;
@@ -47,5 +49,5 @@ export class IconLibaryComponent {
       this.workspace.closeDialog();
     }
   }
- 
+
 }
