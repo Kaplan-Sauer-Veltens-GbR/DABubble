@@ -1,4 +1,4 @@
-export interface Messages {
+export type Messages = {
     attachments?:string,
     author:string
     createdOn: Date,

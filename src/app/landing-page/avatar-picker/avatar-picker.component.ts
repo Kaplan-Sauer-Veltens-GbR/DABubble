@@ -47,12 +47,12 @@ export class AvatarPickerComponent {
     this.storageService.checkPreviousImgPath(this.previousImgPath)
     this.profilePicture = path;
     console.log(this.profilePicture);
-    
+
   }
 
   ngOnInit(): void {}
   async onSubmit() {
-    
+
     const result = await this.authService.createUserWithEmailAndPassword(
       this.email,
       this.password,
@@ -66,7 +66,6 @@ export class AvatarPickerComponent {
 
 
   async uploadProfilePicture() {
-    debugger
     this.storageService.checkPreviousImgPath(this.previousImgPath);
     if (this.selectedFile) {
       try {
@@ -92,7 +91,7 @@ export class AvatarPickerComponent {
      triggerFileInput(): void {
       const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
       if (fileInput) {
-        fileInput.click(); 
+        fileInput.click();
       }
     }
 }

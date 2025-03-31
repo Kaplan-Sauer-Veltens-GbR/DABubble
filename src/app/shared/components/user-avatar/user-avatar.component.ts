@@ -1,5 +1,5 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import {Component, inject, input, Input} from '@angular/core';
 import { OnlineStatusService } from '../../../services/online-status.service';
 import { WordlistService } from '../../../services/wordlist.service';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -19,13 +19,13 @@ export class UserAvatarComponent {
   wordlistService: WordlistService = inject(WordlistService);
   translocoService: TranslocoService = inject(TranslocoService);
   public dbService = inject(DbService);
-  @Input() hideUsername: boolean = false;
-  @Input() strikeUsername: boolean = false;
-  @Input() hideOnlineStatus: boolean = false;
-  @Input() owner: boolean = false;
-  @Input() size: number = 50;
-  @Input() userId: string = '';
-  @Input() photoURL!: string;
+  hideUsername = input(false)
+  strikeUsername = input(false)
+  hideOnlineStatus = input(false);
+  owner = input(false);
+  size = input(50)
+  userId = input('');
+  photoURL = input<string>();
   @Input() user: UserData = {
     uid: '',
     displayName: 'Frederik Beck',
@@ -35,11 +35,11 @@ export class UserAvatarComponent {
     lastActivity: new Date(),
     isOnline: true,
   };
-  @Input() userListHover: boolean = false;
+  userListHover = input(false);
 
   returnUsername(): string {
     let suffix = '';
-    if (this.owner) {
+    if (this.owner()) {
       suffix = ` (${capitalize(
         this.translocoService.translate('wordlist.you')
       )})`;
@@ -48,7 +48,7 @@ export class UserAvatarComponent {
   }
 
   returnAriaLabel(): string | null {
-    if (!this.hideOnlineStatus) {
+    if (!this.hideOnlineStatus()) {
       return (
         this.user.displayName +
         ': ' +
@@ -64,5 +64,9 @@ export class UserAvatarComponent {
       'is-' +
       this.onlineStatus.getStatus(this.user.lastActivity, this.user.isOnline)
     );
+  }
+
+  getPhotoURL() {
+    return this.photoURL() ?? '';
   }
 }

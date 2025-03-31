@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
-import { SingleReactionIconComponent } from './single-reaction-icon/single-reaction-icon.component';
-import { IconLibaryComponent } from "../../../icon-component/icon-libary.component";
-import { EmojiPickerService } from '../../../../../services/emoji-picker.service';
-import { Messages } from '../../../../../interfaces/messages';
-import { DbService } from '../../../../../services/db.service';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, inject, Input, Output, SimpleChanges} from '@angular/core';
+import {SingleReactionIconComponent} from './single-reaction-icon/single-reaction-icon.component';
+import {IconLibaryComponent} from "../../../icon-component/icon-libary.component";
+import {EmojiPickerService} from '../../../../../services/emoji-picker.service';
+import {Messages} from '../../../../../interfaces/messages';
+import {DbService} from '../../../../../services/db.service';
 
 @Component({
   selector: 'app-reaction-bar',
@@ -21,20 +21,17 @@ export class ReactionBarComponent {
   @Output() isPickerActive:EventEmitter<boolean> = new EventEmitter();
   private dbService = inject(DbService)
   emojiPickerService = inject(EmojiPickerService);
-  
+
 
   ngOnInit(): void {
     const reactions = this.userMessage.reactions ?? new Map<string, number>();
-    const reactionsArray = this.convertReactionsToArray(reactions);
-     this.reactionArray = reactionsArray
-  
-    
+    this.reactionArray = this.convertReactionsToArray(reactions)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userMessage'] && this.userMessage) {
       const reactions = this.userMessage.reactions ?? new Map<string, number>();
-      this.reactionArray = this.convertReactionsToArray(reactions); 
+      this.reactionArray = this.convertReactionsToArray(reactions);
       console.log(this.reactionArray);
     }
   }
@@ -54,12 +51,12 @@ export class ReactionBarComponent {
  this.emojiPickerService.openReactionEmojiPicker();
   this.dbService.selectMessage(this.userMessage.messageUID);
   console.log(this.dbService.userMessageID);
-  
+
 
   }
   incrementEmoji( reaction: any) {
     console.log(reaction);
-  
+
     const emojiKeys = Object.keys(reaction);
     console.log(emojiKeys,'wichtig');
 

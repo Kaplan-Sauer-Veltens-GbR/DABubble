@@ -82,7 +82,6 @@ export class SidebarComponent {
     collectionRef: DocumentReference,
     uid: string
   ) {
-    debugger;
 
     const messagesCollectionRef = collection(collectionRef, 'messages');
     // await addDoc(
@@ -137,7 +136,7 @@ export class SidebarComponent {
     if (result.found === false) {
       this.router.navigate([`main/privatmessage/${result.docId}`]);
       console.log();
-      
+
     } else {
       console.log(this.router.url);
       this.router.navigate([`main/privatmessage/${result.docId}`]);

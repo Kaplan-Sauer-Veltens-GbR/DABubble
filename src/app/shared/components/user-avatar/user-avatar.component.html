@@ -3,30 +3,30 @@
   class="user-information"
   role="status"
   [attr.aria-label]="returnAriaLabel()"
-  [ngClass]="{'hoverListEffect':userListHover}"
+  [ngClass]="{'hoverListEffect':userListHover()}"
 >
-  <div class="avatar" [ngStyle]="{ width: size + 'px', height: size + 'px' }">
+  <div class="avatar" [ngStyle]="{ width: size() + 'px', height: size() + 'px' }">
     <img
-      [ngSrc]="photoURL"
+      [ngSrc]="getPhotoURL()"
       fill
       draggable="false"
       alt=""
       crossorigin="anonymous"
       loading="lazy"
     />
-    @if (!hideOnlineStatus) {
+    @if (!hideOnlineStatus()) {
       <div
         class="online-status"
-        [ngStyle]="{ width: size / 5 + 'px', height: size / 5 + 'px' }"
+        [ngStyle]="{ width: size() / 5 + 'px', height: size() / 5 + 'px' }"
         [ngClass]="isOnline"
       ></div>
     }
   </div>
-  @if (!hideUsername) {
+  @if (!hideUsername()) {
 
     <span
       aria-hidden="true"
-      [ngClass]="{ '--striked': strikeUsername }"
+      [ngClass]="{ '--striked': strikeUsername() }"
       class="user-name"
     >{{ returnUsername() }}</span
     >
