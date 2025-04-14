@@ -123,7 +123,7 @@ section {
   }
 }
 
-@media(max-height:$mobileVersion) {
+@media(max-height:1024px) {
   .chat {
     max-height: 60%;
     min-height: 0px;
